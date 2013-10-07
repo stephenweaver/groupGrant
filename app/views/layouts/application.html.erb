@@ -22,9 +22,14 @@
         <!-- Carousel items -->
         <div class="carousel-inner">
           <% Dir.foreach("app/assets/images/home_carousel") do |item| %>
-              <% next if item == '.' or item == '..' %>
+              <% next if item == '.' or item == '..' or item == '*.html' %>
               <% Rails.logger.info(item) %>
-              <div class="item"><%= image_tag(('home_carousel/' + item), :alt => "homeCarousel", :class => "automargin maxheight300") %></div>
+              <div class="item">
+                <%= image_tag(('home_carousel/' + item), :alt => "homeCarousel", :class => "automargin maxheight300") %>
+                <!-- <div class="carousel-caption">
+                     <%= simple_format :file => ('app/assets/images/home_carousel/' + item + '.html') %>
+                </div> -->
+              </div>
           <% end %>
         </div>
         <!-- Carousel nav -->
