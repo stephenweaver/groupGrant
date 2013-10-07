@@ -13,6 +13,14 @@ gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
+gem 'devise'
+gem 'slim'
+gem 'omniauth-facebook'
+gem 'binding_of_caller'
+gem 'nifty-generators'
+gem 'compass'
+gem 'compass-rails', github: "Compass/compass-rails", branch: "rails4-hack"
+gem "haml-rails"
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -25,3 +33,5 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
+gem "mocha", group: :test
