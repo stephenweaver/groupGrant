@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131014212419) do
-
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.decimal  "discount"
-    t.string   "type"
-    t.integer  "owner_id"
-    t.string   "description"
-    t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20131006132851) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
