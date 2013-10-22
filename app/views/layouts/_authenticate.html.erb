@@ -1,0 +1,20 @@
+<div id="authenticate" class="padding10 right">
+   <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'Edit profile', edit_user_registration_path %> |
+      <%= link_to 'Authentications', authentications_path %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+   <% else %>
+      <div class="dropdown pull-right">
+         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <!--       <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Login", new_user_session_path %></li> -->
+            <li><%= link_to "Email", new_user_session_path %></li>
+            <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
+            <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
+         </ul>
+      </div>
+   <% end %>
+</div>
+

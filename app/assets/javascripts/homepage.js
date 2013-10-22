@@ -10,6 +10,7 @@ $("#charityThumb").click(function() {
          'priority': 'error'
       }
    ]);
+   console.log("asdfasdf");
 });
 
 $("#businessThumb").click(function() {

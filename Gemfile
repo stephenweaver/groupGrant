@@ -14,16 +14,14 @@ gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'thin'
 gem 'devise'
-gem 'slim'
+gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'binding_of_caller'
+gem 'twitter'
+gem 'fb_graph'
 gem 'nifty-generators'
-gem 'compass'
-gem 'compass-rails', github: "Compass/compass-rails", branch: "rails4-hack"
-gem "haml-rails"
+gem 'binding_of_caller'
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'hub', :require=>nil

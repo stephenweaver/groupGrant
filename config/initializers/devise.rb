@@ -1,14 +1,14 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  config.omniauth :twitter, '9zijyfjZKttwj63HY0cZw', 'A9a1Cu20tHyMiWgtP4lFczRgWfKfxafh91cKtu4tU'
+  config.omniauth :facebook, '603004516422329', 'fa657ae4b987430cbd17591cf44236e1'
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '3b655bf28104a6e410f5906829b4697b1b08406b218f5d42fa7c51c4a02ec3748a17b1f67133d5076c0f2e96394e70e96f0d4c584eaffebcbb4b40f0e6facfed'
-  # config.secret_key = '587b52b098ef6b6da0a65c4300e70f677455cba189dc4953527f9321131a8c3fadffa332fa12a6c10f10ec5f88b371b610c9f4fc5e3905005f0246a91bcf561a'
-  # config.secret_key = '469fd11489148c282f809238a15ef3f2f3f7bc1057c98e5751b76f35b710215c7b86519694b5eb99abc50703f1e19b3c7263a7712e1c398f113cb7db51063a13'
-  config.secret_key = '22e24bb669a55036175010461da6a3c4ebdbf9d93cacb5766f1b9c12f60da9f25ce7a936f5be6a69a2e5d53539f603cf5b74d874254365d0ef16cc73a1a39a39'
-  # # ==> Mailer Configuration
+  config.secret_key = '1d2b711c959079756435046e2e78ecead2f042cfb7d98bb1423b7eeab2d1ed0ea7cdf88a74a5d832ab37c09dec8f43c42b1561f6028b7d7453f5cbd8d27c2cde'
+
+  # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
@@ -100,7 +100,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = 'c5a5fb8795cb4e930b01948edb78fbd120a1c69ce1decf5a2b517ae72498987cae39fbf88acef4fb94ea2bd4c31fab13b2f49f5445d6d568a97c30e76069367e'
+  # config.pepper = '193e498c25140ddbc65d14d558d992dff30a1792124ed88c62e401b754c1970e6b8221b475f66325153d9c1bbc982390356fbb37cb9d4ab59d17bf65e7072885'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -257,7 +257,4 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
-  require "omniauth-facebook"
-  config.omniauth :facebook, "603004516422329", "fa657ae4b987430cbd17591cf44236e1"
 end

@@ -2,13 +2,14 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Group Grant" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Group Grant" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "Blankcomposer" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Blankcomposer" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <%# application layout styled for Twitter Bootstrap 2.3 %>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
@@ -37,13 +38,13 @@
         <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
       </div>
     <% end %>
-    <main role="main" class = "clear">
+    <main role="main">
       <div class="container">
         <div class="content">
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
-                  <%= yield %>
+              <%= yield %>
             </div>
           </div>
           <footer>
@@ -53,5 +54,3 @@
     </main>
   </body>
 </html>
-
-

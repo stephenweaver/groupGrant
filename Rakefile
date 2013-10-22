@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-GroupGrant::Application.load_tasks
+Blankcomposer::Application.load_tasks
