@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def twitter
-    # raise omni = request.env["omniauth.auth"].to_yaml
+    raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     
@@ -36,7 +36,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def facebook
-    # raise omni = request.env["omniauth.auth"].to_yaml
+    raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
 
