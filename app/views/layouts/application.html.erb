@@ -18,26 +18,7 @@
         </div>
       </nav>
     </header>
-    <% if current_page?(root_url) %>
-      <div id="homeCarousel" class="carousel slide" =>
-        <!-- Carousel items -->
-        <div class="carousel-inner">
-          <% Dir.foreach("app/assets/images/home_carousel") do |item| %>
-              <% next if item == '.' or item == '..' or item == '*.html' %>
-              <% Rails.logger.info(item) %>
-              <div class="item">
-                <%= image_tag(('home_carousel/' + item), :alt => "homeCarousel", :class => "automargin maxheight300") %>
-                <!-- <div class="carousel-caption">
-                     <%= simple_format :file => ('app/assets/images/home_carousel/' + item + '.html') %>
-                </div> -->
-              </div>
-          <% end %>
-        </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
-      </div>
-    <% end %>
+    <%= yield(:banner) %>
     <main role="main">
       <div class="container">
         <div class="content">

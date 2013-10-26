@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :transactions
   has_many :authentications, :dependent => :destroy
+  belongs_to :rolable, :polymorphic => true
+  accepts_nested_attributes_for :rolable
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

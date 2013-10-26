@@ -1,3 +1,20 @@
+<%
+  # customized code begin
+  if !resource.rolable_type.nil? && ["donor", "charity", "business"].include? resource.rolable_type.downcase 
+    if ["donor", "charity", "business"].include? params[:user][:user_type].downcase
+      child_class_name = resource.rolable_type.downcase.camelize
+      user_type = resource.rolable_type.downcase
+    else
+      child_class_name = "donor"
+      user_type = "donor"
+    end
+  end
+
+  resource.rolable_type = child_class_name.constantize.new if resource.rolable_type.nil?
+
+  # customized code end
+%>
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -16,6 +33,13 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
 <% end %>
+ 
+ <% if !resource.rolable_type.nil? %>
+   <%= fields_for resource.rolable_type do |rf| %>
+       <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf } %>
+   <% end %>
+ <% end %>
+
   <div><%= f.submit "Update" %></div>
 <% end %>
 

@@ -21,7 +21,7 @@ gem 'nifty-generators'
 gem 'binding_of_caller'
 gem "heroku"
 group :development do
-   gem 'sqlite3'
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'guard-bundler'
   gem 'guard-rails'
@@ -31,6 +31,8 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'pry'
+  gem 'meta_request'
 end
 
 gem "mocha", group: :test

@@ -1,23 +1,47 @@
+ <% content_for :banner do %>
+  <div id="homeCarousel" class="carousel slide" =>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <% Dir.foreach("app/assets/images/home_carousel") do |item| %>
+          <% next if item == '.' or item == '..' or item == '*.html' %>
+          <% Rails.logger.info(item) %>
+          <div class="item">
+            <%= image_tag(('home_carousel/' + item), :alt => "homeCarousel", :class => "automargin maxheight300") %>
+            <!-- <div class="carousel-caption">
+                 <%= simple_format :file => ('app/assets/images/home_carousel/' + item + '.html') %>
+            </div> -->
+          </div>
+      <% end %>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+<% end %>
+
 <h3>How would you describe yourself???</h3>
 <ul class="thumbnails">
   <li class="span4">
-    <a id="charityThumb" class="thumbnail">
-      Charity me
+      <%= link_to(charity_sign_up_path, class: "thumbnail") do %>
+      Charity
       <img data-src="holder.js/300x200" alt="Charity">
-    </a>
+      <% end %>
   </li>
+
   <li class="span4">
-    <a id="businessThumb" class="thumbnail">
+    <%= link_to(business_sign_up_path, class: "thumbnail") do %>
       Business
       <img data-src="holder.js/300x200" alt="Business">
-    </a>
+    <% end %>
   </li>
+  
   <li class="span4">
-    <a id="donorThumb" class="thumbnail">
+     <%= link_to(donor_sign_up_path, class: "thumbnail") do %>
       Donor
       <img data-src="holder.js/300x200" alt="Donor">
-    </a>
+      <% end %>
   </li>
+
 </ul>
 
 <%= javascript_include_tag("homepage.js") %>

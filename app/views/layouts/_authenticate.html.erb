@@ -1,6 +1,6 @@
 <div id="authenticate" class="padding10 right">
-   <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
+   <% if current_user %>
+      Logged in as <strong><%= current_user.user.email %></strong>.
       <%= link_to 'Edit profile', edit_user_registration_path %> |
       <%= link_to 'Authentications', authentications_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>

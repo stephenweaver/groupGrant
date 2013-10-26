@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def twitter
-    raise omni = request.env["omniauth.auth"].to_yaml
+    # raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     
@@ -36,7 +36,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def facebook
-    raise omni = request.env["omniauth.auth"].to_yaml
+    # raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
 
@@ -58,6 +58,8 @@ class AuthenticationsController < ApplicationController
       user.email = omni['extra']['raw_info'].email 
 
       user.apply_omniauth(omni)
+      child_class = 'Donor'.camelize.constantize
+      user.rolable = child_class.create()
 
       if user.save
         flash[:notice] = "Logged in."
@@ -97,4 +99,33 @@ class AuthenticationsController < ApplicationController
     def authentication_params
       params.require(:authentication).permit(:provider, :uid, :token, :token_secret, :user_id)
     end
+
+  def user_params
+    if params[:user].nil? && !@current_user.nil?
+      if !@current_user.rolable_type.nil?
+        @user_type = @current_user.rolable_type.downcase
+      else 
+        @user_type = "donor"
+      end
+    elsif !params[:user].nil? && @current_user.nil?
+      @user_type = params[:user][:user_type]
+    else
+      render root_path
+    end
+
+    begin
+      if ["donor", "charity", "business"].include? params[:user][:user_type].downcase
+        case @user_type
+          when "charity"
+            params.require(:charity).permit(:name, :eid, :description)
+          when "business"
+            params.require(:business).permit(:name, :goods, :description, :services)
+          when "donor"
+             params.require(:donor).permit(:title, :first_name, :last_name, :middle_initial)
+        end
+      end
+    rescue
+      @user_type = ""
+    end
+  end
 end

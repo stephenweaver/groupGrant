@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20131021191230) do
+ActiveRecord::Schema.define(version: 20131024221830) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +21,33 @@ ActiveRecord::Schema.define(version: 20131021191230) do
     t.string   "token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "businesses", force: true do |t|
+    t.string   "name"
+    t.string   "goods"
+    t.string   "services"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charities", force: true do |t|
+    t.string   "name"
+    t.string   "eid"
+    t.string   "needs"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "donors", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_initial"
   end
 
   create_table "users", force: true do |t|
@@ -39,6 +65,8 @@ ActiveRecord::Schema.define(version: 20131021191230) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.integer  "rolable_id"
+    t.string   "rolable_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
