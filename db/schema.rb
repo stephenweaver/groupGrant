@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024221830) do
+ActiveRecord::Schema.define(version: 20131031044719) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -50,6 +50,21 @@ ActiveRecord::Schema.define(version: 20131024221830) do
     t.string   "middle_initial"
   end
 
+  create_table "groupgrants", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "goal_date"
+    t.decimal  "goal_amount"
+    t.integer  "owner_id"
+    t.integer  "partner_id"
+    t.datetime "completed_date"
+    t.boolean  "is_complete"
+    t.boolean  "is_enabled"
+    t.string   "video_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -67,6 +82,10 @@ ActiveRecord::Schema.define(version: 20131024221830) do
     t.string   "uid"
     t.integer  "rolable_id"
     t.string   "rolable_type"
+    t.string   "profile_file_name"
+    t.string   "profile_content_type"
+    t.integer  "profile_file_size"
+    t.datetime "profile_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

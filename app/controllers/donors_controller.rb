@@ -7,4 +7,9 @@ class DonorsController < ApplicationController
          flash[:alert] = 'Yeah, that was a fail.'
       end
    end
+
+   def index
+      @donor = Donor.where(id: current_user.user.rolable_id)
+   end
+
 end

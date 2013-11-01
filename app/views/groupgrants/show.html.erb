@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @groupgrant.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @groupgrant.description %>
+</p>
+
+<p>
+  <strong>Goal date:</strong>
+  <%= @groupgrant.goal_date %>
+</p>
+
+<p>
+  <strong>Goal amount:</strong>
+  <%= @groupgrant.goal_amount %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @groupgrant.owner_id %>
+</p>
+
+<p>
+  <strong>Partner:</strong>
+  <%= @groupgrant.partner_id %>
+</p>
+
+<p>
+  <strong>Completed date:</strong>
+  <%= @groupgrant.completed_date %>
+</p>
+
+<p>
+  <strong>Is complete:</strong>
+  <%= @groupgrant.is_complete %>
+</p>
+
+<p>
+  <strong>Is enabled:</strong>
+  <%= @groupgrant.is_enabled %>
+</p>
+
+<p>
+  <strong>Video url:</strong>
+  <%= @groupgrant.video_url %>
+</p>
+
+<%= link_to 'Edit', edit_groupgrant_path(@groupgrant) %> |
+<%= link_to 'Back', groupgrants_path %>

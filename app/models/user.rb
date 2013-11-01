@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   belongs_to :rolable, :polymorphic => true
   accepts_nested_attributes_for :rolable
+  has_attached_file :profile, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

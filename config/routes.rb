@@ -1,4 +1,6 @@
 Blankcomposer::Application.routes.draw do
+  resources :groupgrants
+
   resources :authentications
   root :to => 'visitors#new'
   # root to: 'authentications#home'
@@ -16,6 +18,11 @@ Blankcomposer::Application.routes.draw do
   match 'charity/edit' => 'registrations#edit', :user => { :user_type => 'charity' }, via: :get, as: 'charity_edit'
   match 'donor/edit' => 'registrations#edit', :user => { :user_type => 'donor' }, via: :get, as: 'donor_edit'
   match 'business/edit' => 'registrations#edit', :user => { :user_type => 'business' }, via: :get, as: 'business_edit'
+  
+  resources :charities
+  resources :donors 
+  resources :businesses
+  
   end
  
 

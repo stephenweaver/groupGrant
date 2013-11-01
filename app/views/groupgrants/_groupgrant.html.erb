@@ -1,0 +1,16 @@
+<tr>
+    <td><%= groupgrant.name %></td>
+    <td><%= groupgrant.description %></td>
+    <td><%= groupgrant.goal_date %></td>
+    <td><%= number_to_currency(groupgrant.goal_amount, :unit => "$") %></td>
+<!--     <td><%= groupgrant.owner_id %></td>
+    <td><%= groupgrant.partner_id %></td>
+    <td><%= groupgrant.completed_date %></td>
+    <td><%= groupgrant.is_complete %></td>
+    <td><%= groupgrant.is_enabled %></td>
+    <td><%= groupgrant.video_url %></td> -->
+    <td><%= link_to groupgrant.user.email, root_url %></td>
+    <td><%= link_to 'Show', groupgrant %></td>
+    <td><%= link_to 'Edit', edit_groupgrant_path(groupgrant) %></td>
+    <td><%= link_to 'Destroy', groupgrant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

@@ -1,5 +1,8 @@
+  <div><%= f.label :profile %><br />
+   <%= f.file_field :profile %></div>
+   
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email, value: user.email %></div>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>

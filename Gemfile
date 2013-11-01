@@ -20,6 +20,7 @@ gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
 gem "heroku"
+gem  'paperclip'
 group :development do
   gem 'sqlite3'
   gem 'better_errors'

@@ -1,8 +1,8 @@
 <div><%= f.label :first_name, "First name" %><br />
-<%= f.text_field :first_name %></div>
+<%= f.text_field :first_name, value: rolable_type.first_name %></div>
 
 <div><%= f.label :last_name, "Last name" %><br />
-<%= f.text_field :last_name %></div>
+<%= f.text_field :last_name, value: rolable_type.last_name %></div>
 
 <div><%= f.label :middle_initial, "Middle initial" %><br />
-<%= f.text_field :middle_initial %></div>
+<%= f.text_field :middle_initial, value: rolable_type.middle_initial %></div>

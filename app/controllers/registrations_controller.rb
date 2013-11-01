@@ -39,7 +39,7 @@ class RegistrationsController < Devise::RegistrationsController
 
    def update
     # Deleting the user_type from the params hash, won't work without this.
-    current_user.user.update(params[:user].permit(:email, :password, :password_confirmation, :remember_me, :provider, :uid))
+    current_user.user.update(params[:user].permit(:email, :password, :password_confirmation, :remember_me, :provider, :uid, :profile))
     current_user.update(user_params)
     if  current_user.user.valid? && current_user.valid?
         current_user.user.save!
