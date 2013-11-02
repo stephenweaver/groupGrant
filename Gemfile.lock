@@ -127,6 +127,8 @@ GEM
     minitest (4.7.5)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
+    money (5.1.1)
+      i18n (~> 0.6.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
     netrc (0.7.7)
@@ -280,6 +282,7 @@ DEPENDENCIES
   jquery-rails
   meta_request
   mocha
+  money
   nifty-generators
   omniauth-facebook
   omniauth-twitter

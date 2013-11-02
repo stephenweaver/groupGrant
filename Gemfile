@@ -21,6 +21,8 @@ gem 'nifty-generators'
 gem 'binding_of_caller'
 gem "heroku"
 gem  'paperclip'
+gem  'money'
+
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
