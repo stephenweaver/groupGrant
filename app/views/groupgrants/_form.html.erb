@@ -2,19 +2,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :goal_date %>
-    <%= f.input :goal_amount %>
-    <%= f.input :owner_id %>
-    <%= f.input :partner_id %>
-    <%= f.input :completed_date %>
-    <%= f.input :is_complete %>
-    <%= f.input :is_enabled %>
-    <%= f.input :video_url %>
+    <%= f.input :name, label: "Give your groupGrant a name" %>
+    <%= f.input :description, label: "Describe what your groupGrant is for" %>
+    <%= f.input :goal_date, label: "What date do you need your groupGrant completed?" %>
+    <%= f.input :goal_amount, label: "How much money is needed for your groupGrant?" %>
+<!--    <%= f.input :owner_id %>-->
+<!--    <%= f.input :partner_id %>-->
+<!--    <%= f.input :completed_date %>-->
+<!--    <%= f.input :is_complete %>-->
+<!--    <%= f.input :is_enabled %>-->
+    <%= f.input :video_url, label: "Attach a video URL to your groupGrant" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, value: "Start groupGrant" %>
   </div>
 <% end %>

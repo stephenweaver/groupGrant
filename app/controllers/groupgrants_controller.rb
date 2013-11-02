@@ -26,7 +26,8 @@ class GroupgrantsController < ApplicationController
   # POST /groupgrants.json
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
-
+    @groupgrant.owner_id   = current_user.user.id
+    @groupgrant.partner_id = 0
     respond_to do |format|
       if @groupgrant.save
         format.html { redirect_to @groupgrant, notice: 'Groupgrant was successfully created.' }

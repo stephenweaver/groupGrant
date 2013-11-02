@@ -7,4 +7,8 @@ class BusinessesController < ApplicationController
          flash[:alert] = 'Yeah, that was a fail.'
       end
    end
+
+   def index
+   	@businesses = Business.all
+   end
 end
