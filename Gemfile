@@ -19,9 +19,10 @@ gem 'twitter'
 gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
-gem "heroku"
-gem  'paperclip'
-gem  'money'
+gem 'heroku'
+gem 'paperclip'
+gem 'money'
+gem 'auto_html'
 
 group :development do
   gem 'sqlite3'
@@ -34,7 +35,6 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  gem 'pry'
   gem 'meta_request'
 end
 

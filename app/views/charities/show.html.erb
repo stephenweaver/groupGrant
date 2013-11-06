@@ -1,4 +1,14 @@
-<%= image_tag @charity.user.profile.url(:medium) %>
-<h2> <%= @charity.name %> </h2>
-<p><%= @charity.description %></p>
-<p><%= @charity.description %></p>
+<div style="float:left; width:20%"><%= image_tag @charity.user.profile.url(:medium) %></div>
+<div style="float:left; margin-left: 15px; font-size: 20px; width:60%"><%= @charity.description %></div>
+<% if current_user &&  current_user.id == @charity.id %>
+      <div style="float:right;"><h4><%= link_to 'Edit profile', edit_user_registration_path %></h4></div>
+   <% end %>
+<h2 style="clear:both;"><%= @charity.name %></h2>
+
+
+<%= @charity.video_url_html %>
+
+<% if @charity.groupgrants.count > 0 %>
+<h3>Our groupGrants</h3>
+<%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
+<% end %>

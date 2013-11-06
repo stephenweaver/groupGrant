@@ -9,7 +9,7 @@
     <td><%= groupgrant.is_complete %></td>
     <td><%= groupgrant.is_enabled %></td>-->
     <td><%= groupgrant.video_url %></td>
-    <td><%= link_to groupgrant.user.rolable.name, charity_path(groupgrant.user.rolable.id) %></td>
+    <td><%= link_to groupgrant.charity.name, charity_path(groupgrant.charity.id) %></td>
     <% if !current_user.nil? && current_user.user.id == groupgrant.owner_id %>
     <td><%= link_to 'Edit', edit_groupgrant_path(groupgrant) %></td>
     <td><%= link_to 'Destroy', groupgrant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
