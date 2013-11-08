@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106070735) do
+ActiveRecord::Schema.define(version: 20131108082034) do
+
+  create_table "addresses", force: true do |t|
+    t.integer  "user_id"
+    t.string   "full_name"
+    t.string   "line_one"
+    t.string   "line_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "address_type"
+    t.string   "access_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -42,6 +58,9 @@ ActiveRecord::Schema.define(version: 20131106070735) do
     t.datetime "updated_at"
     t.string   "video_url"
     t.string   "video_url_html"
+    t.string   "mission_statement"
+    t.string   "cover_photo"
+    t.string   "target_area"
   end
 
   create_table "donors", force: true do |t|
@@ -89,6 +108,7 @@ ActiveRecord::Schema.define(version: 20131106070735) do
     t.string   "profile_content_type"
     t.integer  "profile_file_size"
     t.datetime "profile_updated_at"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

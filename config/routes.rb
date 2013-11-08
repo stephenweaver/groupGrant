@@ -1,4 +1,6 @@
 Blankcomposer::Application.routes.draw do
+  resources :addresses
+
   resources :groupgrants
   resources :charities
   resources :donors 

@@ -1,12 +1,27 @@
-<div><%= f.label :name, "Organization Name" %><br />
-<%= f.text_field :name, value: rolable_type.name  %></div>
-
-<div><%= f.label :eid, "Employee Identification Number (EIN)" %><br />
-<%= f.text_field :eid, value: rolable_type.eid %></div>
-
-<div><%= f.label :description, "Describe your Organization in 1000 words or less." %><br />
-<%= f.text_area :description, size: "60x4", value: rolable_type.description   %></div>
-
-<div><%= f.label :video_url, "Paste a video url to represent your company." %><br />
-<%= f.text_field :video_url, value: rolable_type.video_url  %></div>
-
+<br>
+<br>
+<h4>About your charity</h3>
+<div class="row">
+   <%= f.label :name, "Organization Name", :class => 'span3 form_label' %>
+   <%= f.text_field :name, value: rolable_type.name , :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :eid, "Employee Identification Number (EIN)", :class => 'span3 form_label' %>
+<%= f.text_field :eid, value: rolable_type.eid, :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :description, "Describe your Organization in 1000 words or less.", :class => 'span3 form_label' %>
+<%= f.text_area :description, size: "60x5", value: rolable_type.description  , :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :video_url, "Paste a video url to represent your company.", :class => 'span3 form_label' %>
+<%= f.text_field :video_url, value: rolable_type.video_url , :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :mission_statement, "Paste your charity's mission statement.", :class => 'span3 form_label' %>
+<%= f.text_field :mission_statement, value: rolable_type.mission_statement , :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :target_area, "What area or people does your charity target helping?", :class => 'span3 form_label' %>
+<%= f.text_field :target_area, value: rolable_type.target_area , :class => 'span5 form_field' %>
+</div>

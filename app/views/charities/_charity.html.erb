@@ -1,6 +1,9 @@
-<div id="charity">
-   <%= image_tag charity.user.profile.url(:medium) %>
-   <%= charity.name %>
-   <%= charity.description %>
+<%= link_to(charity) do %>
+   <div class="charity_index_single">
+      <div class="span3" style="clear:both;"><%= image_tag charity.user.profile.url(:medium) %></div>
+      <div class="span8"><b>Name:</b> <%= charity.name %><br><br>
+      <b>Description: <%= charity.description %></div>
+   </div>
+<% end %>
 
-</div>
+<div style = "height: 5px; margin: 10px 0 10px 0; background-color:#ddd;clear:both"></div>

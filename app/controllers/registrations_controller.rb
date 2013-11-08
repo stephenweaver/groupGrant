@@ -115,7 +115,7 @@ class RegistrationsController < Devise::RegistrationsController
         params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
         case @user_type
           when "charity"
-            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html)
+            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area)
           when "business"
              params[:Business].permit(:name, :goods, :description, :services)
           when "donor"
@@ -124,7 +124,7 @@ class RegistrationsController < Devise::RegistrationsController
       elsif !params[:user].nil?
         case @user_type
           when "charity"
-            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html)
+            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area)
           when "business"
             params[:business]= params[:business].permit(:name, :goods, :description, :services)
           when "donor"
@@ -138,3 +138,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
 end
+
+
+

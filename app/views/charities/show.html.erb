@@ -1,12 +1,31 @@
-<div style="float:left; width:20%"><%= image_tag @charity.user.profile.url(:medium) %></div>
-<div style="float:left; margin-left: 15px; font-size: 20px; width:60%"><%= @charity.description %></div>
-<% if current_user &&  current_user.id == @charity.id %>
-      <div style="float:right;"><h4><%= link_to 'Edit profile', edit_user_registration_path %></h4></div>
+<div class = "row">
+   <div class = "span2"><%= image_tag @charity.user.profile.url(:medium) %></div>
+   <div class = "span9">
+      <h2><%= @charity.name %></h2>
+      <%= @charity.description %>
+   </div>
+   
+   <% if current_user &&  current_user.id == @charity.id %>
+      <div class = "span1"><h6><%= link_to 'Edit Page', edit_user_registration_path %></h6></div>
    <% end %>
-<h2 style="clear:both;"><%= @charity.name %></h2>
+</div>
+<br><br>
+<div class = "row">
+   <div class = "span7">
+      <div class = "row">
+         <div class = "span7">
+            <p style="font-size:1.5em; line-height:1.1em"> <%= @charity.mission_statement %></p>
+         </div>
+         <div class = "span7">
+            <h3>About Us</h3>
+            <div>Email: <%= @charity.user.email  %></div>
+            <div>Phone: <%= @charity.user.phone  %></div>
+         </div>
+      </div>
 
-
-<%= @charity.video_url_html %>
+   </div>
+   <div class = "span5" style="text-align:right;"><%= @charity.video_url_html %></div>
+</div>
 
 <% if @charity.groupgrants.count > 0 %>
 <h3>Our groupGrants</h3>

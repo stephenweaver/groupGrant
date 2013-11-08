@@ -10,10 +10,10 @@
        <% render :partial => resource.user.rolable_type.underscore + "_fields", :locals => { :f => rf, :rolable_type => resource } %>
    <% end %>
  <% end %>
-
-  <div><%= f.submit "Update" %></div>
+<br>
+  <div><%= f.submit "Update", :class => 'span3' %></div>
 <% end %>
-
+<br><br>
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
