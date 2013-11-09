@@ -21,10 +21,10 @@ gem 'nifty-generators'
 gem 'binding_of_caller'
 gem "heroku"
 gem  'paperclip'
-gem  'money'
+gem  'money', '~> 5.1.1'
 
 group :development do
-  gem 'sqlite3'
+  gem 'mysql2', '0.3.11'
   gem 'better_errors'
   gem 'guard-bundler'
   gem 'guard-rails'
