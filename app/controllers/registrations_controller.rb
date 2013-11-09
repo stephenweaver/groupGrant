@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
     # it's all being saved at once
     valid = resource.valid?
     valid = resource.rolable.valid? && valid
-
+    valid = resource.rolable.valid?
     # customized code end
     if resource.save && resource.rolable.save
       Rails.logger.info("Sucess")
@@ -115,7 +115,7 @@ class RegistrationsController < Devise::RegistrationsController
         params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
         case @user_type
           when "charity"
-            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area)
+            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
              params[:Business].permit(:name, :goods, :description, :services)
           when "donor"
@@ -124,7 +124,7 @@ class RegistrationsController < Devise::RegistrationsController
       elsif !params[:user].nil?
         case @user_type
           when "charity"
-            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area)
+            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
             params[:business]= params[:business].permit(:name, :goods, :description, :services)
           when "donor"

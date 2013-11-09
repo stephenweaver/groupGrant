@@ -1,7 +1,11 @@
 <%= link_to(charity) do %>
    <div class="charity_index_single">
       <div class="span3" style="clear:both;"><%= image_tag charity.user.profile.url(:medium) %></div>
-      <div class="span8"><b>Name:</b> <%= charity.name %><br><br>
+      <div class="span8"><b>Name:</b> <%= charity.name %><br>
+      <% if !charity.charity_category.nil? %>
+         <b>Category:</b> <%= charity.charity_category.name %>
+      <% end %>
+      <br><br>
       <b>Description:</b> <%= charity.description %></div>
    </div>
 <% end %>

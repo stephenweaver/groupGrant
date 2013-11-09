@@ -2,6 +2,9 @@
    <div class = "span2"><%= image_tag @charity.user.profile.url(:medium) %></div>
    <div class = "span9">
       <h2><%= @charity.name %></h2>
+      <% if !@charity.charity_category.nil? %>
+         Category: <%= @charity.charity_category.name %>
+      <% end %><br><br>
       <%= @charity.description %>
    </div>
    

@@ -2,6 +2,10 @@
 <br>
 <h4>About your charity</h3>
 <div class="row">
+   <%= f.label :category_id, "Charity Category ", :class => 'span3 form_label' %>
+   <%= f.collection_select :category_id, CharityCategory.all, :id, :name, options = {:include_blank => 'Select a category...'}, html_options = {:class => 'span5 form_label'} %>
+</div>
+<div class="row">
    <%= f.label :name, "Organization Name", :class => 'span3 form_label' %>
    <%= f.text_field :name, value: rolable_type.name , :class => 'span5 form_field' %>
 </div>
@@ -16,6 +20,7 @@
 <div class="row">
 <%= f.label :video_url, "Paste a video url to represent your company.", :class => 'span3 form_label' %>
 <%= f.text_field :video_url, value: rolable_type.video_url , :class => 'span5 form_field' %>
+<!-- <a href="#"><i class="icon-home icon-white"></i> Home</a> -->
 </div>
 <div class="row">
 <%= f.label :mission_statement, "Paste your charity's mission statement.", :class => 'span3 form_label' %>
