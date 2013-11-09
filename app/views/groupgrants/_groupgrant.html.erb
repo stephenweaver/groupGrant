@@ -1,17 +1,30 @@
-<tr>
+<!-- <tr>
     <td><%= link_to groupgrant.name, groupgrant %></td>
     <td><%= groupgrant.description %></td>
     <td><%= groupgrant.goal_date %></td>
     <td><%= number_to_currency(groupgrant.goal_amount, :unit => "$") %></td>
-<!--     <td><%= groupgrant.owner_id %></td>
+    <td><%= groupgrant.owner_id %></td>
     <td><%= groupgrant.partner_id %></td>
     <td><%= groupgrant.completed_date %></td>
     <td><%= groupgrant.is_complete %></td>
-    <td><%= groupgrant.is_enabled %></td>-->
+    <td><%= groupgrant.is_enabled %></td>
     <td><%= groupgrant.video_url %></td>
-    <td><%= link_to groupgrant.user.rolable.name, charity_path(groupgrant.user.rolable.id) %></td>
+    <td><%= link_to groupgrant.charity.name, charity_path(groupgrant.charity.id) %></td>
     <% if !current_user.nil? && current_user.user.id == groupgrant.owner_id %>
     <td><%= link_to 'Edit', edit_groupgrant_path(groupgrant) %></td>
     <td><%= link_to 'Destroy', groupgrant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
-</tr>
+</tr> -->
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+  <img data-src="holder.js/300x200" alt="...">
+      <div class="caption">
+        <h3><%= link_to groupgrant.name, groupgrant %></h3>
+        <p><%= groupgrant.description %></p>
+        <p><a href="#" class="btn btn-primary" role="button">Donate</a></p>
+      </div>
+    </div>
+  </div>
+</div>

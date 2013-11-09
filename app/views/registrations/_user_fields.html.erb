@@ -1,16 +1,35 @@
-  <div><%= f.label :profile %><br />
-   <%= f.file_field :profile %></div>
-   
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, value: user.email %></div>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+<div class="row">
+  <%= f.label :profile, :class => 'span3' %>
+   <%=  image_tag(user.profile.url(:thumb)) %>
+   <%= f.file_field :profile,  :class => 'span3' %>
+</div><br>
+<div class="row">  
+  <%= f.label :email, :class => 'span3' %>
+  <%= f.email_field :email, value: user.email, :class => 'span4' %>
+</div>
+<div class="row">  
+  <%= f.label :phone, :class => 'span3' %>
+  <%= f.text_field :phone, value: user.phone, :class => 'span4' %>
+</div>
+<div class="row">
+  <%= f.label :password, :class => 'span3' %> 
+  <%= f.password_field :password, :autocomplete => "off", :class => 'span4' %>
+</div>
+<div class="row">
+  <%= f.label :password_confirmation, :class => 'span3' %>
+  <%= f.password_field :password_confirmation, :class => 'span4' %>
+</div>
 
 <% if current_user.user.encrypted_password.present? %>
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+<div class="row">
+  <%= f.label :current_password, :class => 'span3' %> 
+  <%= f.password_field :current_password, :class => 'span4' %>
+</div>
+
+<div class="row">
+  <div class= 'span5'><i>(*we need your current password to confirm any changes made)</i></div>
+</div>
+<br><bR>
+  <div><%= f.submit "Update", :class => 'span3' %></div>
+
 <% end %>

@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters
   before_filter :user_params, only: [:create, :edit, :update]
   before_filter :authenticate_user!, only: :edit
 
@@ -19,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
     # it's all being saved at once
     valid = resource.valid?
     valid = resource.rolable.valid? && valid
-
+    valid = resource.rolable.valid?
     # customized code end
     if resource.save && resource.rolable.save
       Rails.logger.info("Sucess")
@@ -47,16 +48,18 @@ class RegistrationsController < Devise::RegistrationsController
     self.resource = @user_type.camelize.constantize.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    if resource.update_attributes(params[@user_type.humanize]) && resource.user.update_attributes(params[:user][:user])
+    if current_user.user.update_with_password(params[:user][:user]) && resource.update_attributes(user_params)
       if is_navigational_format?
         flash_key = update_needs_confirmation?(resource.user, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource.user, :bypass => true
-      respond_with resource, :location => after_update_path_for(resource)
+      respond_with resource
     else
-      clean_up_passwords resource
+      if params[:user][:user][:current_password] == nil
+        set_flash_message :error, 'update_failed'
+      end
       respond_with resource
     end
   #   # Deleting the user_type from the params hash, won't work without this.
@@ -79,7 +82,19 @@ class RegistrationsController < Devise::RegistrationsController
 
 
 
+  protected 
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) do |u|
+        u.permit(:email, :password, :password_confirmation)
+      end
+      devise_parameter_sanitizer.for(:account_update) do |u|
+        u.permit(:email, :password, :password_confirmation)
+      end
+    end
+
   private
+
     def user_params
       if params[:user].nil? && !@current_user.nil?
         if !@current_user.rolable_type.nil?
@@ -97,10 +112,10 @@ class RegistrationsController < Devise::RegistrationsController
 
 
       if !params[:user].nil? && !current_user.nil? 
-        params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :remember_me, :provider, :uid, :profile)
+        params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
         case @user_type
           when "charity"
-            params[:Charity].permit(:name, :eid, :description)
+            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
              params[:Business].permit(:name, :goods, :description, :services)
           when "donor"
@@ -109,7 +124,7 @@ class RegistrationsController < Devise::RegistrationsController
       elsif !params[:user].nil?
         case @user_type
           when "charity"
-            params[:charity] = params[:charity].permit(:name, :eid, :description)
+            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
             params[:business]= params[:business].permit(:name, :goods, :description, :services)
           when "donor"
@@ -123,3 +138,6 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
 end
+
+
+

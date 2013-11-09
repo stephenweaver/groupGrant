@@ -1,4 +1,6 @@
 class CharitiesController < ApplicationController
+   include AutoHtml
+
    def create
       if current_user && !current_user.has_profile?
          current_user.profile = Charity.create!
@@ -17,5 +19,10 @@ class CharitiesController < ApplicationController
 
    def show
       @charity = Charity.find(params[:id])
+   end
+
+   def preview
+     charity = Charity.new(params[:charity])
+     render :text => charity.video_html
    end
 end

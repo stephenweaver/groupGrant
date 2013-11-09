@@ -19,9 +19,10 @@ gem 'twitter'
 gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
-gem "heroku"
-gem  'paperclip'
 gem  'money', '~> 5.1.1'
+gem 'heroku'
+gem 'paperclip'
+gem 'auto_html'
 
 group :development do
   gem 'mysql2', '0.3.11'
@@ -34,7 +35,6 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  gem 'pry'
   gem 'meta_request'
 end
 

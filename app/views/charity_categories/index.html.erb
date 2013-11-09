@@ -1,0 +1,27 @@
+<h1>Listing charity_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @charity_categories.each do |charity_category| %>
+      <tr>
+        <td><%= charity_category.name %></td>
+        <td><%= link_to 'Show', charity_category %></td>
+        <td><%= link_to 'Edit', edit_charity_category_path(charity_category) %></td>
+        <td><%= link_to 'Destroy', charity_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Charity category', new_charity_category_path %>
