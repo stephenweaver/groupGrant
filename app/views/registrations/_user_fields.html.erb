@@ -7,6 +7,10 @@
   <%= f.label :email, :class => 'span3' %>
   <%= f.email_field :email, value: user.email, :class => 'span4' %>
 </div>
+<div class="row">  
+  <%= f.label :phone, :class => 'span3' %>
+  <%= f.email_field :phone, value: user.phone, :class => 'span4' %>
+</div>
 <div class="row">
   <%= f.label :password, :class => 'span3' %> 
   <%= f.password_field :password, :autocomplete => "off", :class => 'span4' %>
