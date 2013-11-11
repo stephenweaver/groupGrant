@@ -1,0 +1,27 @@
+<h1>Listing business_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @business_categories.each do |business_category| %>
+      <tr>
+        <td><%= business_category.name %></td>
+        <td><%= link_to 'Show', business_category %></td>
+        <td><%= link_to 'Edit', edit_business_category_path(business_category) %></td>
+        <td><%= link_to 'Destroy', business_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New business category', new_business_category_path %>

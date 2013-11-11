@@ -16,7 +16,6 @@ class CharitiesController < ApplicationController
       @charities = Charity.all
    end
 
-
    def show
       @charity = Charity.find(params[:id])
    end

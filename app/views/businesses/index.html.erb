@@ -1,15 +1,2 @@
-<h3>Listing Businesses</h3>
-
-<table class="table table-striped" >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <%= render partial: "business", collection: @businesses %>
-  </tbody>
-</table>
+<h2>Businesses</h2>
+<%= render partial: "business", collection: @businesses %>

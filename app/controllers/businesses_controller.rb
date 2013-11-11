@@ -1,4 +1,6 @@
 class BusinessesController < ApplicationController
+
+
    def create
       if current_user && !current_user.has_profile?
          current_user.profile = Business.create!
@@ -8,7 +10,18 @@ class BusinessesController < ApplicationController
       end
    end
 
+
+
    def index
    	@businesses = Business.all
+   end
+
+   def show
+      @business = Business.find(params[:id])
+   end
+
+   def preview
+     business = Business.new(params[:business])
+     render :text => busness.video_html
    end
 end

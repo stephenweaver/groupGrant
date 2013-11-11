@@ -1,6 +1,13 @@
-<tr>
-    <td><%= business.name %></td>
-    <td><%= business.location %></td>
-    <td><%= business.description %></td>
-    <td><%= link_to 'Show', business %></td>
-</tr>
+<%= link_to(business) do %>
+   <div class="business_index_single">
+      <div class="span3" style="clear:both;"><%= image_tag business.user.profile.url(:medium) %></div>
+      <div class="span8"><b>Name:</b> <%= business.name %><br>
+      <% if !business.business_category.nil? %>
+         <b>Category:</b> <%= business.business_category.name %>
+      <% end %>
+      <br><br>
+      <b>Description:</b> <%= business.description %></div>
+   </div>
+<% end %>
+
+<div style = "height: 5px; margin: 10px 0 10px 0; background-color:#ddd;clear:both"></div>
