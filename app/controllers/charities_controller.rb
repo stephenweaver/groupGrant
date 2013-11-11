@@ -13,7 +13,14 @@ class CharitiesController < ApplicationController
    end
 
    def index
-      @charities = Charity.all
+      @category_id = 0
+      if(params['category'].nil?)
+         @charities = Charity.all
+      else
+         @charities = Charity.where(category_id: params['category'])
+         @category_id = params['category']
+      end
+      @categories = CharityCategory.all
    end
 
    def show
