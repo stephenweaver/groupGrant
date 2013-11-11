@@ -1,2 +1,13 @@
 <h2>Charities</h2>
+<div class = "row">
+   <div id = "category"><%= link_to("All", {:controller => "charities", :action => "index"}) %></div> 
+   <% @categories.each do |c| %>
+      <div id = "category" 
+         <% if c.id == @category_id.to_i %>
+            class = "selected_category" style="text-decoration:underline;"
+         <% end %>
+      >
+      <%= link_to(c.name, {:controller => "charities", :action => "index", :category => c.id }) %></div> 
+   <% end %>
+</div>
 <%= render partial: "charity", collection: @charities %>
