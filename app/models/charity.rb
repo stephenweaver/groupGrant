@@ -19,4 +19,14 @@ class Charity < ActiveRecord::Base
       simple_format
    end
 
+   def self.search(search)
+     if search
+       temp1 = Charity.all(:conditions => ['name LIKE ?', "%#{search}%"])
+       temp2 = Charity.all(:conditions => ['description LIKE ?', "%#{search}%"])
+       (temp1 + temp2).uniq 
+     else
+       find(:all)
+     end
+   end
+
 end
