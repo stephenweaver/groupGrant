@@ -13,14 +13,21 @@ class CharitiesController < ApplicationController
    end
 
    def index
-      @category_id = 0
+      flash[:notice] = nil
+      @categories = CharityCategory.all
       if(params['category'].nil?)
          @charities = Charity.all
+         @category_id = 0
       else
          @charities = Charity.where(category_id: params['category'])
-         @category_id = params['category']
+         if @charities.count < 1
+            @charities = Charity.all
+            @category_id = 0
+            flash[:notice] = "There are currently no charities in the " + CharityCategory.find(params['category']).name + " category."
+         else
+            @category_id = params['category']
+         end
       end
-      @categories = CharityCategory.all
    end
 
 
