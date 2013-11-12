@@ -1,5 +1,7 @@
 class CharitiesController < ApplicationController
    include AutoHtml
+   include ActionView::Helpers::SanitizeHelper
+   include ActionView::Helpers::TagHelper
 
    def create
       if current_user && !current_user.has_profile?
@@ -15,6 +17,12 @@ class CharitiesController < ApplicationController
    def index
       flash[:notice] = nil
       @categories = CharityCategory.all
+      @category_count = Hash.new
+      @categories.each do |c|
+         @category_count[c.id] = Charity.where(category_id: c.id).count
+      end
+      @category_count['all'] = Charity.count
+      
       if(params['category'].nil?)
          @charities = Charity.all
          @category_id = 0
@@ -23,11 +31,16 @@ class CharitiesController < ApplicationController
          if @charities.count < 1
             @charities = Charity.all
             @category_id = 0
-            flash[:notice] = "There are currently no charities in the " + CharityCategory.find(params['category']).name + " category."
+           flash.alert  = "There are currently no charities in the " + CharityCategory.find(params['category']).name + " category."
          else
             @category_id = params['category']
          end
       end
+
+      if(!params['search'].nil?)
+          @charities = @charities.search(params['search'])
+      end
+
    end
 
 
