@@ -1,0 +1,2 @@
+module GroupgrantCategoriesHelper
+end
