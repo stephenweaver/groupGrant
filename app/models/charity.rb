@@ -29,5 +29,4 @@ class Charity < ActiveRecord::Base
        find(:all)
      end
    end
-
 end
