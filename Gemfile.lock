@@ -129,12 +129,12 @@ GEM
     metaclass (0.0.1)
     mime-types (1.25)
     minitest (4.7.5)
-    mocha (0.14.0)
       metaclass (~> 0.0.1)
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
+    mysql2 (0.3.11-x86-mingw32)
     netrc (0.7.7)
     nifty-generators (0.4.6)
     oauth (0.4.7)
@@ -276,8 +276,8 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   meta_request
-  mocha
   money (~> 5.1.1)
+  mysql2 (= 0.3.11)
   nifty-generators
   omniauth-facebook
   omniauth-twitter
