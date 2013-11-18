@@ -13,8 +13,18 @@
 </div>
 
 <div class="row">
+   <%= f.label :phone_number, "Organization Phone Number", :class => 'span3 form_label' %>
+   <%= f.text_field :phone_number, value: rolable_type.phone_number , :class => 'span5 form_field' %>
+</div>
+
+<div class="row">
    <%= f.label :description, "Describe your Organization in 1000 words or less.", :class => 'span3 form_label' %>
-   <%= f.text_area :description, size: "60x5", value: rolable_type.description  , :class => 'span5 form_field' %>
+   <%= f.text_area :description, size: "60x5", value: rolable_type.description, :class => 'span5 form_field' %>
+</div>
+
+<div class="row">
+   <%= f.label :interests, "Describe your Organization's interests in 1000 words or less.", :class => 'span3 form_lable' %>
+   <%= f.text_area :interests, size: "60x5", value: rolable_type.interests, :class => 'span5 form field' %>
 </div>
 
 <div class="row">

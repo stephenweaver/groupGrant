@@ -2,18 +2,17 @@
    <div class = "span2"><%= image_tag @business.user.profile.url(:medium) %></div>
    <div class = "span9">
       <h2><%= @business.name %></h2>
-      <% if !@business.business_category.nil? %>
-         Category: <%= @business.business_category.name %>
-      <% end %>
+      <!--
       <br><br>
       <%= @business.description %>
+      -->
    </div>
    
    <% if current_user &&  current_user.id == @business.id %>
       <div class = "span1"><h6><%= link_to 'Edit Page', edit_user_registration_path %></h6></div>
    <% end %>
 </div>
-<br><br>
+<!-- <br><br>
 <div class = "row">
    <div class = "span7">
       <div class = "row">         
@@ -24,9 +23,18 @@
          </div>
       </div>
    </div>   
-</div>
+</div> -->
+<br><br>
+<h3>Description</h3>
+<br><%= @business.description %>
+<div></div>
+
+<br>
+<h3>Interests</h3>
+<br><%= @business.interests %>
+<div></div>
 
 <% if @business.groupgrants.count > 0 %>
-<h3>Our groupGrants</h3>
-<%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
+      <br><h3>Our groupGrants</h3>   
+      <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
 <% end %>

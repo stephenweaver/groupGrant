@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111124030) do
+ActiveRecord::Schema.define(version: 20131118185732) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20131111124030) do
     t.string   "location"
     t.string   "category_id"
     t.integer  "phone_number"
+    t.string   "interests"
   end
 
   create_table "charities", force: true do |t|
@@ -97,7 +98,7 @@ ActiveRecord::Schema.define(version: 20131111124030) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount",                 precision: 10, scale: 0
+    t.decimal  "goal_amount"
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -139,7 +140,7 @@ ActiveRecord::Schema.define(version: 20131111124030) do
     t.string   "phone"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

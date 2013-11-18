@@ -1,14 +1,13 @@
 <%= link_to(groupgrant) do %>
-    <div class="groupgrant_index_single row">
-        <div class="span3" style="clear:both;"></div>
+    <div class="groupgrant_index_single row">        
         <div class="span6"><b><%= highlight(groupgrant.name, params['search']) %></b> 
             <br>
             <% if !groupgrant.groupgrant_category.nil? %>
             <b>Category:</b> <%= groupgrant.groupgrant_category.name %>
             <% end %>
             <br>
-            <b>Submitted by:<%= groupgrant.charity.name %></b> 
-            <br>
+            <b>Submitted by: <%= groupgrant.charity.name %></b> 
+            <br><br>
             <b>Details about <%= groupgrant.charity.name %>'s groupGrant</b> 
             <br>
             <%= highlight(groupgrant.description, params['search']) %>

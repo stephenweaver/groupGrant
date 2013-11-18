@@ -1,11 +1,9 @@
 Blankcomposer::Application.routes.draw do
-  resources :groupgrant_categories
 
+  resources :groupgrant_categories
   resources :charity_categories
   resources :business_categories
-
   resources :addresses
-
   resources :groupgrants
   resources :charities
   resources :donors 

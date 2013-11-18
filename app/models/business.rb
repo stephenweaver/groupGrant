@@ -7,7 +7,8 @@ class Business < ActiveRecord::Base
      if search
        temp1 = Business.all(:conditions => ['name LIKE ?', "%#{search}%"])
        temp2 = Business.all(:conditions => ['description LIKE ?', "%#{search}%"])
-       (temp1 + temp2).uniq 
+       temp3 = Business.all(:conditions => ['interests LIKE ?', "%#{search}%"])
+       (temp1 + temp2 + temp3).uniq 
      else
        find(:all)
      end
