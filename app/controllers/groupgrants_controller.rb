@@ -4,7 +4,31 @@ class GroupgrantsController < ApplicationController
   # GET /groupgrants
   # GET /groupgrants.json
   def index
-    @groupgrants = Groupgrant.all
+    flash[:notice] = nil
+      @categories = GroupgrantCategory.all
+      @category_count = Hash.new
+      @categories.each do |c|
+         @category_count[c.id] = Groupgrant.where(category_id: c.id).count
+      end
+      @category_count['all'] = GroupgrantCategory.count
+      
+      if(params['category'].nil?)
+         @groupgrants = Groupgrant.all
+         @category_id = 0
+      else
+         @groupgrants = Groupgrant.where(category_id: params['category'])
+         if @groupgrants.count < 1
+            @groupgrants = Groupgrant.all
+            @category_id = 0
+           flash.alert  = "There are currently no groupgrants in the " + Groupgrant.find(params['category']).name + " category."
+         else
+            @category_id = params['category']
+         end
+      end
+
+    if(!params['search'].nil?)
+       @groupgrants = @groupgrants.search(params['search'])
+    end
     
   end
 

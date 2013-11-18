@@ -3,6 +3,8 @@ class Charity < ActiveRecord::Base
    has_one :user, :as => :rolable
    has_many :groupgrants, :foreign_key => :owner_id
    validates :eid, :name, :presence => true
+   validates_length_of :eid, :minimum => 5
+
 
    auto_html_for :video_url do
       html_escape
