@@ -24,7 +24,7 @@ gem 'heroku'
 gem 'paperclip'
 gem 'auto_html'
 gem 'sqlite3'
-gem 'mysql2', '0.3.11'
+#gem 'mysql2', '0.3.11'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
