@@ -28,8 +28,7 @@ class GroupgrantsController < ApplicationController
 
     if(!params['search'].nil?)
        @groupgrants = @groupgrants.search(params['search'])
-    end
-    
+    end   
   end
 
   # GET /groupgrants/1
@@ -92,8 +91,6 @@ class GroupgrantsController < ApplicationController
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
     end
-  
-    # @groupgrant_status = groupgrant.goal_status / goal_amount * 100
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupgrant_params
