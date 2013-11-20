@@ -92,9 +92,11 @@ class GroupgrantsController < ApplicationController
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
     end
+  
+    # @groupgrant_status = groupgrant.goal_status / goal_amount * 100
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupgrant_params
-      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url)
+      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url, :goal_status)
     end
 end
