@@ -22,18 +22,13 @@ gem 'twitter'
 gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
-<<<<<<< HEAD
-gem "heroku"
-gem  'paperclip'
-gem 'eventmachine'
-=======
 gem  'money', '~> 5.1.1'
 gem 'heroku'
 gem 'paperclip'
 gem 'auto_html'
 gem 'sqlite3'
 #gem 'mysql2', '0.3.11'
->>>>>>> fbb4fe9bee03417c181d59d72b99d2cf5c7bd20a
+
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
