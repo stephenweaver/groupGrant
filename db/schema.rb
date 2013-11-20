@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113012232) do
+ActiveRecord::Schema.define(version: 20131120025425) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20131113012232) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
+    t.decimal  "goal_status"
   end
 
   create_table "users", force: true do |t|

@@ -136,7 +136,6 @@ GEM
     method_source (0.8.2)
     mime-types (1.25)
     minitest (4.7.5)
-    mocha (0.14.0)
       metaclass (~> 0.0.1)
     money (5.1.1)
       i18n (~> 0.6.0)
@@ -294,7 +293,6 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   meta_request
-  mocha
   money (~> 5.1.1)
   nifty-generators
   omniauth-facebook
