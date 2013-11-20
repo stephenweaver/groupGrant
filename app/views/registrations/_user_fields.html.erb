@@ -8,12 +8,14 @@
   <%= f.email_field :email, value: user.email, :class => 'span4' %>
 </div>
 <div class="row">  
-  <%= f.label :phone, :class => 'span3' %>
-  <%= f.text_field :phone, value: user.phone, :class => 'span4' %>
+  <%= f.label :phone, :class => 'col-xs-12 col-md-4' %>
+  <%= f.text_field :phone, value: user.phone, :class => 'col-xs-12 col-md-4' %>
 </div>
+<div class = 'container'>
 <div class="row">
   <%= f.label :password, :class => 'span3' %> 
   <%= f.password_field :password, :autocomplete => "off", :class => 'span4' %>
+</div>
 </div>
 <div class="row">
   <%= f.label :password_confirmation, :class => 'span3' %>
