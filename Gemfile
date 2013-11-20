@@ -21,6 +21,7 @@ gem 'nifty-generators'
 gem 'binding_of_caller'
 gem "heroku"
 gem  'paperclip'
+gem 'eventmachine'
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
@@ -32,7 +33,6 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  gem 'pry'
   gem 'meta_request'
 end
 
