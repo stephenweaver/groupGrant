@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20131120025425) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount"
+    t.decimal  "goal_amount",                 precision: 10, scale: 0
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -103,16 +103,16 @@ ActiveRecord::Schema.define(version: 20131120025425) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status"
+    t.decimal  "goal_status",                 precision: 10, scale: 0
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                     default: "", null: false
+    t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 20131120025425) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "fb_token_expires_at_token"
+    t.string   "fb_token_expires_at"
     t.integer  "rolable_id"
     t.string   "rolable_type"
     t.string   "profile_file_name"
@@ -130,7 +132,7 @@ ActiveRecord::Schema.define(version: 20131120025425) do
     t.string   "phone"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

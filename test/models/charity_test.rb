@@ -7,12 +7,15 @@ class CharityTest < ActiveSupport::TestCase
    test "charity eid" do
    	  charity.eid = 3
    	  assert charity.eid, "No EID supplied"
-   	end
+   end
 
-   	test "charity is null" do
+	test "charity eid null" do
    	  charity.eid = nil
    	  assert charity.eid, "EID is null"
    end
+
+   #test "eid is a string" do
+   #end
 
    test "no charity name" do
    	  assert charity.name, "No name supplied"
