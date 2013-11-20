@@ -4,7 +4,31 @@ class GroupgrantsController < ApplicationController
   # GET /groupgrants
   # GET /groupgrants.json
   def index
-    @groupgrants = Groupgrant.all
+    flash[:notice] = nil
+      @categories = GroupgrantCategory.all
+      @category_count = Hash.new
+      @categories.each do |c|
+         @category_count[c.id] = Groupgrant.where(category_id: c.id).count
+      end
+      @category_count['all'] = GroupgrantCategory.count
+      
+      if(params['category'].nil?)
+         @groupgrants = Groupgrant.all
+         @category_id = 0
+      else
+         @groupgrants = Groupgrant.where(category_id: params['category'])
+         if @groupgrants.count < 1
+            @groupgrants = Groupgrant.all
+            @category_id = 0
+           flash.alert  = "There are currently no groupgrants in the " + Groupgrant.find(params['category']).name + " category."
+         else
+            @category_id = params['category']
+         end
+      end
+
+    if(!params['search'].nil?)
+       @groupgrants = @groupgrants.search(params['search'])
+    end
     
   end
 
@@ -26,7 +50,8 @@ class GroupgrantsController < ApplicationController
   # POST /groupgrants.json
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
-
+    @groupgrant.owner_id   = current_user.id
+    @groupgrant.partner_id = 0
     respond_to do |format|
       if @groupgrant.save
         format.html { redirect_to @groupgrant, notice: 'Groupgrant was successfully created.' }
@@ -67,9 +92,11 @@ class GroupgrantsController < ApplicationController
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
     end
+  
+    # @groupgrant_status = groupgrant.goal_status / goal_amount * 100
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupgrant_params
-      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url)
+      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url, :goal_status)
     end
 end

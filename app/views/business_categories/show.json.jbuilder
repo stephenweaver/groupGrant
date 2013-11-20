@@ -1,0 +1,1 @@
+json.extract! @business_category, :name, :created_at, :updated_at

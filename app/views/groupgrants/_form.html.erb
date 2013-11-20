@@ -1,20 +1,37 @@
+
 <%= simple_form_for(@groupgrant) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :goal_date %>
-    <%= f.input :goal_amount %>
-    <%= f.input :owner_id %>
-    <%= f.input :partner_id %>
-    <%= f.input :completed_date %>
-    <%= f.input :is_complete %>
-    <%= f.input :is_enabled %>
-    <%= f.input :video_url %>
-  </div>
+<br>
+<br>
+<h4>Start a groupGrant</h3>
+<div class="row">
+   <%= f.label :category_id, "Groupgrant Category ", :class => 'span3 form_label' %>
+   <%= f.collection_select :category_id, GroupgrantCategory.all, :id, :name, options = {:include_blank => 'Select a category...'}, html_options = {:class => 'span5 form_label'} %>
+</div>
+<div class="row">
+   <%= f.label :name, "groupGrant name", :class => 'span3 form_label' %>
+   <%= f.text_field :name, :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :description, "Describe what this groupGrant is for", :class => 'span3 form_label' %>
+<%= f.text_area :description, size: "60x5", :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :goal_date, "When does this groupGrant need to be fulfilled?", :class => 'span3 form_label' %>
+<%= f.text_field :goal_date, :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :goal_amount, "How much money is needed for this groupGrant?", :class => 'span3 form_label' %>
+<%= f.text_field :goal_amount, :class => 'span5 form_field' %>
+</div>
+<div class="row">
+<%= f.label :video_url, "Paste a video URL to your groupGrant", :class => 'span3 form_label' %>
+<%= f.text_field :video_url, :class => 'span5 form_field' %>
+<!-- <a href="#"><i class="icon-home icon-white"></i> Home</a> -->
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<div class="form-actions">
+    <%= f.button :submit, value: "Save groupGrant" %>
+</div>
 <% end %>

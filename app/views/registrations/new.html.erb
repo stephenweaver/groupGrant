@@ -20,35 +20,29 @@
 %>
 <h2><%= user_type.humanize %> sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal", role: "form"} do |f| %>
   <%= devise_error_messages! %>
-    <div><%= f.label :profile %><br />
-   <%= f.file_field :profile %></div>
-   
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= render :partial => "user_fields", :locals => { :f => f, :rest => 'post'} %>
 
-
-   <% if f.object.password_required? %>
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
- <% end %>
-
- <% if ["donor", "charity", "business"].include? params[:user][:user_type].downcase %>
-   <%= fields_for resource.rolable_type do |rf| %>
-       <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf, rolable_type: resource.rolable_type } %>
-   <% end %>
- <% end %>
+  <% if ["donor", "charity", "business"].include? params[:user][:user_type].downcase %>
+    <%= fields_for resource.rolable_type do |rf| %>
+      <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf, rolable_type: resource.rolable } %>
+     <% end %>
+  <% end %>
 
   <%= hidden_field :user, :user_type, :value => user_type %>
-  <div><%= f.submit "Sign up" %></div>
+  <br>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Sign up", :class => 'btn btn-default' %>
+    </div>
+ </div>
+
 <% end %>
 
-<%= render "devise/shared/links" %>
-
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Already have an account? Click to sign in", new_session_path(resource_name) %><br />
+<% end -%>
 
 

@@ -1,0 +1,43 @@
+<br><br><br><br>
+
+<div class = 'businesstabbar'>
+   <ul> 
+     <div class = 'button'><li>Invite<li></div>   
+     <li>Participating groupGrants</li>
+     <li>Business Services/Goods</li>
+     <li>Business Information</li>   
+   </ul>
+</div>
+
+<br><br>
+
+<div class = "row">
+   <div class = "span2"><%= image_tag @business.user.profile.url(:medium) %></div>
+   <div class = "span9">
+      <h2><%= @business.name %></h2>
+   </div>
+   
+   <% if current_user &&  current_user.id == @business.id %>
+      <div class = "span1">
+         <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
+      </div>
+   <% end %>
+</div>
+
+<br><br>
+<h3>Description</h3>
+<br><%= @business.description %>
+<div></div>
+
+<br>
+<div class = "row">
+   <div class = "span6">
+      <h3>Interests</h3>
+      <br><%= @business.interests %>
+   </div>
+</div>
+
+<% if @business.groupgrants.count > 0 %>
+      <br><h3>Our groupGrants</h3>   
+      <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
+<% end %>

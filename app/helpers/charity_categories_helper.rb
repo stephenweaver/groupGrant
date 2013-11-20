@@ -1,0 +1,2 @@
+module CharityCategoriesHelper
+end

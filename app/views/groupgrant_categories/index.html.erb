@@ -1,0 +1,27 @@
+<h1>Listing groupgrant_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groupgrant_categories.each do |groupgrant_category| %>
+      <tr>
+        <td><%= groupgrant_category.name %></td>
+        <td><%= link_to 'Show', groupgrant_category %></td>
+        <td><%= link_to 'Edit', edit_groupgrant_category_path(groupgrant_category) %></td>
+        <td><%= link_to 'Destroy', groupgrant_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Groupgrant category', new_groupgrant_category_path %>

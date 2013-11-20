@@ -1,8 +1,27 @@
-<div><%= f.label :first_name, "First name" %><br />
-<%= f.text_field :first_name, value: rolable_type.first_name %></div>
+<div class="form-group">
+   <%= f.label :title, "Title", :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.text_field :title, class: 'form-control' %>
+   </div>
+</div>
 
-<div><%= f.label :last_name, "Last name" %><br />
-<%= f.text_field :last_name, value: rolable_type.last_name %></div>
+<div class="form-group">
+   <%= f.label :first_name, "First name", :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.text_field :first_name, class: 'form-control' %>
+   </div>
+</div>
 
-<div><%= f.label :middle_initial, "Middle initial" %><br />
-<%= f.text_field :middle_initial, value: rolable_type.middle_initial %></div>
+<div class="form-group">
+   <%= f.label :last_name, "Last name", :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.text_field :last_name, class: 'form-control' %>
+   </div>
+</div>
+
+<div class="form-group">
+   <%= f.label :middle_initial, "Middle initial", :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.text_field :middle_initial, class: 'form-control' %>
+   </div>
+</div>
