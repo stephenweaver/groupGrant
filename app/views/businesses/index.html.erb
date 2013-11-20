@@ -1,15 +1,31 @@
-<h3>Listing Businesses</h3>
+<div class = "row">
+   <%= form_tag "/businesses", :method => 'get', :class => "input-append span3" do %>
+      <%= text_field_tag :search, params[:search], :class => "appendedInputButtons", :style => "width: 70%;" %>
+      <%= submit_tag "Search", :name => nil, :class => "btn", :type => "submit" %>
+   <% end %>
 
-<table class="table table-striped" >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Description</th>
-    </tr>
-  </thead>
+   <h2 class = "span3">Businesses</h2>
+</div>
+<div class = "row">
+   <div class = "span3">
+      <ul class="nav nav-pills nav-stacked">
+         <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
+            <%= link_to(url_for(:controller => "businesses", :action => "index")) do %>
+               <%= 'All' %> <span class="badge pull-right"><%= @category_count['all'].to_s %></span>
+            <% end %>
+         </li>
 
-  <tbody>
+         <% @categories.each do |c| %>
+            <li <% if c.id == @category_id.to_i %> class="active"  <% end %>>
+                <%= link_to(url_for(:controller => "businesses", :action => "index", :category => c.id)) do %>
+                  <%= c.name %> <span class="badge pull-right"><%= @category_count[c.id].to_s %></span>
+               <% end %>
+            </li>
+         <% end %>
+
+      </ul>
+   </div>
+   <div class = "span9">
       <%= render partial: "business", collection: @businesses %>
-  </tbody>
-</table>
+   </div>
+</div>

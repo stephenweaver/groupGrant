@@ -122,7 +122,7 @@ class RegistrationsController < Devise::RegistrationsController
           when "charity"
             params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
-             params[:Business].permit(:name, :goods, :description, :services)
+             params[:Business].permit(:name, :goods, :description, :services, :category_id, :interests)
           when "donor"
              params[:Donor] = params[:Donor].permit(:title, :first_name, :last_name, :middle_initial, :user_attributes!)
         end
@@ -131,7 +131,7 @@ class RegistrationsController < Devise::RegistrationsController
           when "charity"
             params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
-            params[:business]= params[:business].permit(:name, :goods, :description, :services)
+            params[:business]= params[:business].permit(:name, :goods, :description, :services, :category_id, :interests)
           when "donor"
             params[:donor] = params[:donor].permit(:title, :first_name, :last_name, :middle_initial)
         end

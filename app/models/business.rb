@@ -1,5 +1,16 @@
 class Business < ActiveRecord::Base
-   has_one  :user, 		  :as 		   => :rolable
-   has_many :groupgrants, :foreign_key => :partner_id
-   validates :name, :presence => true
+   belongs_to :business_category, :foreign_key => "category_id"
+   has_one :user, :as => :rolable
+   has_many :groupgrants, :foreign_key => :owner_id
+
+   def self.search(search)
+     if search
+       temp1 = Business.all(:conditions => ['name LIKE ?', "%#{search}%"])
+       temp2 = Business.all(:conditions => ['description LIKE ?', "%#{search}%"])
+       temp3 = Business.all(:conditions => ['interests LIKE ?', "%#{search}%"])
+       (temp1 + temp2 + temp3).uniq 
+     else
+       find(:all)
+     end
+   end
 end

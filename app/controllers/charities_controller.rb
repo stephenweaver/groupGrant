@@ -21,6 +21,7 @@ class CharitiesController < ApplicationController
       @categories.each do |c|
          @category_count[c.id] = Charity.where(category_id: c.id).count
       end
+
       @category_count['all'] = Charity.count
       
       if(params['category'].nil?)
@@ -40,9 +41,7 @@ class CharitiesController < ApplicationController
       if(!params['search'].nil?)
           @charities = @charities.search(params['search'])
       end
-
    end
-
 
    def show
       @charity = Charity.find(params[:id])
