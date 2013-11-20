@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
     valid = resource.rolable.valid?
     # customized code end
     if resource.save && resource.rolable.save
-      Rails.logger.info("Sucess")
+      Rails.logger.info("Success")
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)
@@ -37,9 +37,10 @@ class RegistrationsController < Devise::RegistrationsController
     else
       Rails.logger.info("FAILED")
       clean_up_passwords resource
-      respond_to do |format|
-        format.html { render :text => resource.errors.messages}
-      end
+      # respond_to do |format|
+      #   format.html { render :text => resource.errors.messages}
+      # end
+      respond_with resource
     end
   end
 
@@ -112,14 +113,18 @@ class RegistrationsController < Devise::RegistrationsController
 
 
       if !params[:user].nil? && !current_user.nil? 
-        params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile, :phone)
+        if params["action"] = 'update'
+          params[:user] = params[:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
+        else
+          params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
+      end
         case @user_type
           when "charity"
             params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
           when "business"
              params[:Business].permit(:name, :goods, :description, :services, :category_id, :interests)
           when "donor"
-             params[:Donor] = params[:Donor].permit(:title, :first_name, :last_name, :middle_initial)
+             params[:Donor] = params[:Donor].permit(:title, :first_name, :last_name, :middle_initial, :user_attributes!)
         end
       elsif !params[:user].nil?
         case @user_type

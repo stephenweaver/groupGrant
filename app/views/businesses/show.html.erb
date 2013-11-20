@@ -1,3 +1,14 @@
+<br><br><br><br>
+
+<div class = 'businesstabbar'><ul> 
+    <div class = 'button'><li>Invite<li></div>   
+    <li>Participating groupGrants</li>
+    <li>Business Services/Goods</li>
+    <li>Business Information</li>   
+</ul></div>
+
+<br><br>
+
 <div class = "row">
    <div class = "span2"><%= image_tag @business.user.profile.url(:medium) %></div>
    <div class = "span9">
@@ -30,9 +41,12 @@
 <div></div>
 
 <br>
-<h3>Interests</h3>
-<br><%= @business.interests %>
-<div></div>
+<div class = "row">
+   <div class = "span6">
+      <h3>Interests</h3>
+      <br><%= @business.interests %>
+   </div>
+</div>
 
 <% if @business.groupgrants.count > 0 %>
       <br><h3>Our groupGrants</h3>   

@@ -1,35 +1,50 @@
-<div class="row">
-  <%= f.label :profile, :class => 'span3' %>
-   <%=  image_tag(user.profile.url(:thumb)) %>
-   <%= f.file_field :profile,  :class => 'span3' %>
-</div><br>
-<div class="row">  
-  <%= f.label :email, :class => 'span3' %>
-  <%= f.email_field :email, value: user.email, :class => 'span4' %>
-</div>
-<div class="row">  
-  <%= f.label :phone, :class => 'span3' %>
-  <%= f.text_field :phone, value: user.phone, :class => 'span4' %>
-</div>
-<div class="row">
-  <%= f.label :password, :class => 'span3' %> 
-  <%= f.password_field :password, :autocomplete => "off", :class => 'span4' %>
-</div>
-<div class="row">
-  <%= f.label :password_confirmation, :class => 'span3' %>
-  <%= f.password_field :password_confirmation, :class => 'span4' %>
+<div class="form-group">
+   <%= f.label :profile, :class => 'col-sm-2 control-label', style: "margin-top: 15x;" %>
+   <% if current_user %>
+      <%=  image_tag(current_user.user.profile.url(:thumb), class: 'col-sm-2 col-md-1') %>
+   <% else %>
+      <%=  image_tag(f.object.profile.url(:thumb), class: 'col-sm-2 col-md-1') %>
+   <% end %>
+   <div class="col-sm-8 col-md-9"  style= "margin-top: 15px;">
+      <%= f.file_field :profile, :class => 'form-control' %>
+   </div>
 </div>
 
-<% if current_user.user.encrypted_password.present? %>
-<div class="row">
-  <%= f.label :current_password, :class => 'span3' %> 
-  <%= f.password_field :current_password, :class => 'span4' %>
+<div class="form-group">
+   <%= f.label :email, :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.email_field :email, :class => 'form-control' %>
+   </div>
 </div>
 
-<div class="row">
-  <div class= 'span5'><i>(*we need your current password to confirm any changes made)</i></div>
+<div class="form-group">
+  <%= f.label :password, :class => 'col-sm-2 control-label' %> 
+   <div class="col-sm-10">
+    <%= f.password_field :password, :autocomplete => "off", :class => 'form-control' %>
+  </div>
 </div>
-<br><bR>
-  <div><%= f.submit "Update", :class => 'span3' %></div>
 
+<div class="form-group">
+  <%= f.label :password_confirmation, :class => 'col-sm-2 control-label' %>
+  <div class="col-sm-10">
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
+  </div>
+</div>
+
+<% if :rest == 'put' && current_user.encrypted_password.present? %>
+   <div class="form-group">
+      <%= f.label :current_password, :class => 'col-sm-2 control-label' %> 
+      <div class="col-sm-10">
+         <%= f.password_field :current_password, :class => 'form-control' %>
+      </div>
+   </div>
 <% end %>
+
+<div class="form-group">  
+   <%= f.label :phone, :class => 'col-sm-2 control-label' %>
+   <div class="col-sm-10">
+      <%= f.text_field :phone, :class => 'form-control' %>
+   </div>
+</div>
+
+<div class= 'span5'><i>(*we need your current password to confirm any changes made)</i></div>
