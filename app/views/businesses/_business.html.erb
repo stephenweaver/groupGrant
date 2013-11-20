@@ -6,7 +6,7 @@
 
       <div class="span6" float="right">
       	<% if !business.business_category.nil? %>
-           <br><b>Category:</b> <%= business.business_category.name %>
+           <b>Category:</b> <%= business.business_category.name %>
         <% end %>
 
       	<br><br><b>Name:</b> <%= highlight(business.name, params['search']) %>        
