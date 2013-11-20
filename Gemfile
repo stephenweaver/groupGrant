@@ -7,7 +7,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'bootstrap-sass', '~> 2.3.2.2'
+# gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'bootstrap-sass', '~> 3.0.2.0'
+
+
 gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
@@ -19,11 +22,19 @@ gem 'twitter'
 gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
+<<<<<<< HEAD
 gem "heroku"
 gem  'paperclip'
 gem 'eventmachine'
+=======
+gem  'money', '~> 5.1.1'
+gem 'heroku'
+gem 'paperclip'
+gem 'auto_html'
+gem 'sqlite3'
+#gem 'mysql2', '0.3.11'
+>>>>>>> fbb4fe9bee03417c181d59d72b99d2cf5c7bd20a
 group :development do
-  gem 'sqlite3'
   gem 'better_errors'
   gem 'guard-bundler'
   gem 'guard-rails'
@@ -36,7 +47,7 @@ group :development do
   gem 'meta_request'
 end
 
-gem "mocha", group: :test
+#gem "mocha", group: :test
 
 group :production do
   gem 'pg'
