@@ -18,27 +18,32 @@
     <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
   </div>
 <% end %>
+<% content_for :featured do %>
+  <%= image_tag('featured.png', :alt => "groupGrant") %>
+<% end -%>
 
-<h3>How would you describe yourself???</h3>
+<h3>How would you describe yourself?</h3>
 <ul class="thumbnails">
   <li class="span4">
       <%= link_to(charity_sign_up_path, class: "thumbnail") do %>
-      Charity
-      <img data-src="holder.js/300x200" alt="Charity">
+      
+      <%= image_tag(('charity.jpg'), :alt => "Charity") %>
+
       <% end %>
   </li>
 
   <li class="span4">
     <%= link_to(business_sign_up_path, class: "thumbnail") do %>
-      Business
-      <img data-src="holder.js/300x200" alt="Business">
+      
+      <!--img data-src="holder.js/300x200" alt="Business"-->
+      <%= image_tag(('business.jpg/'), :alt => "Business") %>
     <% end %>
   </li>
   
   <li class="span4">
      <%= link_to(donor_sign_up_path, class: "thumbnail") do %>
-      Donor
-      <img data-src="holder.js/300x200" alt="Donor">
+      
+      <%= image_tag(('donor.jpg'), :alt => "Donor") %>
       <% end %>
   </li>
 

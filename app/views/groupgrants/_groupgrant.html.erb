@@ -1,23 +1,20 @@
 <%= link_to(groupgrant) do %>
-  <div class="groupgrant_index_single row">
+<!--   <div class="groupgrant_index_single row"> -->
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img data-src="holder.js/300x200" alt="...">
         <div class="caption">
           <h3><%= groupgrant.name %></h3>
           <p> <%= groupgrant.description %></p>
-          <div class="progress progress-success">
-            <div class="bar" style="width: 60%;"></div>
-          </div>
-          <!-- <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-            <span class="sr-only"></span>
+          <div class="progress progress-striped">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= groupgrant.progress %>%;">
+            <span class="sr-only"><%= groupgrant.progress %></span>
             </div>
-          </div> -->
+          </div>
           <p><a href="" class="btn btn-primary" role="button">Donate</a></p>
+
         </div>
       </div>
     </div>
-  </div>
+<!--   </div> -->
 <% end %>
-<div style = "height: 5px; margin: 10px 0 10px 0; background-color:#ddd;clear:both"></div>

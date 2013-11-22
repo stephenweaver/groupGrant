@@ -13,6 +13,14 @@ class Groupgrant < ActiveRecord::Base
      end
    end
 
+   def progress
+      if self.goal_status.nil? || self.goal_amount.nil?
+        return 0
+      else
+        self.goal_status / self.goal_amount * 100
+      end
+   end
+
 end
 
 
