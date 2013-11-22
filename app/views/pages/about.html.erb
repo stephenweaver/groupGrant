@@ -1,3 +1,27 @@
 <% content_for :title do %>About<% end %>
 <h3>About the Website</h3>
 <p>groupGrant is a non-profit organization, dedicated in helping charities link with businesses.</p>
+
+<p>The countdown for <span id="title">?</span><br>
+<table cellpadding="10" style="text-align:center">
+   <tr>  
+      <td><span id="Week">0</span></td>
+      <td><span id="Day">0</span></td>
+      <td><span id="Hour">0</span></td>
+      <td><span id="Minute">0</span></td>
+      <td><span id="Second">0</span></td>
+   </tr>
+   <tr> 
+      <td><span id="Week_label">Week</span><span id="Week_plural">s</span></td>
+      <td><span id="Day_label">Day</span><span id="Day_plural">s</span></td>
+      <td><span id="Hour_label">Hour</span><span id="Hour_plural">s</span></td>
+      <td><span id="Minute_label">Minute</span><span id="Minute_plural">s</span></td> 
+      <td><span id="Second_label">Second</span><span id="Second_plural">s</span></td>
+   </tr>
+</table>
+</p>
+<p>
+   <button type="button" id="christmas" onclick="countdown('12/25/13 00:27:00', 'Christmas');">Christmas!</button>
+   <button type="button" id="thanksgiving" onclick="countdown('11/28/13 00:00:00', 'Thanksgiving');">Thanksgiving!</button><br>
+   <div>Custom <input id='custom' oninput="validate()"></input></div>
+</p>
