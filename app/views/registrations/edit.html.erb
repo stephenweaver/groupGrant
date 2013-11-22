@@ -1,13 +1,14 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Edit <%= resource.user.rolable_type.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {class: "form-horizontal", role: "form", :method => :put, :multipart => true }) do |f| %>
+
   <%= f.fields_for :user do |builder| %>
     <%= render :partial => "user_fields", :locals => { :f => builder, :user => resource.user } %>
   <% end %>
 
  <% if !current_user.user.rolable_type.nil? %>
    <%= fields_for resource.user.rolable_type do |rf| %>
-       <% render :partial => resource.user.rolable_type.underscore + "_fields", :locals => { :f => rf, :rolable_type => resource } %>
+       <% render :partial => resource.user.rolable_type.underscore + "_fields", :locals => { :f => f, :rolable_type => resource } %>
    <% end %>
  <% end %>
 <br>
