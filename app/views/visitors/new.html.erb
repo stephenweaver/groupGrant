@@ -18,6 +18,9 @@
     <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
   </div>
 <% end %>
+<% content_for :featured do %>
+  <%= image_tag('featured.png', :alt => "groupGrant") %>
+<% end -%>
 
 <h3>How would you describe yourself?</h3>
 <ul class="thumbnails">

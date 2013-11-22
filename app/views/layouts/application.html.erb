@@ -10,8 +10,9 @@
   </head>
   <body>
     <%# application layout styled for Twitter Bootstrap 2.3 %>
+    <%= yield(:featured) %>
     
-<%= image_tag(('featured.png'), :alt => "groupGrant") %>
+<!--%= image_tag('featured.png', :alt => "groupGrant") %-->
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
@@ -21,7 +22,8 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+    <%= link_to image_tag('logo.png', size: "150x30", alt: "groupGrant"), 
+       root_path, class: 'navbar-brand' %>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +34,7 @@
     </div>
   </div><!-- /.navbar-collapse -->
 </nav>
-    <!--%= #yield(:banner) %-->
+    
     <main role="main">
       <div class="container">
         <div class="content">
