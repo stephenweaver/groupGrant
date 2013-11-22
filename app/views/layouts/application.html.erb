@@ -7,11 +7,17 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <style type="text/css">
+      .banner
+      {
+        margin-left: 130px 
+      }
+    </style>
   </head>
   <body>
     <%# application layout styled for Twitter Bootstrap 2.3 %>
     <%= yield(:featured) %>
-    
+
 <!--%= image_tag('featured.png', :alt => "groupGrant") %-->
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,7 +28,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to image_tag('logo.png', size: "150x30", alt: "groupGrant"), 
+    <%= link_to image_tag('logo.png', size: "150x25", alt: "groupGrant"), 
        root_path, class: 'navbar-brand' %>
   </div>
 
