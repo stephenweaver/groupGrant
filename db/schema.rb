@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20131122042923) do
 
   create_table "charities", force: true do |t|
     t.string   "name"
-    t.integer  "eid"
+    t.integer  "eid",               limit: 255
     t.string   "needs"
     t.string   "description"
     t.datetime "created_at"

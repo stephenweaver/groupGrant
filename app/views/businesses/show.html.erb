@@ -4,6 +4,12 @@
    </div>
    <div class="col-md-7">
       <br><h2><%= @business.name %></h2>
+          <p><%= "(Business Slogan)" %></p>
+      <br><br><br>
+      <br><h4><%= "Contact Information:" %></h4>
+          <%= "(Phone Number)" %>
+      <br><%= "(Address)" %>
+      <br><%= "(Address continued)" %>
    </div>
 
    <% if current_user &&  current_user.id == @business.id %>
@@ -13,18 +19,20 @@
    <% end %>
 </div>
 
-<br><br>
-<div class = 'businesstabbar'>
-   <div class = "row">
-      <ul class = "nav nav-pills">                             
-         <li><a href="#" class='facebook'>Facebook</a></li>
-         <li><a href="#" class="twitter">Twitter</a></li>  
-         <li><a href="#" class="linkedin">LinkedIn</a></li> 
-         <li><a href="#" class="pinterest">Pinterest</a></li>
-         <li><a href="#" class="googleplus">GooglePlus</a></li>             
-         
-         <li><a href="#">Connect</a></li>
-      </ul>   
+<br>
+
+<div class = "row">
+   <div class = "col-md-11">
+      <div class = "social-media-icons">
+         <%= image_tag('Facebook.png', :alt => "Facebook") %>
+         <%= image_tag('Twitter.png', :alt => "Twitter") %>
+         <%= image_tag('LinkedIN.png', :alt => "LinkedIN") %>
+         <%= image_tag('Pinterest.png', :alt => "Pinterest") %>
+         <%= image_tag('GooglePlus.png', :alt => "GooglePlus") %>
+      </div>
+   </div>
+   <div class = "col-md-1">
+      <a href="#">Connect</a>
    </div>
 </div>
 
