@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
-  before_filter :user_params, only: [:create, :edit, :update]
+  before_filter :user_params, only: [:create, :update]
   before_filter :authenticate_user!, only: :edit
 
   def create
@@ -13,11 +13,12 @@ class RegistrationsController < Devise::RegistrationsController
     # crate a new child instance depending on the given user user_type  
     child_class = @user_type.camelize.constantize
 
-    resource.rolable = child_class.create(params[@user_type])
+    resource.rolable = child_class.create(user_params)
 
     # first check if child instance is valid
     # cause if so and the parent instance is valid as well
     # it's all being saved at once
+
     valid = resource.valid?
     valid = resource.rolable.valid? && valid
     valid = resource.rolable.valid?
@@ -40,7 +41,7 @@ class RegistrationsController < Devise::RegistrationsController
       # respond_to do |format|
       #   format.html { render :text => resource.errors.messages}
       # end
-      respond_with resource
+      respond_with resource.rolable
     end
   end
 
@@ -48,8 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
    def update
     self.resource = @user_type.camelize.constantize.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-
-    if current_user.user.update_with_password(params[:user][:user]) && resource.update_attributes(user_params)
+    if current_user.user.update_attributes(params[:user][:user_attributes]) && resource.update_attributes(user_params)
       if is_navigational_format?
         flash_key = update_needs_confirmation?(resource.user, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
@@ -58,7 +58,7 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in resource_name, resource.user, :bypass => true
       respond_with resource
     else
-      if params[:user][:user][:current_password] == nil
+      if params[:user][:current_password] == nil
         set_flash_message :error, 'update_failed'
       end
       respond_with resource
@@ -87,16 +87,21 @@ class RegistrationsController < Devise::RegistrationsController
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|
-        u.permit(:email, :password, :password_confirmation)
+        u.permit(:email, :password, :password_confirmation, :phone, :profile)
       end
       devise_parameter_sanitizer.for(:account_update) do |u|
-        u.permit(:email, :password, :password_confirmation)
+        u.permit(:email, :password, :password_confirmation, :phone, :profile)
       end
     end
 
   private
 
     def user_params
+      user_attrs      = [:email, :password, :password_confirmation, :phone, :profile]
+      charity_attrs   = [:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id]
+      business_attrs  = [:name, :goods, :description, :services]
+      donor_attrs     = [:title, :first_name, :last_name, :middle_initial]
+
       if params[:user].nil? && !@current_user.nil?
         if !@current_user.rolable_type.nil?
           @user_type = @current_user.rolable_type.downcase
@@ -105,40 +110,63 @@ class RegistrationsController < Devise::RegistrationsController
         end
       elsif !params[:user].nil? && @current_user.nil?
         @user_type = params[:user][:user_type]
+        # new failed resubmit
+        if @user_type.nil?
+          if params[:Donor]
+            @user_type = "Donor"
+          elsif params[:Business]
+            @user_type = "Business"
+          elsif params[:Charity]
+            @user_type = "Charity"
+          end
+        end
+
       elsif !params[:user].nil? && !current_user.nil?
         @user_type = current_user.user.rolable_type.underscore
       else
         render root_path
       end
+        # update 
+      if !params[:user].nil? && current_user
+        params[:user][:user_attributes].delete(:id)
+        params[:user][:user_attributes] = params[:user][:user_attributes].permit(user_attrs)
 
-
-      if !params[:user].nil? && !current_user.nil? 
-        if params["action"] = 'update'
-          params[:user] = params[:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
-        else
-          params[:user][:user] = params[:user][:user].permit(:email, :password, :password_confirmation, :current_password, :remember_me, :provider, :uid, :profile)
+        @user_type = @user_type.camelize
+        case @user_type
+          when "Charity"
+            params[:user][:Charity].delete(:id)
+            params[:Charity].permit(charity_attrs)
+          when "Business"
+            params[:user][:Business].delete(:id)
+            params[:Business].permit(business_attrs)
+          when "Donor"
+            params[:user].delete(:id)
+            params[:user].permit(donor_attrs)
+        end
+        # new
+      elsif !params[:charity].nil? || !params[:business].nil? || !params[:donor].nil?
+        case @user_type
+          when "charity"
+             params[:charity].permit(charity_attrs)
+          when "business"
+            params[:business].permit(business_attrs)
+          when "donor"
+            params[:donor].permit(donor_attrs)
+        end
+        # new failed first time
+      elsif !params[:Charity].nil? || !params[:Business].nil? || !params[:Donor].nil?
+        case @user_type
+          when "Charity"
+             params[:Charity].permit(charity_attrs)
+          when "Business"
+            params[:Business].permit(business_attrs)
+          when "Donor"
+            params[:Donor].permit(donor_attrs)
       end
-        case @user_type
-          when "charity"
-            params[:Charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
-          when "business"
-             params[:Business].permit(:name, :goods, :description, :services, :category_id, :interests)
-          when "donor"
-             params[:Donor] = params[:Donor].permit(:title, :first_name, :last_name, :middle_initial, :user_attributes!)
-        end
-      elsif !params[:user].nil?
-        case @user_type
-          when "charity"
-            params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id)
-          when "business"
-            params[:business]= params[:business].permit(:name, :goods, :description, :services, :category_id, :interests)
-          when "donor"
-            params[:donor] = params[:donor].permit(:title, :first_name, :last_name, :middle_initial)
-        end
       elsif !current_user.nil?
         @user_type = current_user.user.rolable_type.underscore
       else
-        @user_type = "nbgvfd"
+        @user_type = "something_is_wrong_and"
       end
     end
 
