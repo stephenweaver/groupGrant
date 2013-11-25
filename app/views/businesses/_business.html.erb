@@ -9,8 +9,7 @@
            <b>Category:</b> <%= business.business_category.name %>
         <% end %>
 
-      	<br><br><b>Name:</b> <%= highlight(business.name, params['search']) %>        
-        
+      	<br><br><b>Name:</b> <%= highlight(business.name, params['search']) %>          
         <br><br><b>Description:</b> <%= highlight(business.description, params['search']) %>
       </div>
    </div>
