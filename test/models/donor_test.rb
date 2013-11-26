@@ -37,4 +37,10 @@ class DonorTest < ActiveSupport::TestCase
       d.first_name = 4
       assert_match /[a-z]/i, d.last_name, "The first name can't be a number"
    end
+
+   test "for email" do
+      t = d.user(:email)
+      t = "helo"
+      assert_nil d.users
+   end
 end

@@ -14,8 +14,10 @@ class CharityTest < ActiveSupport::TestCase
    	  assert charity.eid, "EID is null"
    end
 
-   #test "eid is a string" do
-   #end
+   test "eid is a string" do
+      charity.eid = "3hi"
+      assert_match /[0-9]/, charity.eid, "Name cant be a string"
+   end
 
    test "no charity name" do
    	  assert charity.name, "No name supplied"

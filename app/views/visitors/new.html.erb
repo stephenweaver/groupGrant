@@ -19,15 +19,15 @@
   </div>
 <% end %>
 <% content_for :featured do %>
-  <%= image_tag('featured.png', :alt => "groupGrant") %>
+  <%= image_tag('featured.png', alt: "groupGrant", class: "banner") %>
 <% end -%>
 
 <h3>How would you describe yourself?</h3>
-<ul class="thumbnails">
+<ul class="thumbnails" style="list-style-type:none;">
   <li class="span4">
       <%= link_to(charity_sign_up_path, class: "thumbnail") do %>
       
-      <%= image_tag(('charity.jpg'), :alt => "Charity") %>
+      <%= image_tag('charity.jpg', :alt => "Charity") %>
 
       <% end %>
   </li>
@@ -36,14 +36,14 @@
     <%= link_to(business_sign_up_path, class: "thumbnail") do %>
       
       <!--img data-src="holder.js/300x200" alt="Business"-->
-      <%= image_tag(('business.jpg/'), :alt => "Business") %>
+      <%= image_tag('business.jpg', alt: "Business") %>
     <% end %>
   </li>
   
   <li class="span4">
      <%= link_to(donor_sign_up_path, class: "thumbnail") do %>
       
-      <%= image_tag(('donor.jpg'), :alt => "Donor") %>
+      <%= image_tag('donor.jpg', alt: "Donor") %>
       <% end %>
   </li>
 
