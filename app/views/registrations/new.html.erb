@@ -1,33 +1,59 @@
 <%
   # customized code begin
-   begin
-      params[:user][:user_type] ||= 'donor'
-   rescue
-      params[:user] = {}
-      params[:user][:user_type] = "donor"
-   end
-  if ["donor", "charity", "business"].include? params[:user][:user_type].downcase
-    child_class_name = params[:user][:user_type].downcase.camelize
-    user_type = params[:user][:user_type].downcase
-  else
-    child_class_name = "donor"
-    user_type = "donor"
+  if(!params[:user][:user_type].nil?)
+     user_type = params[:user][:user_type].downcase
+     child_class_name = params[:user][:user_type].downcase.camelize
+  elsif(!params[:user][:donor].nil? || !params[:user][:charity].nil? || !params[:user][:business].nil?)
+    if(!params[:user][:donor].nil?)
+      user_type = 'donor'
+      child_class_name = 'Donor'
+    elsif(!params[:user][:charity].nil?)
+      user_type ='charity'
+      child_class_name = "Charity"
+    elsif(!params[:user][:business].nil?)
+      user_type = 'business'
+      child_class_name = 'Business'
+    end
+  elsif (!@user_type.nil?)
+    child_class_name = @user_type.downcase.camelize
+    user_type = @user_type.downcase
+  elsif(!params[:donor].nil? || !params[:charity].nil? || !params[:business].nil?)
+    if(!params[:donor].nil?)
+      user_type = 'donor'
+      child_class_name = 'Donor'
+    elsif(!params[:charity].nil?)
+      user_type ='charity'
+      child_class_name = "Charity"
+    elsif(!params[:business].nil?)
+      user_type = 'business'
+      child_class_name = 'Business'
+    end
   end
 
-  resource.rolable_type = child_class_name.constantize.new if resource.rolable_type.nil?
+  # if ["donor", "charity", "business"].include? params[:user][:user_type].downcase
+  #   child_class_name = params[:user][:user_type].downcase.camelize
+  #   user_type = params[:user][:user_type].downcase
+  # else
+  #   child_class_name = "donor"
+  #   user_type = "donor"
+  # end
+  Rails.logger.info("hahahaaahah")
+  Rails.logger.info(resource.rolable.nil?)
+  resource.rolable = child_class_name.constantize.new if resource.rolable.nil?
 
   # customized code end
 %>
+<% Rails.logger.info("this is a meesage saying I got here?") %>
 <h2><%= user_type.humanize %> sign up</h2>
 
 <%= form_for resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal", role: "form"} do |f| %>
-  <%= devise_error_messages! %>
+  <%= my_devise_error_messages! %>
 
   <%= render :partial => "user_fields", :locals => { :f => f, :rest => 'post'} %>
 
-  <% if ["donor", "charity", "business"].include? params[:user][:user_type].downcase %>
-    <%= fields_for resource.rolable_type do |rf| %>
-      <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf, rolable_type: resource.rolable } %>
+  <% if ["donor", "charity", "business"].include? user_type %>
+    <%= f.fields_for :rolable, as: 'rolable'  do |rf| %>
+      <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf } %>
      <% end %>
   <% end %>
 

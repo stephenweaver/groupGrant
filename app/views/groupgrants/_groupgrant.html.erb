@@ -1,8 +1,9 @@
 <%= link_to(groupgrant) do %>
 <!--   <div class="groupgrant_index_single row"> -->
-    <div class="col-sm-6 col-md-4">
+    <div class="col-xs-6 col-sm-6 col-md-4" style="height:424px;">
+
       <div class="thumbnail">
-        <img data-src="holder.js/300x200" alt="...">
+        <%= image_tag groupgrant.charity.user.profile.url, class: "groupgrant_image" %>
         <div class="caption">
           <h3><%= groupgrant.name %></h3>
           <p> <%= groupgrant.description %></p>

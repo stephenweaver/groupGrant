@@ -24,6 +24,7 @@ class GroupgrantCategoriesController < ApplicationController
   # POST /groupgrant_categories
   # POST /groupgrant_categories.json
   def create
+    raise
     @groupgrant_category = GroupgrantCategory.new(groupgrant_category_params)
 
     respond_to do |format|
