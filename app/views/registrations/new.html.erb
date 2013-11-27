@@ -1,33 +1,30 @@
 <%
   # customized code begin
-  if(!params[:user][:user_type].nil?)
-     user_type = params[:user][:user_type].downcase
-     child_class_name = params[:user][:user_type].downcase.camelize
-  elsif(!params[:user][:donor].nil? || !params[:user][:charity].nil? || !params[:user][:business].nil?)
-    if(!params[:user][:donor].nil?)
-      user_type = 'donor'
-      child_class_name = 'Donor'
-    elsif(!params[:user][:charity].nil?)
-      user_type ='charity'
-      child_class_name = "Charity"
-    elsif(!params[:user][:business].nil?)
-      user_type = 'business'
-      child_class_name = 'Business'
+  if(params[:user])
+    if(!params[:user][:user_type].nil?)
+       user_type = params[:user][:user_type].downcase
+    elsif(!params[:user][:donor].nil? || !params[:user][:charity].nil? || !params[:user][:business].nil?)
+      if(!params[:user][:donor].nil?)
+        user_type = 'donor'
+      elsif(!params[:user][:charity].nil?)
+        user_type ='charity'
+      elsif(!params[:user][:business].nil?)
+        user_type = 'business'
+      end
+    elsif (!@user_type.nil?)
+      user_type = @user_type.downcase
+    elsif(!params[:donor].nil? || !params[:charity].nil? || !params[:business].nil?)
+      if(!params[:donor].nil?)
+        user_type = 'donor'
+      elsif(!params[:charity].nil?)
+        user_type ='charity'
+      elsif(!params[:business].nil?)
+        user_type = 'business'
+      end
     end
-  elsif (!@user_type.nil?)
-    child_class_name = @user_type.downcase.camelize
-    user_type = @user_type.downcase
-  elsif(!params[:donor].nil? || !params[:charity].nil? || !params[:business].nil?)
-    if(!params[:donor].nil?)
-      user_type = 'donor'
-      child_class_name = 'Donor'
-    elsif(!params[:charity].nil?)
-      user_type ='charity'
-      child_class_name = "Charity"
-    elsif(!params[:business].nil?)
-      user_type = 'business'
-      child_class_name = 'Business'
-    end
+  #omnioth facebook
+  else
+    user_type = 'donor'
   end
 
   # if ["donor", "charity", "business"].include? params[:user][:user_type].downcase
@@ -39,7 +36,7 @@
   # end
   Rails.logger.info("hahahaaahah")
   Rails.logger.info(resource.rolable.nil?)
-  resource.rolable = child_class_name.constantize.new if resource.rolable.nil?
+  resource.rolable = user_type.downcase.camelize.constantize.new if resource.rolable.nil?
 
   # customized code end
 %>
@@ -53,7 +50,7 @@
 
   <% if ["donor", "charity", "business"].include? user_type %>
     <%= f.fields_for :rolable, as: 'rolable'  do |rf| %>
-      <% render :partial => "#{child_class_name.underscore}_fields", :locals => { :f => rf } %>
+      <% render :partial => "#{user_type}_fields", :locals => { :f => rf } %>
      <% end %>
   <% end %>
 
