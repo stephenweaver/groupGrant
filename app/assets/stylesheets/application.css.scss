@@ -88,3 +88,12 @@ a:hover {
 .form_label {
    clear: both;
 }
+
+.ellipsis {
+   height: 50px;
+   overflow: hidden;
+}
+
+.ellipsis p { 
+   padding: 10px; 
+   margin: 0; }

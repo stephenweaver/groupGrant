@@ -6,7 +6,11 @@
         <%= image_tag groupgrant.charity.user.profile.url, class: "groupgrant_image" %>
         <div class="caption">
           <h3><%= groupgrant.name %></h3>
-          <p> <%= groupgrant.description %></p>
+          <div class="ellipsis">
+            <p> 
+            <%= groupgrant.description %>
+          </p>
+          </div>
           <div class="progress progress-striped">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= groupgrant.progress %>%;">
             <span class="sr-only"><%= groupgrant.progress %></span>
@@ -18,4 +22,4 @@
       </div>
     </div>
 <!--   </div> -->
-<% end %>
+<% end %> 
