@@ -4,10 +4,10 @@
    </div>
    <div class="col-md-7">
       <br><h2><%= @business.name %></h2>
-          <p><%= "(Business Slogan)" %></p>
+          <p><%= @business.slogan %></p>
       <br><br><br>
       <br><h4><%= "Contact Information:" %></h4>
-          <%= "(Phone Number)" %>
+          <%= @business.user.phone %>
       <br><%= "(Address)" %>
       <br><%= "(Address continued)" %>
    </div>
@@ -52,16 +52,3 @@
 
 <br><br>
 <h3>Participating groupGrants<h3>
-
-<div class="row">
-   <div class="col-md-4">
-      <%= image_tag @business.user.profile.url(:medium) %>
-   </div>
-   <div class="col-md-4">
-      <%= image_tag @business.user.profile.url(:medium) %>
-   </div>
-   <div class="col-md-4">
-      <%= image_tag @business.user.profile.url(:medium) %>
-   </div>
-</div>
-
