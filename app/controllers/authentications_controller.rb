@@ -7,7 +7,7 @@ class AuthenticationsController < ApplicationController
     # raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
-    
+    raise
     if authentication
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
@@ -36,10 +36,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def facebook
-    # raise omni = request.env["omniauth.auth"].to_yaml
     omni = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
-
     if authentication
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
@@ -58,13 +56,20 @@ class AuthenticationsController < ApplicationController
       user.email = omni['extra']['raw_info'].email 
 
       user.apply_omniauth(omni)
-      child_class = 'Donor'.camelize.constantize
+      child_class = 'Donor'.constantize
       user.rolable = child_class.create()
+      user.rolable.first_name = omni['extra']['raw_info'].first_name
+      user.rolable.last_name = omni['extra']['raw_info'].last_name
+      Rails.logger.info("user.valid?")
+      Rails.logger.info(user.valid?)
 
       if user.save
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)             
       else
+        if(user.errors.messages[:email])
+          flash[:warning] = "#{user.email} has already been registerd. Please log in with you password and then enable facebook authentication."  
+        end
         session[:omniauth] = omni.except('extra')
         redirect_to new_user_registration_path
       end

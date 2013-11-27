@@ -3751,6 +3751,15 @@ a.thumbnail.active {
   .alert-warning .alert-link {
     color: #a47e3c; }
 
+.alert-error {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #c09853; }
+  .alert-error hr {
+    border-top-color: #f7e1b5; }
+  .alert-error .alert-link {
+    color: #a47e3c; }
+
 .alert-danger {
   background-color: #f2dede;
   border-color: #ebccd1;

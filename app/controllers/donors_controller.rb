@@ -10,6 +10,10 @@ class DonorsController < ApplicationController
       end
    end
 
+   def new
+       @donor = Donor.new
+   end
+
    def index
       @donors = Donor.all
    end

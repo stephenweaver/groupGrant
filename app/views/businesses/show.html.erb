@@ -1,43 +1,67 @@
-<br><br><br><br>
-
-<div class = 'businesstabbar'>
-   <ul> 
-     <div class = 'button'><li>Invite<li></div>   
-     <li>Participating groupGrants</li>
-     <li>Business Services/Goods</li>
-     <li>Business Information</li>   
-   </ul>
-</div>
-
-<br><br>
-
-<div class = "row">
-   <div class = "span2"><%= image_tag @business.user.profile.url(:medium) %></div>
-   <div class = "span9">
-      <h2><%= @business.name %></h2>
+<div class="row">
+   <div class="col-md-4">
+      <%= image_tag @business.user.profile.url(:medium) %>
    </div>
-   
+   <div class="col-md-7">
+      <br><h2><%= @business.name %></h2>
+          <p><%= "(Business Slogan)" %></p>
+      <br><br><br>
+      <br><h4><%= "Contact Information:" %></h4>
+          <%= "(Phone Number)" %>
+      <br><%= "(Address)" %>
+      <br><%= "(Address continued)" %>
+   </div>
+
    <% if current_user &&  current_user.id == @business.id %>
-      <div class = "span1">
+      <div class = "col-md-1">
          <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
       </div>
    <% end %>
 </div>
 
-<br><br>
-<h3>Description</h3>
-<br><%= @business.description %>
-<div></div>
-
 <br>
+
 <div class = "row">
-   <div class = "span6">
-      <h3>Interests</h3>
-      <br><%= @business.interests %>
+   <div class = "col-md-11">
+      <div class = "social-media-icons">
+         <%= image_tag('Facebook.png', :alt => "Facebook") %>
+         <%= image_tag('Twitter.png', :alt => "Twitter") %>
+         <%= image_tag('LinkedIN.png', :alt => "LinkedIN") %>
+         <%= image_tag('Pinterest.png', :alt => "Pinterest") %>
+         <%= image_tag('GooglePlus.png', :alt => "GooglePlus") %>
+      </div>
+   </div>
+   <div class = "col-md-1">
+      <a href="#">Connect</a>
    </div>
 </div>
 
-<% if @business.groupgrants.count > 0 %>
-      <br><h3>Our groupGrants</h3>   
-      <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
-<% end %>
+<br><br>
+
+<div class = "row">
+   <div class="col-md-6">
+      <h3>Description</h3>
+      <%= @business.description %>
+   </div>
+
+   <div class="col-md-6">
+      <h3>Interests</h3>
+      <%= @business.interests %>
+   </div>
+</div>
+
+<br><br>
+<h3>Participating groupGrants<h3>
+
+<div class="row">
+   <div class="col-md-4">
+      <%= image_tag @business.user.profile.url(:medium) %>
+   </div>
+   <div class="col-md-4">
+      <%= image_tag @business.user.profile.url(:medium) %>
+   </div>
+   <div class="col-md-4">
+      <%= image_tag @business.user.profile.url(:medium) %>
+   </div>
+</div>
+
