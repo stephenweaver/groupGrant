@@ -6,21 +6,15 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "groupGrant" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "businesses" %>
     <%= csrf_meta_tags %>
-    <style type="text/css">
-      .banner
-      {
-        margin-left: 130px 
-      }
     </style>
   </head>
   <body>
     <%# application layout styled for Twitter Bootstrap 2.3 %>
-    <%= yield(:featured) %>
+    
 
 <!--%= image_tag('featured.png', :alt => "groupGrant") %-->
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -41,9 +35,11 @@
     </div>
   </div><!-- /.navbar-collapse -->
 </nav>
-    
+<%= yield(:banner) %>
+
     <main role="main">
       <div class="container">
+      <%= yield(:featured) %>
         <div class="content">
               <%= render 'layouts/messages' %>
               <%= yield %>

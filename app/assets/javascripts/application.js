@@ -14,13 +14,30 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require skrollr
 //= require_tree .
 
 $('.dropdown-toggle').dropdown()
 
-while ($('.ellipsis p').outerHeight()>$('.ellipsis').height()) {
-    $('.ellipsis p').text(function (index, text) {
-    	console.log(text);
-        return text.replace(/\W*\s(\S)*$/, '...');
-    });
-}
+
+$( document ).ready(function() {
+   var a = $('.ellipsis_gg_title div');
+
+   while (a.outerHeight()>$('.ellipsis_gg_title').height()) {
+      a.text(function (index, text) {
+         return text.replace(/\W*\s(\S)*$/, '...');
+      });
+   }
+
+   a = $('.ellipsis_gg_about div');
+   while (a.outerHeight()>$('.ellipsis_gg_about').height()) {
+      a.text(function (index, text) {
+         return text.replace(/\W*\s(\S)*$/, '...');
+      });
+   }
+
+
+   skrollr.init({
+      forceHeight: false
+   });
+});

@@ -63,8 +63,19 @@ body { padding-top: 70px; }
 {
    margin-left: auto;
    margin-right:auto;
+   display:block;
 }
 
+.banner {
+   height:40%;
+   vertical-align:middle;
+   padding: 13% 0 13% 0;
+   z-index:-1;
+}
+
+.banner img {
+   max-width:75%;
+}
 .maxheight300
 {
    max-height: 45%;
@@ -89,11 +100,12 @@ a:hover {
    clear: both;
 }
 
-.ellipsis {
-   height: 50px;
+.ellipsis_gg_title {
+   height: 40px;
    overflow: hidden;
 }
 
-.ellipsis p { 
-   padding: 10px; 
-   margin: 0; }
+.ellipsis_gg_about {
+   height: 60px;
+   overflow: hidden;
+}
