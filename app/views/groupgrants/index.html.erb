@@ -30,6 +30,9 @@
 </div>
 <div class = "row">
   <div class = "span12">
-      <%= link_to 'Start a new Groupgrant', new_groupgrant_path %>
+      <% if user_signed_in? && 
+            current_user.class.name == "Charity" %>
+        <%= link_to 'Start a new Groupgrant', new_groupgrant_path %>
+      <% end %>
   </div>
 </div>  

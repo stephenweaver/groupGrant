@@ -17,3 +17,10 @@
 //= require_tree .
 
 $('.dropdown-toggle').dropdown()
+
+while ($('.ellipsis p').outerHeight()>$('.ellipsis').height()) {
+    $('.ellipsis p').text(function (index, text) {
+    	console.log(text);
+        return text.replace(/\W*\s(\S)*$/, '...');
+    });
+}
