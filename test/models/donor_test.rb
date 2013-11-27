@@ -43,4 +43,10 @@ class DonorTest < ActiveSupport::TestCase
       t = "helo"
       assert_nil d.users
    end
+
+   # Test my validation method
+   test "custom validation" do
+      d.first_name = "koffi"
+      assert d.valid?, "First name is not valid"
+   end
 end

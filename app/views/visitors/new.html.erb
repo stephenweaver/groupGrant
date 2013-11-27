@@ -1,6 +1,7 @@
 <% content_for :featured do %>
     <div data-smooth-scrolling=on data-0="opacity:1;margin-bottom:0%;" data-200="opacity:0;margin-bottom:-20%;" class="skrollable skrollable-between banner">
       <%= image_tag('featured2.png', alt: "groupGrant", class:"automargin") %>
+
     </div>
 <% end %>
 <h3>How would you describe yourself?</h3>
@@ -8,7 +9,7 @@
   <li class="span4">
       <%= link_to(charity_sign_up_path, class: "thumbnail") do %>
       
-      <%= image_tag('charity.jpg', :alt => "Charity") %>
+      <%= image_tag('charity.jpg', alt: "Charity") %>
 
       <% end %>
   </li>

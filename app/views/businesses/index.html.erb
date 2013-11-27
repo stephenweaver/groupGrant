@@ -1,3 +1,5 @@
+<% content_for :title do %>Businesses<% end %>
+
 <div class = "row">
    <%= form_tag "/businesses", :method => 'get', :class => "input-append col-md-4" do %>
       <%= text_field_tag :search, params[:search], :class => "appendedInputButtons", :style => "width: 70%;" %>
