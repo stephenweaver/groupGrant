@@ -21,8 +21,6 @@ class ApplicationController < ActionController::Base
       rescue Exception => e
         return super
       end
-      
-
   end
   
 end

@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav navbar-right">
-   <% if current_user %>
+   <% if user_signed_in? %>
       <p class="navbar-text">Logged in as <strong><%= current_user.user.email %></strong></p>
       
       <li class="dropdown">
