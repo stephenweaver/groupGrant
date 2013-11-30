@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  date:
+    datepicker:
+      default: "mm/dd/yyyy"
+      long: "MM dd, yyyy"
+    formats:
+      default: "dd/mm/yyyy"
+      long: ! '%B %d, %Y'

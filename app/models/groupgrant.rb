@@ -2,7 +2,8 @@ class Groupgrant < ActiveRecord::Base
    belongs_to :charity,  			:foreign_key => "owner_id"
    belongs_to :business, 			:foreign_key => "partner_id"
    belongs_to :groupgrant_category, :foreign_key => "category_id"
-
+    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/assets/:style/missing.jpg"
+    validates :name, :category_id, :goal_amount, :goal_date, presence: true
    def self.search(search)
      if search
        temp1 = Groupgrant.all(:conditions => ['name LIKE ?', "%#{search}%"])

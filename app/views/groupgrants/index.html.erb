@@ -1,14 +1,24 @@
-<div class = "row">
-   <%= form_tag "/groupgrants", :method => 'get', :class => "input-append span3" do %>
-      <%= text_field_tag :search, params[:search], :class => "appendedInputButtons", :style => "width: 70%;" %>
-      <%= submit_tag "Search", :name => nil, :class => "btn", :type => "submit" %>
-   <% end %>
-</div>
+<% content_for :title do %>groupGrants<% end %>
 
-<h1>Active groupGrants</h1>
+<div class = "row">
+   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>
+   <div class="input-group">
+      <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
+      <span class="input-group-btn">
+        <%= submit_tag "Search", :name => nil, :class => "btn btn-default", :type => "submit" %>
+      </span>
+    </div>
+  <% end %>
+    
+      <% if user_signed_in? && current_user.class.name == "Charity" %>
+        <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md",  style:"float:right" %>      
+    <% end %>
+
+  <h1 class = "col-md-5" >Active groupGrants</h1>
+</div>
 <div class = "row">
    	<div class = "col-sm-3">
-      	<ul class="nav nav-pills nav-stacked">
+      <ul class="nav nav-pills nav-stacked">
         <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
             <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
             <%= 'All' %> <span class="badge pull-right"><%= @category_count['all'].to_s %></span>
@@ -22,17 +32,9 @@
             <% end %>
         </li>
         <% end %>
-        </ul>
+      </ul>
     </div>
   <div class = "col-sm-9">
     	<%= render partial: "groupgrant", collection: @groupgrants %>  	
   </div>
 </div>
-<div class = "row">
-  <div class = "span12">
-      <% if user_signed_in? && 
-            current_user.class.name == "Charity" %>
-        <%= link_to 'Start a new Groupgrant', new_groupgrant_path %>
-      <% end %>
-  </div>
-</div>  

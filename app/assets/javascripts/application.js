@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require skrollr
 //= require_tree .
 
 $('.dropdown-toggle').dropdown()
+
 
 
 $( document ).ready(function() {
@@ -40,4 +42,6 @@ $( document ).ready(function() {
    skrollr.init({
       forceHeight: false
    });
+
+   $('.datepicker').datepicker()
 });
