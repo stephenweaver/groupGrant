@@ -10,7 +10,7 @@
  *
  * require_self
  * require_tree .
- 
+ *= require bootstrap-datepicker
  */
 
  @import "bootstrap";
@@ -66,6 +66,13 @@ body { padding-top: 70px; }
    display:block;
 }
 
+.social-media-icons img
+{
+   padding:5px;
+   padding-top: 10px;
+}
+
+
 .banner {
    height:40%;
    vertical-align:middle;
@@ -108,4 +115,9 @@ a:hover {
 .ellipsis_gg_about {
    height: 60px;
    overflow: hidden;
+}
+
+.help-inline {
+   color: red;
+   padding-top:5
 }

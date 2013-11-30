@@ -1,53 +1,23 @@
-<%= simple_form_for (@groupgrant), html: {class: "form-horizontal", role: "form"} do |f| %>
+<%= simple_form_for @groupgrant, html: {class: "form-horizontal"} do |f| %>
   <%= f.error_notification %>
 
-<br>
-<br>
-<div class="form-group">
-
-   	<%= f.label :category_id, "groupGrant Category ", :class => 'col-sm-2 control-label' %>
-   	<div class="col-sm-10">
-   		<%= f.collection_select :category_id, GroupgrantCategory.all, :id, :name, options = {:include_blank => 'Select a category...'}, html_options = {:class => 'span5 form_label'} %>
-	</div>
-</div>
+<%= f.input :name %>
 
 <div class="form-group">
-   	<%= f.label :name, "groupGrant name", class: 'col-sm-2 control-label' %>
-   	<div class="col-sm-10">
-   		<%= f.text_field :name, class: 'form-control' %>
-	</div>
+   <%= f.label :groupgrant_pic, :class => 'col-sm-2 control-label', style: "margin-top: 15x;" %>
+      <%=  image_tag(f.object.groupgrant_pic.url(:thumb), class: 'col-sm-2 col-md-1') %>
+   <div class="col-sm-8 col-md-4"  style="margin-top: 15px;">
+      <%= f.file_field :groupgrant_pic, :class => 'form-control' %>
+   </div>
 </div>
 
-<div class="form-group">
-	<%= f.label :description, "Describe what this groupGrant is for", :class => 'col-sm-2 control-label' %>
-	<div class="col-sm-10">
-		<%= f.text_area :description, size: "60x5", class: 'form-control' %>
-	</div>
-</div>
+<%= f.input :category_id, :as => :select, :collection => GroupgrantCategory.all, :label_method => :name, :value_method => :id %>
+<%= f.input :description, label:"Describe what this groupGrant is for" %>
+<%= f.input :goal_date, as: :string, label: "When does this groupGrant need to be fulfilled?", :input_html => { :class => 'datepicker' }  %>
+<%= f.input :goal_amount, :as => :currency, lable: "How much money is needed for this groupGrant?" %>
 
-<div class="form-group">
-	<%= f.label :goal_date, "When does this groupGrant need to be fulfilled?", :class => 'col-sm-2 control-label' %>
-  	<div class="col-sm-10">	
-	<%= f.text_field :goal_date, class: 'form-control' %>
-	</div>
-</div>
+<%= f.input :video_url, label: "Paste a video URL to your groupGrant" %>
 
-<div class="form-group">
-	<%= f.label :goal_amount, "How much money is needed for this groupGrant?", :class => 'col-sm-2 control-label' %>
-  	<div class="col-sm-10">	
-	<%= f.text_field :goal_amount, class: 'form-control' %>
-	</div>
-</div>
+<%= f.button :submit, :class => 'btn-primary col-md-offset-5'  %>
 
-<div class="form-group">
-	<%= f.label :video_url, "Paste a video URL to your groupGrant", :class => 'col-sm-2 control-label' %>
-  	<div class="col-sm-10">	
-	<%= f.text_field :video_url, class: 'form-control' %>
-	</div>
-<!-- <a href="#"><i class="icon-home icon-white"></i> Home</a> -->
-</div>
-
-<div class="form-actions">
-    <%= f.button :submit, value: "Save groupGrant" %>
-</div>
 <% end %>

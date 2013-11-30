@@ -136,14 +136,14 @@ class RegistrationsController < Devise::RegistrationsController
           when "business"
             params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(business_attrs)
           when "donor"
-            params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(:title, :first_name, :last_name, :middle_initial)
+            params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(charity_attrs)
         end
       elsif !params[:charity].nil? || !params[:business].nil? || !params[:donor].nil?
         case @user_type
           when "charity"
-             params[:charity] = params[:charity].permit(:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id, :rolable, :user => [:email, :password, :password_confirmation, :phone, :profile, :donor])
+             params[:charity] = params[:charity].permit(charity_attrs, :user => user_attrs)
           when "business"
-            params[:business] = params[:business].permit(business_attrs)
+            params[:business] = params[:business].permit(business_attrs, :user => user_attrs)
           when "donor"
             params[:donor] = params[:donor].permit(donor_attrs, :user => user_attrs)
         end

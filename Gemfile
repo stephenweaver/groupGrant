@@ -9,7 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 # gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'bootstrap-sass', '~> 3.0.2.0'
-
+gem 'bootstrap-datepicker-rails'
 
 gem 'figaro'
 gem 'high_voltage'

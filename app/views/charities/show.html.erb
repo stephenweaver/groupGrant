@@ -1,37 +1,53 @@
-<div class = "row">
-   <div class = "span2"><%= image_tag @charity.user.profile.url(:medium) %></div>
-   <div class = "span9">
-      <h2><%= @charity.name %></h2>
-      <% if !@charity.charity_category.nil? %>
-         Category: <%= @charity.charity_category.name %>
-      <% end %>
+<div class="row">
+   <%= image_tag @charity.user.profile.url(:medium),  class:"col-md-3" %> 
+   <div class="col-md-8">
+      <br><h2><%= @charity.name %></h2>
+          <div><%= @charity.description %></div>
       <br><br>
-      <%= @charity.description %>
+      <br><h4><%= "Contact Information:" %></h4>
+          <%= "(Phone Number)" %>
+      <br><%= "(Address)" %>
+      <br><%= "(Address continued)" %>
    </div>
-   
+
    <% if current_user &&  current_user.id == @charity.id %>
-      <div class = "span1"><h6><%= link_to 'Edit Page', edit_user_registration_path %></h6></div>
+      <div class = "col-md-1">
+         <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
+      </div>
    <% end %>
 </div>
-<br><br>
-<div class = "row">
-   <div class = "span7">
-      <div class = "row">
-         <div class = "span7">
-            <p style="font-size:1.5em; line-height:1.1em"><%= @charity.mission_statement %></p>
-         </div>
-         <div class = "span7">
-            <h3>About Us</h3>
-            <div>Email: <%= @charity.user.email  %></div>
-            <div>Phone: <%= @charity.user.phone  %></div>
-         </div>
-      </div>
 
+<div class = "row">
+   <div class = "col-md-11">
+      <div class = "col-md-3 social-media-icons automargin">
+         <%= image_tag('social_media/facebook-32.png', :alt => "Facebook") %>
+         <%= image_tag('social_media/twitter-32.png', :alt => "Twitter") %>
+         <%= image_tag('social_media/linkedin-32.png', :alt => "LinkedIN") %>
+         <%= image_tag('social_media/pinterest-32.png', :alt => "Pinterest") %>
+         <%= image_tag('social_media/googleplus-32.png', :alt => "GooglePlus") %>
+      </div>
    </div>
-   <div class = "span5" style="text-align:right;"><%= @charity.video_url_html %></div>
+   <div class = "col-md-1">
+      <a href="#">Connect</a>
+   </div>
 </div>
 
-<% if @charity.groupgrants.count > 0 %>
-<h3>Our groupGrants</h3>
-<%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
-<% end %>
+<div class = "row">
+   <div class="col-md-6">
+      <h3>Description</h3>
+      <%= @charity.description %>
+   </div>
+
+   <div class="col-md-6">
+      <h3>Interests</h3>
+      <%= @charity.needs %>
+   </div>
+</div>
+
+<div class = "row">
+   <% if @charity.groupgrants.count > 0 %>
+      <h3>Join our groupGrants</h3>
+      <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
+   <% end %>
+</div>
+
