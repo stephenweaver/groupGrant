@@ -1,52 +1,53 @@
 <br>
 <br>
-<h3>About your business</h3>
+<h2>About your business</h2>
 
 <div class="form-group">
-   <%= f.label :category_id, "Business Category ", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
+   <%= f.label :category_id, "Business Category ", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
       <%= f.collection_select :category_id, BusinessCategory.all, :id, :name, options = {:include_blank => 'Select a category...'}, html_options = {:class => 'form-control'} %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :name, "Organization Name", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
+   <%= f.label :name, "Organization Name", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
       <%= f.text_field :name, class: 'form-control' %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :phone_number, "Organization Phone Number", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
-      <%= f.text_field :phone_number, class: 'form-control' %>
+   <%= f.label :slogan, "Organization Slogan", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
+      <%= f.text_field :slogan, class: 'form-control' %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :description, "Describe your Organization in 1000 words or less.", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
-      <%= f.text_field :description, class: 'form-control' %>
+   <%= f.label :description, "Describe your Organization in 1000 words or less.", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
+      <%= f.text_area :description, size: "60x5", class: 'form-control' %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :interests, "Describe your Organization's interests in 1000 words or less.", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
-      <%= f.text_field :interests, class: 'form-control' %>
+   <%= f.label :interests, "Describe your Organization's interests.", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
+      <%= f.text_area :interests, class: 'form-control' %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :goods, "List of goods available to charities.", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
-      <%= f.text_field :goods, class: 'form-control' %>
+   <%= f.label :goods, "List of goods available to charities.", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
+      <%= f.text_area :goods, class: 'form-control' %>
    </div>
 </div>
 
 <div class="form-group">
-   <%= f.label :services, "List of services available to charities. (Comma delimited)", class: 'col-sm-2 control-label' %>
-   <div class="col-sm-10">
-      <%= f.text_field :services, class: 'form-control' %>
+   <%= f.label :services, "List of services available to charities. (Comma delimited)", class: 'col-sm-3 control-label' %>
+   <div class="col-sm-6">
+      <%= f.text_area :services, class: 'form-control' %>
    </div>
 </div>
+
