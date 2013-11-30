@@ -1,18 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class = "col-md-7">
+	<!-- Put the Name and Description in this section-->
+	  <h2><%= @groupgrant.name %></h2>
+      <div>
+      	<%= @groupgrant.description %>
+      </div>
+	</div>
+	<div class= "col-md-5">
+		<!-- Goals panel -->
+		<div class="panel panel-primary">
+  		<!-- Default panel contents -->
+  		<div class="panel-heading"><strong>Goal: $<%= @groupgrant.goal_amount %></strong></div>
+  		<div class="panel-body">
+  			<!-- groupGrant goals progress-->
+  			<div class="progress progress-striped" style="margin-bottom: 5px; height: 30px;">
+        		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%; <%= @groupgrant.progress %>%">
+        		<span style="color: white; font-size: 1.2em; font-weight: bold; text-shadow: 0px -1px 0px #363; line-height: 30px;">40% complete <%= @groupgrant.progress %></span>
+        		</div>
+    		</div>
+<!--   			<div class="progress progress-striped" style="background: none; border: none; margin: 0; -webkit-box-shadow: none">
+        		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%; background: none; border: none; -webkit-box-shadow: none">
+        		<span style="color: black">40% complete</span>
+        		</div>
+    		</div> -->
+ 		</div>
+  			<!-- List group -->
+  			<ul class="list-group">
+    			<li class="list-group-item"><strong>Reach goal by <%= @groupgrant.goal_date %></strong></li>
+  			</ul>
+		</div>
+		<div class = "social-media-icons automargin">
+         	<%= image_tag('social_media/facebook-32.png', :alt => "Facebook") %>
+         	<%= image_tag('social_media/twitter-32.png', :alt => "Twitter") %>
+         	<%= image_tag('social_media/linkedin-32.png', :alt => "LinkedIN") %>
+         	<%= image_tag('social_media/pinterest-32.png', :alt => "Pinterest") %>
+         	<%= image_tag('social_media/googleplus-32.png', :alt => "GooglePlus") %>
+         	<% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
+        		<%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
+			<% end %>
+      	</div>
+	</div>
+</div>
 
-<h2><%= @groupgrant.name %></h2>
-
-<p>
-  <%= @groupgrant.description %>
-</p>
-<p>
-  <strong>Goal date:</strong>
-  <%= @groupgrant.goal_date %>
-</p>
-<p>
-  <strong>Goal amount:</strong>
-  <%= @groupgrant.goal_amount %>
-</p>
-
-<%= link_to 'Edit', edit_groupgrant_path(@groupgrant) %> |
-<%= link_to 'Back', groupgrants_path %>
+<div class="row">
+   <div class="col-md-7">
+   <!-- Put the video in this section -->
+   </div>
+   <div class = "col-md-1">
+      <!-- Put the Partnerships in this section -->
+	  <h3>Partnerships</h3>
+   	  <div class = "col-md-1">
+        <h4><%= @groupgrant.charity.name %></h4>
+      	<div style="clear:both;">
+      		<%= image_tag @groupgrant.charity.user.profile.url(:small) %>
+      		<%= @groupgrant.charity.description %>
+        </div>
+      <% if @groupgrant.business != nil %>
+      	<h4><%= @groupgrant.business.name %></h4>
+      	<div style="clear:both;">
+      		<%= image_tag @groupgrant.business.user.profile.url(:small) %>
+        </div>
+      <% end %>
+      </div>
+   </div>
+</div>

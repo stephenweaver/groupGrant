@@ -23,5 +23,3 @@ class Groupgrant < ActiveRecord::Base
    end
 
 end
-
-
