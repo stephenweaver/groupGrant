@@ -1,3 +1,5 @@
+<LINK href="businesses.css.scss" rel="stylesheet" type="text/css">
+
 <div class="row">
    <div class="col-md-4">
       <%= image_tag @business.user.profile.url(:medium) %>
@@ -5,7 +7,7 @@
    <div class="col-md-7">
       <br><h2><%= @business.name %></h2>
           <p><%= @business.slogan %></p>
-      <br><br><br>
+      <br><br><br><br>
       <br><h4><%= "Contact Information:" %></h4>
           <%= @business.user.phone %>
       <br><%= "(Address)" %>
@@ -20,7 +22,6 @@
 </div>
 
 <br>
-
 <div class = "row">
    <div class = "col-md-11">
       <div class = "social-media-icons">
@@ -32,7 +33,7 @@
       </div>
    </div>
    <div class = "col-md-1">
-      <a href="#">Connect</a>
+      <button type="button" class="btn btn-connect">Connect</button>
    </div>
 </div>
 
