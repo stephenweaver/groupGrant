@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- * require_self
- * require_tree .
+ *= require_self
+ *= require_tree .
  *= require bootstrap-datepicker
  */
 
@@ -30,7 +30,7 @@ body { padding-top: 70px; }
 }
 .groupgrant_image {
    width: 100%;
-   height: 200px;
+   max-height: 150px;
 }
 
 .padding10
@@ -120,4 +120,18 @@ a:hover {
 .help-inline {
    color: red;
    padding-top:5
+}
+
+.groupgrant_ribbon{
+   position:absolute;
+   margin-left: -13%;
+   width:108%;
+   top: -20px;
+}
+
+.listing_header{
+   height: 100%;
+   font-size: 1.5em;
+   padding: 2px 0 10px 0;
+
 }

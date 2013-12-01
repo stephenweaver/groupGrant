@@ -10,12 +10,13 @@
     </div>
   <% end %>
     
-      <% if user_signed_in? && current_user.class.name == "Charity" %>
-        <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md",  style:"float:right" %>      
-    <% end %>
+  <div class = "col-md-7 listing_header">Active groupGrants</div>
 
-  <h1 class = "col-md-5" >Active groupGrants</h1>
+  <% if user_signed_in? && current_user.class.name == "Charity" %>
+    <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5"%>      
+  <% end %>
 </div>
+<br>
 <div class = "row">
    	<div class = "col-sm-3">
       <ul class="nav nav-pills nav-stacked">
@@ -35,6 +36,7 @@
       </ul>
     </div>
   <div class = "col-sm-9">
+    <br>
     	<%= render partial: "groupgrant", collection: @groupgrants %>  	
   </div>
 </div>
