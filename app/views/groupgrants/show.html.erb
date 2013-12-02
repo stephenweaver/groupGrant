@@ -1,9 +1,10 @@
 <div class="row">
 	<div class = "col-md-7">
 	<!-- Put the Name and Description in this section-->
-	  <h2><%= @groupgrant.name %></h2>
+	  <div class="title"><%= @groupgrant.name %></div>
+    <%= @groupgrant.video_url_html%>
       <div>
-      	<%= @groupgrant.description %>
+        <%= @groupgrant.description %>
       </div>
 	</div>
 	<div class= "col-md-5">
@@ -38,7 +39,23 @@
          	<% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
         		<%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
 			<% end %>
-      	</div>
+    </div>
+    <br>
+    <h3>Partnerships</h3>
+    <h4><%= @groupgrant.charity.name %></h4>
+    <div style="clear:both;">
+      <%= image_tag @groupgrant.charity.user.profile.url(:thumb) %>
+      <%= @groupgrant.charity.description %>
+    </div>
+    <div>
+    <% if @groupgrant.business != nil %>
+      <h4><%= @groupgrant.business.name %></h4>
+       <div style="clear:both;">
+         <%= image_tag @groupgrant.business.user.profile.url(:small) %>
+       </div>
+    <% end %>
+   </div>
+
 	</div>
 </div>
 
@@ -46,21 +63,7 @@
    <div class="col-md-7">
    <!-- Put the video in this section -->
    </div>
-   <div class = "col-md-1">
+   <div class = "col-md-4">
       <!-- Put the Partnerships in this section -->
-	  <h3>Partnerships</h3>
-   	  <div class = "col-md-1">
-        <h4><%= @groupgrant.charity.name %></h4>
-      	<div style="clear:both;">
-      		<%= image_tag @groupgrant.charity.user.profile.url(:small) %>
-      		<%= @groupgrant.charity.description %>
-        </div>
-      <% if @groupgrant.business != nil %>
-      	<h4><%= @groupgrant.business.name %></h4>
-      	<div style="clear:both;">
-      		<%= image_tag @groupgrant.business.user.profile.url(:small) %>
-        </div>
-      <% end %>
-      </div>
-   </div>
+	  
 </div>

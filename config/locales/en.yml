@@ -23,8 +23,8 @@ en:
   hello: "Hello world"
   date:
     datepicker:
-      default: "mm/dd/yyyy"
+      default: "yyyy-mm-dd"
       long: "MM dd, yyyy"
     formats:
-      default: "dd/mm/yyyy"
+      default: "yyyy-mm-dd"
       long: ! '%B %d, %Y'

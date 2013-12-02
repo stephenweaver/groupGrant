@@ -1,36 +1,50 @@
-<% content_for :featured do %>
-    <div data-smooth-scrolling=on data-0="opacity:1;margin-bottom:0%;" data-200="opacity:0;margin-bottom:-20%;" class="skrollable skrollable-between banner">
-      <%= image_tag('featured2.png', alt: "groupGrant", class:"automargin") %>
 
+<% content_for :homepage do %>
+<section id="charity" class="row homerow" style="height:580px;">
+  <div class="col-md-7" style='max-height:50%'><%= image_tag('homepage/kids.jpg', style:"max-width:900px;", class: 'img-responsive')%></div>
+    <div class="col-md-5" style="background-color:#CCCCCC; border-radius: 15px; padding-bottom:20px;">
+      <h1 >Charity</h1>
+      <div class="homepage_maintext" style="padding-right:100px; padding-bottom:20px; ">
+      Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui.
     </div>
-<% end %>
-<h3>How would you describe yourself?</h3>
-<ul class="thumbnails" style="list-style-type:none;">
-  <li class="span4">
-      <%= link_to(charity_sign_up_path, class: "thumbnail") do %>
-      
-      <%= image_tag('charity.jpg', alt: "Charity") %>
-
-      <% end %>
-  </li>
-
-  <li class="span4">
-    <%= link_to(business_sign_up_path, class: "thumbnail") do %>
-      
-      <!--img data-src="holder.js/300x200" alt="Business"-->
-      <%= image_tag('business.jpg', alt: "Business") %>
+    <%= link_to(charity_sign_up_path) do %>
+        <button type="button" class="btn btn-primary btn-lg">Register as a Charity</button>
     <% end %>
-  </li>
-  
-  <li class="span4">
-     <%= link_to(donor_sign_up_path, class: "thumbnail") do %>
-      
-      <%= image_tag('donor.jpg', alt: "Donor") %>
-      <% end %>
-  </li>
+  </div>
+</section>
 
-</ul>
+<section id="business" class="row homerow" style="background-color:#8c8c8c; padding-left:75px; margin-left:0">
+ 
+  <div class="col-md-5" style="height: 90%; margin:20px;  padding-bottom:20px; background-color:#CCCCCC; border-radius: 15px; margin-top:40px; margin-right:0px;" >
+    <h1 >Business</h1>
+    <div class="homepage_maintext", style="padding-bottom:20px;">
+    Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui.
+  </div>
+  <%= link_to(business_sign_up_path) do %>
+        <button type="button" class="btn btn-primary btn-lg">Register as a Charity</button>
+    <% end %>
+</div>
+ <div class="col-md-6" style='max-height:550px%'><%= image_tag('homepage/business.png', style:'max-width:900px; width:100%;', class: 'img-responsive')%></div>
+</section>
+
+<section id="share" class="row homerow" style="verticle-align:middle;">
+  <div class="col-md-7" style='max-height:50%'><%= image_tag('homepage/share.jpg', style:"max-width:900px;", class: 'img-responsive')%></div>
+    <div class="col-md-5" style="background-color:#CCCCCC; border-radius: 15px; margin-top:50px; padding-bottom:20px">
+      <h1 >Make a Donation!</h1>
+      <div class="homepage_maintext" style="padding-right:100px; padding-bottom:10px;">
+      Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui.
+    </div>
+    <%= link_to(donor_sign_up_path) do %>
+        <button type="button" class="btn btn-primary btn-lg">Register as a Charity</button>
+    <% end %>
+    
+  </div>
+</section>
 
 
+
+
+
+<% end %>
 <%= javascript_include_tag("holder.min.js") %>
 <%= javascript_include_tag("homepage.js") %>

@@ -2,7 +2,7 @@ class Groupgrant < ActiveRecord::Base
    belongs_to :charity,  			:foreign_key => "owner_id"
    belongs_to :business, 			:foreign_key => "partner_id"
    belongs_to :groupgrant_category, :foreign_key => "category_id"
-    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/assets/:style/missing.jpg"
+    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>",:small => "200x200>", :thumb => "100x100>"}, :default_url => "/assets/:style/missing.jpg"
     validates :name, :category_id, :goal_amount, :goal_date, presence: true
    def self.search(search)
      if search
@@ -22,4 +22,20 @@ class Groupgrant < ActiveRecord::Base
       end
    end
 
+   auto_html_for :video_url do
+      html_escape
+      image(:class => 'profile_video')
+      youtube(:class => 'profile_video')
+      dailymotion(:class => 'profile_video')
+      vimeo(:class => 'profile_video')
+      metacafe(:class => 'profile_video')
+      soundcloud(:class => 'profile_video')
+      twitter 
+      google_map
+      google_video
+      flickr
+      link :target => "_blank", :rel => "nofollow"
+      simple_format
+   end
+   
 end
