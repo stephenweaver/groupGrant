@@ -50,7 +50,9 @@ class GroupgrantsController < ApplicationController
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
     @groupgrant.owner_id   = current_user.id
-    @groupgrant.goal_date = Date.strptime(groupgrant_params[:goal_date], '%m/%d/%Y')
+    if !@groupgrant.goal_date.nil?
+      @groupgrant.goal_date = Date.strptime(groupgrant_params[:goal_date], '%m/%d/%Y')
+    end
     @groupgrant.partner_id = 0
     
     respond_to do |format|
@@ -67,8 +69,10 @@ class GroupgrantsController < ApplicationController
   # PATCH/PUT /groupgrants/1
   # PATCH/PUT /groupgrants/1.json
   def update
+    newparams = groupgrant_params
+    newparams[:goal_date] = Date.strptime(groupgrant_params[:goal_date], '%m/%d/%Y')
     respond_to do |format|
-      if @groupgrant.update(groupgrant_params)
+      if @groupgrant.update(newparams)
         format.html { redirect_to @groupgrant, notice: 'Groupgrant was successfully updated.' }
         format.json { head :no_content }
       else

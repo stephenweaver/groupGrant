@@ -47,7 +47,10 @@
 <div class = "row">
    <% if @charity.groupgrants.count > 0 %>
       <h3>Join our groupGrants</h3>
+      <bR>
+      <div class="charity_groupgrants">
       <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
+      </div>
    <% end %>
 </div>
 
