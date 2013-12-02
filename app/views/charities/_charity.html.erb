@@ -6,7 +6,10 @@
          <b>Category:</b> <%= charity.charity_category.name %>
       <% end %>
       <br><br>
-      <b>Description:</b> <%= highlight(charity.description, params['search']) %></div>
+       <div class="ellipsis_charity_description">
+         <div><b>Description:</b> <%= highlight(charity.description, params['search']) %></div>
+         </div>
+      </div>
    </div>
 <% end %>
 

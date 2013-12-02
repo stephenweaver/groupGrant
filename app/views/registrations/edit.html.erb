@@ -1,6 +1,6 @@
 <h2>Edit <%= resource.user.rolable_type.to_s.humanize %></h2>
 
-<%= form_for(resource, :as => resource.class.name.downcase, :url => registration_path(resource_name), :html => {class: "form-horizontal", role: "form", :method => :put, :multipart => true }) do |f| %>
+<%= simple_form_for(resource, :as => resource.class.name.downcase, :url => registration_path(resource_name), :html => {class: "form-horizontal", role: "form", :method => :put, :multipart => true }) do |f| %>
 <%= my_devise_error_messages! %>
   <%= f.fields_for :user,  resource.user do |builder| %>
     <%= render :partial => "user_fields", :locals => { :f => builder } %>
@@ -12,7 +12,7 @@
    <% end %>
  <% end %>
 <br>
-  <div><%= f.submit "Update", :class => 'col-md-3' %></div>
+  <%= f.button :submit, :class => 'btn-primary col-md-offset-2'  %>
 <% end %>
 <br><br>
 <h3>Cancel my account</h3>

@@ -2,52 +2,10 @@
 <br>
 <h2>About your business</h2>
 
-<div class="form-group">
-   <%= f.label :category_id, "Business Category ", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.collection_select :category_id, BusinessCategory.all, :id, :name, options = {:include_blank => 'Select a category...'}, html_options = {:class => 'form-control'} %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :name, "Organization Name", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_field :name, class: 'form-control' %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :slogan, "Organization Slogan", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_field :slogan, class: 'form-control' %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :description, "Describe your Organization in 1000 words or less.", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_area :description, size: "60x5", class: 'form-control' %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :interests, "Describe your Organization's interests.", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_area :interests, class: 'form-control' %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :goods, "List of goods available to charities.", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_area :goods, class: 'form-control' %>
-   </div>
-</div>
-
-<div class="form-group">
-   <%= f.label :services, "List of services available to charities. (Comma delimited)", class: 'col-sm-3 control-label' %>
-   <div class="col-sm-6">
-      <%= f.text_area :services, class: 'form-control' %>
-   </div>
-</div>
-
+<%= f.input :category_id, :as => :select, :collection => BusinessCategory.all, options = {:include_blank => 'Select a category...'}, :label_method => :name, :value_method => :id %>
+<%= f.input :title %>
+<%= f.input :slogan %>
+<%= f.input :description, as: :text %>
+<%= f.input :interests, as: :text %>
+<%= f.input :goods, as: :text %>
+<%= f.input :services, as: :text%>

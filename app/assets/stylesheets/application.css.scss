@@ -94,7 +94,8 @@ a:hover {
 }
 
 .charity_index_single {
-   overflow:auto;
+   overflow:hidden;
+   max-height: 175px;
 }
 
 
@@ -116,7 +117,10 @@ a:hover {
    height: 60px;
    overflow: hidden;
 }
-
+.ellipsis_charity_description {
+   height: 300px;
+   overflow: hidden;
+}
 .help-inline {
    color: red;
    padding-top:5
@@ -142,7 +146,7 @@ a:hover {
    width: 80%;
 }
 .homepage_maintext{
-   font-size: 1.75em;
+   font-size: 1em;
 }
 
 .homerow{
