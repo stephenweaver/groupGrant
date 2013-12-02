@@ -1,19 +1,20 @@
 <div class="row">
    <%= image_tag @charity.user.profile.url(:medium),  class:"col-md-3" %> 
-   <div class="col-md-8">
+   <div class="col-md-9">
+    <% if user_signed_in? && current_user.class.name == "Charity" && current_user.id = @charity.id %>
+         <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float: right; margin:5px;"%>      
+         <%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md" , style: "float:right; margin:5px;"%>
+   <% end %>
       <div class="title"><%= @charity.name %></div>
           <div><%= @charity.mission_statement %></div>
       <br><h4><%= "Contact Information:" %></h4>
           <%= "(Phone Number)" %>
       <br><%= "(Address)" %>
       <br><%= "(Address continued)" %>
+
    </div>
 
-   <% if current_user &&  current_user.id == @charity.id %>
-      <div class = "col-md-1">
-         <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
-      </div>
-   <% end %>
+
 </div>
 
 <div class = "row">
@@ -22,7 +23,7 @@
          <%= image_tag('social_media/facebook-32.png', :alt => "Facebook") %>
          <%= image_tag('social_media/twitter-32.png', :alt => "Twitter") %>
          <%= image_tag('social_media/linkedin-32.png', :alt => "LinkedIN") %>
-         <%= image_tag('social_media/pinterest-32.png', :alt => "Pinterest") %>
+
          <%= image_tag('social_media/googleplus-32.png', :alt => "GooglePlus") %>
       </div>
    </div>

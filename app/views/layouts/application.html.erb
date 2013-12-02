@@ -35,15 +35,16 @@
     </div>
   </div><!-- /.navbar-collapse -->
 </nav>
-<%= yield(:banner) %>
+
 
     <main role="main">
+       <%= render 'layouts/messages' %>
       <%= yield(:featured) %>
       <%= yield(:homepage) %>
       <div class="container">
 
         <div class="content">
-              <%= render 'layouts/messages' %>
+             
               <%= yield %>
           <footer>
           </footer>
