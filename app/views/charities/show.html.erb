@@ -2,7 +2,7 @@
    <%= image_tag @charity.user.profile.url(:medium),  class:"col-md-3" %> 
    <div class="col-md-8">
       <br><h2><%= @charity.name %></h2>
-          <div><%= @charity.description %></div>
+          <div><%= @charity.mission_statement %></div>
       <br><br>
       <br><h4><%= "Contact Information:" %></h4>
           <%= "(Phone Number)" %>
@@ -32,6 +32,7 @@
    </div>
 </div>
 
+<br>
 <div class = "row">
    <div class="col-md-6">
       <h3>Description</h3>
@@ -39,14 +40,17 @@
    </div>
 
    <div class="col-md-6">
-      <h3>Interests</h3>
-      <%= @charity.needs %>
+      <br><%= @charity.video_url_html %>
+     
+         <!-- <h3>Needs We Have<h3>
+         <%= @charity.needs %> -->
+
    </div>
 </div>
 
 <div class = "row">
    <% if @charity.groupgrants.count > 0 %>
-      <h3>Join our groupGrants</h3>
+      <br><h3>Join our groupGrants</h3><br>
       <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
    <% end %>
 </div>

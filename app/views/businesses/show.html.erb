@@ -7,7 +7,7 @@
    <div class="col-md-7">
       <br><h2><%= @business.name %></h2>
           <p>The slogan will go here</p>
-      <br><br><br><br>
+      <br><br><br>
       <br><h4><%= "Contact Information:" %></h4>
           <%= @business.user.phone %>
       <br><%= "(Address)" %>
@@ -21,7 +21,6 @@
    <% end %>
 </div>
 
-<br>
 <div class = "row">
    <div class = "col-md-11">
       <div class = "social-media-icons">
@@ -52,4 +51,9 @@
 </div>
 
 <br><br>
-<h3>Participating groupGrants<h3>
+<div class = "row">
+   <% if @business.groupgrants.count < 0 %>
+      <h3>Participating groupGrants</h3><br>
+      <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
+   <% end %>
+</div>
