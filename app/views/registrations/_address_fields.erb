@@ -1,4 +1,6 @@
-<div><%= f.label :line_one, "Street Address" %><br />
-<%= f.text_field :line_one, value: address.line_one %></div>
-
-
+<fieldset>
+   <%= f.input :full_name %>
+   <%= f.input :line_one %>
+   <%= f.input :line_two %>
+   <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>
