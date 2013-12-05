@@ -1,14 +1,14 @@
 <%= link_to(charity) do %>
    <div class="charity_index_single row">
       <div style="clear:both;"><%= image_tag charity.user.profile.url(:medium), class: "col-md-3" %></div>
-      <div class="col-md-6"><b>Name:</b> <%= highlight(charity.name, params['search']) %>
-      	  <br>
-	      <% if !charity.charity_category.nil? %>
-	         <b>Category:</b> <%= charity.charity_category.name %>
-	      <% end %>
-
-	      <br><br>
-	      <b>Description:</b> <%= highlight(charity.description, params['search']) %>
+      <div class="col-md-6"><b>Name:</b> <%= highlight(charity.name, params['search']) %><br>
+      <% if !charity.charity_category.nil? %>
+         <b>Category:</b> <%= charity.charity_category.name %>
+      <% end %>
+      <br><br>
+       <div class="ellipsis_charity_description">
+         <div><b>Description:</b> <%= highlight(charity.description, params['search']) %></div>
+         </div>
       </div>
    </div>
 <% end %>

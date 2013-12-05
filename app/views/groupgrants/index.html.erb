@@ -10,11 +10,12 @@
     </div>
   <% end %>
     
-  <div class = "col-md-7 listing_header">Active groupGrants</div>
+  <div class = "col-md-9 listing_header">Active groupGrants
 
   <% if user_signed_in? && current_user.class.name == "Charity" %>
-    <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5"%>      
+    <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      
   <% end %>
+  </div>
 </div>
 <br>
 <div class = "row">

@@ -50,7 +50,6 @@ class GroupgrantsController < ApplicationController
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
     @groupgrant.owner_id   = current_user.id
-    @groupgrant.goal_date = Date.strptime(groupgrant_params[:goal_date], '%m/%d/%Y')
     @groupgrant.partner_id = 0
     
     respond_to do |format|
@@ -67,8 +66,9 @@ class GroupgrantsController < ApplicationController
   # PATCH/PUT /groupgrants/1
   # PATCH/PUT /groupgrants/1.json
   def update
+    newparams = groupgrant_params
     respond_to do |format|
-      if @groupgrant.update(groupgrant_params)
+      if @groupgrant.update(newparams)
         format.html { redirect_to @groupgrant, notice: 'Groupgrant was successfully updated.' }
         format.json { head :no_content }
       else
@@ -96,6 +96,6 @@ class GroupgrantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupgrant_params
-      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url, :goal_status, :groupgrant_pic, :category_id)
+      params.require(:groupgrant).permit(:name, :description, :goal_date, :goal_amount, :owner_id, :partner_id, :completed_date, :is_complete, :is_enabled, :video_url, :goal_status, :groupgrant_pic, :category_id,:video_url_html)
     end
 end

@@ -76,7 +76,7 @@ body { padding-top: 70px; }
 .banner {
    height:40%;
    vertical-align:middle;
-   padding: 13% 0 13% 0;
+   padding: 9% 0 9% 0;
    z-index:-1;
 }
 
@@ -94,7 +94,8 @@ a:hover {
 }
 
 .charity_index_single {
-   overflow:auto;
+   overflow:hidden;
+   max-height: 175px;
 }
 
 
@@ -116,7 +117,10 @@ a:hover {
    height: 60px;
    overflow: hidden;
 }
-
+.ellipsis_charity_description {
+   height: 300px;
+   overflow: hidden;
+}
 .help-inline {
    color: red;
    padding-top:5
@@ -125,13 +129,30 @@ a:hover {
 .groupgrant_ribbon{
    position:absolute;
    margin-left: -13%;
-   width:108%;
+   width:100%;
    top: -20px;
 }
 
 .listing_header{
    height: 100%;
    font-size: 1.5em;
-   padding: 2px 0 10px 0;
+   padding: 3px 0 10px 0;
 
+}
+
+.charity_groupgrants{
+   margin-left:auto;
+   margin-right:auto;
+   width: 80%;
+}
+.homepage_maintext{
+   font-size: 1em;
+}
+
+.homerow{
+
+}
+
+.title {
+   font-size: 2.5em;
 }
