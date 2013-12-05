@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127051224) do
+ActiveRecord::Schema.define(version: 20131122042923) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -56,12 +56,11 @@ ActiveRecord::Schema.define(version: 20131127051224) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
-    t.string   "slogan"
   end
 
   create_table "charities", force: true do |t|
     t.string   "name"
-    t.integer  "eid",               limit: 255
+    t.integer  "eid"
     t.string   "needs"
     t.string   "description"
     t.datetime "created_at"
@@ -99,7 +98,7 @@ ActiveRecord::Schema.define(version: 20131127051224) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount"
+    t.decimal  "goal_amount",                 precision: 10, scale: 0
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -113,7 +112,7 @@ ActiveRecord::Schema.define(version: 20131127051224) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status"
+    t.decimal  "goal_status",                 precision: 10, scale: 0
   end
 
   create_table "users", force: true do |t|
@@ -142,7 +141,7 @@ ActiveRecord::Schema.define(version: 20131127051224) do
     t.string   "phone"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

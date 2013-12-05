@@ -28,7 +28,7 @@ gem 'paperclip'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
-# gem 'mysql2', '0.3.11'
+gem 'mysql2', '0.3.11'
 
 group :development do
   gem 'better_errors'
