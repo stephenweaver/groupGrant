@@ -98,6 +98,10 @@ a:hover {
    max-height: 175px;
 }
 
+.business_index_single {
+   overflow:hidden;
+   max-height: 175px;
+}
 
 .form_field {
    clear: right;
@@ -121,6 +125,12 @@ a:hover {
    height: 300px;
    overflow: hidden;
 }
+
+.ellipsis_business_description {
+   height: 300px;
+   overflow: hidden;
+}
+
 .help-inline {
    color: red;
    padding-top:5
