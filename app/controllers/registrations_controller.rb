@@ -16,11 +16,10 @@ class RegistrationsController < Devise::RegistrationsController
     # cause if so and the parent instance is valid as well
     # it's all being saved at once
     
-    valid = resource.rolable.user.valid?
-    valid = resource.rolable.valid? && valid
+    valid = resource.valid?
 
     # customized code end
-    if valid && resource.save! && resource.rolable.save!
+    if valid && resource.save!
       Rails.logger.info("Success")
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?

@@ -1,13 +1,7 @@
 module ApplicationHelper
    def my_devise_error_messages!
     if resource.errors.empty? 
-      begin
-        if resource.rolable.errors.empty?
-          return ""
-        end
-      rescue
-        return ""
-      end
+      return
     end
     messages_count = 0
     messages = rolable_messages = ""
@@ -17,13 +11,6 @@ module ApplicationHelper
       messages_count += resource.errors.count
     end
 
-    begin
-      if !resource.rolable.errors.empty?
-        rolable_messages = resource.rolable.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
-        messages_count += resource.rolable.errors.count
-      end
-    rescue
-    end
 
     messages = messages + rolable_messages   
     sentence = I18n.t("errors.messages.not_saved",
