@@ -125,7 +125,7 @@ class RegistrationsController < Devise::RegistrationsController
       
       user_attrs      = [:email, :password, :password_confirmation, :phone, :profile, :donor]
       charity_attrs   = [:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id, :rolable]
-      business_attrs  = [:name, :goods, :description, :services, :slogan, :rolable]
+      business_attrs  = [:name, :goods, :description, :services, :slogan, :rolable, :category_id, :location, :interests]
       donor_attrs     = [:title, :first_name, :last_name, :middle_initial, :rolable]
       # For a new user 
       #apply to correct parameter
