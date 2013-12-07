@@ -44,7 +44,7 @@
 <h2><%= user_type.humanize %> sign up</h2>
 
 <%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-horizontal"} do |f| %>
-  <%= my_devise_error_messages! %>
+  <!--%= #my_devise_error_messages! %-->
 
   <%= render :partial => "user_fields", :locals => { :f => f, :rest => 'post'} %>
 

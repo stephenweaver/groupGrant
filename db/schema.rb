@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# <<<<<<< HEAD
-# ActiveRecord::Schema.define(version: 20131122042923) do
-#=======
 ActiveRecord::Schema.define(version: 20131202120730) do
-#>>>>>>> bb2a83d7ae53294980e9ac132dec76c811faf960
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -118,16 +114,15 @@ ActiveRecord::Schema.define(version: 20131202120730) do
     t.integer  "category_id"
     t.decimal  "goal_status",                 precision: 10, scale: 0
     t.string   "video_url_html"
-
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                     default: "", null: false
+    t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",             default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -136,6 +131,8 @@ ActiveRecord::Schema.define(version: 20131202120730) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "fb_token_expires_at_token"
+    t.string   "fb_token_expires_at"
     t.integer  "rolable_id"
     t.string   "rolable_type"
     t.string   "profile_file_name"

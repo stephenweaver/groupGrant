@@ -2,8 +2,10 @@ class Charity < ActiveRecord::Base
    belongs_to :charity_category, :foreign_key => "category_id"
    has_one :user, :as => :rolable
    has_many :groupgrants, :foreign_key => :owner_id
-   validates :eid, :name, :category_id, :presence => true
-   validates_length_of :eid, :minimum => 5
+   validates :eid, :name, :category_id, presence: {is: true, message: "Required"}
+   validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}
+   validates :eid, length: {is: 8, message: "Invalid length"}
+
 
 
    auto_html_for :video_url do
