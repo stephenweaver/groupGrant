@@ -1,16 +1,14 @@
 <%= link_to(business) do %>
    <div class="business_index_single row">
-      <div class="col-md-3">
-      	<%= image_tag business.user.profile.url(:medium) %>
-      </div>
-
-      <div class="col-md-6" style="margin-left: 100px">
-      	<% if !business.business_category.nil? %>
-           <br><b>Category:</b> <%= business.business_category.name %>
-        <% end %>
-
-      	<br><br><b>Name:</b> <%= highlight(business.name, params['search']) %>          
-        <br><br><b>Description:</b> <%= highlight(business.description, params['search']) %>
+      <div style="clear:both;"><%= image_tag business.user.profile.url(:medium), class: "col-md-3" %></div>
+      <div class="col-md-6"><b>Name:</b> <%= highlight(business.name, params['search']) %><br>
+      <% if !business.business_category.nil? %>
+         <b>Category:</b> <%= business.business_category.name %>
+      <% end %>
+      <br><br>
+       <div class="ellipsis_business_description">
+         <div><b>Description:</b> <%= highlight(business.description, params['search']) %></div>
+         </div>
       </div>
    </div>
 <% end %>

@@ -1,7 +1,7 @@
 <% content_for :title do %>groupGrants<% end %>
 
 <div class = "row">
-   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>
+   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-4" do %>
    <div class="input-group">
       <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
       <span class="input-group-btn">
@@ -10,7 +10,7 @@
     </div>
   <% end %>
     
-  <div class = "col-md-9 listing_header">Active groupGrants
+  <div class="col-md-9 listing_header">Active groupGrants
 
   <% if user_signed_in? && current_user.class.name == "Charity" %>
     <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      

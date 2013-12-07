@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20131202120730) do
 
   create_table "charities", force: true do |t|
     t.string   "name"
-    t.integer  "eid"
+    t.integer  "eid",               limit: 255
     t.string   "needs"
     t.string   "description"
     t.datetime "created_at"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20131202120730) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount",                 precision: 10, scale: 0
+    t.decimal  "goal_amount"
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20131202120730) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status",                 precision: 10, scale: 0
+    t.decimal  "goal_status"
     t.string   "video_url_html"
   end
 
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20131202120730) do
     t.string   "phone"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

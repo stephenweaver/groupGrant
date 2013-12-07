@@ -32,18 +32,17 @@ GEM
     auto_html (1.6.0)
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
-    bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-x86-mingw32)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.1.1.9)
+    bootstrap-datepicker-rails (1.1.1.10)
       railties (>= 3.0)
     bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
-    buftok (0.1)
+    buftok (0.2.0)
     builder (3.1.4)
     callsite (0.0.11)
     celluloid (0.15.2)
@@ -69,9 +68,8 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    equalizer (0.0.7)
+    equalizer (0.0.8)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     eventmachine (1.0.3-x86-mingw32)
     excon (0.25.3)
     execjs (2.0.2)
@@ -82,7 +80,6 @@ GEM
       multi_json (>= 1.3)
       rack-oauth2 (>= 0.14.4)
       tzinfo
-    ffi (1.9.3)
     ffi (1.9.3-x86-mingw32)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -112,13 +109,12 @@ GEM
     hike (1.2.3)
     http (0.5.0)
       http_parser.rb
-    http_parser.rb (0.5.3)
     http_parser.rb (0.5.3-x86-mingw32)
     httpauth (0.2.0)
     httpclient (2.3.4.1)
     hub (1.10.6)
-    i18n (0.6.5)
-    jbuilder (1.5.2)
+    i18n (0.6.9)
+    jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
@@ -127,9 +123,9 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    launchy (2.4.1)
+    launchy (2.4.2)
       addressable (~> 2.3)
-    listen (2.2.0)
+    listen (2.3.1)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -150,7 +146,6 @@ GEM
       i18n (~> 0.6.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    mysql2 (0.3.11-x86-mingw32)
     netrc (0.7.7)
     nifty-generators (0.4.6)
     oauth (0.4.7)
@@ -180,13 +175,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    pg (0.17.0)
     pg (0.17.0-x86-mingw32)
     polyglot (0.3.3)
-    pry (0.9.12.4)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
-      slop (~> 3.4)
     pry (0.9.12.4-x86-mingw32)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -240,7 +230,7 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    simple_form (3.0.0)
+    simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
     simple_oauth (0.2.0)
@@ -256,7 +246,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
     sqlite3 (1.3.8-x86-mingw32)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -270,10 +259,11 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.1)
+    turbolinks (2.0.0)
       coffee-rails
-    twitter (5.0.0)
-      buftok (~> 0.1.0)
+    twitter (5.1.1)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.7)
       faraday (>= 0.8, < 0.10)
@@ -283,7 +273,7 @@ GEM
       memoizable (~> 0.2.0)
       simple_oauth (~> 0.2.0)
     tzinfo (0.3.38)
-    uglifier (2.3.1)
+    uglifier (2.3.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     warden (1.2.3)
@@ -291,7 +281,6 @@ GEM
     win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
-  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -313,7 +302,6 @@ DEPENDENCIES
   jquery-rails
   meta_request
   money (~> 5.1.1)
-  mysql2 (= 0.3.11)
   nifty-generators
   omniauth-facebook
   omniauth-twitter

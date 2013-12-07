@@ -2,9 +2,9 @@
 <br>
 <h2>About your business</h2>
 
-<%= f.input :category_id, :as => :select, :collection => BusinessCategory.all, options = {:include_blank => 'Select a category...'}, :label_method => :name, :value_method => :id %>
-<%= f.input :title %>
-<%= f.input :slogan %>
+<%= f.input :category_id, :as => :select, :collection => BusinessCategory.all, :label_method => :name, :value_method => :id %>
+<%= f.input :name %>
+<%= f.input :location %>
 <%= f.input :description, as: :text %>
 <%= f.input :interests, as: :text %>
 <%= f.input :goods, as: :text %>
