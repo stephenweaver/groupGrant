@@ -2,7 +2,7 @@
    <%= image_tag @charity.user.profile.url(:medium),  class:"col-md-3" %> 
    <div class="col-md-9">
     <% if user_signed_in? && current_user.class.name == "Charity" && current_user.id = @charity.id %>
-         <%= link_to 'Start a new Groupgrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float: right; margin:5px;"%>      
+         <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float: right; margin:5px;"%>      
          <%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md" , style: "float:right; margin:5px;"%>
    <% end %>
       <div class="title"><%= @charity.name %></div>
