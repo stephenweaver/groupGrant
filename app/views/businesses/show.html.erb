@@ -4,16 +4,16 @@
       <%= image_tag @business.user.profile.url(:medium), class: 'col-md-4' %>
    <div class="col-md-7">
       <div class="title"><%= @business.name %></div>
-          <p>The slogan will go here</p>
-      <br><h4><%= "Contact Information:" %></h4>
-          <%= @business.user.phone %>
-      <br><%= "(Address)" %>
-      <br><%= "(Address continued)" %>
+         <p>The slogan will go here</p>
+         <br><h4><%= "Contact Information:" %></h4>
+         <%= @business.user.phone %>
+         <br><%= "(Address)" %>
+         <br><%= "(Address continued)" %>
    </div>
 
    <% if current_user &&  current_user.id == @business.id %>
       <div class = "col-md-1">
-         <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
+         <h6><%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md", style:"float:right"%></h6>
       </div>
    <% end %>
 </div>
@@ -28,7 +28,8 @@
       </div>
    </div>
    <div class = "col-md-1">
-      <button type="button" class="btn btn-connect">Connect</button>
+      <h6><%= link_to 'Connect', edit_user_registration_path, class: "btn btn-connect btn-md", style:"float:right"%></h6>
+      
    </div>
 </div>
 
