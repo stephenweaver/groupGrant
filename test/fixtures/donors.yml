@@ -1,5 +1,5 @@
 Bob:
-   title: nil
-   first_name: nil
-   last_name: nil
-   middle_initial: nil
+   title: Mystring
+   first_name: hi
+   last_name: yep
+   middle_initial: true

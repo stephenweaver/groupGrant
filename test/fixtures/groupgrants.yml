@@ -5,8 +5,8 @@ one:
   description: MyText
   goal_date: 2013-10-29
   goal_amount: 9.99
-  owner_id: 1
-  partner_id: 1
+  owner_id: 3
+  partner_id: 0
   completed_date: 2013-10-29 19:05:28
   is_complete: false
   is_enabled: false
