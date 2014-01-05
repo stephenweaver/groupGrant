@@ -4,7 +4,7 @@ class Charity < ActiveRecord::Base
    has_many :groupgrants, :foreign_key => :owner_id
    validates :eid, :name, :category_id, presence: {is: true, message: "Required"}
    validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}
-   validates :eid, length: {is: 8, message: "Invalid length"}
+   validates :eid, length: {is: 9, message: "Invalid length"}
 
 
 

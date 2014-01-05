@@ -11,7 +11,7 @@
 		<!-- Goals panel -->
 		<div class="panel panel-primary">
   		<!-- Default panel contents -->
-  		<div class="panel-heading"><strong>Goal: $<%= @groupgrant.goal_amount %></strong></div>
+  		<div class="panel-heading"><strong>Goal: $<%= sprintf('%.2f', @groupgrant.goal_amount) %></strong></div>
   		<div class="panel-body">
   			<!-- groupGrant goals progress-->
   			<div class="progress progress-striped" style="margin-bottom: 5px; height: 30px;">
@@ -31,7 +31,8 @@
   			</ul>
 		</div>
 		<div class = "social-media-icons automargin">
-         	<%= image_tag('social_media/facebook-32.png', :alt => "Facebook") %>
+         	<a href="https://www.facebook.com/sharer/sharer.php?u=groupGrant.com" target="_blank">
+            <%= image_tag('facebook.png', :alt => "Facebook") %> </a>
          	<%= image_tag('social_media/twitter-32.png', :alt => "Twitter") %>
          	<%= image_tag('social_media/linkedin-32.png', :alt => "LinkedIN") %>
          	<%= image_tag('social_media/pinterest-32.png', :alt => "Pinterest") %>
