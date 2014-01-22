@@ -4,7 +4,30 @@ class Charity < ActiveRecord::Base
    has_many :groupgrants, :foreign_key => :owner_id
    validates :eid, :name, :category_id, presence: {is: true, message: "Required"}
    validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}
-   validates :eid, length: {is: 8, message: "Invalid length"}
+   validates :eid, length: {minimum:8, maximum: 9, message: "Invalid length"}
+   #validate my_ein
+
+   # def my_ein
+   #    #if :eid
+   #      :eid = "hi"
+   #    #end
+   #     # current = :eid.to_s.split('').map { |digit| digit.to_i}
+   #    # :eid = :eid.to_s.split('').map { |digit| digit.to_i}
+   #    # num = :eid.to_s
+   #    # case :eid[0]
+   #    #   when 0..1
+   #    #     if eid[1] != 7..9
+   #    #       errors.add(:eid, num)
+   #    #     end
+   #      # when 2
+   #      # when 4
+   #      # when 6
+   #      # when 7
+   #      # when 8
+   #      # else
+   #      #   errors.add(:eid, "Invalid EIN")
+   #    #end
+   # end
 
 
 

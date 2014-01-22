@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource.rolable = @role_resource
     # Deleting the user_type from the params hash, won't work without this.
     
-    # crate a new child instance depending on the given user user_type  
+    # create a new child instance depending on the given user user_type  
     # first check if child instance is valid
     # cause if so and the parent instance is valid as well
     # it's all being saved at once

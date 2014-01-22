@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 1.2'
 # gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'bootstrap-datepicker-rails'
-
+gem 'authorize-net', '~>1.5.2'
 gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form', '>= 3.0.0.rc'
