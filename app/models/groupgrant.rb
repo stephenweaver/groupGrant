@@ -3,7 +3,7 @@ class Groupgrant < ActiveRecord::Base
    belongs_to :business, 			:foreign_key => "partner_id"
    belongs_to :groupgrant_category, :foreign_key => "category_id"
    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", 
-      :small => "200x200>", :thumb => "100x100>"}, :default_url => "/assets/:style/missing.jpg"
+      :small => "200x200>", :thumb => "100x100>"}, :default_url => "/assets/:style/missing.png"
    validates :name, :category_id, :goal_amount, :goal_date, presence: 
       {is: true, message: "Required"}
    validates :goal_amount, numericality: {is: true, message: "Must be numbers"}
