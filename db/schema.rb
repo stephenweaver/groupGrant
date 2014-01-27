@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
 
   create_table "charities", force: true do |t|
     t.string   "name"
-    t.integer  "eid"
+    t.integer  "eid",               limit: 255
     t.string   "needs"
     t.string   "description"
     t.datetime "created_at"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.string   "phone"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

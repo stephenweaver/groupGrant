@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-datepicker
-//= require skrollr
 //= require_tree .
 
 generic = function() {
