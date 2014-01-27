@@ -1,3 +1,25 @@
+<!-- Facebook SDK -->
+<div id="fb-root"></div>
+<script>
+   window.fbAsyncInit = function() {
+   FB.init({
+   appId      : '603004516422329',
+   status     : true,
+   xfbml      : true
+   });
+   };
+
+   (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
 <div class="row">
 	<div class = "col-md-7">
 	<!-- Put the Name and Description in this section-->
@@ -31,12 +53,35 @@
   			</ul>
 		</div>
 		<div class = "social-media-icons automargin">
-         	<a href="https://www.facebook.com/sharer/sharer.php?u=groupGrant.com" target="_blank">
-            <%= image_tag('facebook.png', :alt => "Facebook") %> </a>
-         	<%= image_tag('social_media/twitter-32.png', :alt => "Twitter") %>
-         	<%= image_tag('social_media/linkedin-32.png', :alt => "LinkedIN") %>
-         	<%= image_tag('social_media/pinterest-32.png', :alt => "Pinterest") %>
-         	<%= image_tag('social_media/googleplus-32.png', :alt => "GooglePlus") %>
+         <!-- Share button -->
+         	<script>
+              var href = location.pathname;  
+              var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button_count\'></div>";   
+              document.write(share);
+            </script>
+         <br />
+         <!-- Share a Tweet-->
+            <script>
+               var href = location.pathname;
+               var tweet = "<a href=\'http://www.groupGrant.com" + href;
+               var tweet2 = "\' class=\'twitter-share-button\' data-lang=\'en\'>Tweet</a>";
+               document.write(tweet+tweet2);
+            </script>
+            
+            <script>
+               !function(d,s,id)
+               {var js,fjs=d.getElementsByTagName(s)[0];
+               if(!d.getElementById(id))
+               {
+                  js=d.createElement(s);
+                  js.id=id;
+                  js.src="https://platform.twitter.com/widgets.js";
+                  fjs.parentNode.insertBefore(js,fjs);
+               }
+               }
+               (document,"script","twitter-wjs");
+            </script>
+         	
          	<% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
         		<%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
 			<% end %>
