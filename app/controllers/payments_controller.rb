@@ -26,10 +26,18 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-      # I can' figure out how to pass the card info into controller
-      transaction = AuthorizeNet::AIM::Transaction.new('3v6S6AyPAkE', '4y2GR4hyw5F44M6s',
+      login_id = '3v6S6AyPAkE'
+      transaction_key = '4y2GR4hyw5F44M6s'
+      
+      @params = params
+      card_number = @params[:card_number]
+      expiration = @params[:expiration]
+      test_card_number = '4111111111111111'
+      test_exp_date = '1120'
+
+      transaction = AuthorizeNet::AIM::Transaction.new(login_id, transaction_key,
         :gateway => :sandbox)
-      credit_card = AuthorizeNet::CreditCard.new('4111111111111111', '1120')
+      credit_card = AuthorizeNet::CreditCard.new(test_card_number, test_exp_date)
       response = transaction.purchase('10.00', credit_card)
 
       if response.success?

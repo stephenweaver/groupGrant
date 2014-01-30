@@ -1,19 +1,19 @@
-<!--<%= link_to(groupgrant) do %>-->
-<!--   <div class="groupgrant_index_single row"> -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" style="height:360px; padding:0 46px 0 25px; max-width:300px">
+<%= link_to(groupgrant) do %>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4" style=" margin:0 0px 0 0px">
+    <div class="thumbnail">
+    <%= image_tag groupgrant.groupgrant_pic.url(:medium), class: "groupgrant_image", style:"display:block;" %>
       <div class="ellipsis_gg_title groupgrant_title">
-         <div><%= groupgrant.name %></div>
+        <div><%= groupgrant.name %></div>
       </div>
-      <div class="thumbnail">
-        <%= image_tag groupgrant.groupgrant_pic.url(:medium), class: "groupgrant_image", style:"max-height:140px;" %>
         <div class="caption">
-          <div class="ellipsis_gg_about groupgrant_description"><div><%= groupgrant.description %></div></div>
-           <% if !true %>
-            <p><a href="" class="btn btn-primary" role="button">Donate</a></p>
-           <% end %>
-          <input type="text" value="75" class="dial" data-displayInput="true" data-width="75" readOnly="true">
+          <div class="ellipsis_gg_about groupgrant_description">
+            <div><%= groupgrant.description %></div>
+          </div>
+            <% if !true %>
+            <a href="" class="btn btn-primary" role="button">Donate</a>
+            <% end %>
+        <input type="text" value="75" class="dial" data-displayInput="true" data-width="75" data-height="75" readOnly="true" data-fgColor="#003399" data-thickness=".3">
         </div>
-      </div>
     </div>
-<!--   </div>
+  </div>
 <% end %>
