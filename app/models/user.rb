@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
   belongs_to :rolable, :polymorphic => true
+  validates :email, presence: {is: true, message: "Please enter an e-mail address"},
+     format: {with: /\w*@\w*.\w*$/, :multiline => true}
   accepts_nested_attributes_for :rolable
   has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, :default_url => "/assets/:style/missing.jpg"
 
