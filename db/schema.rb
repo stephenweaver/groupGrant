@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117030548) do
+ActiveRecord::Schema.define(version: 20140203222525) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
-    t.string   "slogan"
   end
 
   create_table "charities", force: true do |t|
@@ -99,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount"
+    t.decimal  "goal_amount",                 precision: 10, scale: 2
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -113,8 +112,19 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status"
+    t.decimal  "goal_status",                 precision: 10, scale: 2
     t.string   "video_url_html"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "to"
+    t.integer  "from"
+    t.boolean  "read"
+    t.boolean  "deleted"
+    t.date     "date"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "payments", force: true do |t|
@@ -123,6 +133,15 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.integer  "card_number"
     t.string   "cid"
     t.string   "expiration"
+  end
+
+  create_table "requests", force: true do |t|
+    t.boolean  "is_accepted"
+    t.boolean  "is_rejected"
+    t.date     "date"
+    t.date     "date_responded"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

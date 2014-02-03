@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :addresses, :dependent => :destroy
+  has_many :messages, :dependent => :destroy
   belongs_to :rolable, :polymorphic => true
   validates :email, presence: {is: true, message: "Please enter an e-mail address"},
      format: {with: /\w*@\w*.\w*$/, :multiline => true}
