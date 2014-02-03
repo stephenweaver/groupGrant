@@ -2,7 +2,9 @@ class Charity < ActiveRecord::Base
    belongs_to :charity_category, :foreign_key => "category_id"
    has_one :user, :as => :rolable
    has_many :groupgrants, :foreign_key => :owner_id
-   validates :eid, :name, :category_id, presence: {is: true, message: "Required"}
+   validates :eid, presence: {is: true, message: "Please enter your EID"}, 
+   numericality: {only_integer: true, message: "Please enter numbers only"}
+   validates :name, :category_id, presence: {is: true, message: "Required"}
    validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}
    validates :eid, length: {minimum:8, maximum: 9, message: "Invalid length"}
    #validate my_ein

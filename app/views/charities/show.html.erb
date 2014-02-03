@@ -1,4 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
 <!--Facebook SDK-->
+<div id="fb-root"></div>
 <script>
    window.fbAsyncInit = function() {
    FB.init({
@@ -30,43 +33,53 @@
           <%= "(Phone Number)" %>
       <br><%= "(Address)" %>
       <br><%= "(Address continued)" %>
-
    </div>
-
-
 </div>
 
 <div class = "row">
    <div class = "col-md-11">
       <div class = "col-md-3 social-media-icons automargin">
-         <script>
-            var href = location.pathname;
-            var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button_count\'></div>";
-            document.write(share);
-         </script>
-         <!-- Share a Tweet-->
-         <script>
-            var href = location.pathname;
-            var tweet = "<a href=\'http://www.groupGrant.com" + href;
-            var tweet2 = "\' class=\'twitter-share-button\' data-lang=\'en\'>Tweet</a>";
-            document.write(tweet+tweet2);
-         </script>
-         <br />
-         <script>
-            !function(d,s,id)
-            {
-               var js,fjs=d.getElementsByTagName(s)[0];
-               
-               if(!d.getElementById(id))
-               {
-                  js=d.createElement(s);
-                  js.id=id;
-                  js.src="https://platform.twitter.com/widgets.js";
-                  fjs.parentNode.insertBefore(js,fjs);
-               }
-            }
-            (document,"script","twitter-wjs");
-         </script>
+         <table>
+            <tr>
+               <td>                 
+                  <script>
+                     !function(d,s,id)
+                     {
+                     var js,fjs=d.getElementsByTagName(s)[0];
+
+                     if(!d.getElementById(id))
+                     {
+                     js=d.createElement(s);
+                     js.id=id;
+                     js.src="https://platform.twitter.com/widgets.js";
+                     fjs.parentNode.insertBefore(js,fjs);
+                     }
+                     }
+                     (document,"script","twitter-wjs");
+                  
+                     $(document).ready(function(){                        
+                        var href = location.pathname;
+                        var tweet = "<a href=\'http://www.groupGrant.com" + href;
+                            tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
+                        var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
+                        
+                        $("#tweets").html(tweet);
+                        $("#sharePage").html(share);
+                     });
+                  </script>
+                  <!-- Show Tweet Button -->
+                  <div id="tweets" ></div>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <!-- Show Facebook button -->
+                  <div id="sharePage"></div>                
+               </td>
+            </tr>
+         </table>
+         
+         
       </div>
    </div>
    <div class = "col-md-1">
@@ -82,7 +95,7 @@
    </div>
 
    <div class="col-md-6">
-      <br><%= @charity.video_url_html %>
+      <br /><%= @charity.video_url_html %>
      
          <!-- <h3>Needs We Have<h3>
          <%= @charity.needs %> -->
@@ -92,8 +105,8 @@
 
 <div class = "row">
    <% if @charity.groupgrants.count > 0 %>
-      <h3>Join our groupGrants</h3>
-      <bR>
+      <h3>Support our cause</h3>
+      <br />
       <div class="charity_groupgrants">
       <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
       </div>

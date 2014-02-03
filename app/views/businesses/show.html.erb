@@ -1,4 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
 <!--Facebook SDK-->
+<div id="fb-root"></div>
 <script>
    window.fbAsyncInit = function() {
    FB.init({
@@ -17,17 +20,18 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<LINK href="businesses.css.scss" rel="stylesheet" type="text/css">
+
 
 <div class="row">
       <%= image_tag @business.user.profile.url(:medium), class: 'col-md-4' %>
    <div class="col-md-7">
       <div class="title"><%= @business.name %></div>
-         <p>The slogan will go here</p>
-         <br><h4><%= "Contact Information:" %></h4>
-         <%= @business.user.phone %>
-         <br><%= "(Address)" %>
-         <br><%= "(Address continued)" %>
+          <p>The slogan swill go here</p>
+      <br><h4><%= "Contact Information:" %></h4>
+          <%= @business.user.phone %>
+      <br><%= "(Address)" %>
+      <br><%= "(Address continued)" %>
+>>>>>>> 2bdcaa24fe3760d6c2cd2c8813920efc464a1244
    </div>
 
    <% if current_user &&  current_user.id == @business.id %>
@@ -40,54 +44,65 @@
 <div class = "row">
    <div class = "col-md-11">
       <div class = "social-media-icons">
-         <!-- Share Button-->
-         
-         <script>
-            var href = location.pathname;
-            var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'70\' data-type=\'button_count\'></div>";
-            document.write(share);
-         </script>
+         <table>
+            <tr>
+               <td>
+                  <!-- Share a Tweet-->
+                  <script>
+                     !function(d,s,id)
+                     {
+                     var js,fjs=d.getElementsByTagName(s)[0];
+
+                     if(!d.getElementById(id))
+                     {
+                     js=d.createElement(s);
+                     js.id=id;
+                     js.src="https://platform.twitter.com/widgets.js";
+                     fjs.parentNode.insertBefore(js,fjs);
+                     }
+                     }
+                     (document,"script","twitter-wjs");
+
+                     $(document).ready(function(){
+                     var href = location.pathname;
+                     var tweet = "<a href=\'http://www.groupGrant.com" + href;
+                            tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
+                     var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
+
+                     $("#tweets").html(tweet);
+                     $("#sharePage").html(share);
+                     });
+                  </script>
+                  <!-- Show Tweet Button -->
+                  <div id="tweets" ></div>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <!-- Show Facebook button -->
+                  <div id="sharePage"></div>
+               </td>
+            </tr>
+         </table>
          <br />
-         <!-- Share a Tweet-->
-         <script>
-            var href = location.pathname;
-            var tweet = "<a href=\'http://www.groupGrant.com" + href;
-            var tweet2 = "\' class=\'twitter-share-button\' data-lang=\'en\'>Tweet</a>";
-            document.write(tweet+tweet2);
-         </script>
-         <script>
-            !function(d,s,id)
-            {var js,fjs=d.getElementsByTagName(s)[0];
-            if(!d.getElementById(id))
-            {
-            js=d.createElement(s);
-            js.id=id;
-            js.src="https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js,fjs);
-            }
-            }
-            (document,"script","twitter-wjs");
-         </script>
-      </div>
-   </div>
    <div class = "col-md-1">
       <h6><%= link_to 'Connect', edit_user_registration_path, class: "btn btn-connect btn-md", style:"float:right"%></h6>
       
    </div>
 </div>
 
-<br><br>
+<br /><br />
 
-<div class = "row">
-   <div class="col-md-6">
+<div >
+   <div >
       <h3>Description</h3>
       <%= @business.description %>
    </div>
 
-   <div class="col-md-6">
+  
       <h3>Interests</h3>
       <%= @business.interests %>
-   </div>
+   
 </div>
 
 <br><br>

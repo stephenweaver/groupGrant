@@ -5,7 +5,8 @@ class Groupgrant < ActiveRecord::Base
    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", 
       :small => "200x200>", :thumb => "100x100>"}, :default_url => "/assets/:style/missing.png"
    validates :name, :category_id, :goal_amount, :goal_date, presence: 
-      {is: true, message: "Required"}
+      {is: true, message: "This field is required"}
+   validates :name, length: {in: 2..20, too_short: "A name can't be one character"}
    validates :goal_amount, numericality: {is: true, message: "Must be numbers"}
 
 

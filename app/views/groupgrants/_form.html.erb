@@ -5,7 +5,7 @@
 
 <div class="form-group">
    <%= f.label :groupgrant_pic, :class => 'col-sm-2 control-label', style: "margin-top: 15x;" %>
-      <%=  image_tag(f.object.groupgrant_pic.url(:thumb), class: 'col-sm-2 col-md-1') %>
+      <%=  image_tag('thumb/missing.jpg', class: 'col-sm-2 col-md-1') %>
    <div class="col-sm-8 col-md-4"  style="margin-top: 15px;">
       <%= f.file_field :groupgrant_pic, :class => 'form-control' %>
    </div>
