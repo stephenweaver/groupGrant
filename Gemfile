@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-# gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'bootstrap-datepicker-rails'
 gem 'authorize-net', '~>1.5.2'
@@ -28,7 +27,6 @@ gem 'paperclip'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
-
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob

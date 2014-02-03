@@ -31,11 +31,12 @@
           <%= @business.user.phone %>
       <br><%= "(Address)" %>
       <br><%= "(Address continued)" %>
+>>>>>>> 2bdcaa24fe3760d6c2cd2c8813920efc464a1244
    </div>
 
    <% if current_user &&  current_user.id == @business.id %>
       <div class = "col-md-1">
-         <h6><%= link_to 'Edit Page', edit_user_registration_path %></h6>
+         <h6><%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md", style:"float:right"%></h6>
       </div>
    <% end %>
 </div>
@@ -85,7 +86,8 @@
          </table>
          <br />
    <div class = "col-md-1">
-      <button type="button" class="btn btn-connect">Connect</button>
+      <h6><%= link_to 'Connect', edit_user_registration_path, class: "btn btn-connect btn-md", style:"float:right"%></h6>
+      
    </div>
 </div>
 

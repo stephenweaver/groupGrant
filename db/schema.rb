@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
+    t.string   "slogan"
   end
 
   create_table "charities", force: true do |t|
@@ -98,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount",                 precision: 10, scale: 2
+    t.decimal  "goal_amount"
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -112,7 +113,7 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status",                 precision: 10, scale: 2
+    t.decimal  "goal_status"
     t.string   "video_url_html"
   end
 
