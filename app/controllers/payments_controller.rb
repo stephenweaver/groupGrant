@@ -1,15 +1,8 @@
 class PaymentsController < ApplicationController
 
+  layout 'authorize_net'
   helper :authorize_net
   protect_from_forgery :except => :relay_response
-
-  def new
-    @payment = Payment.new
-  end
-
-  def create
-    redirect_to payments_thank_you_url      
-  end 
 
   # GET
   # Displays a payment form.
