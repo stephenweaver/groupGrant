@@ -4,7 +4,24 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    message = Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)
+    if(!message.empty?)
+      if(message.user_received_id == current_user.id)
+        first_person_id = message.user_sent_id
+      else
+        first_person_id = message.user_received_id
+      end
+      @messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR 
+                                  (user_received_id = :to2 AND user_sent_id = :from2)", 
+                               {from1: current_user.id, 
+                                to1: first_person_id, 
+                                from2: first_person_id, 
+                                to2: current_user.id} )
+    else
+      @messages = []
+    end
+
+  # @messages = Message.where(to: current_user.id)
   end
 
   # GET /messages/1

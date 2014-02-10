@@ -1,5 +1,9 @@
 <h1>Listing messages</h1>
-
+<% if @messages.empty? %>
+<div>
+  There are no messages
+</div>
+<% end %>
 <table>
   <thead>
     <tr>

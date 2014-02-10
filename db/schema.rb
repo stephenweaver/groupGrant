@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203222525) do
+ActiveRecord::Schema.define(version: 20140210224056) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 20140203222525) do
   end
 
   create_table "messages", force: true do |t|
-    t.integer  "to"
-    t.integer  "from"
+    t.integer  "user_received_id"
+    t.integer  "user_sent_id"
     t.boolean  "read"
     t.boolean  "deleted"
     t.date     "date"
