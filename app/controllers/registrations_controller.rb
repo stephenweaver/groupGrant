@@ -41,6 +41,24 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def destroy
+    #raise
+    #user = resource.user.id
+    g = Groupgrant.where(:partner_id => current_user.id)
+    g = Groupgrant.find(g)
+    if g != nil
+      g.partner_id = 0
+      g.save
+    end
+
+    User.destroy(resource.user.id)
+    respond_to do |format|
+      flash[:notice] = "Goodbye! :-("
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+    end
+  end
+
 
    def update
     self.resource = @user_type.camelize.constantize.to_adapter.get!(send(:"current_#{resource_name}").to_key)

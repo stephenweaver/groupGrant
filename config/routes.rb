@@ -20,6 +20,7 @@ Blankcomposer::Application.routes.draw do
   match '/users/auth/:provider/callback' => 'authentications#create', via: :get
 
   match '/users/profile' => 'visitors#profile', via: :get
+  get 'gorupgrants/connect' => 'groupgrants#connect'
 
  devise_scope :user do
   match 'charity/sign_up' => 'registrations#new', :user => { :user_type => 'charity' }, via: :get, as: 'charity_sign_up'

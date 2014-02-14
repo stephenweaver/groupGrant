@@ -7,3 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
+koffi = Business.create(name: "hii", goods: "", services: "", category_id: 1, 
+	description: "", phone_number: "", interests: "")
+
+u = User.create(email: "jaes@hi.com", password: "kidsdiscover", 
+	rolable_id: koffi.id, rolable_type: "Business", phone: "")

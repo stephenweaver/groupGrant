@@ -1,7 +1,7 @@
 class Charity < ActiveRecord::Base
    belongs_to :charity_category, :foreign_key => "category_id"
    has_one :user, :as => :rolable
-   has_many :groupgrants, :foreign_key => :owner_id
+   has_many :groupgrants, :foreign_key => :owner_id, dependent: :destroy
    validates :eid, presence: {is: true, message: "Please enter your EID"}, 
    numericality: {only_integer: true, message: "Please enter numbers only"}
    validates :name, :category_id, presence: {is: true, message: "Required"}

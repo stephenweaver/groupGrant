@@ -3,15 +3,15 @@
     <div class="thumbnail">
     <%= image_tag groupgrant.groupgrant_pic.url(:medium), class: "groupgrant_image", style:"display:block;" %>
       <div>
-        <div><%= groupgrant.name %></div>
+        <div>test <%= groupgrant.name %></div>
       </div>
         <div class="caption">
           <div class="ellipsis_gg_about groupgrant_description">
             <div><%= groupgrant.description %></div>
           </div>
-            <% if !true %>
+           <!-- <%# if !true %>
             <a href="" class="btn btn-primary" role="button">Donate</a>
-            <% end %>
+            <%# end %> -->
         <input type="text" value="75" class="dial" data-displayInput="true" data-width="75" data-height="75" readOnly="true" data-fgColor="#003399" data-thickness=".3">
         </div>
     </div>
