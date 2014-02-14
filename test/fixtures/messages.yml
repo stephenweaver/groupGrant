@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  to: 1
+  from: 1
+  read: false
+  deleted: false
+  date: 2014-02-03
+  body: MyText
+
+two:
+  to: 1
+  from: 1
+  read: false
+  deleted: false
+  date: 2014-02-03
+  body: MyText

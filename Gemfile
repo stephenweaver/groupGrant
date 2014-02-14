@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-# gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'bootstrap-datepicker-rails'
 gem 'figaro'
@@ -27,9 +26,12 @@ gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
+<<<<<<< HEAD
 gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
+=======
+>>>>>>> 185e79ae7e0152bb90ac138ed26e2748e248ed80
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob

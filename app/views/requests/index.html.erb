@@ -1,0 +1,33 @@
+<h1>Listing requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Is accepted</th>
+      <th>Is rejected</th>
+      <th>Date</th>
+      <th>Date responded</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.is_accepted %></td>
+        <td><%= request.is_rejected %></td>
+        <td><%= request.date %></td>
+        <td><%= request.date_responded %></td>
+        <td><%= link_to 'Show', request %></td>
+        <td><%= link_to 'Edit', edit_request_path(request) %></td>
+        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Request', new_request_path %>

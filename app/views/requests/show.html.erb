@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Is accepted:</strong>
+  <%= @request.is_accepted %>
+</p>
+
+<p>
+  <strong>Is rejected:</strong>
+  <%= @request.is_rejected %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @request.date %>
+</p>
+
+<p>
+  <strong>Date responded:</strong>
+  <%= @request.date_responded %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

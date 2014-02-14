@@ -116,6 +116,17 @@ ActiveRecord::Schema.define(version: 20140214084001) do
     t.string   "video_url_html"
   end
 
+  create_table "messages", force: true do |t|
+    t.integer  "user_received_id"
+    t.integer  "user_sent_id"
+    t.boolean  "read"
+    t.boolean  "deleted"
+    t.date     "date"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payments", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -124,6 +135,7 @@ ActiveRecord::Schema.define(version: 20140214084001) do
     t.string   "expiration"
   end
 
+<<<<<<< HEAD
   create_table "spree_activators", force: true do |t|
     t.string   "description"
     t.datetime "expires_at"
@@ -801,6 +813,13 @@ ActiveRecord::Schema.define(version: 20140214084001) do
     t.string   "description"
     t.boolean  "default_tax",        default: false
     t.integer  "zone_members_count", default: 0
+=======
+  create_table "requests", force: true do |t|
+    t.boolean  "is_accepted"
+    t.boolean  "is_rejected"
+    t.date     "date"
+    t.date     "date_responded"
+>>>>>>> 185e79ae7e0152bb90ac138ed26e2748e248ed80
     t.datetime "created_at"
     t.datetime "updated_at"
   end
