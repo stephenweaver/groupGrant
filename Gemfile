@@ -26,12 +26,10 @@ gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
-<<<<<<< HEAD
 gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
-=======
->>>>>>> 185e79ae7e0152bb90ac138ed26e2748e248ed80
+
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob
