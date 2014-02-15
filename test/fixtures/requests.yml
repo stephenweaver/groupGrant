@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  is_accepted: false
+  is_rejected: false
+  date: 2014-02-03
+  date_responded: 2014-02-03
+
+two:
+  is_accepted: false
+  is_rejected: false
+  date: 2014-02-03
+  date_responded: 2014-02-03

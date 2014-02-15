@@ -35,7 +35,7 @@
 		<!-- Goals panel -->
 		<div class="panel panel-primary">
   		<!-- Default panel contents -->
-  		<div class="panel-heading"><strong>Goal: $<%= sprintf('%.2f', @groupgrant.goal_amount) %></strong></div>
+  		<div class="panel-heading"><strong>Goal <%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %></strong></div>
   		<div class="panel-body">
   			<!-- groupGrant goals progress-->
   			<div class="progress progress-striped" style="margin-bottom: 5px; height: 30px;">
@@ -43,6 +43,9 @@
         		<span style="color: white; font-size: 1.2em; font-weight: bold; text-shadow: 0px -1px 0px #363; line-height: 30px;">45% complete</span>
         		</div>
     		</div>
+                 <div>
+            <%= number_to_currency(groupgrant.goal_status, :precision => 0, :delimiter => ',') %> Raised 
+          </div>
 <!--   			<div class="progress progress-striped" style="background: none; border: none; margin: 0; -webkit-box-shadow: none">
         		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%; background: none; border: none; -webkit-box-shadow: none">
         		<span style="color: black">40% complete</span>
@@ -51,7 +54,7 @@
  		</div>
   			<!-- List group -->
   			<ul class="list-group">
-    			<li class="list-group-item"><strong>Fundraiser Deadline: <%= @groupgrant.goal_date %></strong>
+    			<li class="list-group-item"><strong>Reach goal by <%= @groupgrant.goal_date.to_formatted_s(:long) %></strong>
             <span style="float:right; position:relative; top:-6px">
                <a href="/payments/new" class="btn btn-primary" role="button">Donate</a>                
             </span></li>

@@ -825,7 +825,7 @@ $(function() {
     .trigger('configure',
             {
                 "inputColor":"#003399",
-                "color":"#FFF",
+                "bgcolor":"#FFFFFF",
             }
     );
 })

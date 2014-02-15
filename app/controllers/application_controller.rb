@@ -13,14 +13,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update ) { |u| u.permit(:email, :password, :password_confirmation, :remember_me, :provider, :uid, :profile) }
   end
 
-  alias_method :devise_current_user, :current_user
   def current_user
-    # It will now return either a Company or a Customer, instead of the plain User.
-      begin
-        return super.rolable
-      rescue Exception => e
-        return super
-      end
+    super
   end
+
+  
+  alias_method :devise_current_user, :current_user
   
 end
