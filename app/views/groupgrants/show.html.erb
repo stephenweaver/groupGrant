@@ -56,7 +56,7 @@
   			<ul class="list-group">
     			<li class="list-group-item"><strong>Reach goal by <%= @groupgrant.goal_date.to_formatted_s(:long) %></strong>
             <span style="float:right; position:relative; top:-6px">
-               <a href="/payments/new" class="btn btn-primary" role="button">Donate</a>
+               <a href="/payments/new" class="btn btn-primary" role="button">Donate</a>                
             </span></li>
   			</ul>
 		</div>
@@ -83,15 +83,20 @@
                      $(document).ready(function(){
                      var href = location.pathname;
                      var tweet = "<a href=\'http://www.groupGrant.com" + href;
-                            tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
+                         tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
                      var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
 
                      $("#tweets").html(tweet);
                      $("#sharePage").html(share);
+                     
+
+                      
+
                      });
                   </script>
                   <!-- Show Tweet Button -->
-                  <div id="tweets" ></div>
+                  <div id="tweets"></div>
+                  
                </td>
             </tr>
             <tr>
@@ -106,24 +111,23 @@
 			<% end %>
     </div>
     <br>
-    <h3>Partnerships</h3>
+
+
+    <h3>Sponsors</h3>
     <h4><%= @groupgrant.charity.name %></h4>
     <div style="clear:both;">
       <%= image_tag @groupgrant.charity.user.profile.url(:thumb) %>
       <%= @groupgrant.charity.description %>
     </div>
-    <div>
-    <% if @groupgrant.business != nil %>
-      <h4><%= @groupgrant.business.name %></h4>
-       <div style="clear:both;">
-         <%= image_tag @groupgrant.business.user.profile.url(:small) %>
-       </div>
-    <% end %>
+
+
+    <div id="myCanvas"></div>
+    <br /><div id="connect" class="btn btn-primary" style="display:none">Connect with Charity</div>
+    <br /><div id="unconnect" class="btn btn-primary" style="display:none" >Unconnect</div>
+
+   
    </div>
-
-	</div>
 </div>
-
 <div class="row">
    <div class="col-md-7">
    <!-- Put the video in this section -->

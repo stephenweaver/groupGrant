@@ -37,6 +37,11 @@ class GroupgrantsController < ApplicationController
   def show
   end
 
+  def connect
+    #render text: "this worked"
+    raise
+  end
+
   # GET /groupgrants/new
   def new
     @groupgrant = Groupgrant.new
