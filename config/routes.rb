@@ -15,6 +15,7 @@ Blankcomposer::Application.routes.draw do
   resources :donors 
   resources :businesses
   resources :authentications
+  resources :charges
 
   root :to => 'visitors#new'
 

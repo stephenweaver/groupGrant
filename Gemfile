@@ -26,6 +26,7 @@ gem 'heroku'
 gem 'paperclip'
 gem 'auto_html'
 gem 'sqlite3'
+gem 'stripe'
 gem "skrollr-rails"
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment

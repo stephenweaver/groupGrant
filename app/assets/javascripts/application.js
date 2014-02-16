@@ -29,3 +29,4 @@ generic = function() {
 
 $(document).ready(generic);
 $(document).on('page:load', generic);
+

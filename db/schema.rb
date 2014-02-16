@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117030548) do
+ActiveRecord::Schema.define(version: 20140210213105) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.integer  "phone_number"
     t.string   "interests"
     t.string   "slogan"
+  end
+
+  create_table "charges", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_number"
+    t.string   "cid"
+    t.string   "expiration"
   end
 
   create_table "charities", force: true do |t|
@@ -115,14 +123,6 @@ ActiveRecord::Schema.define(version: 20140117030548) do
     t.integer  "category_id"
     t.decimal  "goal_status"
     t.string   "video_url_html"
-  end
-
-  create_table "payments", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "card_number"
-    t.string   "cid"
-    t.string   "expiration"
   end
 
   create_table "users", force: true do |t|
