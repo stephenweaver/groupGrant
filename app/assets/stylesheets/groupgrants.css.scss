@@ -5,10 +5,32 @@
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
+   font-size: 1.5em;
 }
 
 .groupgrant_charity {
-	font-size:smaller;
+	font-size:1em;
+   width: 60%;
+}
+
+
+.listing_header{
+   height: 100%;
+   font-size: 1.5em;
+   padding: 10px 0 0px 50px;
+   font-family: helvetica;
+   font-weight: light;
+
+}
+
+
+.ellipsis_gg_about {
+   height: 60px;
+   overflow: hidden;
+}
+.ellipsis_charity_description {
+   height: 300px;
+   overflow: hidden;
 }
 
 .groupgrant_goal {
