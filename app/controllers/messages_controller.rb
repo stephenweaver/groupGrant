@@ -4,8 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    message = Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)
-    if(!message.empty?)
+    message = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).first
+    if(!message.nil?)
       if(message.user_received_id == current_user.id)
         first_person_id = message.user_sent_id
       else
@@ -13,13 +13,22 @@ class MessagesController < ApplicationController
       end
       @messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR 
                                   (user_received_id = :to2 AND user_sent_id = :from2)", 
-                               {from1: current_user.id, 
-                                to1: first_person_id, 
-                                from2: first_person_id, 
-                                to2: current_user.id} )
+                                  {from1: current_user.id, to1: first_person_id, 
+                                   from2: first_person_id, to2: current_user.id} )
     else
       @messages = []
     end
+
+    user_list = []
+    @messages.each do |x|
+      if(x.user_received_id == current_user.id)
+        user_list << x.user_sent_id
+      else
+        user_list << x.user_received_id
+      end
+    end
+
+    @friends = User.find(user_list)
 
   # @messages = Message.where(to: current_user.id)
   end
@@ -42,6 +51,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
+    @message.user_sent_id = current_user.id
 
     respond_to do |format|
       if @message.save
@@ -86,6 +96,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:to, :from, :read, :deleted, :date, :body)
+      params.require(:message).permit(:user_received_id, :user_sent_id, :read, :deleted, :date, :body)
     end
 end

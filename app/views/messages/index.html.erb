@@ -9,9 +9,6 @@
     <tr>
       <th>To</th>
       <th>From</th>
-      <th>Read</th>
-      <th>Deleted</th>
-      <th>Date</th>
       <th>Body</th>
       <th></th>
       <th></th>
@@ -22,11 +19,11 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.to %></td>
-        <td><%= message.from %></td>
-        <td><%= message.read %></td>
-        <td><%= message.deleted %></td>
-        <td><%= message.date %></td>
+        <td><%= message.user_received_id %></td>
+        <td><%= message.user_sent_id %></td>
+        <!-- <td><%= message.read %></td> -->
+        <!-- <td><%= message.deleted %></td> -->
+        <!-- <td><%= message.date %></td> -->
         <td><%= message.body %></td>
         <td><%= link_to 'Show', message %></td>
         <td><%= link_to 'Edit', edit_message_path(message) %></td>
