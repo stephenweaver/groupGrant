@@ -1,11 +1,10 @@
 // Place all the styles related to the groupgrants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.groupgrant_title {
-   color:black;
-   font-weight:bold;
-   width:95%;
-   margin-bottom:-20px;
+.ellipsis_gg_title {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .groupgrant_charity {

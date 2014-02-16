@@ -111,6 +111,8 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     attr_required (0.0.5)
+    authorize-net (1.5.2)
+      nokogiri (~> 1.4)
     auto_html (1.6.0)
       redcarpet (~> 2.0)
       rinku (~> 1.5.0)
@@ -433,6 +435,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  authorize-net
   auto_html
   better_errors
   binding_of_caller

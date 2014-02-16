@@ -11,7 +11,7 @@ Blankcomposer::Application.routes.draw do
 
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
   match '/payments/thank_you', :to => 'payments#thank_you', :as => 'payments_thank_you', :via => [:get]
-    resources :payments
+  resources :payments
   resources :groupgrant_categories
   resources :charity_categories
   resources :business_categories
@@ -29,7 +29,6 @@ Blankcomposer::Application.routes.draw do
   match '/users/auth/:provider/callback' => 'authentications#create', via: :get
 
   match '/users/profile' => 'visitors#profile', via: :get
-  get 'gorupgrants/connect' => 'groupgrants#connect'
 
  devise_scope :user do
   match 'charity/sign_up' => 'registrations#new', :user => { :user_type => 'charity' }, via: :get, as: 'charity_sign_up'
@@ -47,5 +46,5 @@ Blankcomposer::Application.routes.draw do
   
   end
  
-
+ match "/groupgrant/connect", :to => "groupgrants#connect", via: :post
 end

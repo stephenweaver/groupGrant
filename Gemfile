@@ -29,7 +29,7 @@ gem "skrollr-rails"
 gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
-
+gem 'authorize-net'
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob
