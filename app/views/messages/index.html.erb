@@ -1,38 +1,42 @@
 <h1>Listing messages</h1>
 <% if @messages.empty? %>
-<div>
-  There are no messages
-</div>
+  <div>There are no messages</div>
 <% end %>
-<table>
+
+<!-- Friend table -->
+<div class="col-xs-3 col-md-3">
+<table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th>To</th>
-      <th>From</th>
-      <th>Body</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Friends</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
+    <% @friends.each do |friend| %>
       <tr>
-        <td><%= message.user_received_id %></td>
-        <td><%= message.user_sent_id %></td>
-        <!-- <td><%= message.read %></td> -->
-        <!-- <td><%= message.deleted %></td> -->
-        <!-- <td><%= message.date %></td> -->
-        <td><%= message.body %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><div class="friend"><%= friend.email %> <%= friend.id %></div></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
+<!-- Messages table -->
+<div class="col-xs-6 col-md-6">
+<table>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td <% if message.user_sent_id != current_user.rolable.id %> class="active" <% end %> >
+          <%= message.user_received_id %>
+        </td>
+        <td><%= message.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 <br>
 
 <%= link_to 'New Message', new_message_path %>

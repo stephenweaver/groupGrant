@@ -4,23 +4,33 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    message = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).first
-    if(!message.nil?)
-      if(message.user_received_id == current_user.id)
-        first_person_id = message.user_sent_id
+    if !user_signed_in?
+      flash.alert = "You must be logged in to use Messaging"
+      redirect_to root_path
+      return
+    elsif current_user.rolable.class.name != "Charity" && current_user.rolable.class.name != "Business"
+      flash.alert = "Messaging is available to Charities and Businesses only"
+      redirect_to root_path
+      return
+    end
+
+    all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s))
+    if(!all_messages.empty?)
+      if(all_messages.first.user_received_id == current_user.id)
+        first_person_id = all_messages.first.user_sent_id
       else
-        first_person_id = message.user_received_id
+        first_person_id = all_messages.first.user_received_id
       end
-      @messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR 
-                                  (user_received_id = :to2 AND user_sent_id = :from2)", 
-                                  {from1: current_user.id, to1: first_person_id, 
+      @messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR
+                                  (user_received_id = :to2 AND user_sent_id = :from2)",
+                                  {from1: current_user.id, to1: first_person_id,
                                    from2: first_person_id, to2: current_user.id} )
     else
       @messages = []
     end
 
     user_list = []
-    @messages.each do |x|
+    all_messages.each do |x|
       if(x.user_received_id == current_user.id)
         user_list << x.user_sent_id
       else
