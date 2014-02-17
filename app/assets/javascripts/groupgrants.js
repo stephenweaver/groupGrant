@@ -9,7 +9,9 @@ renderKnob = function() {
 };
 
 $(window).load(function() {
+   console.log("asdfasdf");
    renderKnob();
+   
 });
 
 $(document).on('page:load', renderKnob);

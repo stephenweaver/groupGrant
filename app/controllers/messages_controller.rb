@@ -39,9 +39,27 @@ class MessagesController < ApplicationController
     end
 
     @friends = User.find(user_list)
+    @last_message = all_messages.last()
 
   # @messages = Message.where(to: current_user.id)
   end
+
+  def getAjax
+    messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR
+                                  (user_received_id = :to2 AND user_sent_id = :from2)",
+                                  {from1: current_user.id, to1: params["id"],
+                                   from2: params["id"], to2: current_user.id} )
+
+    render :json => messages.to_json(:include => { :user => { :include => :rolable }})
+  end
+
+  def checkAjax
+    messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
+                                  {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+
+    render :json => messages.to_json(:include => { :user => { :include => :rolable }})
+  end
+
 
   # GET /messages/1
   # GET /messages/1.json
@@ -97,6 +115,10 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
