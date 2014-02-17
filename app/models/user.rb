@@ -1,7 +1,15 @@
 class User < ActiveRecord::Base
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
   has_many :addresses, :dependent => :destroy
+  belongs_to :rolable, :polymorphic => true, dependent: :destroy
+
+  has_many :spree_orders
+  has_many :spree_addresses
+  has_many :messages, :dependent => :destroy
+
   belongs_to :rolable, :polymorphic => true
+  has_and_belongs_to_many :spree_roles
+
   validates :email, presence: {is: true, message: "Please enter an e-mail address"},
      format: {with: /\w*@\w*.\w*$/, :multiline => true}
   accepts_nested_attributes_for :rolable

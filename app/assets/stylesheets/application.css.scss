@@ -16,17 +16,17 @@
  @import "bootstrap";
 
 body { padding-top: 70px; }
-
+main { margin-top:60px;}
 .content {
- background-color: #eee;
+ background-color: #FFFFFF;
  padding: 20px;
- margin: 0 -20px;
+
  -webkit-border-radius: 0 0 6px 6px;
  -moz-border-radius: 0 0 6px 6px;
  border-radius: 0 0 6px 6px;
- -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+/* -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
- box-shadow: 0 1px 2px rgba(0,0,0,.15);
+ box-shadow: 0 1px 2px rgba(0,0,0,.15);*/
 }
 .groupgrant_image {
    width: 100%;
@@ -111,19 +111,7 @@ a:hover {
    clear: both;
 }
 
-.ellipsis_gg_title {
-   height: 40px;
-   overflow: hidden;
-}
 
-.ellipsis_gg_about {
-   height: 60px;
-   overflow: hidden;
-}
-.ellipsis_charity_description {
-   height: 300px;
-   overflow: hidden;
-}
 
 .ellipsis_business_description {
    height: 300px;
@@ -133,20 +121,6 @@ a:hover {
 .help-inline {
    color: red;
    padding-top:5
-}
-
-.groupgrant_ribbon{
-   position:absolute;
-   margin-left: -13%;
-   width:100%;
-   top: -20px;
-}
-
-.listing_header{
-   height: 100%;
-   font-size: 1.5em;
-   padding: 3px 0 10px 0;
-
 }
 
 .charity_groupgrants{

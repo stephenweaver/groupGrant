@@ -1,11 +1,22 @@
 Blankcomposer::Application.routes.draw do
 
+<<<<<<< HEAD
   match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
   match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
+=======
+  # This line mounts Spree's routes at the root of your application.
+  # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
+  # If you would like to change where this engine is mounted, simply change the :at option to something different.
+  #
+  # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
+  mount Spree::Core::Engine, :at => '/store'
+
+ resources :messages
+
+>>>>>>> 21fc4cbef4e6d5562d57a894571a1ea76c2f9fcf
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
   match '/payments/thank_you', :to => 'payments#thank_you', :as => 'payments_thank_you', :via => [:get]
   resources :payments
-
   resources :groupgrant_categories
   resources :charity_categories
   resources :business_categories
@@ -15,7 +26,11 @@ Blankcomposer::Application.routes.draw do
   resources :donors 
   resources :businesses
   resources :authentications
+<<<<<<< HEAD
   resources :charges
+=======
+  resources :messages
+>>>>>>> 21fc4cbef4e6d5562d57a894571a1ea76c2f9fcf
 
   root :to => 'visitors#new'
 
@@ -29,13 +44,18 @@ Blankcomposer::Application.routes.draw do
   match 'donor/sign_up' => 'registrations#new', :user => { :user_type => 'donor' }, via: :get, as: 'donor_sign_up'
   match 'business/sign_up' => 'registrations#new', :user => { :user_type => 'business' }, via: :get, as: 'business_sign_up'
 
+  get '/login', :to => "devise/sessions#new"
+  get '/signup', :to => "devise/registrations#new"
+  delete '/logout', :to => "devise/sessions#destroy"
+
 
   # match 'charity/edit' => 'registrations#edit', :user => { :user_type => 'charity' }, via: :get, as: 'charity_edit'
   # match 'donor/edit' => 'registrations#edit', :user => { :user_type => 'donor' }, via: :get, as: 'donor_edit'
-  # match 'business/edit' => 'registrations#edit', :user => { :user_type => 'business' }, via: :get, as: 'business_edit'
-  
+  # match 'business/edit' => 'registrations#edit', :user => { :user_type => 'business' }, via: :get, as: 'business_edit
   
   end
  
-
+  match "/groupgrant/connect", :to => "groupgrants#connect", via: :post
+  match "/messages/getAjax", :to => "messages#getAjax", via: :post
+  match "/messages/checkAjax", :to => "messages#checkAjax", via: :post
 end

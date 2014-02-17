@@ -1,11 +1,11 @@
 <% content_for :title do %>groupGrants<% end %>
 
 <div class = "row">
-   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-4" do %>
+   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>
    <div class="input-group">
       <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
       <span class="input-group-btn">
-        <%= submit_tag "Search", :name => nil, :class => "btn btn-default", :type => "submit" %>
+        <button class="btn btn-default" type="button">Go!</button>
       </span>
     </div>
   <% end %>
@@ -17,7 +17,7 @@
   <% end %>
   </div>
 </div>
-<br>
+
 <div class = "row">
    	<div class = "col-sm-3">
       <ul class="nav nav-pills nav-stacked">
@@ -37,7 +37,6 @@
       </ul>
     </div>
   <div class = "col-sm-9">
-    <br>
     	<%= render partial: "groupgrant", collection: @groupgrants %>  	
   </div>
 </div>

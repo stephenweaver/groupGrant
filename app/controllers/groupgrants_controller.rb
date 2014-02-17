@@ -1,5 +1,5 @@
 class GroupgrantsController < ApplicationController
-  before_action :set_groupgrant, only: [:show, :edit, :update, :destroy]
+ 
 
   # GET /groupgrants
   # GET /groupgrants.json
@@ -35,6 +35,24 @@ class GroupgrantsController < ApplicationController
   # GET /groupgrants/1
   # GET /groupgrants/1.json
   def show
+
+  end
+
+  def connect
+    begin
+      groupgrant_id = params['groupgrant_id']
+      business_id = params['business_id']
+
+      groupgrant = Groupgrant.find(groupgrant_id)
+      groupgrant.partner_id = business_id
+      if(groupgrant.save!)
+        render json: business_id
+      else
+        render json: false
+      end
+    rescue
+      render json: false 
+    end
   end
 
   # GET /groupgrants/new

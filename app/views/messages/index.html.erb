@@ -1,0 +1,49 @@
+<h1>Listing messages</h1>
+<% if @messages.empty? %>
+  <div>There are no messages</div>
+<% end %>
+
+<!-- Friend table -->
+<div class="col-xs-3 col-md-3">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Friends</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><div class="friend" data-user=<%= friend.id %>><%= friend.email %> </div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>  
+
+
+
+<!-- Messages table -->
+<div class="col-xs-6 col-md-6">
+<table class="table table-bordered" id="chats">
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr <% if message.user_sent_id != current_user.id %> class="active chat" <% else %> class="text-right chat"  <% end %>>
+        <td >
+          <b><%= message.user.rolable.name %>:</b><span class="message_id"><%= message.id %></span><br/><%= message.body %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+ <div class="input-group">
+      <input type="text" class="form-control" id="chat_message">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="send_message">Send</button>
+      </span>
+    </div>
+</div>
+<br>
+<input type='hidden' id="current_user" value=<%=current_user.id%>>
+<input type='hidden' id="last_id" value=<%=@last_message.id %>>
