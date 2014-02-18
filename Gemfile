@@ -34,7 +34,7 @@ gem 'authorize-net'
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob
-# gem 'mysql2', '0.3.11'
+ gem 'mysql2', '0.3.11'
 
 group :development do
   gem 'better_errors'

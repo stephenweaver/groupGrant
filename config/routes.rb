@@ -1,19 +1,11 @@
 Blankcomposer::Application.routes.draw do
 
-<<<<<<< HEAD
-  match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
-  match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
-=======
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/store'
-
- resources :messages
-
->>>>>>> 21fc4cbef4e6d5562d57a894571a1ea76c2f9fcf
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
   match '/payments/thank_you', :to => 'payments#thank_you', :as => 'payments_thank_you', :via => [:get]
   resources :payments
@@ -26,11 +18,9 @@ Blankcomposer::Application.routes.draw do
   resources :donors 
   resources :businesses
   resources :authentications
-<<<<<<< HEAD
   resources :charges
-=======
   resources :messages
->>>>>>> 21fc4cbef4e6d5562d57a894571a1ea76c2f9fcf
+
 
   root :to => 'visitors#new'
 

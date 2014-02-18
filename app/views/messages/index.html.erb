@@ -46,4 +46,6 @@
 </div>
 <br>
 <input type='hidden' id="current_user" value=<%=current_user.id%>>
-<input type='hidden' id="last_id" value=<%=@last_message.id %>>
+<% if @last_message %>
+<input type='hidden' id="last_id" value=<%= @last_message.id %> >
+<% end %>
