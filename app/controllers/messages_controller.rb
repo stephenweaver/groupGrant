@@ -56,7 +56,8 @@ class MessagesController < ApplicationController
   def checkAjax
     messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
                                   {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
-
+Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params['message_id']).created_at")
+    Rails.logger.info(Message.find(params['message_id']).created_at)
     render :json => messages.to_json(:include => { :user => { :include => :rolable }})
   end
 

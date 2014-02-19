@@ -6,8 +6,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-
-//= require admin/spree_backend
-
 //= require_tree .
-//= require admin/spree_simple_sales

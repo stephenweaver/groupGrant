@@ -48,52 +48,57 @@ send_message = function(){
 };
 
 startTimer = function() {
-   window.setInterval(function(){
-      $.ajax({
-         type: "POST",
-         url: "/messages/checkAjax",
-         data: { message_id : $("#last_id").val()},
-         dataType: "json",
-         async: false,
-         success: function (data) {
-           if(data.length > 0)
-           {
-               $(".friend").children('.badge').remove();
-               var classname = "";
-               data.forEach(function(entry) {
-                  //console.log(entry.data("user"));
-
-                  var user_id = $("#current_user").val();
-                  var selected_id = $($('.success')[0].children[0]).data('user');
-                  if(entry.user_sent_id == selected_id ||  entry.user_received_id == selected_id)
-                  {
-                     if(entry.user_sent_id != $("#current_user").val()) { classname = "active" }
-                     else { classname = "text-right" }
-                      $('#chats').append('<tr class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
-                  }
-                  else
-                  {
-                     $(".friend").each(function(index){
-                        if( ($(".friend").children('.badge').length < 1) && (entry.user_sent_id == $(this).data('user') ||  entry.user_received_id == $(this).data('user')))
-                        {
-                           console.log("hhhiiiif");
-                           $(this).append('<span class="badge pull-right">new</span>');
-                        }
-                     });
-                  }
-                  $("#last_id").val(entry.id);
-               });
-           }
-         }
-      });
-   }, 10000);
+   window.setInterval(update_client, 10000);
 };
+
+
+update_client = function(){
+   console.log("tset");
+   $.ajax({
+      type: "POST",
+      url: "/messages/checkAjax",
+      data: { message_id : $("#last_id").val()},
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        if(data.length > 0)
+        {
+            $(".friend").children('.badge').remove();
+            var classname = "";
+            data.forEach(function(entry) {
+               //console.log(entry.data("user"));
+
+               var user_id = $("#current_user").val();
+               var selected_id = $($('.success')[0].children[0]).data('user');
+               if(entry.user_sent_id == selected_id ||  entry.user_received_id == selected_id)
+               {
+                  if(entry.user_sent_id != $("#current_user").val()) { classname = "active" }
+                  else { classname = "text-right" }
+                   $('#chats').append('<tr class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
+               }
+               else
+               {
+                  $(".friend").each(function(index){
+                     if( ($(".friend").children('.badge').length < 1) && (entry.user_sent_id == $(this).data('user') ||  entry.user_received_id == $(this).data('user')))
+                     {
+                        console.log("hhhiiiif");
+                        $(this).append('<span class="badge pull-right">new</span>');
+                     }
+                  });
+               }
+               $("#last_id").val(entry.id);
+            });
+        }
+      }
+   });
+}
 
 
 send_message_reset = function() {
    $('#send_message').click(function() {
       $('#send_message').parent().parent().children('#chat_message').val("");
    });
+   update_client();
 }
 
 

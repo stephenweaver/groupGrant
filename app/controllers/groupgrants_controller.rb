@@ -1,5 +1,5 @@
 class GroupgrantsController < ApplicationController
- 
+ protect_from_forgery with: :null_session, :only => [:payment_form]
 
   # GET /groupgrants
   # GET /groupgrants.json
@@ -105,6 +105,33 @@ class GroupgrantsController < ApplicationController
       format.html { redirect_to groupgrants_url }
       format.json { head :no_content }
     end
+  end
+
+  def payment_form
+
+  end
+
+  def payment_form_post
+   
+
+    # Get the credit card details submitted by the form
+    token = params[:stripeToken]
+    amount = params[:amount].to_i * 100
+    Stripe.api_key = Rails.configuration.stripe[:secret_key]
+
+    # Create the charge on Stripe's servers - this will charge the user's card
+    begin
+      charge = Stripe::Charge.create(
+        :amount => amount, # amount in cents, again
+        :currency => "usd",
+        :card => token,
+        :description => "payinguser@example.com"
+      )
+
+    rescue Stripe::CardError => e
+       @var = e
+    end
+      @var = "Thank you for your donation!"
   end
 
   private
