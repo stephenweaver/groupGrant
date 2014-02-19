@@ -1,14 +1,14 @@
-<h1>Listing messages</h1>
+<h1>Messages</h1>
 <% if @messages.empty? %>
   <div>There are no messages</div>
 <% end %>
 
 <!-- Friend table -->
-<div class="col-xs-3 col-md-3">
+<div class="col-xs-3 col-md-3" id="friends">
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Friends</th>
+      <!-- <th>Friends</th> -->
     </tr>
   </thead>
 
@@ -18,14 +18,26 @@
         <td><div class="friend" data-user=<%= friend.id %>><%= friend.email %> </div></td>
       </tr>
     <% end %>
+
+      <!-- Testing -->
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+
   </tbody>
 </table>
 </div>  
 
 
-
+<div class="col-xs-6 col-md-6" id="message_table">
 <!-- Messages table -->
-<div class="col-xs-6 col-md-6">
+<div class="">
 <table class="table table-bordered" id="chats">
   <tbody>
     <% @messages.each do |message| %>
@@ -35,16 +47,31 @@
         </td>
       </tr>
     <% end %>
+
+    <!-- Testing -->
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+      <tr>
+        <td><div class="friend">Loren Ipsum </div></td>
+      </tr>
+
   </tbody>
 </table>
- <div class="input-group">
-  <form>
-      <input type="text" class="form-control" id="chat_message">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit" id="send_message">Send</button>
-      </span>
+</div>
+<div id="bottom_table">
+  <div class="input-group">
+    <form>
+        <input type="text" class="form-control" id="chat_message">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+        </span>
     </form>
-    </div>
+  </div>
+</div>
 </div>
 <br>
 <input type='hidden' id="current_user" value=<%=current_user.id%>>

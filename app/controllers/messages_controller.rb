@@ -25,6 +25,13 @@ class MessagesController < ApplicationController
                                   (user_received_id = :to2 AND user_sent_id = :from2)",
                                   {from1: current_user.id, to1: first_person_id,
                                    from2: first_person_id, to2: current_user.id} )
+      # set messages to read once seen
+      @messages.each do |m|
+        if((current_user.id == m.user_received_id) && (m.read != true))
+          m.read = true
+        end
+      end
+
     else
       @messages = []
     end
@@ -60,7 +67,6 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
     Rails.logger.info(Message.find(params['message_id']).created_at)
     render :json => messages.to_json(:include => { :user => { :include => :rolable }})
   end
-
 
   # GET /messages/1
   # GET /messages/1.json
