@@ -1,3 +1,22 @@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script>
+var user_id = $(this).data("user");
+  $.ajax({
+         type: "GET",
+         url: "/messages/searchUsers",
+         data: { id: user_id },
+         dataType: "json",
+         async: false,
+         success: function (data) { 
+          $( "#search" ).autocomplete({
+            source: data
+           });
+         }
+  });
+</script>
+
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Launch Messages
@@ -10,6 +29,10 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Messages</h4>
+        <div class="ui-widget">
+          <label for="search">Search: </label>
+          <input id="search">
+        </div>
       </div>
       <div class="modal-body">
         <% if @messages.empty? %>

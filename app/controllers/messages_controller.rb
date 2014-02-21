@@ -68,6 +68,23 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
     render :json => messages.to_json(:include => { :user => { :include => :rolable }})
   end
 
+# Return a list of users of the opposite type for the AutoComplete in messaging
+  def searchUsers
+    list = []
+    if current_user.rolable.class.name == "Charity"
+      search_list = Business.all
+      search_list.each do |b|
+        list << b.name
+      end
+    elsif current_user.rolable.class.name == "Business"
+      search_list = Charity.all
+      search_list.each do |c|
+        list << c.name
+      end
+    end
+    render :json => list.to_json
+  end
+
   # GET /messages/1
   # GET /messages/1.json
   def show
