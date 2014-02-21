@@ -51,6 +51,10 @@ class RequestsController < ApplicationController
     end
   end
 
+  def sendRequest
+    
+  end
+
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy

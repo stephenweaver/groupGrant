@@ -1,4 +1,3 @@
-
 select_user = function() { 
    $( ".friend" ).click(function() {
      var user_id = $(this).data("user");
@@ -113,7 +112,3 @@ $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
 $(document).on('page:load', startTimer);
 $(document).on('page:load', send_message_reset);
-
-
-   
-

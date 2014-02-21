@@ -25,6 +25,13 @@ class MessagesController < ApplicationController
                                   (user_received_id = :to2 AND user_sent_id = :from2)",
                                   {from1: current_user.id, to1: first_person_id,
                                    from2: first_person_id, to2: current_user.id} )
+      # set messages to read once seen
+      @messages.each do |m|
+        if((current_user.id == m.user_received_id) && (m.read != true))
+          m.read = true
+        end
+      end
+
     else
       @messages = []
     end
@@ -61,6 +68,22 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
     render :json => messages.to_json(:include => { :user => { :include => :rolable }})
   end
 
+# Return a list of users of the opposite type for the AutoComplete in messaging
+  def searchUsers
+    list = []
+    if current_user.rolable.class.name == "Charity"
+      search_list = Business.all
+      search_list.each do |b|
+        list << b.name
+      end
+    elsif current_user.rolable.class.name == "Business"
+      search_list = Charity.all
+      search_list.each do |c|
+        list << c.name
+      end
+    end
+    render :json => list.to_json
+  end
 
   # GET /messages/1
   # GET /messages/1.json

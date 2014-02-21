@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214084001) do
+ActiveRecord::Schema.define(version: 20140221022408) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -130,19 +130,20 @@ ActiveRecord::Schema.define(version: 20140214084001) do
     t.integer  "user_sent_id"
     t.boolean  "read"
     t.boolean  "deleted"
-    t.date     "date"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "request_id"
   end
 
   create_table "requests", force: true do |t|
     t.boolean  "is_accepted"
     t.boolean  "is_rejected"
-    t.date     "date"
     t.date     "date_responded"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "groupgrant_id"
+    t.integer  "message_id"
   end
 
   create_table "spree_activators", force: true do |t|

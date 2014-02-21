@@ -1,11 +1,23 @@
 // Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .friend_selected {
 	background-color:red;
 }
 
-.friend {
+h1 {
+	color: #003366;
+}
+
+form {
+	display: inherit;
+}
+
+table {
    
-   color: red;
+}
+
+#friends {
+	padding-left: 0;
 }

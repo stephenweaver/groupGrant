@@ -24,6 +24,7 @@ gem  'money', '~> 5.1.1'
 gem 'heroku'
 gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
+gem 'sqlite3'
 gem "skrollr-rails"
 gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway'

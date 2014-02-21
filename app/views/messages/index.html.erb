@@ -1,53 +1,98 @@
-<h1>Listing messages</h1>
-<% if @messages.empty? %>
-  <div>There are no messages</div>
-<% end %>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-<!-- Friend table -->
-<div class="col-xs-3 col-md-3">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Friends</th>
-    </tr>
-  </thead>
+<script>
+var user_id = $(this).data("user");
+  $.ajax({
+         type: "GET",
+         url: "/messages/searchUsers",
+         data: { id: user_id },
+         dataType: "json",
+         async: false,
+         success: function (data) { 
+          $( "#search" ).autocomplete({
+            source: data
+           });
+         }
+  });
+</script>
 
-  <tbody>
-    <% @friends.each do |friend| %>
-      <tr>
-        <td><div class="friend" data-user=<%= friend.id %>><%= friend.email %> </div></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>  
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch Messages
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Messages</h4>
+        <div class="ui-widget">
+          <label for="search">Search: </label>
+          <input id="search">
+        </div>
+      </div>
+      <div class="modal-body">
+        <% if @messages.empty? %>
+          <div>There are no messages</div>
+        <% end %>
 
+        <!-- Friend table -->
+        <div class="col-xs-3 col-md-3" id="friends">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Friends</th>
+            </tr>
+          </thead>
 
-<!-- Messages table -->
-<div class="col-xs-6 col-md-6">
-<table class="table table-bordered" id="chats">
-  <tbody>
-    <% @messages.each do |message| %>
-      <tr <% if message.user_sent_id != current_user.id %> class="active chat" <% else %> class="text-right chat"  <% end %>>
-        <td >
-          <b><%= message.user.rolable.name %>:</b><span class="message_id"><%= message.id %></span><br/><%= message.body %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
- <div class="input-group">
-  <form>
-      <input type="text" class="form-control" id="chat_message">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit" id="send_message">Send</button>
-      </span>
-    </form>
+          <tbody>
+            <% @friends.each do |friend| %>
+              <tr>
+                <td><div class="friend" data-user=<%= friend.id %>><%= friend.email %> </div></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>  
+        <div class="col-xs-6 col-md-6" id="message_table">
+        <!-- Messages table -->
+        <div class="">
+        <table class="table table-bordered" id="chats">
+          <tbody>
+            <% @messages.each do |message| %>
+              <tr <% if message.user_sent_id != current_user.id %> class="active chat" <% else %> class="text-right chat"  <% end %>>
+                <td >
+                  <b><%= message.user.rolable.name %>:</b><span class="message_id"><%= message.id %></span><br/><%= message.body %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+        <div id="bottom_table">
+          <div class="input-group">
+            <form>
+                <input type="text" class="form-control" id="chat_message">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+                </span>
+            </form>
+          </div>
+        </div>
+        </div>
+        <br>
+        <input type='hidden' id="current_user" value=<%=current_user.id%>>
+        <% if @last_message %>
+        <input type='hidden' id="last_id" value=<%= @last_message.id %> >
+        <% end %>
+  
+      </div>
+      <div class="modal-footer">
+        
+      </div>
     </div>
+  </div>
 </div>
-<br>
-<input type='hidden' id="current_user" value=<%=current_user.id%>>
-<% if @last_message %>
-<input type='hidden' id="last_id" value=<%= @last_message.id %> >
-<% end %>

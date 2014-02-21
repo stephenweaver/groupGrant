@@ -78,12 +78,36 @@
                </td>
             </tr>
          </table>
-         
-         
+            
       </div>
    </div>
    <div class = "col-md-1">
-      <a href="#">Connect</a>
+      <!-- Connection request for Business to Charity -->
+      <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
+          <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+            <div class="modal fade" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Message</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="input-group">
+                        <form>
+                           <input type="text" class="form-control" id="chat_message">
+                              <span class="input-group-btn">
+                                 <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+                              </span>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+      <% end %>
    </div>
 </div>
 
