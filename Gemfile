@@ -24,17 +24,16 @@ gem  'money', '~> 5.1.1'
 gem 'heroku'
 gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
-gem 'sqlite3'
-gem 'stripe'
 gem "skrollr-rails"
 gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 gem 'spree_gateway', github: 'spree/spree_gateway'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
-gem "stripe", "~> 1.10.1"
+gem "stripe", '~> 1.10.1'
+gem "sqlite3"
 # MySQL is for the lab db. Unless it is 
 # causing problems, please do not comment
 # it out. Thanks!  - Rob
- gem 'mysql2', '0.3.11'
+# gem 'mysql2', '0.3.11'
 
 group :development do
   gem 'better_errors'

@@ -1,4 +1,5 @@
 class GroupgrantsController < ApplicationController
+before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
  protect_from_forgery with: :null_session, :only => [:payment_form]
 
   # GET /groupgrants
