@@ -3,3 +3,9 @@
 .modal-footer {
 	border: none;
 }
+
+@media (min-width: 992px) {
+	.modal-lg {
+		width: 900px;
+	}
+}
