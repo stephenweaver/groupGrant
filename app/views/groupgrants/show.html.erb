@@ -88,10 +88,6 @@
 
                      $("#tweets").html(tweet);
                      $("#sharePage").html(share);
-                     
-
-                      
-
                      });
                   </script>
                   <!-- Show Tweet Button -->
@@ -120,10 +116,10 @@
       <%= @groupgrant.charity.description %>
     </div>
 
-
-    <div id="myCanvas"></div>
-    <br /><div id="connect" class="btn btn-primary" style="display:none">Connect with Charity</div>
-    <br /><div id="unconnect" class="btn btn-primary" style="display:none" >Unconnect</div>
+    <% if current_user.rolable_type == "Business" %>
+      <br />
+      <div id="request" class="btn btn-primary">Connect with Charity </div>
+    <% end %>
 
    
    </div>

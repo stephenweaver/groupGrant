@@ -4,7 +4,8 @@
     <div class="thumbnail" style="background-color:#E6E6E6;">
      
       <%= image_tag groupgrant.groupgrant_pic.url(:medium), class: "groupgrant_image", style:":block;" %>
-
+      <%       groupgrantOwner = Charity.find(User.find(groupgrant.owner_id).rolable_id)
+               groupgrant.charity = groupgrantOwner %>
       <div class="caption">
         
         <div class="ellipsis_gg_title groupgrant_title"><%= groupgrant.name %></div>
