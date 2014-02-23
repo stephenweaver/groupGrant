@@ -39,21 +39,44 @@ before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
 
   end
 
-  def connect
-    begin
-      groupgrant_id = params['groupgrant_id']
-      business_id = params['business_id']
-
-      groupgrant = Groupgrant.find(groupgrant_id)
-      groupgrant.partner_id = business_id
-      if(groupgrant.save!)
-        render json: business_id
-      else
-        render json: false
-      end
-    rescue
-      render json: false 
+  # Cancel a request to connect
+  def cancelRequest
+    groupgrant = Groupgrant.find(params[:id])
+    r = Request.where(groupgrant_id: groupgrant.id)
+    r = Request.find(r)
+    m = Message.where(request_id: r.id)
+    m = Message.find(m)
+    if (r.destroy)
+      m.destroy
+      render text: "request destroyed"
+    else
+      render text: "something went wrong"
     end
+
+  end
+    
+
+  def connect
+    @groupgrant = Groupgrant.find(params[:id])
+    
+    result = ""
+
+    if (@groupgrant != nil)
+      request = Request.create(groupgrant_id: @groupgrant.id)
+      message = Message.new(body: "someone wants to be your friend", 
+                               user_sent_id: current_user.id, 
+                               user_received_id: @groupgrant.owner_id, 
+                               request_id: request.id)
+      if (message.save)
+        result = "true"
+      else
+        request.destroy!
+        result = "Request unsuccessful"
+      end
+    else
+      result "No ID was passed for the groupgrant"
+    end
+    render text: result
   end
 
   # GET /groupgrants/new
@@ -143,7 +166,7 @@ before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
       # My project wasn't getting the charity's name, so I added this code
       # to make it work.  - Koffi
       @groupgrantOwner = Charity.find(User.find(@groupgrant.owner_id).rolable_id)
-      @groupgrant.charity = @groupgrantOwner
+      #@groupgrant.charity = @groupgrantOwner
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
