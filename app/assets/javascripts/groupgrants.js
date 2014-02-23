@@ -26,13 +26,14 @@ sendRequest = function() {
 		    // code to run if the request succeeds;
 		    // the response is passed to the function
 		    success: function( data) {
-		    	if (data == "true")
-		    	{
-			    	$("#request").remove();
-			    	$("#sponsors").append("<h3>A request has been sent.</h3>");
-			    }
-			    else
-			    	alert(data)
+		    	alert(data[0])
+		    	// if (data == "true")
+		    	// {
+			    // 	$("#request").remove();
+			    // 	$("#sponsors").append("<h3>A request has been sent.</h3>");
+			    // }
+			    // else
+			    // 	alert(data)
 		    },
 
 		    error: function(data) {
@@ -77,12 +78,12 @@ cancelRequest = function() {
 
 $(window).load(function() {
    
-   renderKnob();
+   //renderKnob();
    sendRequest();
    cancelRequest();   
 });
 
-$(document).on('page:load', renderKnob);
+//$(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
 
