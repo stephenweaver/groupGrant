@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery with: :null_session, :only => [:searchUsers]
 
   # GET /messages
   # GET /messages.json
@@ -70,19 +71,26 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
 
 # Return a list of users of the opposite type for the AutoComplete in messaging
   def searchUsers
-    list = []
-    if current_user.rolable.class.name == "Charity"
-      search_list = Business.all
-      search_list.each do |b|
-        list << b.name
-      end
-    elsif current_user.rolable.class.name == "Business"
-      search_list = Charity.all
-      search_list.each do |c|
-        list << c.name
-      end
+    Rails.logger.info("-------------------->>>>>>>>>>>>>>>>><<<<<<<<<<<<")
+    Rails.logger.info(params)
+    user = User.find(params[:user])
+    if user.rolable.class.name == "Charity"
+      search_list = Business.pluck(:name)
+      # search_list = Business.where(active: true).pluck(:name)
+      # search_list.each do |b|
+      #   list << b.name
+      # end
+    elsif user.rolable.class.name == "Business"
+      search_list = Charity.pluck(:name)
+      # search_list.each do |c|
+      #   list << c.name
+      # end
     end
-    render :json => list.to_json
+     Rails.logger.info("------------------------------search_list")
+    Rails.logger.info(search_list)
+
+    Rails.logger.info("help Stephen")
+    render :json => search_list.to_json
   end
 
   # GET /messages/1
@@ -147,7 +155,9 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
+      if (params[:id].nil?)
+        # @message = Message.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

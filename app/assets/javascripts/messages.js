@@ -100,15 +100,32 @@ send_message_reset = function() {
    update_client();
 }
 
-
+auto_complete_users = function() {
+var user = $( "#current_user" ).val();
+console.log(user);
+  $.ajax({
+         type: "POST",
+         url: "/message/searchUsers",
+         data: {"user":user},
+         dataType: "json",
+         async: false,
+         success: function (data) { 
+          $( "#search" ).autocomplete({
+            source: data
+           });
+         }
+  });
+}
 
 $(window).load(function() {
    select_user();
    send_message();
    startTimer();
    send_message_reset();
+   auto_complete_users();
 });
 $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
 $(document).on('page:load', startTimer);
 $(document).on('page:load', send_message_reset);
+$(document).on('page:load', auto_complete_users);
