@@ -86,6 +86,7 @@ class MessagesController < ApplicationController
       # end
     end
     return search_list
+
   end
 
   # GET /messages/1

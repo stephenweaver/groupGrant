@@ -61,6 +61,7 @@ update_client = function(){
       dataType: "json",
       async: false,
       success: function (data) {
+         console.log("test");
         if(data.length > 0)
         {
             $(".friend").children('.badge').remove();

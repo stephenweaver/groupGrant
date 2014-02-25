@@ -116,7 +116,7 @@
     </div>
     <br />
     <div id="sponsors">
-      <% if current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
+      <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
       <% r = Request.where(groupgrant_id: @groupgrant.id)
          #check if this is the user that sent it
          if (r[0] != nil)

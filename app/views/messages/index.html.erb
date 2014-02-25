@@ -1,3 +1,19 @@
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script>
+  $.ajax({
+         type: "GET",
+         url: "/messages/searchUsers",         
+         dataType: "json",         
+         success: function (data) { 
+          $( "#search" ).autocomplete({
+            source: data
+           });
+         }
+  });
+</script>
+
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" id="show-messages-button" data-toggle="modal" data-target="#myModal">
   Launch Messages
