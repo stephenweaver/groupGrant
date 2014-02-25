@@ -25,7 +25,7 @@ business_categories   = ["Accounting", "Computers & Electronics", "Office", "Ret
 groupgrant_categories = ["Missions", "Wedding", "Graduation","Mission Trips", 
 						 "Community Outreach", "Other"]
 
-# Variables for users
+# Emails for users
 emails   = ["koffi@groupgrant.com", "alex@groupgrant.com", "stephen@groupgrant.com",
 		    "gordon@groupgrant.com", "danny@groupgrant.com", "chris@groupgrant.com",
 		    "charity@groupgrant.com", "business@groupgrant.com", "donor@groupgrant.com"]
