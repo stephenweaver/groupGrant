@@ -82,7 +82,7 @@ Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params[
         list << c.name
       end
     end
-    render :json => list.to_json
+    render json: list.to_json
   end
 
   # GET /messages/1

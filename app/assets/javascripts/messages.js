@@ -52,7 +52,7 @@ startTimer = function() {
 
 
 update_client = function(){
-   console.log("tset");
+  
    $.ajax({
       type: "POST",
       url: "/messages/checkAjax",
@@ -60,6 +60,7 @@ update_client = function(){
       dataType: "json",
       async: false,
       success: function (data) {
+         console.log("test");
         if(data.length > 0)
         {
             $(".friend").children('.badge').remove();

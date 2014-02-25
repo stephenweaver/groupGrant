@@ -1,4 +1,44 @@
+// Needed for Facebook API
+// window.fbAsyncInit = function() {
+//    FB.init({
+//    appId      : '603004516422329',
+//    status     : true,
+//    xfbml      : true
+//    });
+//    };
 
+//    (function(d, s, id){
+//    var js, fjs = d.getElementsByTagName(s)[0];
+//    if (d.getElementById(id)) {return;}
+//    js = d.createElement(s); js.id = id;
+//    js.src = "//connect.facebook.net/en_US/all.js";
+//    fjs.parentNode.insertBefore(js, fjs);
+//    }(document, 'script', 'facebook-jssdk'));
+
+// !function(d,s,id)
+//  {
+//  	 Twitter API
+// 	 var js,fjs=d.getElementsByTagName(s)[0];
+
+// 	 if(!d.getElementById(id))
+// 	 {
+// 	 js=d.createElement(s);
+// 	 js.id=id;
+// 	 js.src="https://platform.twitter.com/widgets.js";
+// 	 fjs.parentNode.insertBefore(js,fjs);
+// 	 }
+// 	 }
+// 	 (document,"script","twitter-wjs");
+
+// 	 $(document).ready(function(){
+// 	 var href = location.pathname;
+// 	 var tweet = "<a href=\'http://www.groupGrant.com" + href;
+// 	     tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
+// 	 var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
+
+// 	 $("#tweets").html(tweet);
+// 	 $("#sharePage").html(share);
+//  });
 
 renderKnob = function() { 
   $(".dial").knob({
@@ -26,14 +66,13 @@ sendRequest = function() {
 		    // code to run if the request succeeds;
 		    // the response is passed to the function
 		    success: function( data) {
-		    	alert(data[0])
-		    	// if (data == "true")
-		    	// {
-			    // 	$("#request").remove();
-			    // 	$("#sponsors").append("<h3>A request has been sent.</h3>");
-			    // }
-			    // else
-			    // 	alert(data)
+		    	if (data == "true")
+		    	{
+			    	$("#request").remove();
+			    	$("#sponsors").append("<h3>A request has been sent.</h3>");
+			    }
+			    else
+			    	alert(data)
 		    },
 
 		    error: function(data) {
@@ -69,7 +108,6 @@ cancelRequest = function() {
 		    error: function(data) {
         		alert("error " + data.name );
    			}
-
 		});
 	});
 };

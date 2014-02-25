@@ -2,13 +2,10 @@
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 <script>
-var user_id = $(this).data("user");
   $.ajax({
          type: "GET",
-         url: "/messages/searchUsers",
-         data: { id: user_id },
-         dataType: "json",
-         async: false,
+         url: "/messages/searchUsers",         
+         dataType: "json",         
          success: function (data) { 
           $( "#search" ).autocomplete({
             source: data
