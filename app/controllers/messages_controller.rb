@@ -46,6 +46,10 @@ class MessagesController < ApplicationController
       end
     end
 
+
+
+    @search_users = searchUsers()
+
     @friends = User.find(user_list)
     @last_message = all_messages.last()
 
@@ -64,33 +68,24 @@ class MessagesController < ApplicationController
   def checkAjax
     messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
                                   {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
-Rails.logger.info("------------------->>>>>>>>>>>>>>>>>>>>>>Message.find(params['message_id']).created_at")
-    Rails.logger.info(Message.find(params['message_id']).created_at)
     render :json => messages.to_json(:include => { :user => { :include => :rolable }})
   end
 
 # Return a list of users of the opposite type for the AutoComplete in messaging
   def searchUsers
-    Rails.logger.info("-------------------->>>>>>>>>>>>>>>>><<<<<<<<<<<<")
-    Rails.logger.info(params)
-    user = User.find(params[:user])
-    if user.rolable.class.name == "Charity"
-      search_list = Business.pluck(:name)
+    if current_user.rolable.class.name == "Charity"
+      search_list = Business.pluck(:id,:name)
       # search_list = Business.where(active: true).pluck(:name)
       # search_list.each do |b|
       #   list << b.name
-      # end
-    elsif user.rolable.class.name == "Business"
-      search_list = Charity.pluck(:name)
+      # current_user
+    elsif current_user.rolable.class.name == "Business"
+      search_list = Charity.pluck(:id, :name)
       # search_list.each do |c|
       #   list << c.name
       # end
     end
-     Rails.logger.info("------------------------------search_list")
-    Rails.logger.info(search_list)
-
-    Rails.logger.info("help Stephen")
-    render :json => search_list.to_json
+    return search_list
   end
 
   # GET /messages/1

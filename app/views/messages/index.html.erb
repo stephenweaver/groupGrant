@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary btn-lg" id="show-messages-button" data-toggle="modal" data-target="#myModal">
   Launch Messages
 </button>
 
@@ -8,13 +8,17 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <!-- <h4 class="modal-title" id="myModalLabel">Messages</h4> -->
-        <div class="ui-widget">
+
           <!-- <label for="search">Search: </label> -->
-          <input id="search" placeholder="Search">
-        </div>
-      </div>
+    
+          <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
+            <option></option>
+            <% @search_users.each do |user| %>
+               <option value= <%= user[0] %>> <%= user[1] %></option>
+           <% end %>
+         </select>
       <div class="modal-body">
         <% if @messages.empty? %>
           <div>There are no messages</div>
@@ -77,3 +81,7 @@
     </div>
   </div>
 </div>
+<%= stylesheet_link_tag "chosen.min.css" %>
+<%= stylesheet_link_tag "chosen-bootstrap.css" %>
+
+<%= javascript_include_tag("chosen.jquery.min.js") %>

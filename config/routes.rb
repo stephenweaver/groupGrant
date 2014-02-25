@@ -52,6 +52,4 @@ Blankcomposer::Application.routes.draw do
   match "/groupgrant/payment_form", :to => "groupgrants#payment_form", via: :get
   match "/groupgrant/payment_form", :to => "groupgrants#payment_form_post", via: :post
 
-  match "/message/searchUsers", :to => "messages#searchUsers", via: :post
-  match "/message/searchUsers", :to => "messages#searchUsers", via: :get
 end
