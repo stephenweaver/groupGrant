@@ -5,7 +5,7 @@ setup = function() {
 
 var stripeResponseHandler = function(status, response) {
   var $form = $('#payment-form');
-console.log("what the hell");
+
   if (response.error) {
     // Show the errors on the form
     $form.find('.payment-errors').text(response.error.message);
@@ -22,22 +22,30 @@ console.log("what the hell");
   }
 };
 
-jQuery(function($) {
-  $('#payment-form').submit(function(event) {
-    var $form = $(this);
-    console.log("will this work?");
-    // Disable the submit button to prevent repeated clicks
-    $form.find('button').prop('disabled', true);
+modal = function(){
+  jQuery(function($) {
+    $('#payment-form').submit(function(event) {
+      var $form = $(this);
+      console.log("will this work?");
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true);
 
-    Stripe.card.createToken($form, stripeResponseHandler);
-
-    // Prevent the form from submitting with the default action
-    return false;
+      Stripe.card.createToken($form, stripeResponseHandler);
+console.log("run jquery");
+      // Prevent the form from submitting with the default action
+      return false;
+    });
   });
-});
-
+};
 
 $(window).load(function() {
    setup();
-});
+   console.log("hello");
+ });
+
 $(document).on('page:load', setup);
+
+$('.payment-form').on('shown.bs.modal', function (e) {
+  console.log("modal launched");
+  modal();
+})

@@ -1,3 +1,4 @@
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
 <!-- Facebook SDK -->
@@ -56,8 +57,63 @@
   			<ul class="list-group">
     			<li class="list-group-item"><strong>Reach goal by <%= @groupgrant.goal_date.to_formatted_s(:long) %></strong>
             <span style="float:right; position:relative; top:-6px">
-               <a href="/groupgrant/new" class="btn btn-primary" role="button">Donate</a>
-            </span></li>
+
+              <!-- Button trigger modal -->
+               <a <button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form">Donate</button></a>
+              
+                <div class="modal fade payment-form" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                       <h4 class="modal-title">Make a Donation</h4>
+                     </div>
+
+                     <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
+                       <span class="payment-errors"></span>
+
+                     <div class="modal-body">
+                       <div class="form-row">
+                         <label>
+                           <span>Donation Ammount</span>
+                           <input type="text" size="20" data-stripe="amount" id="amount" name="amount"/>
+                         </label>
+                       </div>
+
+                       <div class="form-row">
+                         <label>
+                           <span>Card Number</span>
+                             <input type="text" size="20" data-stripe="number"/>
+                         </label>
+                       </div>
+
+                       <div class="form-row">
+                         <label>
+                           <span>CVC</span>
+                           <input type="text" size="4" data-stripe="cvc"/>
+                         </label>
+                       </div>
+
+                       <div class="form-row">
+                         <label>
+                           <span>Expiration (MM/YYYY)</span>
+                           <input type="text" size="2" data-stripe="exp-month"/>
+                         </label>
+                         <span> / </span>
+                         <input type="text" size="4" data-stripe="exp-year"/>
+                       </div>                 
+                     </div>
+
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                       <button type="submit" class="btn btn-primary">Donate Now</button>                         
+                     </div>                   
+                   </form>
+                 </div><!-- /.modal-content -->
+               </div><!-- /.modal-dialog -->
+             </div><!-- /.modal -->
+           </span></li>
   			</ul>
 		</div>
 		<div class = "social-media-icons automargin">
@@ -136,3 +192,8 @@
       <!-- Put the Partnerships in this section -->
 	  
 </div>
+
+
+
+<%= javascript_include_tag("https://js.stripe.com/v2/") %>
+<%= javascript_include_tag("stripe.js") %>
