@@ -1,8 +1,8 @@
 <% content_for :title do %>Show groupGrants<% end %>
 
 <div class = "row">
-   <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>
-   <div class="input-group">
+  <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>   
+    <div class="input-group">
       <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Go!</button>
@@ -11,31 +11,31 @@
   <% end %>
     
   <div class="col-md-9 listing_header">Active groupGrants
-
-  <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
-    <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      
-  <% end %>
+    <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
+      <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      
+    <% end %>
   </div>
 </div>
 
 <div class = "row">
-   	<div class = "col-sm-3">
-      <ul class="nav nav-pills nav-stacked">
-        <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
-            <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
-            <%= 'All' %> <span class="badge pull-right"><%= @category_count['all'].to_s %></span>
+  <div class = "col-sm-3">
+    <ul class="nav nav-pills nav-stacked">
+      <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
+        <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
+          <%= 'All' %> <span class="badge pull-right"><%= @category_count['all'].to_s %></span>
         <% end %>
-        </li>
+      </li>
 
-         <% @categories.each do |c| %>
+      <% @categories.each do |c| %>
         <li <% if c.id == @category_id.to_i %> class="active"  <% end %>>
-            <%= link_to(url_for(:controller => "groupgrants", :action => "index", :category => c.id)) do %>
+          <%= link_to(url_for(:controller => "groupgrants", :action => "index", :category => c.id)) do %>
             <%= c.name %> <span class="badge pull-right"><%= @category_count[c.id].to_s %></span>
-            <% end %>
+          <% end %>
         </li>
-        <% end %>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
+  </div>
+  
   <div class = "col-sm-9">
     	<%= render partial: "groupgrant", collection: @groupgrants %>  	
   </div>
