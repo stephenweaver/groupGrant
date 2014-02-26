@@ -2,13 +2,10 @@
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 <script>
-var user_id = $(this).data("user");
   $.ajax({
          type: "GET",
-         url: "/messages/searchUsers",
-         data: { id: user_id },
-         dataType: "json",
-         async: false,
+         url: "/messages/searchUsers",         
+         dataType: "json",         
          success: function (data) { 
           $( "#search" ).autocomplete({
             source: data
@@ -18,7 +15,7 @@ var user_id = $(this).data("user");
 </script>
 
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary btn-lg" id="show-messages-button" data-toggle="modal" data-target="#myModal">
   Launch Messages
 </button>
 
@@ -27,13 +24,17 @@ var user_id = $(this).data("user");
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Messages</h4>
-        <div class="ui-widget">
-          <label for="search">Search: </label>
-          <input id="search">
-        </div>
-      </div>
+        <button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <!-- <h4 class="modal-title" id="myModalLabel">Messages</h4> -->
+
+          <!-- <label for="search">Search: </label> -->
+    
+          <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
+            <option></option>
+            <% @search_users.each do |user| %>
+               <option value= <%= user[0] %>> <%= user[1] %></option>
+           <% end %>
+         </select>
       <div class="modal-body">
         <% if @messages.empty? %>
           <div>There are no messages</div>
@@ -60,7 +61,7 @@ var user_id = $(this).data("user");
         <div class="col-xs-6 col-md-6" id="message_table">
         <!-- Messages table -->
         <div class="">
-        <table class="table table-bordered" id="chats">
+        <table class="table" id="chats">
           <tbody>
             <% @messages.each do |message| %>
               <tr <% if message.user_sent_id != current_user.id %> class="active chat" <% else %> class="text-right chat"  <% end %>>
@@ -73,8 +74,8 @@ var user_id = $(this).data("user");
         </table>
         </div>
         <div id="bottom_table">
-          <div class="input-group">
-            <form>
+          <div>
+            <form class="input-group">
                 <input type="text" class="form-control" id="chat_message">
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="submit" id="send_message">Send</button>
@@ -96,3 +97,7 @@ var user_id = $(this).data("user");
     </div>
   </div>
 </div>
+<%= stylesheet_link_tag "chosen.min.css" %>
+<%= stylesheet_link_tag "chosen-bootstrap.css" %>
+
+<%= javascript_include_tag("chosen.jquery.min.js") %>

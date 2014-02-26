@@ -14,10 +14,22 @@ form {
 	display: inherit;
 }
 
-table {
+table td {
    
 }
 
 #friends {
 	padding-left: 0;
+}
+
+.ui-widget {
+	padding-left: 8px;
+}
+
+#chat_message {
+	
+}
+
+#chats td {
+	border: none;
 }

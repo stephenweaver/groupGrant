@@ -38,14 +38,16 @@ Blankcomposer::Application.routes.draw do
   delete '/logout', :to => "devise/sessions#destroy"
 
 
-  # match 'charity/edit' => 'registrations#edit', :user => { :user_type => 'charity' }, via: :get, as: 'charity_edit'
-  # match 'donor/edit' => 'registrations#edit', :user => { :user_type => 'donor' }, via: :get, as: 'donor_edit'
+  # match 'charity/edit'  => 'registrations#edit', :user => { :user_type => 'charity' },  via: :get, as: 'charity_edit'
+  # match 'donor/edit'    => 'registrations#edit', :user => { :user_type => 'donor' },    via: :get, as: 'donor_edit'
   # match 'business/edit' => 'registrations#edit', :user => { :user_type => 'business' }, via: :get, as: 'business_edit
   
   end
  
   match "/groupgrant/connect",         :to => "groupgrants#connect",           via: :post
+  match "/groupgrant/cancelRequest",   :to => "groupgrants#cancelRequest",     via: :post
   match "/messages/getAjax",           :to => "messages#getAjax",              via: :post
   match "/messages/checkAjax",         :to => "messages#checkAjax",            via: :post
+  match "/messages/searchUsers",       :to => "messages#searchUsers",          via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
 end

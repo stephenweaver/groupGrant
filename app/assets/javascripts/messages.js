@@ -47,12 +47,13 @@ send_message = function(){
 };
 
 startTimer = function() {
-   window.setInterval(update_client, 10000);
+  if(($("#last_id")).length != 0) {
+     window.setInterval(update_client, 10000);
+  }
 };
 
 
 update_client = function(){
-   console.log("tset");
    $.ajax({
       type: "POST",
       url: "/messages/checkAjax",
@@ -60,6 +61,7 @@ update_client = function(){
       dataType: "json",
       async: false,
       success: function (data) {
+         console.log("test");
         if(data.length > 0)
         {
             $(".friend").children('.badge').remove();
@@ -100,6 +102,51 @@ send_message_reset = function() {
    update_client();
 }
 
+// auto_complete_users = function() {
+// var user = $( "#current_user" ).val();
+// console.log(user);
+//   $.ajax({
+//          type: "POST",
+//          url: "/message/searchUsers",
+//          data: {"user":user},
+//          dataType: "json",
+//          async: false,
+//          success: function (data) { 
+//           console.log(data);
+//           $( "#search" ).autocomplete({
+//             source: data
+//            });
+//          }
+//   });
+// }
+
+
+
+
+
+auto_complete_users = function() {
+    $( "#show-messages-button" ).click(function() {
+      chosen();
+   });
+};
+
+
+chosen = function() { 
+    setTimeout(function (){
+        var config = {
+        '.select_new_contact' : {}
+      }
+      
+      for (var selector in config) {
+        $(selector).chosen(config[selector]);
+      }
+
+      console.log("asdfsd");
+    }, 500); 
+   };
+
+
+
 
 
 $(window).load(function() {
@@ -107,8 +154,10 @@ $(window).load(function() {
    send_message();
    startTimer();
    send_message_reset();
+   auto_complete_users();
 });
 $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
 $(document).on('page:load', startTimer);
 $(document).on('page:load', send_message_reset);
+$(document).on('page:load', auto_complete_users);
