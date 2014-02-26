@@ -8,11 +8,14 @@
    font-size: 1.5em;
 }
 
+groupgrant_description {
+   font-size:larger;   
+}
+
 .groupgrant_charity {
 	font-size:1em;
    width: 60%;
 }
-
 
 .listing_header{
    height: 100%;
@@ -20,9 +23,7 @@
    padding: 10px 0 0px 50px;
    font-family: helvetica;
    font-weight: light;
-
 }
-
 
 .ellipsis_gg_about {
    height: 60px;
@@ -31,6 +32,13 @@
 .ellipsis_charity_description {
    height: 300px;
    overflow: hidden;
+}
+.groupgrant_raised {
+   font-size:smaller;
+   position: relative;
+   left: 0;
+   text-align: left;
+   padding:5px;
 }
 
 .groupgrant_goal {

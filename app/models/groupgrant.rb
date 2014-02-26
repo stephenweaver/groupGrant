@@ -28,6 +28,10 @@ class Groupgrant < ActiveRecord::Base
       end
    end
 
+   def days_left
+      (self.goal_date - Time.now).to_i
+   end
+
    auto_html_for :video_url do
       html_escape
       image(:class => 'profile_video')
