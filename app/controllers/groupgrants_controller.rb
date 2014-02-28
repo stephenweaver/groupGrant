@@ -92,8 +92,10 @@ before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
   # POST /groupgrants.json
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
-    @groupgrant.owner_id   = current_user.id
-    @groupgrant.partner_id = 0
+    @groupgrant.owner_id    = current_user.id
+    @groupgrant.partner_id  = 0
+    @groupgrant.goal_amount = 0
+    @groupgrant.goal_status = 0
     
     respond_to do |format|
       if @groupgrant.save
@@ -132,28 +134,26 @@ before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
   end
 
   def payment_form
-
   end
 
   def payment_form_post
-   
-
     # Get the credit card details submitted by the form
-    token = params[:stripeToken]
+    token  = params[:stripeToken]
     amount = params[:amount].to_i * 100
+    
     Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
     # Create the charge on Stripe's servers - this will charge the user's card
     begin
       charge = Stripe::Charge.create(
-        :amount => amount, # amount in cents, again
-        :currency => "usd",
-        :card => token,
+        :card        => token,
+        :amount      => amount, # amount in cents, again
+        :currency    => "usd",        
         :description => "payinguser@example.com"
       )
 
     rescue Stripe::CardError => e
-       @var = e
+      @var = e
     end
       @var = "Thank you for your donation!"
   end

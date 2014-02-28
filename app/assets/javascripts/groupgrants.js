@@ -1,11 +1,14 @@
 
 
 renderKnob = function() { 
-  $(".dial").knob({
-    'draw' : function () { 
-      $(this.i).val(this.cv + '%');
-    }
-  });
+	if($(".dial").length > 0)
+	{
+	  $(".dial").knob({
+	    'draw' : function () { 
+	      $(this.i).val(this.cv + '%');
+	    }
+	  });
+	}
 };
 
 // Send a request to a groupgrant
@@ -71,8 +74,6 @@ cancelRequest = function() {
 		});
 	});
 };
-
-
 
 $(window).load(function() {
    

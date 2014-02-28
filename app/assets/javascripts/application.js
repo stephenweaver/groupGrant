@@ -17,16 +17,16 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
-generic = function() {
-   var a = skrollr.init({
-      forceHeight: false
-   });
-   a.refresh();
+// generic = function() {
+//    var a = skrollr.init({
+//       forceHeight: false
+//    });
+//    a.refresh();
 
-   $('.dropdown-toggle').dropdown()
-   $('.datepicker').datepicker()
-};
+//    $('.dropdown-toggle').dropdown()
+//    $('.datepicker').datepicker()
+// };
 
-$(document).ready(generic);
-$(document).on('page:load', generic);
+// $(document).ready(generic);
+// $(document).on('page:load', generic);
 
