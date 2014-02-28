@@ -107,8 +107,10 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   #----------------------------------------------------------------------------------------------------
   def create
     @groupgrant = Groupgrant.new(groupgrant_params)
-    @groupgrant.owner_id   = current_user.id
-    @groupgrant.partner_id = 0
+    @groupgrant.owner_id    = current_user.id
+    @groupgrant.partner_id  = 0
+    @groupgrant.goal_amount = 0
+    @groupgrant.goal_status = 0
     
     respond_to do |format|      
       if @groupgrant.save

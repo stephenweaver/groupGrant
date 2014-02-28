@@ -4,7 +4,7 @@ gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.0'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 3.0.2.0'
@@ -26,15 +26,10 @@ gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
-gem 'spree', github: 'spree/spree', branch: '2-1-stable'
-gem 'spree_gateway', github: 'spree/spree_gateway'
+gem 'spree', git: 'https://github.com/spree/spree.git', branch: '2-1-stable'
+gem 'spree_gateway', git: 'https://github.com/spree/spree_gateway.git'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
 gem "stripe", '~> 1.10.1'
-gem "sqlite3"
-# MySQL is for the lab db. Unless it is 
-# causing problems, please do not comment
-# it out. Thanks!  - Rob
-# gem 'mysql2', '0.3.11'
 
 group :development do
   gem 'better_errors'
@@ -52,6 +47,11 @@ end
 #gem "mocha", group: :test
 
 group :production do
+  # To not install production gems, run `bundle install --without production`
+  # That setting will be saved so you can run just `bundle install` in the future
   gem 'pg'
   gem 'rails_12factor'
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', platforms: :ruby
+  gem 'mysql2', '0.3.11'
 end

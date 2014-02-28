@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223064242) do
+ActiveRecord::Schema.define(version: 20140226192015) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -374,12 +374,13 @@ ActiveRecord::Schema.define(version: 20140223064242) do
     t.string   "type"
     t.string   "name"
     t.text     "description"
-    t.boolean  "active",      default: true
-    t.string   "environment", default: "development"
+    t.boolean  "active",       default: true
+    t.string   "environment",  default: "development"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_on"
+    t.boolean  "auto_capture"
   end
 
   create_table "spree_payments", force: true do |t|
@@ -791,7 +792,7 @@ ActiveRecord::Schema.define(version: 20140223064242) do
 
   create_table "spree_variants", force: true do |t|
     t.string   "sku",                                     default: "",    null: false
-    t.decimal  "weight",          precision: 8, scale: 2
+    t.decimal  "weight",          precision: 8, scale: 2, default: 0.0
     t.decimal  "height",          precision: 8, scale: 2
     t.decimal  "width",           precision: 8, scale: 2
     t.decimal  "depth",           precision: 8, scale: 2

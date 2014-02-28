@@ -9,3 +9,38 @@
 		width: 900px;
 	}
 }
+
+.container {
+	margin-left: 0;
+	padding-left: 0px;
+}
+
+@media (min-width: 1500px) {
+	.container {
+		width: 1500px;
+	}
+}
+
+@component-active-bg {
+	color: #00dd00;
+}
+
+form.col-md-3 {
+	background: #dff0d8;
+	padding-top: 50px;
+	padding-bottom: 10px;
+	margin-bottom: 0px;
+	padding-left: 50px;
+}
+
+div.col-sm-3 {
+	background: #dff0d8;
+	height: 500px;
+	padding-top: 0px;
+	margin-left: 0px;
+	padding-left: 50px;
+}
+
+.col-md-9 {
+	margin-top: 50px;
+}

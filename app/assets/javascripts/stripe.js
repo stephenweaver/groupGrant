@@ -1,6 +1,12 @@
 setup = function() {
-   Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
-   console.log(Stripe);
+  if (typeof Stripe !== "undefined") {
+    Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
+    console.log("sucker");
+    $('.payment-form').on('shown.bs.modal', function (e) {
+      console.log("modal launched");
+      modal();
+    });
+  }  
 }
 
 var stripeResponseHandler = function(status, response) {
@@ -40,12 +46,7 @@ console.log("run jquery");
 
 $(window).load(function() {
    setup();
-   console.log("hello");
  });
 
 $(document).on('page:load', setup);
 
-$('.payment-form').on('shown.bs.modal', function (e) {
-  console.log("modal launched");
-  modal();
-})
