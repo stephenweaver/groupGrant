@@ -258,6 +258,7 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    mysql2 (0.3.11-x86-mingw32)
     netrc (0.7.7)
     nifty-generators (0.4.6)
     nokogiri (1.6.1-x86-mingw32)
@@ -455,6 +456,7 @@ DEPENDENCIES
   jquery-rails
   meta_request
   money (~> 5.1.1)
+  mysql2 (= 0.3.11)
   nifty-generators
   omniauth-facebook
   omniauth-twitter
