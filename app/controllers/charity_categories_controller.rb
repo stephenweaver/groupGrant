@@ -1,28 +1,38 @@
 class CharityCategoriesController < ApplicationController
   before_action :set_charity_category, only: [:show, :edit, :update, :destroy]
 
+  #----------------------------------------------------------------------------------------------------
   # GET /charity_categories
   # GET /charity_categories.json
+  #----------------------------------------------------------------------------------------------------
   def index
     @charity_categories = CharityCategory.all
   end
 
+  #----------------------------------------------------------------------------------------------------
   # GET /charity_categories/1
   # GET /charity_categories/1.json
+  #----------------------------------------------------------------------------------------------------
   def show
   end
 
+  #----------------------------------------------------------------------------------------------------
   # GET /charity_categories/new
+  #----------------------------------------------------------------------------------------------------
   def new
     @charity_category = CharityCategory.new
   end
 
+  #----------------------------------------------------------------------------------------------------
   # GET /charity_categories/1/edit
+  #----------------------------------------------------------------------------------------------------
   def edit
   end
 
+  #----------------------------------------------------------------------------------------------------
   # POST /charity_categories
   # POST /charity_categories.json
+  #----------------------------------------------------------------------------------------------------
   def create
     @charity_category = CharityCategory.new(charity_category_params)
 
@@ -37,8 +47,10 @@ class CharityCategoriesController < ApplicationController
     end
   end
 
+  #----------------------------------------------------------------------------------------------------
   # PATCH/PUT /charity_categories/1
   # PATCH/PUT /charity_categories/1.json
+  #----------------------------------------------------------------------------------------------------
   def update
     respond_to do |format|
       if @charity_category.update(charity_category_params)
@@ -51,8 +63,10 @@ class CharityCategoriesController < ApplicationController
     end
   end
 
+  #----------------------------------------------------------------------------------------------------
   # DELETE /charity_categories/1
   # DELETE /charity_categories/1.json
+  #----------------------------------------------------------------------------------------------------
   def destroy
     @charity_category.destroy
     respond_to do |format|
@@ -62,12 +76,16 @@ class CharityCategoriesController < ApplicationController
   end
 
   private
+    #----------------------------------------------------------------------------------------------------
     # Use callbacks to share common setup or constraints between actions.
+    #----------------------------------------------------------------------------------------------------
     def set_charity_category
       @charity_category = CharityCategory.find(params[:id])
     end
-
+   
+    #----------------------------------------------------------------------------------------------------
     # Never trust parameters from the scary internet, only allow the white list through.
+    #----------------------------------------------------------------------------------------------------
     def charity_category_params
       params.require(:charity_category).permit(:name)
     end

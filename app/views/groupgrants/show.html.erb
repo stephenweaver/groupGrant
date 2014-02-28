@@ -1,24 +1,31 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <!-- Facebook SDK -->
 <div id="fb-root"></div>
 
 <script>
-   window.fbAsyncInit = function() {
-   FB.init({
-   appId      : '603004516422329',
-   status     : true,
-   xfbml      : true
-   });
-   };
+  window.fbAsyncInit = function()
+  {
+    FB.init(
+    {
+      appId  : '603004516422329',
+      status : true,
+      xfbml  : true
+    });
+  };
 
-   (function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/all.js";
-   fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+  (function(d, s, id)
+  {
+    var js, fjs = d.getElementsByTagName(s)[0];
+
+    if (d.getElementById(id)) {return;}
+
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }
+
+  (document, 'script', 'facebook-jssdk'));
 </script>
  
 <div class="text-center">
@@ -155,38 +162,43 @@
 </div>
 
 <div class=>
-   <div class="col-md-7">
-   <!-- Photos/Videos -->
-   </div>
-   <div class = "col-md-5">
-      <!-- Partnerships -->
-      <h3>Sponsors</h3>
+  <div class="col-md-7">
+  <!-- Photos/Videos -->
+  </div>
+
+  <div class = "col-md-5">
+    <!-- Partnerships -->
+    <h3>Sponsors</h3>
     <h4><%= @groupgrantOwner.name %></h4>
+
     <div style="clear:both;" class="ellipsis_charity_description">
       <%= image_tag @groupgrantOwner.user.profile.url(:thumb) %>
       <%= @groupgrantOwner.description %>
     </div>
     <br />
+
     <div id="sponsors">
       <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
       <% r = Request.where(groupgrant_id: @groupgrant.id)
-         #check if this is the user that sent it
-         if (r[0] != nil)
-            r = Request.find(r)
-            m = Message.where(request_id: r.id)
-            m = Message.find(m)
-            if (m.user_sent_id == current_user.id) %>
-                <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-                  Request Pending. Cancel? 
-                </div>
-                <% end %>
-              <% else %>
-                <div id="request" class="btn btn-primary" data-groupgrant=<%=@groupgrant.id %> >
-                  Connect with Charity </div>
-                <% end %>
-            <% end %>
-        </div>
-    </div> 
+        #check if this is the user that sent it
+        if (r[0] != nil)
+          r = Request.find(r)
+          m = Message.where(request_id: r.id)
+          m = Message.find(m)
+      
+          if (m.user_sent_id == current_user.id) %>
+            <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+               Request Pending. Cancel? 
+            </div>
+          <% end %>
+          <% else %>
+            <div id="request" class="btn btn-primary" data-groupgrant=<%=@groupgrant.id %> >
+              Connect with Charity 
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div> 
 </div>
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>

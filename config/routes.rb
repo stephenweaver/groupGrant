@@ -20,7 +20,6 @@ Blankcomposer::Application.routes.draw do
   resources :charges
   resources :messages
 
-
   root :to => 'visitors#new'
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
