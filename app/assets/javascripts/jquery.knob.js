@@ -825,8 +825,15 @@ $(function() {
     })
     .trigger('configure',
             {
-                "inputColor":"#003399",
-                "bgcolor":"#FFFFFF",
+                "inputColor":"#66CC66",
+                "bgColor":"#FFFFFF",
+                "displayInput":"true",
+                "width":"90",
+                "height":"50",
+                "thickness":".4",
+                "fgColor":"#66CC66",
+                "angleOffset":"-90",
+                "angleArc":"180",
             }
     );
 })
