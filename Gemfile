@@ -29,11 +29,6 @@ gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
 
-# MySQL is for the lab db. Unless it is 
-# causing problems, please do not comment
-# it out. Thanks!  - Rob
-gem 'mysql2', '0.3.11'
-
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -50,6 +45,11 @@ end
 #gem "mocha", group: :test
 
 group :production do
+  # To not install production gems, run `bundle install --without production`
+  # That setting will be saved so you can run just `bundle install` in the future
   gem 'pg'
   gem 'rails_12factor'
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', platforms: :ruby
+  gem 'mysql2', '0.3.11'
 end
