@@ -30,8 +30,7 @@
  
 <div class="text-center">
   <!-- gG Title -->
-  <h1><strong><%= @groupgrant.name %><strong></h1>
-  <h1><small><%= @groupgrantOwner.name %></small></h1>
+  <h1><strong><%= @groupgrant.name %><strong><br/><small><%= @groupgrantOwner.name %></small></h1>
   <% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
     <%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
   <% end %>
