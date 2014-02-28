@@ -41,11 +41,14 @@
 //  });
 
 renderKnob = function() { 
-  $(".dial").knob({
-    'draw' : function () { 
-      $(this.i).val(this.cv + '%');
-    }
-  });
+	if($(".dial").length > 0)
+	{
+	  $(".dial").knob({
+	    'draw' : function () { 
+	      $(this.i).val(this.cv + '%');
+	    }
+	  });
+	}
 };
 
 // Send a request to a groupgrant
@@ -112,16 +115,14 @@ cancelRequest = function() {
 	});
 };
 
-
-
 $(window).load(function() {
    
-   //renderKnob();
+   renderKnob();
    sendRequest();
    cancelRequest();   
 });
 
-//$(document).on('page:load', renderKnob);
+$(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
 

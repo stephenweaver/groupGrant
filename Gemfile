@@ -31,14 +31,6 @@ gem 'spree_gateway', git: 'https://github.com/spree/spree_gateway.git'
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
 gem "stripe", '~> 1.10.1'
 
-# Added by Rob Yoder
-gem "therubyracer" # is needed on CSLinux for execjs
-
-# MySQL is for the lab db. Unless it is 
-# causing problems, please do not comment
-# it out. Thanks!  - Rob
-gem 'mysql2', '0.3.11'
-
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -55,6 +47,13 @@ end
 #gem "mocha", group: :test
 
 group :production do
+  # Added by Rob Yoder
+  # gem "therubyracer" # is needed on CSLinux for execjs
+
+  # MySQL is for the lab db. Unless it is 
+  # causing problems, please do not comment
+  # it out. Thanks!  - Rob
+  gem 'mysql2', '0.3.11'
   gem 'pg'
   gem 'rails_12factor'
 end
