@@ -1,6 +1,13 @@
 // Place all the styles related to the groupgrants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gg_thumbnail {
+   margin:0 0px 0 20px;
+   width:300px; 
+   float:left;
+}
+
 .ellipsis_gg_title {
    white-space: nowrap;
    overflow: hidden;
