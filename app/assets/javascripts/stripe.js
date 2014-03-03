@@ -1,6 +1,12 @@
 setup = function() {
    Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
    console.log(Stripe);
+
+   $('.payment-form').on('shown.bs.modal', function (e) {
+      console.log("modal launched");
+      modal();
+    });
+   console.log("wasup");
 }
 
 var stripeResponseHandler = function(status, response) {
@@ -23,8 +29,9 @@ var stripeResponseHandler = function(status, response) {
 };
 
 modal = function(){
+  console.log("hey work?");
   jQuery(function($) {
-    $('#payment-form').submit(function(event) {
+    $('.payment-form').submit(function(event) {
       var $form = $(this);
       console.log("will this work?");
       // Disable the submit button to prevent repeated clicks
@@ -36,16 +43,11 @@ console.log("run jquery");
       return false;
     });
   });
-};
+}
 
 $(window).load(function() {
    setup();
-   console.log("hello");
  });
 
 $(document).on('page:load', setup);
 
-$('.payment-form').on('shown.bs.modal', function (e) {
-  console.log("modal launched");
-  modal();
-})

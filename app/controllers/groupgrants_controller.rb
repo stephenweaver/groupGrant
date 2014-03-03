@@ -160,11 +160,6 @@ before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
     # Use callbacks to share common setup or constraints between actions.
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
-
-      # My project wasn't getting the charity's name, so I added this code
-      # to make it work.  - Koffi
-      @groupgrantOwner = Charity.find(User.find(@groupgrant.owner_id).rolable_id)
-      #@groupgrant.charity = @groupgrantOwner
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

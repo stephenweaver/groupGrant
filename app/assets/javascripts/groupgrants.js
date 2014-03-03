@@ -115,13 +115,12 @@ cancelRequest = function() {
 
 
 $(window).load(function() {
-   
-   //renderKnob();
+   renderKnob();
    sendRequest();
    cancelRequest();   
 });
 
-//$(document).on('page:load', renderKnob);
+$(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
 

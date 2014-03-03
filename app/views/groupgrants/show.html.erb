@@ -165,10 +165,10 @@
 
 
     <h3>Sponsors</h3>
-    <h4><%= @groupgrantOwner.name %></h4>
+    <h4><%= @groupgrant.charity.name %></h4>
     <div style="clear:both;">
-      <%= image_tag @groupgrantOwner.user.profile.url(:thumb) %>
-      <%= @groupgrantOwner.description %>
+      <%= image_tag @groupgrant.charity.user.profile.url(:thumb) %>
+      <%= @groupgrant.charity.description %>
     </div>
     <br />
     <div id="sponsors">
