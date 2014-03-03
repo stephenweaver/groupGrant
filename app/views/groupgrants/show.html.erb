@@ -67,54 +67,47 @@
               <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Make a Donation</h4>
+                    <h4 class="modal-title">Your donation will make a difference!</h4>
                 </div>
                 <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
                   <span class="payment-errors"></span>
                   <div class="modal-body">
-                    <div class="form-row">
+                    <div class="col-md-5">
+                    <div class="form-group">
                       <label>
                         <span>Donation Ammount</span>
                         <br>
-                        <input type="text" size="20" data-stripe="amount" id="amount" name="amount"/>
+                        <input type="text" class="form-control" size="20" data-stripe="amount" id="amount" name="amount"/>
                       </label>
                     </div>
+                    </div>
 
-                    <div class="form-row">
-                      <label>
-                        <br>
-                        <span>Card Number</span>
-                          <br>
-                          <input type="text" size="20" data-stripe="number" placeholder="••••  ••••  ••••  ••••"/>
-                      </label>
-                    </div> 
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <label>
+                          <span>Card Number</span>
+                            <br>
+                            <input type="text" size="20" class="form-control" data-stripe="number"/>
+                        </label>
+                      </div> 
 
-                    <div class="col-md-8">
-                      <div class="col-md-8">
-                        <div class="form-row">
-                          <label>
-                            <br>
-                            <span>Expiration (MM/YYYY)</span>
-                            <br>
-                            <input type="text" size="2" data-stripe="exp-month" placeholder="• •"/>
-                            <span> / </span>
-                            <input type="text" size="4" data-stripe="exp-year" placeholder="• • • •"/>
-                          </label>
-                        </div> 
-                      </div>
+                      <div class="form-group">
+                        <label>Expiration Date</label>
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <input type="text" class="form-control" size="2" data-stripe="exp-month" style="width: 48px" placeholder="MM"/>
+                          </div>
 
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <label>
-                            <br>
-                            <span>CVC</span>
-                            <br>
-                            <input type="text" size="4" data-stripe="cvc" placeholder="• • •"/>
-                          </label>
-                        </div> 
-                      </div>
+                          <div class="col-xs-4 no_padding">
+                            <input type="text" class="form-control" size="4"  data-stripe="exp-year" style="width: 62px" placeholder="YYYY"/>
+                          </div>
+
+                          <div class="col-xs-4">
+                            <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
+                          </div>
+                        </div>
+                      </div> 
                     </div>              
-                  </div>
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
