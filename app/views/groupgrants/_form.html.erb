@@ -13,8 +13,8 @@
   </div>
 
   <%= f.input :category_id, :as => :select, :collection => GroupgrantCategory.all, :label_method => :name, :value_method => :id %>
-  <%= f.input :description, label: "Describe what this groupGrant is for" %>
-  <%= f.input :goal_date, as: :string, label: "When does this groupGrant need to be fulfilled?", :input_html => { :class => 'datepicker', 'data-date-format' => "yyyy-mm-dd" } %>
+  <%= f.input :description, label: "Describe what this groupGrant is for" %> 
+  <%= f.input :goal_date, as: :bootstrap_datepicker, label: "When does this groupGrant need to be fulfilled?" %>
   <%= f.input :goal_amount, :as => :currency, label: "How much money is needed for this groupGrant?" %>
   <%= f.input :video_url, label: "Paste a video URL to your groupGrant" %>
   <%= f.button :submit, :class => 'btn-primary col-md-offset-5' %>
