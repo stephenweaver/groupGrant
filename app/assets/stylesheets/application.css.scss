@@ -14,6 +14,7 @@
  */
 
  @import "bootstrap";
+ @import "bootstrap-datepicker";
 
 body { padding-top: 70px; }
 main { margin-top:0px;}
@@ -21,15 +22,52 @@ main { margin-top:0px;}
  background-color: #FFFFFF;
  padding: 20px;
 
- -webkit-border-radius: 0 0 6px 6px;
- -moz-border-radius: 0 0 6px 6px;
- border-radius: 0 0 6px 6px;
-/* -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
- -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
- box-shadow: 0 1px 2px rgba(0,0,0,.15);*/
+
+main { 
+   margin-top: 0;
 }
-.groupgrant_image {
-   width: 100%;
+
+nav {
+   height: 77px;
+}
+
+.left-bar {
+   background: #dff0d8;
+   height: auto;
+   padding-top: 0px;
+   margin-left: 0px;
+   padding-left: 50px;
+}
+
+ul.nav.navbar-nav {
+   padding-top: 10px;
+   margin-left: 120px;
+}
+
+ul.nav.navbar-nav a{
+   font-size: 18px;
+}
+
+.navbar-brand img {
+   margin-top: 5px;
+   width: 250px;
+   height: 40px;
+}
+
+.navbar-header {
+   margin-left: 20px;
+}
+
+.content {
+    background-color: #FFFFFF;
+    padding: 0 20px 20px 0;
+
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+   /* -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);*/
 }
 
 .padding10
@@ -82,6 +120,7 @@ main { margin-top:0px;}
 .banner img {
    max-width:75%;
 }
+
 .maxheight300
 {
    max-height: 45%;
@@ -106,12 +145,9 @@ a:hover {
    clear: right;
 }
 
-
 .form_label {
    clear: both;
 }
-
-
 
 .ellipsis_business_description {
    height: 300px;
@@ -129,7 +165,7 @@ a:hover {
    width: 80%;
 }
 .homepage_maintext{
-   font-size: 1em;
+   font-size: 1.5em;
 }
 
 .homerow{
@@ -137,5 +173,5 @@ a:hover {
 }
 
 .title {
-   font-size: 2.5em;
+   font-size: 4.5em;
 }

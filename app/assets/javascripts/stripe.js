@@ -1,7 +1,6 @@
 setup = function() {
    Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
    console.log(Stripe);
-
    $('.payment-form').on('shown.bs.modal', function (e) {
       console.log("modal launched");
       modal();

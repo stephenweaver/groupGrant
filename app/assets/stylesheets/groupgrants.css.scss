@@ -1,18 +1,45 @@
 // Place all the styles related to the groupgrants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// CSS for index and partial view //
+.gg_thumbnail {
+   margin:0 0px 0 20px;
+   width:300px; 
+   float:left;
+}
+
+.gg_image {
+   width: 100%;
+}
+
 .ellipsis_gg_title {
+// To avoid overflow on the thumbnails
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
    font-size: 1.5em;
 }
 
-.groupgrant_charity {
-	font-size:1em;
-   width: 60%;
+.progress_bar {
+   float: right;
+   margin-right: 20px;
 }
 
+// CSS for show //
+.gg_title {
+   border-bottom-style: solid;
+   border-width: 1px;
+   border-color: #BFBFBF;
+}
+
+.gg_description {   
+}
+
+.gg_owner {
+	font-size: 1em;
+   width: 60%;
+}
 
 .listing_header{
    height: 100%;
@@ -20,9 +47,7 @@
    padding: 10px 0 0px 50px;
    font-family: helvetica;
    font-weight: light;
-
 }
-
 
 .ellipsis_gg_about {
    height: 60px;
@@ -32,17 +57,16 @@
    height: 300px;
    overflow: hidden;
 }
-
-.groupgrant_goal {
-	font-size:smaller;
-	position: relative;
-	right: 0;
-	text-align: right;
-	padding:5px;
+.gg_raised {
+   float:right;
+   padding-right:40px;
 }
 
-.progress_bar {
-	position:relative;
-	left: 120px;
-	width: 85px;	
+.gg_goal {
+   float:right;
+   clear:right;
+}
+
+.border_divide {
+
 }
