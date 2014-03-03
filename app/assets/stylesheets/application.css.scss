@@ -14,6 +14,7 @@
  */
 
  @import "bootstrap";
+ @import "bootstrap-datepicker";
 
 body { 
    padding-top: 70px; 
@@ -25,6 +26,14 @@ main {
 
 nav {
    height: 77px;
+}
+
+.left-bar {
+   background: #dff0d8;
+   height: auto;
+   padding-top: 0px;
+   margin-left: 0px;
+   padding-left: 50px;
 }
 
 ul.nav.navbar-nav {
@@ -56,9 +65,6 @@ ul.nav.navbar-nav a{
    /* -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
     box-shadow: 0 1px 2px rgba(0,0,0,.15);*/
-}
-.groupgrant_image {
-   width: 100%;
 }
 
 .padding10
@@ -156,7 +162,7 @@ a:hover {
    width: 80%;
 }
 .homepage_maintext{
-   font-size: 1em;
+   font-size: 1.5em;
 }
 
 .homerow{
@@ -164,5 +170,5 @@ a:hover {
 }
 
 .title {
-   font-size: 2.5em;
+   font-size: 4.5em;
 }

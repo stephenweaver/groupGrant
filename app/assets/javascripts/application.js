@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require bootstrap-datepicker-rails
 //= require_tree .
 
 // generic = function() {
@@ -29,4 +30,3 @@
 
 // $(document).ready(generic);
 // $(document).on('page:load', generic);
-

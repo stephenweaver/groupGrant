@@ -25,6 +25,7 @@
 	color: #00dd00;
 }
 
+// Left colored bar
 form.col-md-3 {
 	background: #dff0d8;
 	padding-top: 50px;
@@ -33,14 +34,10 @@ form.col-md-3 {
 	padding-left: 50px;
 }
 
-div.col-sm-3 {
-	background: #dff0d8;
-	height: 500px;
-	padding-top: 0px;
-	margin-left: 0px;
+.col-sm-3 {
 	padding-left: 50px;
 }
 
-.col-md-9 {
+div.col-md-9.listing_header {
 	margin-top: 50px;
 }
