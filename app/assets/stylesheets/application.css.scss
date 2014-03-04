@@ -133,12 +133,12 @@ a:hover {
 
 .charity_index_single {
    overflow:hidden;
-   max-height: 175px;
+   max-height: 225px;
 }
 
 .business_index_single {
    overflow:hidden;
-   max-height: 175px;
+   max-height: 225px;
 }
 
 .form_field {
@@ -174,4 +174,22 @@ a:hover {
 
 .title {
    font-size: 4.5em;
+}
+
+// Homepage Styles
+section {
+  height: 100%;
+}
+
+#charity {
+  padding-top: 80px;
+}
+
+#business {
+  max-height: 500px;
+  background-color: #ccc;
+}
+
+#share {
+  max-height: 500px;
 }
