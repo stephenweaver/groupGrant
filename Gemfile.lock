@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/spree/spree.git
-  revision: 49480b748fac22ba39cddd37cdca1c9535b63f38
+  remote: http://github.com/spree/spree.git
+  revision: 3233ae973a971f8590058edcc35df23b890d78b7
   branch: 2-1-stable
   specs:
     spree (2.1.4)
@@ -50,14 +50,6 @@ GIT
     spree_sample (2.1.4)
       spree_core (= 2.1.4)
 
-GIT
-  remote: https://github.com/spree/spree_gateway.git
-  revision: 3d7b5d9e8785e138b84f6f98906643c113679e9b
-  specs:
-    spree_gateway (2.1.0.beta)
-      savon (~> 1.2)
-      spree_core (~> 2.1)
-
 PATH
   remote: spree_simple_sales
   specs:
@@ -79,7 +71,7 @@ GEM
     active_utils (2.0.2)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.42.5)
+    activemerchant (1.42.6)
       active_utils (~> 2.0, >= 2.0.1)
       activesupport (>= 2.3.14, < 5.0.0)
       builder (>= 2.1.2, < 4.0.0)
@@ -208,7 +200,7 @@ GEM
     heroku-api (0.3.15)
       excon (~> 0.25.1)
     high_voltage (2.0.0)
-    highline (1.6.20)
+    highline (1.6.21)
     hike (1.2.3)
     http (0.5.0)
       http_parser.rb
@@ -389,6 +381,9 @@ GEM
     skrollr-rails (0.6.17)
       rails (>= 3.1.0)
     slop (3.4.7)
+    spree_gateway (2.1.1)
+      savon (~> 1.2)
+      spree_core (~> 2.1)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -492,7 +487,7 @@ DEPENDENCIES
   simple_form (>= 3.0.0.rc)
   skrollr-rails
   spree!
-  spree_gateway!
+  spree_gateway (~> 2.1.1)
   spree_simple_sales!
   sqlite3
   stripe (~> 1.10.1)

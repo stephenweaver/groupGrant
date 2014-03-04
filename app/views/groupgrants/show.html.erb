@@ -30,7 +30,7 @@
  
 <div class="text-center gg_title">
   <!-- gG Title -->
-  <h1><strong><%= @groupgrant.name %><strong><br/><small><%= @groupgrantOwner.name %></small></h1>
+  <h1><strong><%= @groupgrant.name %><strong><br/><small><%= @groupgrant.charity.name %></small></h1>
   <% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
     <%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
   <% end %>
@@ -181,18 +181,10 @@
   <div class = "col-md-5">
     <!-- Partnerships -->
     <h3>Sponsors</h3>
-<<<<<<< HEAD
     <h4><%= @groupgrant.charity.name %></h4>
     <div style="clear:both;">
       <%= image_tag @groupgrant.charity.user.profile.url(:thumb) %>
       <%= @groupgrant.charity.description %>
-=======
-    <h4><%= @groupgrantOwner.name %></h4>
-
-    <div style="clear:both;" class="ellipsis_charity_description">
-      <%= image_tag @groupgrantOwner.user.profile.url(:thumb) %>
-      <%= @groupgrantOwner.description %>
->>>>>>> ca2dabc87c15a0cad01fa2c7c1ad723d583e2a41
     </div>
     <br />
 

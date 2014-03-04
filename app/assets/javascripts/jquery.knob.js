@@ -776,7 +776,7 @@
 //     .knob();
 // });
 
-$(function() {
+renderKnob = function() {
     $(".dial").knob({
       'draw' : function () {
 
@@ -836,4 +836,10 @@ $(function() {
                 "angleArc":"180",
             }
     );
-})
+}
+
+$(window).load(function() {
+   renderKnob();
+});
+
+$(document).on('page:load', renderKnob);

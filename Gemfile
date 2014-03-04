@@ -26,8 +26,8 @@ gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
 gem 'sqlite3'
 gem "skrollr-rails"
-gem 'spree', git: 'https://github.com/spree/spree.git', branch: '2-1-stable'
-gem 'spree_gateway', git: 'https://github.com/spree/spree_gateway.git'
+gem 'spree', git: 'http://github.com/spree/spree.git', branch: '2-1-stable'
+gem "spree_gateway", "~> 2.1.1"
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
 gem "stripe", '~> 1.10.1'
 # gem 'mysql2', '0.3.11'
