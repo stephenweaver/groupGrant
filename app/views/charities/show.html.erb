@@ -21,7 +21,7 @@
 </script>
 
 <div class="row">
-   <%= image_tag @charity.user.profile.url(:medium),  class:"col-md-3" %> 
+   <%= image_tag @charity.charity_pic.url(:small),  class:"col-md-3" %> 
    <div class="col-md-9">
     <% if user_signed_in? && current_user.class.name == "Charity" && current_user.id = @charity.id %>
          <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float: right; margin:5px;"%>      

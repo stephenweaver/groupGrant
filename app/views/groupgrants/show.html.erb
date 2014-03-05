@@ -46,6 +46,7 @@
   <!-- gG Info -->
 	<div class= "col-md-5">
     <div class= "well well-lg">
+      <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image", style:":block;" %>
 			<!-- gG Progress-->
       <div class="progress_bar">
         <input type="text" value="75" readOnly="true">
@@ -183,7 +184,7 @@
     <h3>Sponsors</h3>
     <h4><%= @groupgrant.charity.name %></h4>
     <div style="clear:both;">
-      <%= image_tag @groupgrant.charity.user.profile.url(:thumb) %>
+      <%= image_tag @groupgrant.charity.charity_pic.url(:small), class:"col-md-2" %>
       <%= @groupgrant.charity.description %>
     </div>
     <br />

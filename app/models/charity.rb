@@ -2,6 +2,8 @@ class Charity < ActiveRecord::Base
    belongs_to :charity_category, :foreign_key => "category_id"
    has_one :user, :as => :rolable
    has_many :groupgrants, :foreign_key => :owner_id, dependent: :destroy
+   has_attached_file :charity_pic, :styles => { :medium => "300x300>", 
+      :small => "200x200>", :thumb => "100x100>"}, :default_url => "medium/charity_default.png"
    validates :eid, presence: {is: true, message: "Please enter your EID"}, 
    numericality: {only_integer: true, message: "Please enter numbers only"}
    validates :name, :category_id, presence: {is: true, message: "Required"}
