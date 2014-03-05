@@ -3,6 +3,13 @@
 # That setting will be saved so you can run just 
 # `bundle install` in the future
 
+# All gems have been at least loosely versioned so 
+# that an unexpected update doesn't break anything
+# in the last month of development. Run the command
+# `bundle outdated` to see which gems could be updated
+# and test on your system before changing the version
+# number here.
+
 source 'http://rubygems.org'
 
 ruby '1.9.3'
