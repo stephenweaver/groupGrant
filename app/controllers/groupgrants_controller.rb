@@ -144,7 +144,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   #----------------------------------------------------------------------------------------------------
   # DELETE /groupgrants/1
   # DELETE /groupgrants/1.json
-    #----------------------------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------------------------------
   def destroy
     @groupgrant.destroy
     
@@ -189,11 +189,6 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     #----------------------------------------------------------------------------------------------------
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
-
-      # My project wasn't getting the charity's name, so I added this code
-      # to make it work.  - Koffi
-      @groupgrantOwner = Charity.find(User.find(@groupgrant.owner_id).rolable_id)
-      #@groupgrant.charity = @groupgrantOwner
     end
 
     #----------------------------------------------------------------------------------------------------

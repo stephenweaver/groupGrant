@@ -76,7 +76,6 @@ cancelRequest = function() {
 };
 
 $(window).load(function() {
-   
    renderKnob();
    sendRequest();
    cancelRequest();   

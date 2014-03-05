@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   validates :email, presence: {is: true, message: "Please enter an e-mail address"},
      format: {with: /\w*@\w*.\w*$/, :multiline => true}
   accepts_nested_attributes_for :rolable
-  has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, :default_url => "/assets/:style/missing.jpg"
+  #  The Charity and Business profile pics should be in their models so I put them there... -Gordon
+  # has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, :default_url => "/assets/:style/charity_default.png"
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

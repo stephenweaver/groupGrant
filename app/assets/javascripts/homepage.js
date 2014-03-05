@@ -34,5 +34,8 @@ $('.carousel').carousel();
 
 
 $(function() {
-   $("#messages").bsAlerts({'titles': {'warning': '<em>Warning!</em>', 'info':'<em>Info</em>', 'error':'Error!', 'success':'Success!'}, 'fade':'3000'});
+   $("#messages").bsAlerts({'fade':'3000'});
 });
+
+
+//{'titles': {'warning': '<em>Warning!</em>', 'info':'<em>Info</em>', 'error':'Error!', 'success':'Success!'}, 

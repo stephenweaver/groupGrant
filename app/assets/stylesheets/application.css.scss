@@ -16,12 +16,11 @@
  @import "bootstrap";
  @import "bootstrap-datepicker";
 
-body { 
-   padding-top: 70px; 
-}
-
-main { 
-   margin-top: 0;
+body { padding-top: 70px; }
+main { margin-top:0px;}
+.content {
+ background-color: #FFFFFF;
+ padding: 20px;
 }
 
 nav {
@@ -38,7 +37,7 @@ nav {
 
 ul.nav.navbar-nav {
    padding-top: 10px;
-   margin-left: 120px;
+   margin-left: 30px;
 }
 
 ul.nav.navbar-nav a{
@@ -130,12 +129,12 @@ a:hover {
 
 .charity_index_single {
    overflow:hidden;
-   max-height: 175px;
+   max-height: 225px;
 }
 
 .business_index_single {
    overflow:hidden;
-   max-height: 175px;
+   max-height: 225px;
 }
 
 .form_field {
@@ -171,4 +170,22 @@ a:hover {
 
 .title {
    font-size: 4.5em;
+}
+
+// Homepage Styles
+section {
+  height: 100%;
+}
+
+#charity {
+  padding-top: 80px;
+}
+
+#business {
+  max-height: 500px;
+  background-color: #ccc;
+}
+
+#share {
+  max-height: 500px;
 }

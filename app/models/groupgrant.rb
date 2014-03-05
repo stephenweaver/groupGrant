@@ -3,7 +3,7 @@ class Groupgrant < ActiveRecord::Base
    belongs_to :business, 			:foreign_key => "partner_id"
    belongs_to :groupgrant_category, :foreign_key => "category_id"
    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", 
-      :small => "200x200>", :thumb => "100x100>"}, :default_url => "/assets/:style/missing.png"
+      :small => "200x200>", :thumb => "100x100>"}, :default_url => "medium/missing.png"
    validates :name, :category_id, :goal_amount, :goal_date, presence: 
       {is: true, message: "This field is required"}
    validates :name, length: {in: 2..20, too_short: "A name can't be one character"}

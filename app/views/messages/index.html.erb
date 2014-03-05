@@ -1,51 +1,38 @@
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<br>
+<div class="row">
+<div class="col-sm-3 col-sm-offset-1">
 
-<script>
-  $.ajax({
-         type: "GET",
-         url: "/messages/searchUsers",         
-         dataType: "json",         
-         success: function (data) { 
-          $( "#search" ).autocomplete({
-            source: data
-           });
-         }
-  });
-</script>
 
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" id="show-messages-button" data-toggle="modal" data-target="#myModal">
-  Launch Messages
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button"  class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <!-- <h4 class="modal-title" id="myModalLabel">Messages</h4> -->
-
-          <!-- <label for="search">Search: </label> -->
-    
-          <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
-            <option></option>
-            <% @search_users.each do |user| %>
-               <option value= <%= user[0] %>> <%= user[1] %></option>
-           <% end %>
-         </select>
-      <div class="modal-body">
-        <% if @messages.empty? %>
-          <div>There are no messages</div>
-        <% end %>
+          <!-- Modal -->
+          <div class="modal fade" id="contactSelectedUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Message</h4>
+                </div>
+                <div class="modal-body">
+                 <form data-async data-target="event|close" action="/messages" method="POST">
+                    <fieldset>
+                      <textarea id="newMessage" class="form-control" rows="3"></textarea>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
 
         <!-- Friend table -->
-        <div class="col-xs-3 col-md-3" id="friends">
+        <div id="friends">
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Friends</th>
+              <th><h2>Connections</h2></th>
             </tr>
           </thead>
 
@@ -57,46 +44,51 @@
             <% end %>
           </tbody>
         </table>
-        </div>  
-        <div class="col-xs-6 col-md-6" id="message_table">
+        </div> 
+        <br>
+        <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
+            <option></option>
+            <% @search_users.each do |user| %>
+               <option value= <%= user[0] %>> <%= user[1] %></option>
+           <% end %>
+        </select>
+
+     
+
+          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser">
+            Contact
+          </button>
+  
+      </div>
+      <div class="col-sm-7">
+        <div  id="message_table">
         <!-- Messages table -->
-        <div class="">
         <table class="table" id="chats">
-          <tbody>
-            <% @messages.each do |message| %>
-              <tr <% if message.user_sent_id != current_user.id %> class="active chat" <% else %> class="text-right chat"  <% end %>>
-                <td >
-                  <b><%= message.user.rolable.name %>:</b><span class="message_id"><%= message.id %></span><br/><%= message.body %>
-                </td>
-              </tr>
-            <% end %>
+          <tbody style="max-height: 600px; overflow-y: scroll">
+           
           </tbody>
         </table>
-        </div>
         <div id="bottom_table">
           <div>
             <form class="input-group">
                 <input type="text" class="form-control" id="chat_message">
                 <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+                  <button class="btn btn-primary" type="button" id="send_message">Send</button>
                 </span>
             </form>
           </div>
-        </div>
         </div>
         <br>
         <input type='hidden' id="current_user" value=<%=current_user.id%>>
         <% if @last_message %>
         <input type='hidden' id="last_id" value=<%= @last_message.id %> >
         <% end %>
-  
-      </div>
       <div class="modal-footer">
         
       </div>
     </div>
   </div>
-</div>
+  </div>
 <%= stylesheet_link_tag "chosen.min.css" %>
 <%= stylesheet_link_tag "chosen-bootstrap.css" %>
 

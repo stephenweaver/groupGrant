@@ -1,24 +1,20 @@
 <% content_for :title do %>Show groupGrants<% end %>
-
-<div class = "row">
-  <%= form_tag "/groupgrants", :method => 'get', :class => "col-md-3" do %>   
-    <div class="input-group">
-      <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div>
-  <% end %>
-    
-  <div class="col-md-9 listing_header">Active groupGrants
-    <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
-      <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      
+<div class = 'col-sm-3 gg-left-column green-background tall'>
+  <div class = "row">
+    <%= form_tag "/groupgrants", :method => 'get' do %>   
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
     <% end %>
-  </div>
-</div>
+      
 
-<div class = "row">
-  <div class = "col-sm-3 left-bar">
+  </div>
+
+  <div class = "row">
+    <br>
     <ul class="nav nav-pills nav-stacked">
       <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
         <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
@@ -35,8 +31,13 @@
       <% end %>
     </ul>
   </div>
-  
-  <div class = "col-sm-9">
-    	<%= render partial: "groupgrant", collection: @groupgrants %>  	
-  </div>
+</div>
+
+<div class = "col-sm-9 gg-right-column">
+      <div class="col-md-9 listing_header">Active groupGrants
+      <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
+        <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md  col-md-1.5", style: "float: right;"%>      
+      <% end %>
+    </div>
+      <%= render partial: "groupgrant", collection: @groupgrants %>   
 </div>

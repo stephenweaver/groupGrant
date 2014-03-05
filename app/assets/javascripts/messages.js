@@ -14,8 +14,11 @@ select_user = function() {
             data.forEach(function(entry) {
                if(entry.user_sent_id != $("#current_user").val()) { classname = "active " }
                else { classname = "text-right" }
-               $('#chats').append('<tr class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
-               $("#last_id").val(entry.id);
+               $('#chats').append('<tr style="width:100%" class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
+                if(entry.id > $("#last_id").val())
+                 {
+                     $("#last_id").val(entry.id)
+                 };
             });
             $( ".friend" ).parent().removeClass('success');
             $(temp).parent().addClass('success');
@@ -24,6 +27,7 @@ select_user = function() {
       });
    });
    $(".friend:first").parent().addClass('success');
+   scrollDown();
 };
 
 
@@ -31,7 +35,7 @@ select_user = function() {
 send_message = function(){
  $( "#send_message" ).click(function() {
      var user_id = $($('.success')[0].children[0]).data('user');
-     var message_data = {user_received_id: user_id, user_sent_id : null, read: false, deleted: false, date: null, body: $(chat_message).val()};
+     var message_data = {user_received_id: user_id, user_sent_id : null, read: false, deleted: false, body: $(chat_message).val()};
      var json = JSON.stringify(message_data );
      $.ajax({
          type: "POST",
@@ -43,12 +47,18 @@ send_message = function(){
 
          }
       });
+     update_client();
    });
 };
 
 startTimer = function() {
   if(($("#last_id")).length != 0) {
      window.setInterval(update_client, 10000);
+  }
+
+  if($(".friend:first").length > 0)
+  {
+    $(".friend:first").click();
   }
 };
 
@@ -75,7 +85,7 @@ update_client = function(){
                {
                   if(entry.user_sent_id != $("#current_user").val()) { classname = "active" }
                   else { classname = "text-right" }
-                   $('#chats').append('<tr class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
+                   $('#chats').append('<tr style="width:100%" class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
                }
                else
                {
@@ -87,7 +97,12 @@ update_client = function(){
                      }
                   });
                }
-               $("#last_id").val(entry.id);
+               console.log(entry.id)
+               console.log($("#last_id").val())
+               if(entry.id > $("#last_id").val())
+                {
+                    $("#last_id").val(entry.id)
+                };
             });
         }
       }
@@ -146,18 +161,67 @@ chosen = function() {
    };
 
 
+firstContact = function(){
+  $('.modal').on('submit','form[data-async]', function(event) {
+    var $form = $(this);
+    var target = $form.attr('data-target');
+    var user_id = $('.select_new_contact').val();
+    var message_data = {user_received_id: user_id, user_sent_id : null, read: false, deleted: false, body: $('#newMessage').val()};
+    var json = JSON.stringify(message_data );
+    $.ajax({
+        type: $form.attr('method'),
+        url: $form.attr('action'),
+        data: { 'message' : message_data },
+        dataType: "json",
+
+        success: function(data, status) {
+          console.log("1");
+            $.each(target.split("|"),function(i,val){
+                if(val == "close"){
+                    console.log("1");
+                    $form.closest(".modal").modal("hide");
+                }else if(val == "event"){
+                    console.log("2");
+                    $form.trigger("ajax-submit");
+                }else{
+                    console.log("3");
+                    $(val).html(data);
+                }
+            });
+            $(document).trigger("add-alerts", {
+                message: "Your message has been sent!",
+                priority: "success"
+              });
+        }
+    });
+
+    event.preventDefault();
+  });
+};
+
+scrollDown = function() {
+  console.log("scrollDown");
+  var myDiv = $("#chats");
+  myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 1000);  
+}
+
 
 
 
 $(window).load(function() {
+
    select_user();
    send_message();
    startTimer();
    send_message_reset();
    auto_complete_users();
+   firstContact();
+   chosen();
 });
 $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
 $(document).on('page:load', startTimer);
 $(document).on('page:load', send_message_reset);
 $(document).on('page:load', auto_complete_users);
+$(document).on('page:load', firstContact);
+$(document).on('page:load', chosen);

@@ -30,6 +30,6 @@ table td {
 	
 }
 
-#chats td {
-	border: none;
+#chats,#chats tbody, #chats td, #chats tr {
+   display: block;
 }
