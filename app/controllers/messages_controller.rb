@@ -17,37 +17,13 @@ class MessagesController < ApplicationController
       return
     end
 
-    all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s))
-
-    if(!all_messages.empty?)
-      if(all_messages.first.user_received_id == current_user.id)
-        first_person_id = all_messages.first.user_sent_id
-      else
-        first_person_id = all_messages.first.user_received_id
-      end
-
-      @messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR
-                                  (user_received_id = :to2 AND user_sent_id = :from2)",
-                                  {from1: current_user.id, to1: first_person_id,
-                                   from2: first_person_id, to2: current_user.id} )
-
-      # set messages to read once seen
-      @messages.each do |m|
-        if((current_user.id == m.user_received_id) && (m.read != true))
-          m.read = true
-        end
-      end
-
-    else
-      @messages = []
-    end
-
+    all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).order(:id)
     user_list = []
     all_messages.each do |x|
       if(x.user_received_id == current_user.id)
-        user_list << x.user_sent_id
+        user_list << x.user_sent_id  unless user_list.include?(x.user_sent_id)
       else
-        user_list << x.user_received_id
+        user_list << x.user_received_id unless user_list.include?(x.user_received_id)
       end
     end
 
@@ -68,6 +44,8 @@ class MessagesController < ApplicationController
                                 from2: params["id"], to2: current_user.id} )
 
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
+    else  
+      render json: ''
     end
   end
 
@@ -78,8 +56,9 @@ class MessagesController < ApplicationController
       messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
                                     {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
+    else
+      render json: ''
     end
-    render json: ''
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -87,13 +66,23 @@ class MessagesController < ApplicationController
   #----------------------------------------------------------------------------------------------------
   def searchUsers
     if current_user.rolable.class.name == "Charity"
-      search_list = Business.pluck(:id,:name)
+      list_a = User.where(rolable_type: 'Business').order(:rolable_id).pluck(:id, :rolable_id)
+      search_list = Business.order(:id).pluck(:id, :name)
+
+      search_list.each_with_index do |x, index|
+        x[0] = list_a[index][0]
+      end
+      # sea
       # search_list = Business.where(active: true).pluck(:name)
       # search_list.each do |b|
       #   list << b.name
       # current_user
     elsif current_user.rolable.class.name == "Business"
-      search_list = Charity.pluck(:id, :name)
+      list_a = User.where(rolable_type: 'Charity').order(:rolable_id).pluck(:id, :rolable_id)
+      search_list = Charity.order(:id).pluck(:id, :name)
+      search_list.each_with_index do |x, index|
+        x[0] = list_a[index][0]
+      end
       # search_list.each do |c|
       #   list << c.name
       # end
@@ -131,11 +120,12 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @message }
+        format.html { edirect_to @message, notice: 'Message was successfully created.' }
+        format.json { render :text => '{"message": "Your messages has been sent"}' }
+        #format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+        render text: 'message'
       end
     end
   end

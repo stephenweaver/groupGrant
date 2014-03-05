@@ -61,7 +61,10 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
     bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x86-mingw32)
       bcrypt (>= 3.1.3)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -111,6 +114,7 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -121,6 +125,7 @@ GEM
       tzinfo
     ffaker (1.23.0)
     ffi (1.9.3)
+    ffi (1.9.3-x86-mingw32)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -193,10 +198,13 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.11)
+    mysql2 (0.3.11-x86-mingw32)
     naught (1.0.0)
     nifty-generators (0.4.6)
     nio4r (1.0.0)
     nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
+    nokogiri (1.6.1-x86-mingw32)
       mini_portile (~> 0.5.0)
     nori (1.1.5)
     oauth (0.4.7)
@@ -232,6 +240,7 @@ GEM
     paranoia (2.0.2)
       activerecord (~> 4.0)
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.4)
@@ -239,6 +248,11 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry (0.9.12.6-x86-mingw32)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+      win32console (~> 1.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rabl (0.9.3)
@@ -370,6 +384,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
+    sqlite3 (1.3.9-x86-mingw32)
     state_machine (1.2.0)
     stringex (1.5.1)
     stripe (1.10.1)
@@ -420,9 +435,11 @@ GEM
     wasabi (2.5.1)
       httpi (~> 1.0)
       nokogiri (>= 1.4.0)
+    win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   auto_html

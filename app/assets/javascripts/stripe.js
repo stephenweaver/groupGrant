@@ -1,4 +1,6 @@
 setup = function() {
+  if (typeof Stripe !== 'undefined')
+  {
    Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
    console.log(Stripe);
    $('.payment-form').on('shown.bs.modal', function (e) {
@@ -6,6 +8,7 @@ setup = function() {
       modal();
     });
    console.log("wasup");
+ }
 }
 
 var stripeResponseHandler = function(status, response) {
