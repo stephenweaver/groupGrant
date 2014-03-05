@@ -20,19 +20,17 @@ gem 'twitter'
 gem 'fb_graph'
 gem 'nifty-generators'
 gem 'binding_of_caller'
-gem  'money', '~> 5.1.1'
-gem 'heroku'
+gem 'money', '~> 5.1.1'
 gem 'paperclip',  '~> 3.4.1'
 gem 'auto_html'
-gem 'sqlite3'
 gem "skrollr-rails"
-gem 'spree', git: 'https://github.com/spree/spree.git', branch: '2-1-stable'
+gem 'spree', '~> 2.1.4'
 gem "spree_gateway", "~> 2.1.1"
 gem 'spree_simple_sales', :path => 'spree_simple_sales'
 gem "stripe", '~> 1.10.1'
-# gem 'mysql2', '0.3.11'
 
 group :development do
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'guard-bundler'
   gem 'guard-rails'
