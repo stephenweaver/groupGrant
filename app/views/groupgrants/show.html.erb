@@ -49,7 +49,7 @@
       <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image", style:":block;" %>
 			<!-- gG Progress-->
       <div class="progress_bar">
-        <input type="text" value="75" readOnly="true">
+          <input type="text" value="75" class="dial" readOnly="true">
         <div class="gg_raised">
           <%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %> Raised 
         </div>
@@ -215,3 +215,4 @@
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>
 <%= javascript_include_tag("stripe.js") %>
+<%= javascript_include_tag("jquery.knob.js") %>
