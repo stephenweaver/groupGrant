@@ -27,17 +27,16 @@
 
   (document, 'script', 'facebook-jssdk'));
 </script>
- 
-<div class="text-center gg_title">
-  <!-- gG Title -->
-  <h1><strong><%= @groupgrant.name %><strong><br/><small><%= @groupgrant.charity.name %></small></h1>
-  <% if user_signed_in? &&  current_user.id == @groupgrant.owner_id %>
-    <%= link_to 'Edit groupGrant', edit_groupgrant_path(@groupgrant), class: "btn btn-primary btn-md",  style:"float:right"%>
-  <% end %>
-</div>
 
 <div class="row">
-	<div class = "col-md-7">
+<div class="col-md-1">
+<!-- I made this so things would be centered -->
+</div>
+	<div class = "col-md-5">
+    <div class="text-center gg_title">
+      <!-- gG Title -->
+      <h1><strong><%= @groupgrant.name %><strong><br/><small><em> started by <%= @groupgrant.charity.name%></em></small></h1>
+    </div>
     <!-- gG Description -->
     <p class="lead">
       <%= @groupgrant.description %>
@@ -45,24 +44,32 @@
 	</div>
   <!-- gG Info -->
 	<div class= "col-md-5">
-    <div class= "well well-lg">
-      <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image", style:":block;" %>
-			<!-- gG Progress-->
-      <div class="progress_bar">
-          <input type="text" value="75" class="dial" readOnly="true">
-        <div class="gg_raised">
-          <%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %> Raised 
-        </div>
-        <div class="gg_goal">
-          <%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %> Goal
-        </div>
+    <div class= "well">
+      <div>
+        <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image col-md-3", style:":block;" %>
       </div>
+      <div> 
+      <!-- Time remaining -->
         <strong>
            <%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left
         </strong>
+      </div>
+      <div class="row">
+      <!-- gG Progress Bar -->
+        <div class="col-sm-4" style="height:55px; vertical-align:middle;">
+          <%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %> Raised 
+        </div>
+        <div class="col-sm-4" style="vertical-align:middle;">
+          <input type="text" value="75" class="dial" readOnly="true">
+        </div>
+        <div class="col-sm-4" style="height:55px; vertical-align:middle;">
+          <%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %> Goal
+        </div>
+      </div>
+      </br>
       <div>
         <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form">Donate</button></a> 
+        <a button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".payment-form">Donate</button></a> 
           <div class="modal fade payment-form" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -126,6 +133,12 @@
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
       </div>
+      <div  class="partnerships">
+      <!-- Charity and Business information -->
+        <div style="clear:both;">
+          <%= image_tag @groupgrant.charity.charity_pic.url(:small), style:"width:50px;" %>
+        </div>
+      </div>
     </div>
     <div class = "social-media-icons automargin">
     <!-- Social Media -->
@@ -173,44 +186,30 @@
     </div>
   </div>
 </div>
+<div class="col-md-1">
+<!-- I made this so things would be centered -->
+</div>
 
-<div class=>
-  <div class="col-md-7">
-  <!-- Photos/Videos -->
-  </div>
-
-  <div class = "col-md-5">
-    <!-- Partnerships -->
-    <h3>Sponsors</h3>
-    <h4><%= @groupgrant.charity.name %></h4>
-    <div style="clear:both;">
-      <%= image_tag @groupgrant.charity.charity_pic.url(:small), class:"col-md-2" %>
-      <%= @groupgrant.charity.description %>
-    </div>
-    <br />
-
-    <div id="sponsors">
-      <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
-      <% r = Request.where(groupgrant_id: @groupgrant.id)
-        #check if this is the user that sent it
-        if (r[0] != nil)
-          r = Request.find(r)
-          m = Message.where(request_id: r.id)
-          m = Message.find(m)
-      
-          if (m.user_sent_id == current_user.id) %>
-            <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-               Request Pending. Cancel? 
-            </div>
-          <% end %>
-          <% else %>
-            <div id="request" class="btn btn-primary" data-groupgrant=<%=@groupgrant.id %> >
-              Connect with Charity 
-            </div>
-        <% end %>
+<div id="sponsors">
+  <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
+  <% r = Request.where(groupgrant_id: @groupgrant.id)
+    #check if this is the user that sent it
+    if (r[0] != nil)
+      r = Request.find(r)
+      m = Message.where(request_id: r.id)
+      m = Message.find(m)
+  
+      if (m.user_sent_id == current_user.id) %>
+        <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+           Request Pending. Cancel? 
+        </div>
       <% end %>
-    </div>
-  </div> 
+      <% else %>
+        <div id="request" class="btn btn-primary" data-groupgrant=<%=@groupgrant.id %> >
+          Connect with Charity 
+        </div>
+    <% end %>
+  <% end %>
 </div>
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>
