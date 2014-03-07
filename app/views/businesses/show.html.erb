@@ -12,7 +12,7 @@
       <br><%= "(Address continued)" %>
    </div>
 
-   <% if current_user &&  current_user.id == @business.id %>
+   <% if current_user &&  current_user.rolable_type == "Business" && current_user.rolable_id == @business.id %>
       <div class = "col-md-1">
          <h6><%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md", style:"float:right"%></h6>
       </div>

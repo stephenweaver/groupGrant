@@ -163,7 +163,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { edirect_to @message, notice: 'Message was successfully created.' }
+        format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render :text => '{"message": "Your messages has been sent"}' }
         #format.json { render action: 'show', status: :created, location: @message }
       else
