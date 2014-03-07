@@ -5,24 +5,17 @@ select_user = function() {
      var classname = "";
      $.ajax({
          type: "POST",
-         url: "/messages/getAjax",
+         url: "/messages/getMessages",
          data: { id: user_id },
-         dataType: "json",
+         dataType: "html",
          async: false,
          success: function (data) {
             $("#chats tr").remove();
-            data.forEach(function(entry) {
-               if(entry.user_sent_id != $("#current_user").val()) { classname = "active " }
-               else { classname = "text-right" }
-               $('#chats').append('<tr style="width:100%" class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
-                if(entry.id > $("#last_id").val())
-                 {
-                     $("#last_id").val(entry.id)
-                 };
-            });
+            $('#chats').append(data);
             $( ".friend" ).parent().removeClass('success');
             $(temp).parent().addClass('success');
             $(temp).children('.badge').remove();
+            $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
          }
       });
    });
@@ -77,36 +70,36 @@ update_client = function(){
             $(".friend").children('.badge').remove();
             var classname = "";
             data.forEach(function(entry) {
-               //console.log(entry.data("user"));
-
                var user_id = $("#current_user").val();
                var selected_id = $($('.success')[0].children[0]).data('user');
                if(entry.user_sent_id == selected_id ||  entry.user_received_id == selected_id)
                {
                   if(entry.user_sent_id != $("#current_user").val()) { classname = "active" }
                   else { classname = "text-right" }
-                   $('#chats').append('<tr style="width:100%" class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><span class="message_id">' +entry.id + '</span><br/> ' + entry.body + '</td></tr>');
+                   $('#chats').append('<tr style="width:100%" class="chat ' + classname + '"><td><b>' + entry.user.rolable.name +'</b><br/> ' + entry.body + '</td></tr>');
                }
                else
                {
                   $(".friend").each(function(index){
                      if( ($(".friend").children('.badge').length < 1) && (entry.user_sent_id == $(this).data('user') ||  entry.user_received_id == $(this).data('user')))
                      {
-                        console.log("hhhiiiif");
                         $(this).append('<span class="badge pull-right">new</span>');
                      }
                   });
                }
-               console.log(entry.id)
-               console.log($("#last_id").val())
                if(entry.id > $("#last_id").val())
                 {
                     $("#last_id").val(entry.id)
                 };
             });
+            setTimeout(function (){
+              scrollDown();
+            }, 500); 
         }
       }
    });
+
+
 }
 
 
@@ -162,7 +155,9 @@ chosen = function() {
 
 
 firstContact = function(){
+  console.log("does this work?")
   $('.modal').on('submit','form[data-async]', function(event) {
+    console.log("do you even lift")
     var $form = $(this);
     var target = $form.attr('data-target');
     var user_id = $('.select_new_contact').val();
@@ -200,12 +195,22 @@ firstContact = function(){
 };
 
 scrollDown = function() {
-  console.log("scrollDown");
-  var myDiv = $("#chats");
-  myDiv.animate({ scrollTop: myDiv.prop("scrollHeight") - myDiv.height() }, 1000);  
+  $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
 }
 
 
+request_response = function() {
+  $(".message_request_form").on("ajax:success", function(e, data, status, xhr) {
+      if(data['status'] === true) {
+        $(e.target).html('<div style="color:green">A partnership for blank between blank and blank was accepted.</div>');
+      }
+      else if(data['status'] === false) {
+        $(e.target).html('<div style="color:red">A partnership for blank between blank and blank was NOT accepted.</div>');
+      }
+
+
+  });
+}
 
 
 $(window).load(function() {
@@ -217,6 +222,7 @@ $(window).load(function() {
    auto_complete_users();
    firstContact();
    chosen();
+   request_response();
 });
 $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
@@ -225,3 +231,5 @@ $(document).on('page:load', send_message_reset);
 $(document).on('page:load', auto_complete_users);
 $(document).on('page:load', firstContact);
 $(document).on('page:load', chosen);
+$(document).on('page:load', request_response);
+

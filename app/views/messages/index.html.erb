@@ -1,94 +1,120 @@
 <br>
 <div class="row">
-<div class="col-sm-3 col-sm-offset-1">
-
-
-          <!-- Modal -->
-          <div class="modal fade" id="contactSelectedUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">Message</h4>
-                </div>
-                <div class="modal-body">
-                 <form data-async data-target="event|close" action="/messages" method="POST">
-                    <fieldset>
-                      <textarea id="newMessage" class="form-control" rows="3"></textarea>
-                    </fieldset>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Send</button>
-                </div>
-              </div>
-            </div>
+  <div class="col-sm-4 col-lg-3 col-lg-offset-1">
+   
+    <!-- SEND MESSAGE Modal -->
+    <div class="modal fade" id="contactSelectedUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Message</h4>
           </div>
-        
-
-        <!-- Friend table -->
-        <div id="friends">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th><h2>Connections</h2></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @friends.each do |friend| %>
-              <tr>
-                <td><div class="friend" data-user=<%= friend.id %>><%= friend.email %> </div></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        </div> 
-        <br>
-        <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
-            <option></option>
-            <% @search_users.each do |user| %>
-               <option value= <%= user[0] %>> <%= user[1] %></option>
-           <% end %>
-        </select>
-
-     
-
-          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser">
-            Contact
-          </button>
-  
-      </div>
-      <div class="col-sm-7">
-        <div  id="message_table">
-        <!-- Messages table -->
-        <table class="table" id="chats">
-          <tbody style="max-height: 600px; overflow-y: scroll">
-           
-          </tbody>
-        </table>
-        <div id="bottom_table">
-          <div>
-            <form class="input-group">
-                <input type="text" class="form-control" id="chat_message">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button" id="send_message">Send</button>
-                </span>
-            </form>
-          </div>
+          <div class="modal-body">
+           <form data-async data-target="event|close" action="/messages" method="POST">
+            <fieldset>
+              <textarea id="newMessage" class="form-control" rows="3"></textarea>
+            </fieldset>
+          </form>
         </div>
-        <br>
-        <input type='hidden' id="current_user" value=<%=current_user.id%>>
-        <% if @last_message %>
-        <input type='hidden' id="last_id" value=<%= @last_message.id %> >
-        <% end %>
-      <div class="modal-footer">
-        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
       </div>
     </div>
   </div>
-  </div>
+
+
+  <!-- Friend table -->
+  <div id="friends">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><h2>Connections</h2></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @friends.each do |friend| %>
+        <tr>
+          <td>
+            <div class="friend" data-user=<%= friend.id %>>
+              <div class="active_friend">
+                <% if(!friend.last_ping_time.nil? && 
+                      friend.last_ping_time >= (Time.current - 1.minutes)) %> 
+                <span class="glyphicon glyphicon-asterisk" style="color:green">  </span>
+                <% end %>
+                &nbsp
+              </div>
+              <div style="float:left">
+                <b><%= friend.rolable.name %></b><br>
+                <%= friend.email %>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div> 
+  <br>
+
+<!-- CONTACT NEW FRIEND -->
+  <select class="select_new_contact form-control " data-placeholder="Contact Someone new">
+    <option></option>
+    <% @search_users.each do |user| %>
+      <% if(!user.last_ping_time.nil? && 
+                  user.last_ping_time >= (Time.current - 1.minutes)) %> 
+        <option style="color:green" value= <%= user.id %>> 
+          * <%= user.rolable.name %>
+        </option>
+      <% else %>
+        <option value= <%= user.id %>>
+           &nbsp&nbsp <%= user.rolable.name %>
+        </option>
+      <% end %>
+     
+    <% end %>
+  </select>
+
+
+
+  <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px">
+    Contact
+  </button>
+  
+</div>
+
+<!-- THE MESSESAGES LIST -->
+<div class="col-sm-8 col-lg-7">
+  <div  id="message_table" style="max-height: 600px; overflow-y: scroll">
+    <!-- Messages table -->
+    <table class="table" id="chats">
+      <tbody >
+
+      </tbody>
+    </table>
+      </div>
+    <div id="bottom_table">
+      <div>
+        <form class="input-group">
+          <input type="text" class="form-control" id="chat_message">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" id="send_message">Send</button>
+          </span>
+        </form>
+      </div>
+    </div>
+    <br>
+    <input type='hidden' id="current_user" value=<%=current_user.id%>>
+    <% if @last_message %>
+    <input type='hidden' id="last_id" value=<%= @last_message.id %> >
+    <% end %>
+
+
+</div>
+</div>
 <%= stylesheet_link_tag "chosen.min.css" %>
 <%= stylesheet_link_tag "chosen-bootstrap.css" %>
 

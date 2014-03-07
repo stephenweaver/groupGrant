@@ -5,8 +5,8 @@ Blankcomposer::Application.routes.draw do
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
-  mount Spree::Core::Engine, :at => '/store', as: 'storefront'
-  
+  mount Spree::Core::Engine, :at => '/store'  
+
   resources :payments
   resources :groupgrant_categories
   resources :charity_categories
@@ -45,8 +45,10 @@ Blankcomposer::Application.routes.draw do
  
   match "/groupgrant/connect",         :to => "groupgrants#connect",           via: :post
   match "/groupgrant/cancelRequest",   :to => "groupgrants#cancelRequest",     via: :post
-  match "/messages/getAjax",           :to => "messages#getAjax",              via: :post
+  match "/messages/getMessages",           :to => "messages#getMessages",      via: :post
   match "/messages/checkAjax",         :to => "messages#checkAjax",            via: :post
   match "/messages/searchUsers",       :to => "messages#searchUsers",          via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
+  match "/users/active",               :to =>  "visitors#update_last_ping",   via: :post
+  match "requests/response",            :to => "groupgrants#request_response", via: :post
 end

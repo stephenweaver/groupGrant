@@ -18,15 +18,21 @@
 //= require bootstrap-datepicker-rails
 //= require_tree .
 
-// generic = function() {
-//    var a = skrollr.init({
-//       forceHeight: false
-//    });
-//    a.refresh();
+imhere = function() {
+   $.ajax({
+      type: "POST",
+      url: "/users/active",
+      dataType: "json",
+      async: false,
+      authenticity_token: window._token
+   });
+};
 
-//    $('.dropdown-toggle').dropdown()
-//    $('.datepicker').datepicker()
-// };
+start_imhere = function() {
+      
+     imhere();
+     window.setInterval(imhere, 30000);
+}
 
-// $(document).ready(generic);
-// $(document).on('page:load', generic);
+$(document).ready(start_imhere);
+$(document).on('page:load', start_imhere);   

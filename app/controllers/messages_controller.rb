@@ -36,17 +36,60 @@ class MessagesController < ApplicationController
 
   #----------------------------------------------------------------------------------------------------
   #----------------------------------------------------------------------------------------------------
-  def getAjax
+  def getMessages
+    response = ''
+    last_user = ''
+    last_time = Time.current - 10.years
     if(!current_user.nil?)
-      messages = Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR
-                                (user_received_id = :to2 AND user_sent_id = :from2)",
-                                {from1: current_user.id, to1: params["id"],
-                                from2: params["id"], to2: current_user.id} )
+      Message.where( "(user_received_id = :to1 AND user_sent_id = :from1) OR
+        (user_received_id = :to2 AND user_sent_id = :from2)",
+        {from1: current_user.id, to1: params["id"],
+          from2: params["id"], to2: current_user.id} 
+          ).find_each do |message|
 
-      render :json => messages.to_json(:include => { :user => { :include => :rolable }})
-    else  
-      render json: ''
+        # Set sender or reciver
+        if(message.user_sent_id != current_user.id)
+          classname = "active "
+        else 
+          classname = "text-right"
+        end
+
+        # Set time stamp if more than an hour since a message
+        if(last_time < message.created_at - 1.hours )
+          response += "<tr style='width:100%' class='message_time_stamp chat' style='text-align:center'><td><center>" + message.created_at.localtime.to_formatted_s(:short) + "</center></td></tr>"
+        end
+
+        # If this is not a requst and just a normal text message
+        if(message.request_id.nil?)
+          # Only show the name someone didn't send a message twice in a row
+          if(message.user.rolable.name.to_s != last_user || last_time < message.created_at - 1.hours) 
+            response += "<tr style='width:100%' class='different_responder chat " + classname.to_s + "''><td>"
+            response += "<b>" + message.user.rolable.name.to_s + "</b><br/>"
+          else
+            response += "<tr style='width:100%' class='chat " + classname.to_s + "'><td class = 'same_responder'>"
+          end
+          response += message.body.to_s + "</td></tr>"
+
+        # If this is request 
+      else
+        response += "<tr style='width:100%' class='different_responder chat " + classname.to_s + "''>" + 
+        "<td><b>" + message.user.rolable.name.to_s + "</b><br/>" + 
+        '<form action="/requests/response" method="post" data-remote="true" class="form inline-form message_request_form">' + 
+          '<div><input type="hidden" name="id" value=' + message.request_id.to_s + '>' + 
+          '<span>Do you wish to become a partner on <b>' + view_context.link_to(Groupgrant.find(Request.find(message.request_id).groupgrant_id).name, Groupgrant.find(Request.find(message.request_id).groupgrant_id)) + '</b>?</span>&nbsp &nbsp' +
+          '<input type="submit" name="accept" value="accept" class="btn btn-success" /> &nbsp' + 
+          '<input type="submit" name="reject" value="reject" class="btn btn-danger" /></div>' +
+          '</form>' + 
+        "</td></tr>"
+      end
+
+        # Set what the last message contained
+        last_user = message.user.rolable.name.to_s
+        last_time =  message.created_at
+      end
     end
+
+    render inline: response  
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -54,7 +97,7 @@ class MessagesController < ApplicationController
   def checkAjax
     if(!current_user.nil? && !params['message_id'].nil?)
       messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
-                                    {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+        {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
     else
       render json: ''
@@ -87,7 +130,7 @@ class MessagesController < ApplicationController
       #   list << c.name
       # end
     end
-    return search_list
+    return User.where(rolable_type: 'Charity')
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -175,4 +218,4 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:user_received_id, :user_sent_id, :read, :deleted, :date, :body)
     end
-end
+  end

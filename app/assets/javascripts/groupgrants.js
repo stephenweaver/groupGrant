@@ -1,6 +1,6 @@
-
-
-renderKnob = function() { 
+//
+renderKnob = function() 
+{ 
 	if($(".dial").length > 0)
 	{
 	  $(".dial").knob({
@@ -12,7 +12,8 @@ renderKnob = function() {
 };
 
 // Send a request to a groupgrant
-sendRequest = function() {
+sendRequest = function() 
+{
 	$("#request").click(function() {
 		var groupgrantID = $(this).data("groupgrant");
 		$.ajax({
@@ -47,8 +48,10 @@ sendRequest = function() {
 
 
 // Cancel a request
-cancelRequest = function() {
-	$("#cancel").click(function() {
+cancelRequest = function() 
+{
+	$("#cancel").click(function() 
+	{
 		var groupgrantID = $(this).data("groupgrant");
 		$.ajax({
 		    // the URL for the request
@@ -74,6 +77,8 @@ cancelRequest = function() {
 		});
 	});
 };
+
+
 
 $(window).load(function() {
    renderKnob();

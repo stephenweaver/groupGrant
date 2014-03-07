@@ -14,8 +14,8 @@ form {
 	display: inherit;
 }
 
-table td {
-   
+#chats td {
+   border:none;
 }
 
 #friends {
@@ -32,4 +32,24 @@ table td {
 
 #chats,#chats tbody, #chats td, #chats tr {
    display: block;
+}
+
+
+.active_friend {
+   float: left;
+   width: 14px;
+   display: block;
+   margin-right: 5px;
+}
+
+.different_responder {
+   border-top: 1px solid #DDD  
+}
+
+#chats .same_responder {
+   padding: 8px;
+   padding-top: 0px;
+}
+.message_time_stamp {
+   border-bottom: 1px solid #DDD
 }
