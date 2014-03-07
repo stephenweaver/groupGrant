@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :user_type, only: [:create, :update]
   before_filter :authenticate_user!, only: :edit
 
+
   def create
     child_class = @user_type.camelize.constantize
     params[:user].delete(:user_type)
@@ -166,94 +167,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
     end  
-    #   if params[:user].nil? && !@current_user.nil?
-    #     if !@current_user.rolable_type.nil?
-    #       @user_type = @current_user.rolable_type.downcase
-    #     else 
-    #       @user_type = "donor"
-    #     end
-    #   elsif !params[:user].nil? && @current_user.nil?
-    #     if(params[:user][:user_type])
-    #       @user_type = params[:user][:user_type]
-    #       if @user_type.nil?
-    #         if params[:Donor]
-    #           @user_type = "donor"
-    #         elsif params[:Business]
-    #           @user_type = "business"
-    #         elsif params[:Charity]
-    #           @user_type = "charity"
-    #         end
-    #       end
-    #     elsif (params[:user][:charity] || params[:user][:business] || params[:user][:donor])
-    #       if(params[:user][:charity])
-    #         @user_type = "charity"
-    #       elsif (params[:user][:business])
-    #          @user_type = "business"
-    #       elsif (params[:user][:donor])
-    #         @user_type = "donor"
-    #       end
-    #     end 
-            
-    #   elsif !params[:user].nil? && !current_user.nil?
-    #     @user_type = current_user.user.rolable_type.underscore
-    #   else
-    #     render root_path
-    #   end
-    #     # update 
 
-
-
-
-    #   if !params[:user].nil? && current_user
-    #     Rails.logger.info("Step 1 - >>>")
-    #     # params[:user][:user_attributes].delete(:id)
-    #     params[:user] = params[:user].permit(user_attrs)
-
-    #     @user_type = @user_type.camelize
-    #     case @user_type
-    #       when "charity"
-    #         params[:user][:Charity].delete(:id)
-    #         params[:Charity].permit(charity_attrs)
-    #       when "business"
-    #         params[:user][:Business].delete(:id)
-    #         params[:Business].permit(business_attrs)
-    #       when "Donor"
-    #         params[:user].delete(:id)
-    #         params[:user].permit(donor_attrs)
-    #     end
-    #     # new
-    #   # elsif !params[:charity].nil? || !params[:business].nil? || !params[:donor].nil?
-    #   #   Rails.logger.info("Step 2 - >>>")
-    #   #   case @user_type
-    #   #     when "charity"
-    #   #        params[:charity].permit(charity_attrs)
-    #   #     when "business"
-    #   #       params[:business].permit(business_attrs)
-    #   #     when "donor"
-    #   #       params[:donor].permit(donor_attrs)
-    #   #   end
-    #   #   # new failed first time
-    #   #   raise
-    #   elsif !params[:user][:charity].nil? || !params[:user][:business].nil? || !params[:user][:donor].nil?
-    #     Rails.logger.info("Step 3 - >>>")
-    #     Rails.logger.info(@user_type)
-    #     case @user_type
-    #       when "charity" || "Charity"
-    #          Rails.logger.info("case1")
-    #         params[:user][:charity].permit(charity_attrs)
-    #       when "business" || "Business"
-    #          Rails.logger.info("case2")
-    #         params[:user][:business].permit(business_attrs)
-    #       when "donor" || "Donor"
-    #         Rails.logger.info("maybe")
-    #          params[:user][:donor].permit(donor_attrs)
-    #     end
-    #   elsif !current_user.nil?
-    #     @user_type = current_user.user.rolable_type.underscore
-    #   else
-    #     @user_type = "something_is_wrong_and"
-    #   end
-    # end
 
 end
 

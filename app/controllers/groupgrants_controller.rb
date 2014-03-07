@@ -73,7 +73,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       request = Request.create(groupgrant_id: @groupgrant.id)
       message = Message.new(body: "someone wants to be your friend", 
                             user_sent_id:     current_user.id, 
-                            user_received_id: @groupgrant.owner_id, 
+                            user_received_id: @groupgrant.charity.user.id, 
                             request_id:       request.id)
 
       if (message.save)
@@ -86,6 +86,21 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       result "No ID was passed for the groupgrant"
     end
     render text: result
+  end
+
+
+  def request_response
+    request = Request.find(params[:id])
+    if(!params[:reject].nil?)
+      request.is_accepted = false
+      request.date_responded = Time.current
+    elsif(!params[:accept].nil?)
+      request.is_accepted = true
+      request.date_responded = Time.current
+    end
+    request.save!
+    
+    render json: {status: request.is_accepted}
   end
 
   #----------------------------------------------------------------------------------------------------

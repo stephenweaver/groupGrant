@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right">
    <% if user_signed_in? %>
-      <p class="navbar-text">Logged in as <strong><%= current_user.email %></strong>
+      <p class="navbar-text">Logged in as <strong><%= current_user.rolable.name || current_user.email %></strong>
          <%= link_to image_tag('mail.png', alt: "Messages"), messages_path %>
       </p>
       
