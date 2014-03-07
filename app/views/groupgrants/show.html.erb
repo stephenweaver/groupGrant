@@ -62,64 +62,148 @@
         </strong>
       <div>
         <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form">Donate</button></a> 
-          <div class="modal fade payment-form" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Your donation will make a difference!</h4>
-                </div>
+        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form-modal-md">Donate</button></a> 
+        
+        <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Your donation will make a difference!</h4>
+              </div>
+
+              <div class="modal-body">
                 <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
-                  <span class="payment-errors"></span>
-                  <div class="modal-body">
-                    <div class="col-md-5">
+                  <span class="payment-errors"></span>                
+                  <div class="col-md-5">
                     <div class="form-group">
+                      <!-- used to populate amount field -->
+                      <script type="text/javascript">
+                        function setText(target) 
+                        {
+                          var txt  = document.getElementById(target);
+                          var temp = txt.value;
+                          var tf   = document.getElementById("textField");
+                          tf.value = temp;
+                        }   
+                      </script>
+
                       <label>
                         <span>Donation Ammount</span>
-                        <br>
-                        <input type="text" class="form-control" size="20" data-stripe="amount" id="amount" name="amount"/>
+                      </label>
+                      <br>
+                      <div class="form-row">
+                        <div class="col-md-5" style="padding-left: 0px;">                            
+                          <input type="radio" name="amount" value="10" onchange="setText('10')">&nbsp; $10<br>
+                          <input type="radio" name="amount" value="50" onchange="setText('50')">&nbsp; $50
+                        </div>
+
+                        <div>
+                          <input type="radio" name="amount" value="100" onchange="setText('100')">&nbsp; $100<br>
+                          <input type="radio" name="amount" value="500" onchange="setText('500')">&nbsp; $500
+                        </div>                         
+                      </div>
+
+                      <label>
+                        <br>Custom Amount
+                        <div class="input-group col-md-11" style="padding-left: 0px;">
+                          <span class="input-group-addon">$</span>
+                          <input type="text" class="form-control" id="textField" data-stripe="amount" id="amount" name="amount">
+                          <span class="input-group-addon">.00</span>
+                        </div>                         
                       </label>
                     </div>
-                    </div>
 
-                    <div class="col-md-7">
-                      <div class="form-group">
-                        <label>
-                          <span>Card Number</span>
-                            <br>
-                            <input type="text" size="20" class="form-control" data-stripe="number"/>
-                        </label>
-                      </div> 
+                    <table class="activity-desc">
+                      <tbody><tr>                          
+                        <td>
+                          <div style="clear:both; vertical-align: middle;">
+                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-5" %>
+                            <p>Donating To:
+                              <br><b><%= @groupgrant.name %></b>
+                            </p>       
+                          </div>                           
+                        </td>
+                      </tr></tbody>
+                    </table>
+                  </div>
 
-                      <div class="form-group">
-                        <label>Expiration Date</label>
-                        <div class="row">
-                          <div class="col-xs-3">
-                            <input type="text" class="form-control" size="2" data-stripe="exp-month" style="width: 48px" placeholder="MM"/>
-                          </div>
+                  <div class="col-md-7" style="height: 215px;">
+                    <div class="form-group">
+                      <label>
+                        <span>Card Number</span>
+                        <br>
+                        <input type="text" size="20" class="form-control" data-stripe="number"/>
+                      </label>
+                    </div> 
 
-                          <div class="col-xs-4 no_padding">
-                            <input type="text" class="form-control" size="4"  data-stripe="exp-year" style="width: 62px" placeholder="YYYY"/>
-                          </div>
-
-                          <div class="col-xs-4">
-                            <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
-                          </div>
+                    <div class="form-group">
+                      <label>Expiration Date</label>
+                      <div class="row">
+                        <div class="col-xs-4">
+                          <select class="form-control" name="exp-month" data-stripe="exp-month" style="width: 88px" placeholder="MM">
+                            <option><b>Month</b></option>
+                            <option value="1">01 - Jan</option>
+                            <option value="2">02 - Feb</option>
+                            <option value="3">03 - Mar</option>
+                            <option value="4">04 - Apr</option>
+                            <option value="5">05 - May</option>
+                            <option value="6">06 - Jun</option>
+                            <option value="7">07 - Jul</option>
+                            <option value="8">08 - Aug</option>
+                            <option value="9">09 - Sep</option>
+                            <option value="10">10 - Oct</option>
+                            <option value="11">11 - Nov</option>
+                            <option value="12">12 - Dec</option>
+                          </select>                           
                         </div>
-                      </div> 
-                    </div>              
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Donate Now</button>                         
-                  </div>                   
+                        <div class="col-xs-4 no_padding">
+                          <select class="form-control" name="exp-year" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
+                            <option>Year</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                          </select>                            
+                        </div>
+
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
+                        </div>
+                      </div>
+                    </div> 
+                  </div> 
                 </form>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+              </div><!-- /.modal-body -->             
+
+              <div class="modal-footer">
+                 <div class="form-group" style="float: left; font-size: small; padding-left: 15px;">                      
+                  <p>
+                    <span class="glyphicon glyphicon-lock"></span>
+                    Secured by
+                    <a href="http://www.stripe.com">
+                      <b>Stripe</b> 
+                     </a>
+                  </p>
+                </div>
+                  
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>                       
+              </div><!-- /.modal-footer -->             
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
       </div>
     </div>
+
     <div class = "social-media-icons automargin">
     <!-- Social Media -->
       <table>
@@ -129,31 +213,31 @@
               <script>
                  !function(d,s,id)
                  {
-                 var js,fjs=d.getElementsByTagName(s)[0];
+                   var js,fjs=d.getElementsByTagName(s)[0];
 
-                 if(!d.getElementById(id))
-                 {
-                 js=d.createElement(s);
-                 js.id=id;
-                 js.src="https://platform.twitter.com/widgets.js";
-                 fjs.parentNode.insertBefore(js,fjs);
-                 }
+                   if(!d.getElementById(id))
+                   {
+                     js=d.createElement(s);
+                     js.id=id;
+                     js.src="https://platform.twitter.com/widgets.js";
+                     fjs.parentNode.insertBefore(js,fjs);
+                   }
                  }
                  (document,"script","twitter-wjs");
 
-                 $(document).ready(function(){
-                 var href = location.pathname;
-                 var tweet = "<a href=\'http://www.groupGrant.com" + href;
-                     tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
-                 var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
+                 $(document).ready(function()
+                 {
+                   var href = location.pathname;
+                   var tweet = "<a href=\'http://www.groupGrant.com" + href;
+                       tweet = tweet + "\' class=\'twitter-share-button\' data-lang=\'en\' data-count=\'none\'>Tweet</a>";
+                   var share = "<div class=\'fb-share-button\' data-href=\'http://www.groupGrant.com" + href + "\'data-width=\'100\' data-type=\'button\'></div>";
 
-                 $("#tweets").html(tweet);
-                 $("#sharePage").html(share);
+                   $("#tweets").html(tweet);
+                   $("#sharePage").html(share);
                  });
               </script>
               <!-- Show Tweet Button -->
-              <div id="tweets"></div>
-              
+              <div id="tweets"></div>              
            </td>
         </tr>
         <tr>
@@ -162,7 +246,7 @@
               <div id="sharePage"></div>
            </td>
         </tr>
-         </table>
+      </table>
     </div>
   </div>
 </div>
