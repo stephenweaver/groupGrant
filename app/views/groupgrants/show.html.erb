@@ -57,30 +57,19 @@
                   <span class="payment-errors"></span>                
                   <div class="col-md-5">
                     <div class="form-group">
-                      <!-- used to populate amount field -->
-                      <script type="text/javascript">
-                        function setText(target) 
-                        {
-                          var txt  = document.getElementById(target);
-                          var temp = txt.value;
-                          var tf   = document.getElementById("textField");
-                          tf.value = temp;
-                        }   
-                      </script>
-
                       <label>
                         <span>Donation Ammount</span>
                       </label>
                       <br>
                       <div class="form-row">
                         <div class="col-md-5" style="padding-left: 0px;">                            
-                          <input type="radio" name="amount" value="10" onchange="setText('10')">&nbsp; $10<br>
-                          <input type="radio" name="amount" value="50" onchange="setText('50')">&nbsp; $50
+                          <input class="amount_radio" type="radio" name="amount" value="10">&nbsp; $10<br>
+                          <input class="amount_radio" type="radio" name="amount" value="50">&nbsp; $50
                         </div>
 
                         <div>
-                          <input type="radio" name="amount" value="100" onchange="setText('100')">&nbsp; $100<br>
-                          <input type="radio" name="amount" value="500" onchange="setText('500')">&nbsp; $500
+                          <input class="amount_radio" type="radio" name="amount" value="100">&nbsp; $100<br>
+                          <input class="amount_radio" type="radio" name="amount" value="500">&nbsp; $500
                         </div>                         
                       </div>
 
@@ -88,7 +77,7 @@
                         <br>Custom Amount
                         <div class="input-group col-md-11" style="padding-left: 0px;">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" id="textField" data-stripe="amount" id="amount" name="amount">
+                          <input type="text" class="form-control" data-stripe="amount" id="amount_field" name="amount">
                           <span class="input-group-addon">.00</span>
                         </div>                         
                       </label>
@@ -99,8 +88,8 @@
                         <td>
                           <div style="clear:both; vertical-align: middle;">
                             <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-5" %>
-                            <p>Donating To:
-                              <br><b><%= @groupgrant.name %></b>
+                            <p>Donating To:<br>
+                              <b><%= @groupgrant.name %></b>
                             </p>       
                           </div>                           
                         </td>
