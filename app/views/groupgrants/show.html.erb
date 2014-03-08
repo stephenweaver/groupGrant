@@ -42,77 +42,143 @@
       </br>
       <div>
         <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".payment-form">Donate</button></a> 
-          <div class="modal fade payment-form" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Make a Donation</h4>
-                </div>
+        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form-modal-md">Donate</button></a> 
+        
+        <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Your donation will make a difference!</h4>
+              </div>
+
+              <div class="modal-body">
                 <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
-                  <span class="payment-errors"></span>
-                  <div class="modal-body">
-                    <div class="form-row">
+                  <span class="payment-errors"></span>                
+                  <div class="col-md-5">
+                    <div class="form-group">
                       <label>
                         <span>Donation Ammount</span>
-                        <br>
-                        <input type="text" size="20" data-stripe="amount" id="amount" name="amount"/>
+                      </label>
+                      <br>
+                      <div class="form-row">
+                        <div class="col-md-5" style="padding-left: 0px;">                            
+                          <input class="amount_radio" type="radio" name="amount" value="10">&nbsp; $10<br>
+                          <input class="amount_radio" type="radio" name="amount" value="50">&nbsp; $50
+                        </div>
+
+                        <div>
+                          <input class="amount_radio" type="radio" name="amount" value="100">&nbsp; $100<br>
+                          <input class="amount_radio" type="radio" name="amount" value="500">&nbsp; $500
+                        </div>                         
+                      </div>
+
+                      <label>
+                        <br>Custom Amount
+                        <div class="input-group col-md-11" style="padding-left: 0px;">
+                          <span class="input-group-addon">$</span>
+                          <input type="text" class="form-control" data-stripe="amount" id="amount_field" name="amount">
+                          <span class="input-group-addon">.00</span>
+                        </div>                         
                       </label>
                     </div>
 
-                    <div class="form-row">
+                    <table class="activity-desc">
+                      <tbody><tr>                          
+                        <td>
+                          <div style="clear:both; vertical-align: middle;">
+                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-5" %>
+                            <p>Donating To:<br>
+                              <b><%= @groupgrant.name %></b>
+                            </p>       
+                          </div>                           
+                        </td>
+                      </tr></tbody>
+                    </table>
+                  </div>
+
+                  <div class="col-md-7" style="height: 215px;">
+                    <div class="form-group">
                       <label>
-                        <br>
                         <span>Card Number</span>
-                          <br>
-                          <input type="text" size="20" data-stripe="number" placeholder="••••  ••••  ••••  ••••"/>
+                        <br>
+                        <input type="text" size="20" class="form-control" data-stripe="number"/>
                       </label>
                     </div> 
 
-                    <div class="col-md-8">
-                      <div class="col-md-8">
-                        <div class="form-row">
-                          <label>
-                            <br>
-                            <span>Expiration (MM/YYYY)</span>
-                            <br>
-                            <input type="text" size="2" data-stripe="exp-month" placeholder="• •"/>
-                            <span> / </span>
-                            <input type="text" size="4" data-stripe="exp-year" placeholder="• • • •"/>
-                          </label>
-                        </div> 
-                      </div>
+                    <div class="form-group">
+                      <label>Expiration Date</label>
+                      <div class="row">
+                        <div class="col-xs-4">
+                          <select class="form-control" name="exp-month" data-stripe="exp-month" style="width: 88px" placeholder="MM">
+                            <option><b>Month</b></option>
+                            <option value="1">01 - Jan</option>
+                            <option value="2">02 - Feb</option>
+                            <option value="3">03 - Mar</option>
+                            <option value="4">04 - Apr</option>
+                            <option value="5">05 - May</option>
+                            <option value="6">06 - Jun</option>
+                            <option value="7">07 - Jul</option>
+                            <option value="8">08 - Aug</option>
+                            <option value="9">09 - Sep</option>
+                            <option value="10">10 - Oct</option>
+                            <option value="11">11 - Nov</option>
+                            <option value="12">12 - Dec</option>
+                          </select>                           
+                        </div>
 
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <label>
-                            <br>
-                            <span>CVC</span>
-                            <br>
-                            <input type="text" size="4" data-stripe="cvc" placeholder="• • •"/>
-                          </label>
-                        </div> 
-                      </div>
-                    </div>              
-                  </div>
+                        <div class="col-xs-4 no_padding">
+                          <select class="form-control" name="exp-year" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
+                            <option>Year</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                          </select>                            
+                        </div>
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Donate Now</button>                         
-                  </div>                   
+                        <div class="col-xs-4">
+                          <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
+                        </div>
+                      </div>
+                    </div> 
+                  </div> 
                 </form>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+              </div><!-- /.modal-body -->             
+
+              <div class="modal-footer">
+                 <div class="form-group" style="float: left; font-size: small; padding-left: 15px;">                      
+                  <p>
+                    <span class="glyphicon glyphicon-lock"></span>
+                    Secured by
+                    <a href="http://www.stripe.com">
+                      <b>Stripe</b> 
+                     </a>
+                  </p>
+                </div>
+                  
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>                       
+              </div><!-- /.modal-footer -->             
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
       </div>
+
       <div  class="partnerships">
       <!-- Charity and Business information -->
         <div style="clear:both;">
           <%= image_tag @groupgrant.charity.charity_pic.url(:small), style:"width:50px;" %>
         </div>
       </div>
-</div>
+    </div>
 
     <div class = "social-media-icons automargin">
     <!-- Social Media -->
@@ -121,8 +187,7 @@
         <tr>
            <td>
               <!-- Show Tweet Button -->
-              <div id="tweets"></div>
-              
+              <div id="tweets"></div>              
            </td>
         </tr>
         <tr>

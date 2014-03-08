@@ -1,6 +1,7 @@
-
-
-renderKnob = function() { 
+//
+renderKnob = function() 
+{ 
+	console.log("sdfgdsdfg");
 	if($(".dial").length > 0)
 	{
 	  $(".dial").knob({
@@ -11,8 +12,17 @@ renderKnob = function() {
 	}
 };
 
+set_amount_field = function()
+{
+	
+	$(".amount_radio").click(function(e) {
+		$("#amount_field").val($(e.target).val());
+	});
+};
+
 // Send a request to a groupgrant
-sendRequest = function() {
+sendRequest = function() 
+{
 	$("#request").click(function() {
 		var groupgrantID = $(this).data("groupgrant");
 		$.ajax({
@@ -47,8 +57,10 @@ sendRequest = function() {
 
 
 // Cancel a request
-cancelRequest = function() {
-	$("#cancel").click(function() {
+cancelRequest = function() 
+{
+	$("#cancel").click(function() 
+	{
 		var groupgrantID = $(this).data("groupgrant");
 		$.ajax({
 		    // the URL for the request
@@ -75,14 +87,19 @@ cancelRequest = function() {
 	});
 };
 
+
+
 $(window).load(function() {
    renderKnob();
    sendRequest();
-   cancelRequest();   
+   cancelRequest();
+   set_amount_field();  
 });
 
 $(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
+$(document).on('page:load', set_amount_field);
+
 
 
