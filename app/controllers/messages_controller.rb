@@ -121,10 +121,10 @@ class MessagesController < ApplicationController
 
   #----------------------------------------------------------------------------------------------------
   #----------------------------------------------------------------------------------------------------
-  def checkAjax
+  def check_for_messages
     if(!current_user.nil? && !params['message_id'].nil?)
-      messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
-        {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+      messages = Message.where( "(user_received_id = :current_user_id OR user_sent_id = :current_user_id) AND created_at > :last_time",
+        {current_user_id: current_user.id, last_time: Message.find(params['message_id']).created_at} )
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
     else
       render json: ''
@@ -195,7 +195,7 @@ class MessagesController < ApplicationController
         #format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
-        render text: 'message'
+        format.json { render text: 'message'}
       end
     end
   end

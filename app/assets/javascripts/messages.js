@@ -104,8 +104,9 @@ update_client = function(){
 
 
 send_message_reset = function() {
-   $('#send_message').click(function() {
+   $('#send_message').submit(function(e) {
       $('#send_message').parent().parent().children('#chat_message').val("");
+      e.preventDefault();
    });
    update_client();
 }
