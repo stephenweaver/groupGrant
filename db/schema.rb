@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -56,15 +57,6 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
-    t.string   "slogan"
-  end
-
-  create_table "charges", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "card_number"
-    t.string   "cid"
-    t.string   "expiration"
   end
 
   create_table "charities", force: true do |t|
@@ -107,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount",                 precision: 10, scale: 0
+    t.decimal  "goal_amount",                 precision: 10, scale: 2
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -121,7 +113,7 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status",                 precision: 10, scale: 0
+    t.decimal  "goal_status",                 precision: 10, scale: 2
     t.string   "video_url_html"
   end
 
@@ -808,8 +800,8 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.boolean  "is_master",                               default: false
     t.integer  "product_id"
     t.decimal  "cost_price",      precision: 8, scale: 2
-    t.integer  "position"
     t.string   "cost_currency"
+    t.integer  "position"
     t.boolean  "track_inventory",                         default: true
     t.datetime "updated_at"
     t.decimal  "sale_price",      precision: 8, scale: 2
@@ -867,5 +859,3 @@ ActiveRecord::Schema.define(version: 20140307011946) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-end
