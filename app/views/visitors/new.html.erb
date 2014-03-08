@@ -1,8 +1,77 @@
 
 <% content_for :homepage do %>
-<section id="charity" class="row homerow">
+  <section>
+    
+  </section>
+  <div class="user-container">
+    <section class="charity user">
+      <div class="section-inner">
+        <div class="wrapper">
+          <div class="copy">
+            <h1 class="title">
+              Charity
+            </h1>
+            <p>
+              Are you in need of some supplies or funds for a project? Do you need help from businesses and donors?
+              Would you like to have a fundraiser that reaches the entire masses? Then sign up with groupGrant today! 
+              We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
+            </p>
+          </div>
+          <%= link_to(charity_sign_up_path) do %>
+              <button type="button" class="btn btn-primary">Register as a Charity</button>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <section class="business user">
+      <div class="section-inner">
+        <div class="wrapper">
+          <div class="copy">
+            <h1 class="title">
+              Business
+            </h1>
+            <p>
+              Are you a business looking to give back? Do you have products you would like to donate, but don't know which charity to donate them to? Here at groupGRANT you can explore many charities in your areas of interest. Connect with charities that have needs and sponsor a groupgrant! We make it easy for businesses to donate to charities. Sign&nbsp;up&nbsp;today!
+            </p>
+           </div>
+              <%= link_to(business_sign_up_path) do %>
+                  <button type="button" class="btn btn-primary">Register as a Business</button>
+              <% end %>
+          </div>
+      </div>
+    </section>
+  </div>
+  <section class="donor user">
+    <div class="copy">
+      <h1 class="title">
+        Donor
+      </h1>
+      <p>
+        Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
+      </p>
+    </div>
+    <%= link_to(business_sign_up_path) do %>
+        <button type="button" class="btn btn-primary">Register as a Business</button>
+    <% end %>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section id="charity" class="row homerow">
   <div class="col-md-8 col-md-offset-2"><%= image_tag('homepage/kids.jpg', class: 'img-responsive')%></div>
-    <!-- <div class="col-md-5" >
+    <div class="col-md-5" >
       <h1 class="title"><b>Charity</b></h1>
       <div class="homepage_maintext" style="padding-right:100px; padding-bottom:20px; ">
         Are you in need of some supplies or funds for a project? Do you need help from businesses and donors?
@@ -13,7 +82,7 @@
     <%= link_to(charity_sign_up_path) do %>
         <button type="button" class="btn btn-primary btn-lg">Register as a Charity</button>
     <% end %>
-  </div> -->
+  </div>
 </section>
 
 
@@ -41,7 +110,7 @@
         <button type="button" class="btn btn-primary btn-lg">Register as a Donor</button>
     <% end %>
   </div>
-</section>
+</section> -->
 
 
 
