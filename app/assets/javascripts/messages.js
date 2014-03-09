@@ -196,7 +196,9 @@ firstContact = function(){
 };
 
 scrollDown = function() {
-  $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+  if($('#message_table').length < 0) {
+    $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+  }
 }
 
 
