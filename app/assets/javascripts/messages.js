@@ -156,9 +156,7 @@ chosen = function() {
 
 
 firstContact = function(){
-  console.log("does this work?")
   $('.modal').on('submit','form[data-async]', function(event) {
-    console.log("do you even lift")
     var $form = $(this);
     var target = $form.attr('data-target');
     var user_id = $('.select_new_contact').val();

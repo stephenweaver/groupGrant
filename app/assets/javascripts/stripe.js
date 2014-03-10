@@ -1,5 +1,4 @@
 setup_stripe = function() {
-console.log( Stripe !== 'undefined')
   if (typeof Stripe !== 'undefined')
   {
        console.log("wasup");
