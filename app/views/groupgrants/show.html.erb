@@ -18,32 +18,29 @@
   <!-- gG Info -->
 	<div class= "col-md-5">
     <div class= "well">
-      <div>
+      <div class="row" style="vertical-align: middle;">
         <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image col-md-3", style:":block;" %>
       </div>
-      <div> 
-      <!-- Time remaining -->
-        <strong>
-           <%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left
-        </strong>
-      </div>
-      <div class="row">
-      <!-- gG Progress Bar -->
-        <div class="col-sm-4 center-block">
+      
+      <div class="row" style="margin-top: 10px;">
+        <!-- gG Progress Bar -->
+        <div class="col-sm-4 center-block" style="height: 55px;">
           <%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %> RAISED 
+          <br>
+          <%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left
         </div>
         <div class="col-sm-4 center-block">
           <input type="text" value=<%=@groupgrant.progress%> class="dial" readOnly="true">
         </div>
-        <div class="col-sm-4 center-block">
+        <div class="col-sm-4 center-block right" style="text-align:right;">
           <%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %> GOAL
+          <br>
+          <!-- Button trigger modal -->
+          <a button class="btn btn-primary btn-lg right" data-toggle="modal" data-target=".payment-form-modal-md">Donate</button></a> 
         </div>
       </div>
-      </br>
-      <div>
-        <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form-modal-md">Donate</button></a> 
-        
+      
+      <div>        
         <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -56,7 +53,7 @@
               <div class="modal-body">
                
                   <span class="payment-errors" style="color:red"></span>                
-                  <div class="col-md-5">
+                  <div class="col-md-5" style="height: 175px;">
                     <div class="form-group">
                       <label>
                         <span>Donation Ammount</span>
@@ -84,21 +81,10 @@
                       </label>
                     </div>
 
-                    <table class="activity-desc">
-                      <tbody><tr>                          
-                        <td>
-                          <div style="clear:both; vertical-align: middle;">
-                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-5" %>
-                            <p>Donating To:<br>
-                              <b><%= @groupgrant.name %></b>
-                            </p>       
-                          </div>                           
-                        </td>
-                      </tr></tbody>
-                    </table>
+                    
                   </div>
 
-                  <div class="col-md-7" style="height: 215px;">
+                  <div class="col-md-7" style="height: 175px;">
                     <div class="form-group">
                       <label>
                         <span>Card Number</span>
@@ -150,7 +136,22 @@
                         </div>
                       </div>
                     </div> 
-                  </div> 
+                  </div>
+
+                  <div class="row">
+                    <table class="activity-desc">
+                      <tbody><tr>                          
+                        <td>
+                          <div style="clear:both;">
+                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-2" %>
+                            <p>Donating To:<br>
+                              <b><%= @groupgrant.name %></b>
+                            </p>       
+                          </div>                           
+                        </td>
+                      </tr></tbody>
+                    </table> 
+                  </div>
                 
               </div><!-- /.modal-body -->             
 
@@ -175,7 +176,7 @@
         </div><!--/.modal  -->
       </div>
 
-      <div  class="partnerships">
+      <div class="partnerships">
       <!-- Charity and Business information -->
         <div style="clear:both;">
           <%= image_tag @groupgrant.charity.charity_pic.url(:small), style:"width:50px;" %>
@@ -184,22 +185,20 @@
     </div>
 
     <div class = "social-media-icons automargin">
-    <!-- Social Media -->
-      <h3><em>Share the cause </em></h3>
-      <table>
-        <tr>
-           <td>
-              <!-- Show Tweet Button -->
-              <div id="tweets"></div>              
-           </td>
-        </tr>
-        <tr>
-           <td>
-              <!-- Show Facebook button -->
-              <div id="sharePage"></div>
-           </td>
-        </tr>
-      </table>
+      <!-- Social Media -->
+      <div class="row">
+        <div class="col-md-7">
+          <em style="font-size: 2.3em;">Share the cause</em>
+        </div>
+
+        <div class="col-md-1"></div>
+        
+        <!-- Show Tweet Button -->
+        <div class="col-md-2" id="tweets"></div>              
+            
+        <!-- Show Facebook button -->
+        <div class="col-md-2" id="sharePage" style="padding-left: 7px;"></div>            
+      </div>
     </div>
   </div>
 </div>
