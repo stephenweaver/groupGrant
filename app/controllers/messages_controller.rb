@@ -71,17 +71,44 @@ class MessagesController < ApplicationController
           response += message.body.to_s + "</td></tr>"
 
         # If this is request 
-      else
-        response += "<tr style='width:100%' class='different_responder chat " + classname.to_s + "''>" + 
-        "<td><b>" + message.user.rolable.name.to_s + "</b><br/>" + 
-        '<form action="/requests/response" method="post" data-remote="true" class="form inline-form message_request_form">' + 
-          '<div><input type="hidden" name="id" value=' + message.request_id.to_s + '>' + 
-          '<span>Do you wish to become a partner on <b>' + view_context.link_to(Groupgrant.find(Request.find(message.request_id).groupgrant_id).name, Groupgrant.find(Request.find(message.request_id).groupgrant_id)) + '</b>?</span>&nbsp &nbsp' +
-          '<input type="submit" name="accept" value="accept" class="btn btn-success" /> &nbsp' + 
-          '<input type="submit" name="reject" value="reject" class="btn btn-danger" /></div>' +
-          '</form>' + 
-        "</td></tr>"
-      end
+        else
+          response += "<tr style='width:100%' class='different_responder chat " + classname.to_s + "''>"
+          request = Request.find(message.request_id)
+          gg_link = view_context.link_to(Groupgrant.find(Request.find(message.request_id).groupgrant_id).name, Groupgrant.find(Request.find(message.request_id).groupgrant_id))
+          buttons = ''
+          # If sent it
+          if message.user_sent_id == current_user.id 
+            if request.is_accepted.nil?
+              text_message = "Your request to work together on " + gg_link + " is awaiting response.<br>"
+              buttons = '<input type="submit" name="cancel" value="Click to cancel" class="btn btn-danger" />'
+            elsif request.is_accepted == true
+              text_message = "Your request to work together on " + gg_link + " has been accepted." 
+            elsif request.is_accepted == false
+              text_message = "Your request to work together on " + gg_link + " has been rejected." 
+            end
+              
+          # If recieved it
+          elsif  message.user_sent_id != current_user.id 
+            if request.is_accepted.nil?
+              text_message = "Would you like to work together on " + gg_link + " groupGrant campaign?"
+              buttons = '<input type="submit" name="accept" value="accept" class="btn btn-success" /> &nbsp' + 
+                        '<input type="submit" name="reject" value="reject" class="btn btn-danger" /></div>'
+            elsif request.is_accepted == true
+              text_message = "You have agreed to work together on " + gg_link
+            elsif request.is_accepted == false
+              text_message = "You decided not to work together on " + gg_link
+            end
+          end
+
+          response += '<td>' + text_message 
+          if buttons != ''
+            response +='<form action="/requests/response" method="post" data-remote="true" class="form inline-form message_request_form">' + 
+                        '<div><input type="hidden" name="id" value=' + message.request_id.to_s + '>' + 
+                        buttons +
+                        '</form>'
+          end
+          '</td></tr>'
+        end
 
         # Set what the last message contained
         last_user = message.user.rolable.name.to_s
@@ -94,10 +121,10 @@ class MessagesController < ApplicationController
 
   #----------------------------------------------------------------------------------------------------
   #----------------------------------------------------------------------------------------------------
-  def checkAjax
+  def check_for_messages
     if(!current_user.nil? && !params['message_id'].nil?)
-      messages = Message.where( "(user_received_id = :to1 OR user_sent_id = :from1) AND created_at > :last_time",
-        {from1: current_user.id, to1: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+      messages = Message.where( "(user_received_id = :current_user_id OR user_sent_id = :current_user_id) AND created_at > :last_time",
+        {current_user_id: current_user.id, last_time: Message.find(params['message_id']).created_at} )
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
     else
       render json: ''
@@ -168,7 +195,7 @@ class MessagesController < ApplicationController
         #format.json { render action: 'show', status: :created, location: @message }
       else
         format.html { render action: 'new' }
-        render text: 'message'
+        format.json { render text: 'message'}
       end
     end
   end

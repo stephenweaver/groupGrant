@@ -1,6 +1,7 @@
 class VisitorsController < ApplicationController
 
   def new
+
   end
 
   def update_last_ping

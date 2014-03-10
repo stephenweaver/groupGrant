@@ -104,8 +104,9 @@ update_client = function(){
 
 
 send_message_reset = function() {
-   $('#send_message').click(function() {
+   $('#send_message').submit(function(e) {
       $('#send_message').parent().parent().children('#chat_message').val("");
+      e.preventDefault();
    });
    update_client();
 }
@@ -195,7 +196,9 @@ firstContact = function(){
 };
 
 scrollDown = function() {
-  $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+  if($('#message_table').length < 0) {
+    $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+  }
 }
 
 

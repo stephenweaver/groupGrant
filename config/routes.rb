@@ -45,8 +45,8 @@ Blankcomposer::Application.routes.draw do
  
   match "/groupgrant/connect",         :to => "groupgrants#connect",           via: :post
   match "/groupgrant/cancelRequest",   :to => "groupgrants#cancelRequest",     via: :post
-  match "/messages/getMessages",           :to => "messages#getMessages",      via: :post
-  match "/messages/checkAjax",         :to => "messages#checkAjax",            via: :post
+  match "/messages/getMessages",       :to => "messages#getMessages",          via: :post
+  match "/messages/checkAjax",         :to => "messages#check_for_messages",    via: :post
   match "/messages/searchUsers",       :to => "messages#searchUsers",          via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",   via: :post

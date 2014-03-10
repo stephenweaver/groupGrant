@@ -47,14 +47,15 @@
         <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
+               <form  action="/groupgrants/submit_payment" method="POST" id="payment-form" remote="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Your donation will make a difference!</h4>
               </div>
 
               <div class="modal-body">
-                <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
-                  <span class="payment-errors"></span>                
+               
+                  <span class="payment-errors" style="color:red"></span>                
                   <div class="col-md-5">
                     <div class="form-group">
                       <label>
@@ -77,7 +78,7 @@
                         <br>Custom Amount
                         <div class="input-group col-md-11" style="padding-left: 0px;">
                           <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" data-stripe="amount" id="amount_field" name="amount">
+                          <input type="text" class="form-control" data-stripe="amount" name="amount" id="amount_field" >
                           <span class="input-group-addon">.00</span>
                         </div>                         
                       </label>
@@ -102,7 +103,7 @@
                       <label>
                         <span>Card Number</span>
                         <br>
-                        <input type="text" size="20" class="form-control" data-stripe="number"/>
+                        <input type="text" size="20"  class="form-control" data-stripe="number"/>
                       </label>
                     </div> 
 
@@ -110,7 +111,7 @@
                       <label>Expiration Date</label>
                       <div class="row">
                         <div class="col-xs-4">
-                          <select class="form-control" name="exp-month" data-stripe="exp-month" style="width: 88px" placeholder="MM">
+                          <select class="form-control" data-stripe="exp-month" style="width: 88px" placeholder="MM">
                             <option><b>Month</b></option>
                             <option value="1">01 - Jan</option>
                             <option value="2">02 - Feb</option>
@@ -128,7 +129,7 @@
                         </div>
 
                         <div class="col-xs-4 no_padding">
-                          <select class="form-control" name="exp-year" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
+                          <select class="form-control" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
                             <option>Year</option>
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
@@ -150,7 +151,7 @@
                       </div>
                     </div> 
                   </div> 
-                </form>
+                
               </div><!-- /.modal-body -->             
 
               <div class="modal-footer">
@@ -163,13 +164,15 @@
                      </a>
                   </p>
                 </div>
-                  
+                <input type="hidden" value=<%= @groupgrant.id %> name="groupgrant"/>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>                       
-              </div><!-- /.modal-footer -->             
+                <button type="submit" class="btn btn-primary" id="submit_transaction">Submit</button>                       
+              </div><!-- /.modal-footer -->
+              </form>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+          
+        </div><!--/.modal  -->
       </div>
 
       <div  class="partnerships">
@@ -228,6 +231,5 @@
 </div>
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>
-<%= javascript_include_tag("stripe.js") %>
 <%= javascript_include_tag("jquery.knob.js") %>
 <%= javascript_include_tag("facebook_twitter_api.js") %>
