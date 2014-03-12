@@ -24,7 +24,7 @@ set_amount_field = function()
 sendRequest = function() 
 {
 	$("#request").click(function() {
-		var groupgrantID = $(this).data("groupgrant");
+		var groupgrantID = $("#groupgrantID").data("gID");
 		$.ajax({
 		    // the URL for the request
 		    url: "/groupgrant/connect",
@@ -61,7 +61,7 @@ cancelRequest = function()
 {
 	$("#cancel").click(function() 
 	{
-		var groupgrantID = $(this).data("groupgrant");
+		var groupgrantID = $("#groupgrantID").data("gID");
 		$.ajax({
 		    // the URL for the request
 		    url: "/groupgrant/cancelRequest",
@@ -87,19 +87,76 @@ cancelRequest = function()
 	});
 };
 
+// Autocomplete for showing all businesses
+chosen = function() { 
+    setTimeout(function (){
+        var config = {
+        '.select_new_contact' : {}
+      }
+      
+      for (var selector in config) {
+        $(selector).chosen(config[selector]);
+      }
 
+      //console.log("this worked");
+    }, 500); 
+   };
 
+//---------------------------------------------------------
+// Invite a business to join a groupgrant
+// Created by Koffi
+//---------------------------------------------------------
+invite = function()
+{
+	$("#invite").click(function()
+	{
+		var bid          = $("#mine option:selected").val()
+		var groupgrantID = $("#groupgrantID").data("gid");
+		if (bid != "")
+		{	
+			$.ajax({
+			    // the URL for the request
+			    url: "/groupgrant/invite_business",
+			 
+			    // the data to send (will be converted to a query string)
+			    data: {
+			        business: bid,    // Sending business ID
+			        gID: groupgrantID // Sending groupgrant ID
+			    },
+			    // whether this is a POST or GET request
+			    type: "POST",
+			    
+			    // code to run if the request succeeds;
+			    // the response is passed to the function
+			    success: function( data) {
+			    	if (data == "true")
+			    	{
+				    	alert("Your request has been sent");
+				    	$("#business").remove();	
+			    	}
+			    	else
+			    		alert(data)
+			    },
+
+			    error: function(data) {
+	        		alert("error " + data.name );
+	   			}
+			});
+		}
+	});
+}
 $(window).load(function() {
    renderKnob();
    sendRequest();
    cancelRequest();
-   set_amount_field();  
+   set_amount_field();
+   chosen();
+   invite();
 });
 
 $(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
 $(document).on('page:load', set_amount_field);
-
-
-
+$(document).on('page:load', chosen);
+$(document).on('page:load', invite);

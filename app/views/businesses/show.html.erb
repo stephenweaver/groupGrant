@@ -17,6 +17,25 @@
          <h6><%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md", style:"float:right"%></h6>
       </div>
    <% end %>
+
+
+ <div style="float: right"   
+<!-- CONTACT NEW FRIEND -->
+  <select class="select_new_contact form-control " data-placeholder="Invite">
+    <option></option>
+    <% @search_groupgrants.each do |groupgrant| %>
+        <option value= <%= groupgrant.id %>>
+           &nbsp&nbsp <%= groupgrant.name %>
+        </option>
+      
+     
+    <% end %>
+  </select>
+
+  <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px">
+    Send Request
+  </button>
+</div>
 </div>
 
 <div class = "row">
@@ -38,6 +57,8 @@
          </table>
          <br />
    <div class = "col-md-1">
+
+
       <!-- Connection request for Business to Charity -->
       <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
           <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
@@ -88,5 +109,10 @@
       <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
    <% end %>
 </div>
+
+<%= stylesheet_link_tag "chosen.min.css" %>
+<%= stylesheet_link_tag "chosen-bootstrap.css" %>
+
+<%= javascript_include_tag("chosen.jquery.min.js") %>
 
 <%= javascript_include_tag("facebook_twitter_api.js") %>

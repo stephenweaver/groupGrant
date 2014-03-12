@@ -43,6 +43,12 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   # GET /groupgrants/1.json
   #----------------------------------------------------------------------------------------------------
   def show
+    if user_signed_in? && current_user.id == @groupgrant.owner_id
+      @search_businesses = User.where(rolable_type: "Business")
+
+      # Check for sent requests
+      @requests = Request.where(is_accepted: nil, is_rejected: nil, groupgrant_id: @groupgrant.id)
+    end
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -64,6 +70,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   end
     
   #----------------------------------------------------------------------------------------------------
+  #  Send a request to connect to a groupgrant
   #----------------------------------------------------------------------------------------------------
   def connect
     @groupgrant = Groupgrant.find(params[:id])    
@@ -101,6 +108,34 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     request.save!
     
     render json: {status: request.is_accepted}
+  end
+
+  #----------------------------------------------------------------------------------------------------
+  #  This enables a charity to invite a business to connect with their groupgrant
+  #----------------------------------------------------------------------------------------------------
+  def invite_business    
+    groupgrant = Groupgrant.find(params[:gID])
+    business = User.find(params[:business])
+   
+    result = ""
+
+    if (groupgrant != nil)
+      request = Request.create(groupgrant_id: groupgrant.id)
+      message = Message.new(body: "You are invited to join" + groupgrant.name, 
+                            user_sent_id:     current_user.id, 
+                            user_received_id: business.id,
+                            request_id:       request.id)
+
+      if (message.save)
+        result = "true"
+      else
+        request.destroy!
+        result = "Request unsuccessful"
+      end
+    else
+      result "No ID was passed for the groupgrant"
+    end
+    render text: result
   end
 
   #----------------------------------------------------------------------------------------------------

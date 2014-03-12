@@ -3,6 +3,8 @@
 
 <div class="row">
 <div class="col-md-1">
+<!-- Storing groupgrant ID - KW -->
+<div id="groupgrantID" data-gid=<%=@groupgrant.id %> ></div>
 <!-- I made this so things would be centered -->
 </div>
 	<div class = "col-md-5">
@@ -12,8 +14,9 @@
     </div>
     <!-- gG Description -->
     <p class="lead">
-      <%= @groupgrant.description %>
+      <%= @groupgrant.description %> 
     </p>
+    
 	</div>
   <!-- gG Info -->
 	<div class= "col-md-5">
@@ -183,6 +186,7 @@
     <div class = "social-media-icons automargin">
     <!-- Social Media -->
       <h3><em>Share the cause </em></h3>
+
       <table>
         <tr>
            <td>
@@ -220,12 +224,49 @@
         </div>
       <% end %>
       <% else %>
-        <div id="request" class="btn btn-primary" data-groupgrant=<%=@groupgrant.id %> >
+        <div id="request" class="btn btn-primary">
           Connect with Charity 
         </div>
     <% end %>
   <% end %>
 </div>
+
+<!-- If the owner of the groupgrant is logged in, 
+    show a list of businesses it could connect with - KW -->
+    <br />
+    <% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
+    <!-- Proceed if there are no request sent for this groupgrant -->
+      <% if @requests.first == nil %>
+      
+        <div style="float: left" id="business">   
+        <!-- CONTACT NEW FRIEND -->
+          <h3> Send a request to a business </h3>
+          <select class="select_new_contact form-control " data-placeholder="Invite" id="mine">
+            <option></option>
+            <!-- Display the business if it doesn't already have a request -->
+            <% @search_businesses.each do |business| %>
+              <% b = User.find(business.id) %>
+              <% m = Message.find_by_user_received_id(b.id) %>
+              <% if m != nil %>
+                <% if m.request.groupgrant_id != @groupgrant.id  && m.request.date_responded == nil %>
+                  <option value= <%= business.id %>>
+                     &nbsp&nbsp <%= business.rolable.name %>
+                  </option>
+                <% end %>
+                  <% else %>
+                    <option value= <%= business.id %>>
+                       &nbsp&nbsp <%= business.rolable.name %>
+                    </option>
+                <% end %>
+            <% end %>
+          </select>
+          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" 
+            data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="invite">
+            Send Request
+          </button>
+        <% end %>
+      <% end %>
+    </div>
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>
 <%= javascript_include_tag("stripe.js") %>
