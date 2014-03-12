@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
-    t.string   "slogan"
-  end
-
-  create_table "charges", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "card_number"
-    t.string   "cid"
-    t.string   "expiration"
   end
 
   create_table "charities", force: true do |t|
@@ -107,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount"
+    t.decimal  "goal_amount",                 precision: 10, scale: 2
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -121,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status"
+    t.decimal  "goal_status",                 precision: 10, scale: 2
     t.string   "video_url_html"
   end
 
@@ -134,6 +125,14 @@ ActiveRecord::Schema.define(version: 20140307011946) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "request_id"
+  end
+
+  create_table "payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_number"
+    t.string   "cid"
+    t.string   "expiration"
   end
 
   create_table "requests", force: true do |t|
