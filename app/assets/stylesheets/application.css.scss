@@ -146,21 +146,37 @@ a:hover {
 }
 
 @media screen and (min-width: 56.25em) {
+
+}
+
+@media screen and (min-width: 37.5em) {
+  
+}
+
+.charity {
+    background-image: asset-url("kids.jpg");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 20% 1em;
+  }
+
+.business {
+    background-image: asset-url("business.png");
+    background-repeat: no-repeat;
+    background-size: 42%;
+    background-position: 30% 1em;
+  }
+
   .charity, .business {
     float: left;
+    height: 100%;
     width: 50%;
   }
 
   .donor {
     padding: 0 10%;
-  }
-
-  .user-container {
-    height: 500px;
-  }
-
-  .user {
-    height: 25%;
+    float:  left;
+    width: 100%;
   }
 
   .charity, .business {
@@ -168,10 +184,20 @@ a:hover {
   }
 
   .section-inner {
-    margin: 0 auto;
     max-width: 1400px;
     width: 100%;
   }
+
+  .copy {
+    margin-top: 40%;
+  }
+
+.image {
+  height: 700px;
+  background-image: url(/assets/hero.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 100%;
 }
 
 @media screen and (min-width: 37.5em) {
