@@ -94,7 +94,7 @@ update_client = function(){
             });
             setTimeout(function (){
               scrollDown();
-            }, 500); 
+            }, 250); 
         }
       }
    });
@@ -105,7 +105,7 @@ update_client = function(){
 
 send_message_reset = function() {
    $('#send_message').submit(function(e) {
-      $('#send_message').parent().parent().children('#chat_message').val("");
+      $('#chat_message').val("");
       e.preventDefault();
    });
    update_client();
@@ -194,9 +194,7 @@ firstContact = function(){
 };
 
 scrollDown = function() {
-  if($('#message_table').length < 0) {
     $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
-  }
 }
 
 
