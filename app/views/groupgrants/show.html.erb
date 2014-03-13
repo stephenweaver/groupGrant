@@ -241,27 +241,17 @@
         <div style="float: left" id="business">   
         <!-- CONTACT NEW FRIEND -->
           <h3> Send a request to a business </h3>
-          <select class="select_new_contact form-control " data-placeholder="Invite" id="mine">
+          <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete_g">
             <option></option>
             <!-- Display the business if it doesn't already have a request -->
             <% @search_businesses.each do |business| %>
-              <% b = User.find(business.id) %>
-              <% m = Message.find_by_user_received_id(b.id) %>
-              <% if m != nil %>
-                <% if m.request.groupgrant_id != @groupgrant.id  && m.request.date_responded == nil %>
-                  <option value= <%= business.id %>>
-                     &nbsp&nbsp <%= business.rolable.name %>
-                  </option>
-                <% end %>
-                  <% else %>
-                    <option value= <%= business.id %>>
-                       &nbsp&nbsp <%= business.rolable.name %>
-                    </option>
-                <% end %>
+                <option value= <%= business.id %>>
+                   &nbsp;&nbsp; <%= business.rolable.name %>
+                </option>
             <% end %>
           </select>
           <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" 
-            data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="invite">
+            data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite">
             Send Request
           </button>
         <% end %>

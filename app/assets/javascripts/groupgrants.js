@@ -24,7 +24,7 @@ set_amount_field = function()
 sendRequest = function() 
 {
 	$("#request").click(function() {
-		var groupgrantID = $("#groupgrantID").data("gID");
+		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
 		    url: "/groupgrant/connect",
@@ -61,7 +61,7 @@ cancelRequest = function()
 {
 	$("#cancel").click(function() 
 	{
-		var groupgrantID = $("#groupgrantID").data("gID");
+		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
 		    url: "/groupgrant/cancelRequest",
@@ -108,9 +108,9 @@ chosen = function() {
 //---------------------------------------------------------
 invite = function()
 {
-	$("#invite").click(function()
+	$("#gInvite").click(function()
 	{
-		var bid          = $("#mine option:selected").val()
+		var bid          = $("#autocomplete_g option:selected").val()
 		var groupgrantID = $("#groupgrantID").data("gid");
 		if (bid != "")
 		{	
@@ -132,15 +132,11 @@ invite = function()
 			    	if (data == "true")
 			    	{
 				    	alert("Your request has been sent");
-				    	$("#business").remove();	
+				    	location.reload(true);
 			    	}
 			    	else
 			    		alert(data)
 			    },
-
-			    error: function(data) {
-	        		alert("error " + data.name );
-	   			}
 			});
 		}
 	});

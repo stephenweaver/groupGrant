@@ -43,11 +43,12 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   # GET /groupgrants/1.json
   #----------------------------------------------------------------------------------------------------
   def show
-    if user_signed_in? && current_user.id == @groupgrant.owner_id
+    @available = false
+    if user_signed_in? && current_user.id == @groupgrant.owner_id && @groupgrant.partner_id == 0
       @search_businesses = User.where(rolable_type: "Business")
 
       # Check for sent requests
-      @requests = Request.where(is_accepted: nil, is_rejected: nil, groupgrant_id: @groupgrant.id)
+      @requests = Request.where(is_accepted: nil, groupgrant_id: @groupgrant.id)
     end
   end
 
@@ -119,9 +120,9 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
    
     result = ""
 
-    if (groupgrant != nil)
+    if (groupgrant != nil && Request.find_by_groupgrant_id(groupgrant.id) == nil)
       request = Request.create(groupgrant_id: groupgrant.id)
-      message = Message.new(body: "You are invited to join" + groupgrant.name, 
+      message = Message.new(body: "You are invited to join " + groupgrant.name, 
                             user_sent_id:     current_user.id, 
                             user_received_id: business.id,
                             request_id:       request.id)

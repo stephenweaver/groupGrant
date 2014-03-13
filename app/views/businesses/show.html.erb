@@ -1,6 +1,7 @@
 <!-- Needed for Facebook SDK -->
 <div id="fb-root"></div>
-
+<!-- Hidden business ID - kw -->
+<input type="hidden" id="bid" value= <%= @business.user.id %> >
 <div class="row">
       <%= image_tag @business.business_pic.url(:small), class: 'col-md-4' %>
    <div class="col-md-7">
@@ -18,23 +19,25 @@
       </div>
    <% end %>
 
+ <!-- Show a list of available groupGrants for the charity - KW -->
+ <% if @available == true %>
+   <div style="float: right">
+  <!-- CONTACT NEW FRIEND -->
+    <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete">
+      <option></option>
+      <% @search_groupgrants.each do |groupgrant| %>
+        <% if !Request.where(is_accepted:nil, groupgrant_id: groupgrant.id).first %>
+          <option value= <%= groupgrant.id %>>
+             &nbsp&nbsp <%= groupgrant.name %>
+          </option>
+        <% end %>
+      <% end %>
+    </select>
 
- <div style="float: right"   
-<!-- CONTACT NEW FRIEND -->
-  <select class="select_new_contact form-control " data-placeholder="Invite">
-    <option></option>
-    <% @search_groupgrants.each do |groupgrant| %>
-        <option value= <%= groupgrant.id %>>
-           &nbsp&nbsp <%= groupgrant.name %>
-        </option>
-      
-     
-    <% end %>
-  </select>
-
-  <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px">
-    Send Request
-  </button>
+    <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="b_invite">
+      Send Request
+    </button>
+  <% end %>
 </div>
 </div>
 
