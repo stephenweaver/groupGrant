@@ -153,18 +153,22 @@ a:hover {
   
 }
 
+.user-container {
+  display: flex;
+}
+
 .charity {
-    background-image: asset-url("kids.jpg");
+    background-image: asset-url("charity.png");
     background-repeat: no-repeat;
     background-size: 70%;
-    background-position: 20% 1em;
+    background-position: 45% 1em;
   }
 
 .business {
     background-image: asset-url("business.png");
     background-repeat: no-repeat;
-    background-size: 42%;
-    background-position: 30% 1em;
+    background-size: 70%;
+    background-position: 45% 1em;
   }
 
   .charity, .business {
@@ -175,7 +179,6 @@ a:hover {
 
   .donor {
     padding: 0 10%;
-    float:  left;
     width: 100%;
   }
 
@@ -189,7 +192,8 @@ a:hover {
   }
 
   .copy {
-    margin-top: 40%;
+    margin-top: 60%;
+    min-height: 200px;
   }
 
 .image {
@@ -200,6 +204,12 @@ a:hover {
   background-position: 100%;
 }
 
-@media screen and (min-width: 37.5em) {
-  
+.explore {
+  width: 100%;
+  background-color: #c0392b;
+}
+
+.wrapper-explore {
+  text-align: center;
+  padding: 5% 35%;
 }

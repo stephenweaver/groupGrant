@@ -17,8 +17,8 @@
               We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
             </p>
           </div>
-          <%= link_to(charity_sign_up_path) do %>
-              <button type="button" class="btn btn-primary">Register as a Charity</button>
+          <%= link_to(charity_sign_up_path, style:"text-decoration: none") do %>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Charity</button>
           <% end %>
         </div>
       </div>
@@ -34,12 +34,19 @@
               Are you a business looking to give back? Do you have products you would like to donate, but don't know which charity to donate them to? Here at groupGRANT you can explore many charities in your areas of interest. Connect with charities that have needs and sponsor a groupgrant! We make it easy for businesses to donate to charities. Sign&nbsp;up&nbsp;today!
             </p>
            </div>
-              <%= link_to(business_sign_up_path) do %>
-                  <button type="button" class="btn btn-primary">Register as a Business</button>
+              <%= link_to(business_sign_up_path, style:"text-decoration: none") do %>
+                  <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Business</button>
               <% end %>
           </div>
       </div>
     </section>
+  </div>
+  <div class="explore">
+    <div class="wrapper-explore">
+      <%= link_to(charities_path, style:"text-decoration: none") do %>
+        <button type="button" class="btn btn-success btn-lg btn-block">Explore Charities!</button>
+      <% end %>
+    </div>
   </div>
   <section class="donor user">
     <div class="">
@@ -50,8 +57,8 @@
         Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
       </p>
     </div>
-    <%= link_to(business_sign_up_path) do %>
-        <button type="button" class="btn btn-primary">Register as a Business</button>
+    <%= link_to(donor_sign_up_path) do %>
+        <button type="button" class="btn btn-primary btn-lg">Register as a Donor</button>
     <% end %>
   </section>
 
