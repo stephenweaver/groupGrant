@@ -834,7 +834,7 @@ renderKnob = function() {
                     "thickness":".4",
                     "fgColor":"#66CC66",
                     "angleOffset":"-90",
-                    "angleArc":"180",
+                    "angleArc":"180"
                 }
         );
     }

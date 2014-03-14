@@ -94,7 +94,7 @@ update_client = function(){
             });
             setTimeout(function (){
               scrollDown();
-            }, 500); 
+            }, 250); 
         }
       }
    });
@@ -105,7 +105,7 @@ update_client = function(){
 
 send_message_reset = function() {
    $('#send_message').submit(function(e) {
-      $('#send_message').parent().parent().children('#chat_message').val("");
+      $('#chat_message').val("");
       e.preventDefault();
    });
    update_client();
@@ -156,9 +156,7 @@ chosen = function() {
 
 
 firstContact = function(){
-  console.log("does this work?")
   $('.modal').on('submit','form[data-async]', function(event) {
-    console.log("do you even lift")
     var $form = $(this);
     var target = $form.attr('data-target');
     var user_id = $('.select_new_contact').val();
@@ -196,7 +194,7 @@ firstContact = function(){
 };
 
 scrollDown = function() {
-  $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+    $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
 }
 
 

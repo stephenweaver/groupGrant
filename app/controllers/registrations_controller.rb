@@ -42,6 +42,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def auto_login 
+    type = params[:type]
+    users = User.find_by_rolable_type(type).where(availability: 1)
+    user.count 
+    random_number = genRandomNumber(0,user.count-1)
+    sign_in_and_redirect User.find(user[random_number].id)
+  end
+
   def destroy
     #raise
     #user = resource.user.id

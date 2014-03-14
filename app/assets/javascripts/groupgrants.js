@@ -13,8 +13,7 @@ renderKnob = function()
 };
 
 set_amount_field = function()
-{
-	
+{	
 	$(".amount_radio").click(function(e) {
 		$("#amount_field").val($(e.target).val());
 	});

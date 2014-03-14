@@ -1,12 +1,12 @@
 <!-- Facebook SDK -->
 <div id="fb-root"></div>
-
-<div class="row">
-<div class="col-md-1">
 <!-- Storing groupgrant ID - KW -->
 <div id="groupgrantID" data-gid=<%=@groupgrant.id %> ></div>
-<!-- I made this so things would be centered -->
-</div>
+
+<div class="row">
+  <div class="col-md-1">
+    <!-- I made this so things would be centered -->
+  </div>
 	<div class = "col-md-5">
     <div class="text-center gg_title">
       <!-- gG Title -->
@@ -15,209 +15,228 @@
     <!-- gG Description -->
     <p class="lead">
       <%= @groupgrant.description %> 
-    </p>
-    
+    </p>    
 	</div>
   <!-- gG Info -->
-	<div class= "col-md-5">
+  <div class= "col-md-5" style="max-width:450px;">
     <div class= "well">
-      <div>
+      <div class="row" style="vertical-align: middle;">
         <%= image_tag @groupgrant.groupgrant_pic.url(:small), class: "gg_image col-md-3", style:":block;" %>
       </div>
-      <div> 
-      <!-- Time remaining -->
-        <strong>
-           <%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left
-        </strong>
+
+      <br>
+
+      <div class="row gg_time">
+        <h4 style="margin-top:0px; margin-bottom:0px;"><%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left</h4>
       </div>
+
+      <br>
+
       <div class="row">
-      <!-- gG Progress Bar -->
-        <div class="col-sm-4 center-block">
-          <%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %> RAISED 
+        <!-- gG Progress Bar -->
+        <div class="gg_raised">
+          <% if @groupgrant.goal_status.nil? %>
+          <h3 style="margin-top:0px; margin-bottom:0px;"><%= number_to_currency(0, :precision => 0) %><br>Raised</h3>
+          <% else %>
+          <h3><%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %><br>Raised</h3>
+          <% end %>
         </div>
-        <div class="col-sm-4 center-block">
+        <div class="gg_progress">
           <input type="text" value=<%=@groupgrant.progress%> class="dial" readOnly="true">
         </div>
-        <div class="col-sm-4 center-block">
-          <%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %> GOAL
+        <div class="gg_goal">
+          <h3 style="margin-top:0px; margin-bottom:0px;"><%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %><br>Goal
+          </h3>
         </div>
       </div>
-      </br>
+
+      <br>
+
       <div>
         <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg" data-toggle="modal" data-target=".payment-form-modal-md">Donate</button></a> 
-        
-        <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Your donation will make a difference!</h4>
-              </div>
-
-              <div class="modal-body">
-                <form action="/groupgrants/submit_payment" method="POST" id="payment-form">
-                  <span class="payment-errors"></span>                
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>
-                        <span>Donation Ammount</span>
-                      </label>
-                      <br>
-                      <div class="form-row">
-                        <div class="col-md-5" style="padding-left: 0px;">                            
-                          <input class="amount_radio" type="radio" name="amount" value="10">&nbsp; $10<br>
-                          <input class="amount_radio" type="radio" name="amount" value="50">&nbsp; $50
-                        </div>
-
-                        <div>
-                          <input class="amount_radio" type="radio" name="amount" value="100">&nbsp; $100<br>
-                          <input class="amount_radio" type="radio" name="amount" value="500">&nbsp; $500
-                        </div>                         
-                      </div>
-
-                      <label>
-                        <br>Custom Amount
-                        <div class="input-group col-md-11" style="padding-left: 0px;">
-                          <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" data-stripe="amount" id="amount_field" name="amount">
-                          <span class="input-group-addon">.00</span>
-                        </div>                         
-                      </label>
-                    </div>
-
-                    <table class="activity-desc">
-                      <tbody><tr>                          
-                        <td>
-                          <div style="clear:both; vertical-align: middle;">
-                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-5" %>
-                            <p>Donating To:<br>
-                              <b><%= @groupgrant.name %></b>
-                            </p>       
-                          </div>                           
-                        </td>
-                      </tr></tbody>
-                    </table>
-                  </div>
-
-                  <div class="col-md-7" style="height: 215px;">
-                    <div class="form-group">
-                      <label>
-                        <span>Card Number</span>
-                        <br>
-                        <input type="text" size="20" class="form-control" data-stripe="number"/>
-                      </label>
-                    </div> 
-
-                    <div class="form-group">
-                      <label>Expiration Date</label>
-                      <div class="row">
-                        <div class="col-xs-4">
-                          <select class="form-control" name="exp-month" data-stripe="exp-month" style="width: 88px" placeholder="MM">
-                            <option><b>Month</b></option>
-                            <option value="1">01 - Jan</option>
-                            <option value="2">02 - Feb</option>
-                            <option value="3">03 - Mar</option>
-                            <option value="4">04 - Apr</option>
-                            <option value="5">05 - May</option>
-                            <option value="6">06 - Jun</option>
-                            <option value="7">07 - Jul</option>
-                            <option value="8">08 - Aug</option>
-                            <option value="9">09 - Sep</option>
-                            <option value="10">10 - Oct</option>
-                            <option value="11">11 - Nov</option>
-                            <option value="12">12 - Dec</option>
-                          </select>                           
-                        </div>
-
-                        <div class="col-xs-4 no_padding">
-                          <select class="form-control" name="exp-year" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
-                            <option>Year</option>
-                            <option value="2014">2014</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                          </select>                            
-                        </div>
-
-                        <div class="col-xs-4">
-                          <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
-                        </div>
-                      </div>
-                    </div> 
-                  </div> 
-                </form>
-              </div><!-- /.modal-body -->             
-
-              <div class="modal-footer">
-                 <div class="form-group" style="float: left; font-size: small; padding-left: 15px;">                      
-                  <p>
-                    <span class="glyphicon glyphicon-lock"></span>
-                    Secured by
-                    <a href="http://www.stripe.com">
-                      <b>Stripe</b> 
-                     </a>
-                  </p>
-                </div>
-                  
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>                       
-              </div><!-- /.modal-footer -->             
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        <a button class="btn btn-primary btn-lg btn-block btn-warning" data-toggle="modal" data-target=".payment-form-modal-md">DONATE</button></a> 
       </div>
-
-      <div  class="partnerships">
-      <!-- Charity and Business information -->
-        <div style="clear:both;">
+      <div class="partnerships">
+        <!-- Charity and Business information -->
+        <div style="clear:both; margin-top:5px;">
           <%= image_tag @groupgrant.charity.charity_pic.url(:small), style:"width:50px;" %>
+          <%= link_to @groupgrant.charity.name, charity_path %>
         </div>
       </div>
-    </div>
+      <div class = "social-media-icons automargin">
+        <!-- Social Media -->
+        <div class="row">
+          <div class="col-md-7">
+            <em style="font-size: 1em;">Share the cause</em>
+          </div>
 
-    <div class = "social-media-icons automargin">
-    <!-- Social Media -->
-      <h3><em>Share the cause </em></h3>
+          <div class="col-md-1"></div>
 
-      <table>
-        <tr>
-           <td>
-              <!-- Show Tweet Button -->
-              <div id="tweets"></div>              
-           </td>
-        </tr>
-        <tr>
-           <td>
-              <!-- Show Facebook button -->
-              <div id="sharePage"></div>
-           </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+          <!-- Show Tweet Button -->
+          <div class="col-md-2" id="tweets"></div>              
+
+          <!-- Show Facebook button -->
+          <div class="col-md-2" id="sharePage" style="padding-left: 7px;"></div>            
+        </div>
+      </div>
+    </div><!-- Well close-->
+
+    <div>        
+      <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+           <form  action="/groupgrants/submit_payment" method="POST" id="payment-form" remote="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Your donation will make a difference!</h4>
+            </div>
+
+            <div class="modal-body">
+
+              <span class="payment-errors" style="color:red"></span>                
+              <div class="col-md-5" style="height: 175px;">
+                <div class="form-group">
+                  <label>
+                    <span>Donation Ammount</span>
+                  </label>
+                  <br>
+                  <div class="form-row">
+                    <div class="col-md-5" style="padding-left: 0px;">                            
+                      <input class="amount_radio" type="radio" name="amount" value="10">&nbsp; $10<br>
+                      <input class="amount_radio" type="radio" name="amount" value="50">&nbsp; $50
+                    </div>
+
+                    <div>
+                      <input class="amount_radio" type="radio" name="amount" value="100">&nbsp; $100<br>
+                      <input class="amount_radio" type="radio" name="amount" value="500">&nbsp; $500
+                    </div>                         
+                  </div>
+
+                  <label>
+                    <br>Custom Amount
+                    <div class="input-group col-md-11" style="padding-left: 0px;">
+                      <span class="input-group-addon">$</span>
+                      <input type="text" class="form-control" data-stripe="amount" name="amount" id="amount_field" >
+                      <span class="input-group-addon">.00</span>
+                    </div>                         
+                  </label>
+                </div>
+
+
+              </div>
+
+              <div class="col-md-7" style="height: 175px;">
+                <div class="form-group">
+                  <label>
+                    <span>Card Number</span>
+                    <br>
+                    <input type="text" size="20"  class="form-control" data-stripe="number"/>
+                  </label>
+                </div> 
+
+                <div class="form-group">
+                  <label>Expiration Date</label>
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <select class="form-control" data-stripe="exp-month" style="width: 88px" placeholder="MM">
+                        <option><b>Month</b></option>
+                        <option value="1">01 - Jan</option>
+                        <option value="2">02 - Feb</option>
+                        <option value="3">03 - Mar</option>
+                        <option value="4">04 - Apr</option>
+                        <option value="5">05 - May</option>
+                        <option value="6">06 - Jun</option>
+                        <option value="7">07 - Jul</option>
+                        <option value="8">08 - Aug</option>
+                        <option value="9">09 - Sep</option>
+                        <option value="10">10 - Oct</option>
+                        <option value="11">11 - Nov</option>
+                        <option value="12">12 - Dec</option>
+                      </select>                           
+                    </div>
+
+                    <div class="col-xs-4 no_padding">
+                      <select class="form-control" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
+                        <option>Year</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                      </select>                            
+                    </div>
+
+                    <div class="col-xs-4">
+                      <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CVC" style="width: 55px"/>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+
+              <div class="row">
+                <table class="activity-desc">
+                  <tbody><tr>                          
+                    <td>
+                      <div style="clear:both;">
+                        <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"col-md-2" %>
+                        <p>Donating To:<br>
+                          <b><%= @groupgrant.name %></b>
+                        </p>       
+                      </div>                           
+                    </td>
+                  </tr></tbody>
+                </table> 
+              </div>
+
+            </div><!-- /.modal-body -->             
+
+            <div class="modal-footer">
+             <div class="form-group" style="float: left; font-size: small; padding-left: 15px;">                      
+              <p>
+                <span class="glyphicon glyphicon-lock"></span>
+                Secured by
+                <a href="http://www.stripe.com">
+                  <b>Stripe</b> 
+                </a>
+              </p>
+            </div>
+            <input type="hidden" value=<%= @groupgrant.id %> name="groupgrant"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submit_transaction">Submit</button>                       
+          </div><!-- /.modal-footer -->
+        </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+
+  </div><!--/.modal  -->
+</div>
+
+</div>
+
+</div>
+>>>>>>> bce167a39a3d3fc4f22e8ab0e4481dc2350b4ae1
 </div>
 
 <div class="col-md-1">
-<!-- I made this so things would be centered -->
+  <!-- I made this so things would be centered -->
 </div>
 
 <div id="sponsors">
   <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
   <% r = Request.where(groupgrant_id: @groupgrant.id)
+
     #check if this is the user that sent it
     if (r[0] != nil)
       r = Request.find(r)
       m = Message.where(request_id: r.id)
       m = Message.find(m)
-  
+
       if (m.user_sent_id == current_user.id) %>
         <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
            Request Pending. Cancel? 
@@ -227,9 +246,10 @@
         <div id="request" class="btn btn-primary">
           Connect with Charity 
         </div>
-    <% end %>
-  <% end %>
-</div>
+      <% end %>
+      <% end %>
+  </div>
+
 
 <!-- If the owner of the groupgrant is logged in, 
     show a list of businesses it could connect with - KW -->

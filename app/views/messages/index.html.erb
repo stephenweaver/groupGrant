@@ -6,21 +6,21 @@
     <div class="modal fade" id="contactSelectedUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
+        <form data-async data-target="event|close" action="/messages" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Message</h4>
           </div>
           <div class="modal-body">
-           <form data-async data-target="event|close" action="/messages" method="POST">
             <fieldset>
               <textarea id="newMessage" class="form-control" rows="3"></textarea>
             </fieldset>
-          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Send</button>
         </div>
+        </form>
       </div>
     </div>
   </div>

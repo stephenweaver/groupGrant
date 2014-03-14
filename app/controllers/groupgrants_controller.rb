@@ -160,7 +160,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     @groupgrant = Groupgrant.new(groupgrant_params)
     @groupgrant.owner_id    = current_user.rolable.id
     @groupgrant.partner_id  = 0
-    @groupgrant.goal_amount = 0
+    # @groupgrant.goal_amount = 0
     @groupgrant.goal_status = 0
     
     respond_to do |format|      
@@ -216,22 +216,31 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     # Get the credit card details submitted by the form
     token  = params[:stripeToken]
     amount = params[:amount].to_i * 100
-    
-    Stripe.api_key = Rails.configuration.stripe[:secret_key]
+    @groupgrant = Groupgrant.find(params[:groupgrant])
+    cvc = params[:cvc]
 
-    # Create the charge on Stripe's servers - this will charge the user's card
     begin
+      # Create the charge on Stripe's servers - this will charge the user's card
       charge = Stripe::Charge.create(
-        :card        => token,
-        :amount      => amount, # in cents
-        :currency    => "usd",        
-        :description => "payinguser@example.com"
+        :card    => token,
+        :amount      => amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
       )
 
-    rescue Stripe::CardError => e
-      @var = e
+      flash[:notice] = "Thank you for your $" + params[:amount] + " donation!"
+    rescue => e
+      if @amount <= 0
+        flash[:error] = amount.to_s + " dollars is an Invalid amount value. Please try again with a positive amount."
+      # elsif cvc < 300 || cvc > 999
+      #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."
+      else
+        flash[:error] = e.message
+      end
+      
+
     end
-      @var = "Thank you for your donation!"
+    render :show
   end
 
   private
