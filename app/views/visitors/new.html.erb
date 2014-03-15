@@ -7,6 +7,7 @@
     <section class="charity user">
       <div class="section-inner">
         <div class="wrapper">
+          <%= image_tag('charity.png', class: 'img-responsive charity_img')%>
           <div class="copy">
             <h1 class="title">
               Charity
@@ -26,6 +27,7 @@
     <section class="business user">
       <div class="section-inner">
         <div class="wrapper">
+          <%= image_tag('business.png', class: 'img-responsive business_img')%>
           <div class="copy">
             <h1 class="title">
               Business
@@ -40,15 +42,7 @@
           </div>
       </div>
     </section>
-  </div>
-  <div class="explore">
-    <div class="wrapper-explore">
-      <%= link_to(charities_path, style:"text-decoration: none") do %>
-        <button type="button" class="btn btn-success btn-lg btn-block">Explore Charities!</button>
-      <% end %>
-    </div>
-  </div>
-  <section class="donor user">
+    <section class="donor user">
     <div class="">
       <h1 class="title">
         Donor
@@ -61,6 +55,15 @@
         <button type="button" class="btn btn-primary btn-lg">Register as a Donor</button>
     <% end %>
   </section>
+  </div>
+  <div class="explore">
+    <div class="wrapper-explore">
+      <%= link_to(charities_path, style:"text-decoration: none") do %>
+        <button type="button" class="btn btn-success btn-lg btn-block">Explore Charities!</button>
+      <% end %>
+    </div>
+  </div>
+  
 
 
 
