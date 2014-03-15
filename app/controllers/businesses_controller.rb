@@ -44,7 +44,23 @@ class BusinessesController < ApplicationController
    end
 
    def show
-      @business = Business.find(params[:id])
+      @business = Business.find(params[:id])      
+      not_available = 0
+      @available = false
+      if user_signed_in? && current_user.rolable_type == "Charity"
+         @search_groupgrants = Groupgrant.where(owner_id: current_user.id, partner_id: 0)
+         @search_groupgrants.each do |g|
+            if Request.where(is_accepted: nil, groupgrant_id: g.id).first != nil
+               not_available+= 1
+               
+            end
+         end
+
+         # Check to see if there are groupgrants that have no pending requests
+         if not_available < @search_groupgrants.count
+            @available = true
+         end
+      end
    end
 
    def preview

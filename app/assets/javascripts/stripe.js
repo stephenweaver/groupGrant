@@ -59,4 +59,3 @@ $(window).load(function() {
  });
 
 $(document).on('page:load', setup_stripe);
-
