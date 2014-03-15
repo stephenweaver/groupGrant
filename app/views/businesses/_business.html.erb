@@ -1,6 +1,12 @@
 <%= link_to(business) do %>
    <div class="business_index_single row">
-      <div style="clear:both;"><%= image_tag business.business_pic.url(:medium), class: "col-md-3" %></div>
+      <div style="clear:both;">
+         <% if business.user.profile.url.include? "missing" %>
+            <%= image_tag business.business_pic.url(:small), class: 'col-md-4' %>
+         <% else %>
+            <%= image_tag business.user.profile.url(:small), class: 'col-md-4' %>
+         <% end %>
+      </div>
       <div class="col-md-6"><b>Name:</b> <%= highlight(business.name, params['search']) %><br>
       <% if !business.business_category.nil? %>
          <b>Category:</b> <%= business.business_category.name %>

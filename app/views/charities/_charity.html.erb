@@ -1,6 +1,12 @@
 <%= link_to(charity) do %>
    <div class="charity_index_single row">
-      <div style="clear:both;"><%= image_tag charity.charity_pic.url(:medium), class: "col-md-3" %></div>
+      <div style="clear:both;">
+         <% if charity.user.profile.url.include? "missing" %>
+             <%= image_tag charity.charity_pic.url(:medium), class: 'col-md-4' %>
+          <% else %>
+             <%= image_tag charity.user.profile.url(:medium), class: 'col-md-4' %>
+          <% end %>
+      </div>
       <div class="col-md-6"><b>Name:</b> <%= highlight(charity.name, params['search']) %><br>
       <% if !charity.charity_category.nil? %>
          <b>Category:</b> <%= charity.charity_category.name %>

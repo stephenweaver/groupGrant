@@ -3,7 +3,12 @@
 <!-- Hidden business ID - kw -->
 <input type="hidden" id="bid" value= <%= @business.user.id %> >
 <div class="row">
-      <%= image_tag @business.business_pic.url(:small), class: 'col-md-4' %>
+    <% if @business.user.profile.url.include? "missing" %>
+       <%= image_tag @business.business_pic.url(:small), class: 'col-md-4' %>
+    <% else %>
+       <%= image_tag @business.user.profile.url(:small), class: 'col-md-4' %>
+    <% end %>
+
    <div class="col-md-7">
       <div class="title"><%= @business.name %></div>
           <p>The slogan swill go here</p>
