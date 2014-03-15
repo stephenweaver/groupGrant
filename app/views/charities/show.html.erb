@@ -13,7 +13,12 @@
 
   <div class="col-md-4 thumbnail charity_show_pic">
     <!-- Charity picture -->
-    <%= image_tag @charity.charity_pic.url(:medium) %>
+    <% if @charity.user.profile_file_name.nil? %>
+      <%= image_tag @charity.charity_pic.url(:small) %>
+    <% else %>
+      <%= image_tag @charity.user.profile.url %>        
+    <% end %>
+
   </div>
   <div class="col-md-6">
     <div class="text-center charity_title">
@@ -24,6 +29,8 @@
     <p class="lead">
       <!-- Charity description -->
       <%= @charity.description %>
+    <br>
+      Target Area: <%= @charity.target_area %>
     </p>
   </div>
 
