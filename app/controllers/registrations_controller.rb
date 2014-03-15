@@ -6,8 +6,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     child_class = @user_type.camelize.constantize
-    params[:user].delete(:user_type)
-    @role_resource = child_class.new(user_params)
+    user_params_user = user_params
+    user_params_rolable = user_params[:rolable_attributes]
+    user_params_user.delete(:rolable_attributes)
+
+    @role_resource = child_class.new(user_params_rolable)
     @role_resource.user = build_resource(sign_up_params)
     resource.rolable = @role_resource
     # Deleting the user_type from the params hash, won't work without this.
@@ -70,29 +73,30 @@ class RegistrationsController < Devise::RegistrationsController
 
 
    def update
-    self.resource = @user_type.camelize.constantize.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    # self.resource = resource.class.name.camelize.constantize.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    if user_params[:user][:password].blank?
-      user_params[:user].delete("password")
-      user_params[:user].delete("password_confirmation")
+    if user_params[:password].blank?
+      user_params.delete("password")
+      user_params.delete("password_confirmation")
     end
 
-    user_temp = user_params[:user]
-    user_params.delete(:user)
-    if current_user.user.update_without_password(user_temp) && resource.update_attributes(user_params)
+    user_params_user= user_params
+    user_params_rolable = user_params[:rolable_attributes]
+    user_params_user.delete(:rolable_attributes)
+    if current_user.update_without_password(user_params_user) && current_user.rolable.update_attributes(user_params_rolable)
         if is_navigational_format?
-          flash_key = update_needs_confirmation?(resource.user, prev_unconfirmed_email) ?
+          flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
             :update_needs_confirmation : :updated
           set_flash_message :notice, flash_key
         end
-        sign_in resource_name, resource.user, :bypass => true
-        respond_with resource
+        sign_in resource_name, resource, :bypass => true
+        respond_with resource.rolable
     else
       # if user_temp[:current_password] == nil
       #   set_flash_message :error, 'update_failed'
       # end
-      respond_with resource
+      respond_with resource.rolable
     end
   #   # Deleting the user_type from the params hash, won't work without this.
 
@@ -143,40 +147,25 @@ class RegistrationsController < Devise::RegistrationsController
         end
       # For editing a user
       elsif(!current_user.nil?)
-        @user_type = current_user.class.name.downcase
+        @user_type = current_user.rolable.class.name.downcase
       end
     end
 
     def user_params
-      
       user_attrs      = [:email, :password, :password_confirmation, :phone, :profile, :donor]
       charity_attrs   = [:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id, :rolable]
       business_attrs  = [:name, :goods, :description, :services, :slogan, :rolable, :category_id, :location, :interests]
       donor_attrs     = [:title, :first_name, :last_name, :middle_initial, :rolable]
-      # For a new user 
-      #apply to correct parameter
-      if(params[:user] && !params[:user][:rolable_attributes].nil?) # || !params[:user][:business].nil? || !params[:user][:donor].nil? )
-        case @user_type
-          when "charity"
-            params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(charity_attrs)
-          when "business"
-            params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(business_attrs)
-          when "donor"
-            params[:user][:rolable_attributes] = params[:user][:rolable_attributes].permit(charity_attrs)
-        end
-      elsif !params[:charity].nil? || !params[:business].nil? || !params[:donor].nil?
-        case @user_type
-          when "charity"
-             params[:charity] = params[:charity].permit(charity_attrs, :user => user_attrs)
-          when "business"
-            params[:business] = params[:business].permit(business_attrs, :user => user_attrs)
-          when "donor"
-            params[:donor] = params[:donor].permit(donor_attrs, :user => user_attrs)
-        end
+
+      case @user_type
+        when "charity"
+          params[:user] = params[:user].permit(user_attrs, rolable_attributes: charity_attrs)
+        when "business"
+          params[:user] = params[:user].permit(user_attrs, rolable_attributes: business_attrs)
+        when "donor"
+          params[:user] = params[:user].permit(user_attrs, rolable_attributes: charity_attrs)
       end
     end  
-
-
 end
 
 

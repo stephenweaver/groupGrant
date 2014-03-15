@@ -7,7 +7,7 @@
   <div class="col-md-1">
     <!-- I made this so things would be centered -->
   </div>
-	<div class = "col-md-5">
+  <div class = "col-md-5">
     <div class="text-center gg_title">
       <!-- gG Title -->
       <h1><strong><%= @groupgrant.name %><strong><br/><small><em> started by <%= @groupgrant.charity.name%></em></small></h1>
@@ -16,7 +16,7 @@
     <p class="lead">
       <%= @groupgrant.description %> 
     </p>    
-	</div>
+  </div>
   <!-- gG Info -->
   <div class= "col-md-5" style="max-width:450px;">
     <div class= "well" style="margin-bottom:5px;">
@@ -71,10 +71,15 @@
         <div class="row">
             <em style="font-size: 1.5em; float:left; padding-left: 15px;">Share the cause</em>
           <!-- Show Tweet Button -->
+
           <div class="col-md-2" id="tweets" style="margin-top:5px"></div>              
 
           <!-- Show Facebook button -->
           <div class="col-md-2" id="sharePage" style="padding-left: 7px; margin-top:5px"></div>            
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/twitter-api-announce" data-counturl="http://groups.google.com/group/twitter-api-announce" data-lang="en" data-count="vertical">Tweet</a>          
+
+          <!-- Show Facebook button -->
+          <div class="fb-share-button" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
         </div>
       </div>
 </div>
@@ -270,6 +275,66 @@
       </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
   </div><!--/.modal  -->
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-1">
+  <!-- I made this so things would be centered -->
+</div>
+
+<div id="sponsors">
+  <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
+  <% r = Request.where(groupgrant_id: @groupgrant.id)
+
+    #check if this is the user that sent it
+    if (r[0] != nil)
+      r = Request.find(r)
+      m = Message.where(request_id: r.id)
+      m = Message.find(m)
+
+      if (m.user_sent_id == current_user.id) %>
+      <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+       Request Pending. Cancel? 
+     </div>
+     <% end %>
+     <% else %>
+     <div id="request" class="btn btn-primary">
+      Connect with Charity 
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+
+
+<!-- If the owner of the groupgrant is logged in, 
+  show a list of businesses it could connect with - KW -->
+  <br />
+  <% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
+  <!-- Proceed if there are no request sent for this groupgrant -->
+  <% if @requests.first == nil %>
+
+  <div style="float: left" id="business">   
+    <!-- CONTACT NEW FRIEND -->
+    <h3> Send a request to a business </h3>
+    <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete_g">
+      <option></option>
+      <!-- Display the business if it doesn't already have a request -->
+      <% @search_businesses.each do |business| %>
+      <option value= <%= business.id %>>
+       &nbsp;&nbsp; <%= business.rolable.name %>
+     </option>
+     <% end %>
+   </select>
+   <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" 
+   data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite">
+   Send Request
+ </button>
+ <% end %>
+ <% end %>
 </div>
 
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>

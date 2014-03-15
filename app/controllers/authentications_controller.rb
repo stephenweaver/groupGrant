@@ -1,13 +1,14 @@
 class AuthenticationsController < ApplicationController
   def index
-    @authentications = Authentication.all
+    @authentications = Authentication.where(user_id: current_user.id)
   end
 
   def twitter
-    # raise omni = request.env["omniauth.auth"].to_yaml
+    
     omni = request.env["omniauth.auth"]
+
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
-    raise
+
     if authentication
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
@@ -19,12 +20,21 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication successful."
       sign_in_and_redirect current_user
     else
+      
       user = User.new
-      user.provider = omni.provider
-      user.uid = omni.uid
+      user.provider = omni['provider']
+      user.uid = omni['uid']
         
       user.apply_omniauth(omni)
-      
+
+      child_class = 'Donor'.constantize
+      user.rolable = child_class.create()
+      name = omni['extra']['raw_info']['name'].split(' ')
+      user.rolable.first_name = name.first
+      user.rolable.last_name = name.last
+      user.email = "no_email@twitter.com"
+
+
       if user.save
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)             
@@ -60,8 +70,6 @@ class AuthenticationsController < ApplicationController
       user.rolable = child_class.create()
       user.rolable.first_name = omni['extra']['raw_info'].first_name
       user.rolable.last_name = omni['extra']['raw_info'].last_name
-      Rails.logger.info("user.valid?")
-      Rails.logger.info(user.valid?)
 
       if user.save
         flash[:notice] = "Logged in."

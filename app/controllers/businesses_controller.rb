@@ -46,6 +46,7 @@ class BusinessesController < ApplicationController
    def show
       @business = Business.find(params[:id])      
       not_available = 0
+
       @available = false
       if user_signed_in? && current_user.rolable_type == "Charity"
          @search_groupgrants = Groupgrant.where(owner_id: current_user.id, partner_id: 0)

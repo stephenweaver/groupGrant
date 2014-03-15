@@ -11,14 +11,13 @@
     <!-- I made this so things would be centered -->
   </div>
 
-  <div class="col-md-4 thumbnail charity_show_pic">
-    <!-- Charity picture -->
-    <% if @charity.user.profile_file_name.nil? %>
-      <%= image_tag @charity.charity_pic.url(:small) %>
+  <div class="col-md-4">
+  <!-- Charity picture -->
+    <% if @charity.user.profile.url.include? "missing" %>
+       <%= image_tag @charity.charity_pic.url(:medium), class: 'col-md-4' %>
     <% else %>
-      <%= image_tag @charity.user.profile.url %>        
+       <%= image_tag @charity.user.profile.url(:medium), class: 'col-md-4' %>
     <% end %>
-
   </div>
   <div class="col-md-6">
     <div class="text-center charity_title">
