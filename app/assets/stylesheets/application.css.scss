@@ -105,11 +105,6 @@ a:hover {
     background-color: #eee;
 }
 
-.charity_index_single {
-   overflow:hidden;
-   max-height: 225px;
-}
-
 .business_index_single {
    overflow:hidden;
    max-height: 225px;
@@ -131,12 +126,6 @@ a:hover {
 .help-inline {
    color: red;
    padding-top:5
-}
-
-.charity_groupgrants {
-   margin-left:auto;
-   margin-right:auto;
-   width: 80%;
 }
 
 
@@ -187,6 +176,11 @@ background-color: #c0392b;
 }
 
 .wrapper-explore {
-text-align: center;
-padding: 5% 35%;
+  text-align: center;
+  padding: 5% 35%;
+}
+
+.no-hover a, .no-hover a:hover {
+  color:black;
+  text-decoration:none;
 }

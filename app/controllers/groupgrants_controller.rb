@@ -230,7 +230,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
 
       flash[:notice] = "Thank you for your $" + params[:amount] + " donation!"
     rescue => e
-      if @amount <= 0
+      if amount <= 0
         flash[:error] = amount.to_s + " dollars is an Invalid amount value. Please try again with a positive amount."
       # elsif cvc < 300 || cvc > 999
       #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."

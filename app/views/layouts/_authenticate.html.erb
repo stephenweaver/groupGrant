@@ -3,7 +3,7 @@
       <p class="navbar-text">Logged in as 
          <strong>
             <% if current_user.rolable_type == "Donor" %>
-               <%= current_user.email %>
+               <%= current_user.rolable.first_name %>
             <% else %>
                <%= current_user.rolable.name %>
             <% end %>
@@ -16,6 +16,9 @@
          <ul class="dropdown-menu">
             <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
             <li><%= link_to 'Authentications', authentications_path %></li>
+            <% if user_signed_in? && current_user.rolable_type == "Charity" %>
+               <li><%= link_to 'Start a groupGrant', new_groupgrant_path %></li>
+            <% end %>
             <li class="divider"></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             <!-- <li><a href="#">Action</a></li>

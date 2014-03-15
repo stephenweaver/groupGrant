@@ -5,10 +5,10 @@
 
 <!-- beginning of row 1 -->
 <div class="row">
-<!-- Row that includes Charity picture, name, mission statement, and description -->
+  <!-- Row that includes Charity picture, name, mission statement, and description -->
 
   <div class="col-md-1">
-  <!-- I made this so things would be centered -->
+    <!-- I made this so things would be centered -->
   </div>
 
   <div class="col-md-4">
@@ -19,18 +19,22 @@
        <%= image_tag @charity.user.profile.url(:medium), class: 'col-md-4' %>
     <% end %>
   </div>
-  <div class="col-md-7">
-  <!-- Charity name, mission statement, and description -->
-    <div class="title"><%= @charity.name %></div>
-    <div><%= @charity.mission_statement %></div>
-    <div><%= @charity.description %></div>   
-    <% if user_signed_in? && current_user.rolable_type == "Charity" && current_user.rolable_id == @charity.id %>     
-      <%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md" , style: "float:right; margin:5px;"%>
-   <% end %>
+  <div class="col-md-6">
+    <div class="text-center charity_title">
+      <!-- Charity name and mission statement -->
+      <h1><strong><%= @charity.name %><strong><br/><small><em><%= @charity.mission_statement%></em></small></h1>
+    </div>
+
+    <p class="lead">
+      <!-- Charity description -->
+      <%= @charity.description %>
+    <br>
+      Target Area: <%= @charity.target_area %>
+    </p>
   </div>
 
   <div class="col-md-1">
-  <!-- I made this so things would be centered -->
+    <!-- I made this so things would be centered -->
   </div>
 
 </div> 
@@ -38,90 +42,86 @@
 
 <!-- beginning of row 2 -->
 <div class="row">
-<!-- Row that includes contact details, category, groupgrants, etc. -->
+  <!-- Row that includes contact details, category, groupgrants, etc. -->
   <div class="col-md-1">
-  <!-- I made this so things would be centered -->
+    <!-- I made this so things would be centered -->
   </div>
 
   <div class="col-md-4">
-  <!-- Contact details -->
-    <br><h4><%= "Contact Information:" %></h4>
-            <%= "(Phone Number)" %>
-        <br><%= "(Address)" %>
-        <br><%= "(Address continued)" %>
+    <!-- Contact details -->
+    <h4><%= "Contact Information:" %></h4>
+    <% if !@charity.user.phone.blank? %>
+      <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
+    <% end %>
+    <%= "(Address)" %>
+    <br><%= "(Address continued)" %>
 
     <div class = "row">
-    <!-- Social media icons -->
+      <!-- Social media icons -->
       <div class = "col-md-11">
         <div class = "col-md-3 social-media-icons automargin">
-           <table>
-              <tr>
-                 <td>                                                     
-                    <!-- Show Tweet Button -->
-                    <div id="tweets" ></div>
-                 </td>
-              </tr>
-              <tr>
-                 <td>
-                    <!-- Show Facebook button -->
-                    <div id="sharePage"></div>                
-                 </td>
-              </tr>
-           </table> 
+         <table>
+          <tr>
+           <td>                                                     
+            <!-- Show Tweet Button -->
+            <div id="tweets" ></div>
+          </td>
+        </tr>
+        <tr>
+         <td>
+          <!-- Show Facebook button -->
+          <div id="sharePage"></div>                
+        </td>
+      </tr>
+    </table> 
+  </div>
+</div>
+<div class = "col-md-1">
+  <!-- Connection request for Business to Charity -->
+  <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
+  <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Message</h4>
         </div>
-      </div>
-      <div class = "col-md-1">
-      <!-- Connection request for Business to Charity -->
-        <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
-            <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
-              <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Message</h4>
-                    </div>
-                    <div class="modal-body">
-                       <div class="input-group">
-                          <form>
-                             <input type="text" class="form-control" id="chat_message">
-                                <span class="input-group-btn">
-                                   <button class="btn btn-primary" type="submit" id="send_message">Send</button>
-                                </span>
-                          </form>
-                       </div>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->
-        <% end %>
-      </div><!-- col-md-1 -->
-    </div><!-- row -->
-  </div><!-- col-md-4 -->
+        <div class="modal-body">
+         <div class="input-group">
+          <form>
+           <input type="text" class="form-control" id="chat_message">
+           <span class="input-group-btn">
+             <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+           </span>
+         </form>
+       </div>
+     </div>
+     <div class="modal-footer">
+     </div>
+   </div><!-- /.modal-content -->
+ </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<% end %>
+</div><!-- col-md-1 -->
+</div><!-- row -->
+</div><!-- col-md-4 -->
 
-  <div class="col-md-7">
-    <% if @charity.groupgrants.count > 0 %>
-      <h3>Support our cause</h3>
-      <br />
-      <div class="charity_groupgrants">
-        <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
-      </div>
-   <% end %>
+<div class="col-md-6">
+  <% if @charity.groupgrants.count > 0 %>
+  <h3 style="margin:0px 0 0px 0;"><em>Support our cause</em></h3>
+  <br />
+  <div class="charity_groupgrants">
+    <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
   </div>
+  <% end %>
+</div>
 
-  <div class="col-md-1">
+<div class="col-md-1">
   <!-- I made this so things would be centered -->
-  </div>
+</div>
 
 </div>
 <!-- end of row 2 -->
-
-<!-- START NEW GROUPGRANT LINK -->
-<% if user_signed_in? && current_user.rolable_type == "Charity" && current_user.rolable_id == @charity.id %>
-  <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float: right; margin:5px;"%> 
-<% end %>
-<!-- START NEW GROUPGRANT LINK -->
 
 <%= javascript_include_tag("facebook_twitter_api.js") %>
