@@ -1,3 +1,4 @@
+<%= render "layouts/navigation" %>
 <% if spree_current_user %>
   <li>
    
@@ -15,7 +16,7 @@
   </li>
 <% end %>
 <%= stylesheet_link_tag "store/spree_frontend" %>
-
+<%= stylesheet_link_tag "admin/spree_backend" %>
 <%= stylesheet_link_tag "store/spree_simple_sales" %>
 
 <%= javascript_include_tag("store/spree_simple_sales.js") %>

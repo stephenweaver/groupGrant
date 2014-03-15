@@ -3,7 +3,7 @@
       <p class="navbar-text">Logged in as 
          <strong>
             <% if current_user.rolable_type == "Donor" %>
-               <%= current_user.email %>
+               <%= current_user.rolable.first_name %>
             <% else %>
                <%= current_user.rolable.name %>
             <% end %>
