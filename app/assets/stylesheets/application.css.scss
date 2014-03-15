@@ -202,3 +202,8 @@ a:hover {
   text-align: center;
   padding: 5% 35%;
 }
+
+.no-hover a, .no-hover a:hover {
+  color:black;
+  text-decoration:none;
+}

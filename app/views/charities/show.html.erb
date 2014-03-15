@@ -50,11 +50,11 @@
   <div class="col-md-4">
     <!-- Contact details -->
     <h4><%= "Contact Information:" %></h4>
-    <% if !@charity.user.phone.nil? %>
+    <% if !@charity.user.phone.blank? %>
       <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
     <% end %>
-    <%= "(Address)" %><br>
-    <%= "(Address continued)" %>
+    <%= "(Address)" %>
+    <br><%= "(Address continued)" %>
 
     <div class = "row">
       <!-- Social media icons -->
