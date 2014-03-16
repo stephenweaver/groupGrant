@@ -3,6 +3,54 @@ class AuthenticationsController < ApplicationController
     @authentications = Authentication.where(user_id: current_user.id)
   end
 
+    def charityLogin
+    charity = User.where(rolable_type: "Charity", is_available: 1).first
+    if charity != nil
+      charity.is_available = 0
+      sign_in_and_redirect charity
+      
+      flash[:notice] = "You are logged in as a charity."
+    else
+      redirect_to root_path
+      flash[:notice] = "No charities are available. Please register below"
+
+    end
+  end
+
+  def businessLogin
+    business = User.where(rolable_type: "Business", is_available: 1).first
+    if business != nil
+      business.is_available = 0
+      sign_in_and_redirect business
+      flash[:notice] = "You are logged in as a business."
+    else
+      redirect_to root_path
+      flash[:notice] = "No businesses are available. Please register below"
+    end
+  end
+
+  def donorLogin
+    donor = User.where(rolable_type: "Donor", is_available: 1).first
+    if donor != nil
+      donor.is_available = 0
+      sign_in_and_redirect donor      
+      flash[:notice] = "You are logged in as a donor."
+    else
+      redirect_to root_path
+      flash[:notice] = "No donors are available. Please register below"
+    end
+  end
+
+  def logout
+    if user_signed_in?
+      current_user.is_available = 1
+      sign_out_and_redirect current_user
+      flash[:notice] = "Logout Successful."
+    else
+      flash[:notice] = "An impossible error occured. Please notify the webmasters."
+    end
+  end
+
   def twitter
     
     omni = request.env["omniauth.auth"]
