@@ -6,9 +6,8 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "groupGrant" %>">
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= favicon_link_tag %>
-    <%= csrf_meta_tags %>
     
+    <%= csrf_meta_tags %>
     </style>
   </head>
   <body>
@@ -43,14 +42,14 @@
        <%= render 'layouts/messages' %>
       <%= yield(:featured) %>
       <%= yield(:homepage) %>
-<!--       <div class="container"> -->
+      <div class="container">
         <div class="content">
               
               <%= yield %>
           <footer>
           </footer>
         </div>
-      <!-- </div> -->
+      </div>
     </main>
   </body>
 </html>
