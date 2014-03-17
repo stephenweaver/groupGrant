@@ -165,7 +165,7 @@ a:hover {
 
 .image {
 height: 700px;
-background-image: url(/assets/hero.jpg);
+background-image: asset-url('hero.jpg');
 background-size: 100%;
 background-repeat: no-repeat;
 background-position: 100%;
