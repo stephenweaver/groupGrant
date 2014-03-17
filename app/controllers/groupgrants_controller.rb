@@ -102,12 +102,15 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     if(!params[:reject].nil?)
       request.is_accepted = false
       request.date_responded = Time.current
-      partner = User.find(request.message.user_sent_id)
-      groupgrant = Groupgrant.find(request.groupgrant_id)
-      groupgrant.partner_id = partner.rolable_id
     elsif(!params[:accept].nil?)
       request.is_accepted = true
       request.date_responded = Time.current
+      partner    = Message.find_by_request_id(request.id)
+      partner2   = User.find(partner.user_received_id)
+      groupgrant = Groupgrant.find(request.groupgrant_id)
+      groupgrant.partner_id  = partner2.rolable_id
+      groupgrant.save!
+      
     end
     request.save!
     
