@@ -32,7 +32,7 @@ send_message = function(){
      var json = JSON.stringify(message_data );
      $.ajax({
          type: "POST",
-         url: "../messages",
+         url: "messages",
          data: { 'message' : message_data },
          dataType: "json",
          async: false,
@@ -62,7 +62,7 @@ startTimer = function() {
 update_client = function(){
    $.ajax({
       type: "POST",
-      url: "../messages/checkAjax",
+      url: "messages/checkAjax",
       data: { message_id : $("#last_id").val()},
       dataType: "json",
       async: false,
@@ -106,7 +106,7 @@ check_unread = function() {
   if($('.dropdown-toggle').text() !== "Login") {
     $.ajax({
       type: "POST",
-      url: "../messages/new_message_check",
+      url: "messages/new_message_check",
       dataType: "json",
       async: false,
       success: function (data) {
