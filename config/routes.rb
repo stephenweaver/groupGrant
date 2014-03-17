@@ -28,9 +28,9 @@ Blankcomposer::Application.routes.draw do
   match '/users/profile' => 'visitors#profile', via: :get
 
  devise_scope :user do
-  match 'charity/sign_up'  => 'registrations#new', :user => { :user_type => 'charity' },  via: :get, as: 'charity_sign_up'
-  match 'donor/sign_up'    => 'registrations#new', :user => { :user_type => 'donor' },    via: :get, as: 'donor_sign_up'
-  match 'business/sign_up' => 'registrations#new', :user => { :user_type => 'business' }, via: :get, as: 'business_sign_up'
+  match '/charity/sign_up'  => 'registrations#new', :user => { :user_type => 'charity' },  via: :get, as: 'charity_sign_up'
+  match '/donor/sign_up'    => 'registrations#new', :user => { :user_type => 'donor' },    via: :get, as: 'donor_sign_up'
+  match '/business/sign_up' => 'registrations#new', :user => { :user_type => 'business' }, via: :get, as: 'business_sign_up'
 
   get '/login',     :to => "devise/sessions#new"
   get '/signup',    :to => "devise/registrations#new"
@@ -52,12 +52,12 @@ Blankcomposer::Application.routes.draw do
   match "/messages/new_message_check", :to => "messages#new_message_check",    via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
-  match "requests/response",           :to => "groupgrants#request_response",  via: :post
-  match "charityLogin",                :to => "authentications#charityLogin",  via: :get
-  match "businessLogin",               :to => "authentications#businessLogin", via: :get
-  match "donorLogin",                  :to => "authentications#donorLogin",    via: :get
+  match "/requests/response",           :to => "groupgrants#request_response",  via: :post
+  match "/charityLogin",                :to => "authentications#charityLogin",  via: :get
+  match "/businessLogin",               :to => "authentications#businessLogin", via: :get
+  match "/donorLogin",                  :to => "authentications#donorLogin",    via: :get
 
   # match "requests/response",           :to => "groupgrants#request_response",  via: :post
   # match "requests/response",           :to => "groupgrants#request_response",  via: :post
-  match "logout",           :to => "authentications#logout",  via: :get
+  match "/logout",           :to => "authentications#logout",  via: :get
 end
