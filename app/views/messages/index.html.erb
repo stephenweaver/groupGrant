@@ -71,10 +71,9 @@
         </option>
       <% else %>
         <option value= <%= user.id %>>
-           &nbsp&nbsp <%= user.rolable.name %>
+          <%= user.rolable.name %>
         </option>
-      <% end %>
-     
+      <% end %>     
     <% end %>
   </select>
 
