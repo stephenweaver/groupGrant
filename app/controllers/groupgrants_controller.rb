@@ -106,7 +106,11 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       request.is_accepted = true
       request.date_responded = Time.current
       partner    = Message.find_by_request_id(request.id)
-      partner2   = User.find(partner.user_received_id)
+      if current_user.rolable_type == "Business"
+        partner2   = User.find(partner.user_received_id)
+      else
+        partner2   = User.find(partner.user_sent_id)
+      end
       groupgrant = Groupgrant.find(request.groupgrant_id)
       groupgrant.partner_id  = partner2.rolable_id
       groupgrant.save!
