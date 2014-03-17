@@ -32,15 +32,15 @@ Blankcomposer::Application.routes.draw do
   match '/donor/sign_up'    => 'registrations#new', :user => { :user_type => 'donor' },    via: :get, as: 'donor_sign_up'
   match '/business/sign_up' => 'registrations#new', :user => { :user_type => 'business' }, via: :get, as: 'business_sign_up'
 
+  match "/charityLogin"     => "authentications#charityLogin",  via: :get
+  match "/businessLogin"    => "authentications#businessLogin", via: :get
+  match "/donorLogin"       => "authentications#donorLogin",    via: :get
+  match "/logout"           => "authentications#logout",        via: :get
+
   get '/login',     :to => "devise/sessions#new"
   get '/signup',    :to => "devise/registrations#new"
   delete '/logout', :to => "devise/sessions#destroy"
 
-
-  # match 'charity/edit'  => 'registrations#edit', :user => { :user_type => 'charity' },  via: :get, as: 'charity_edit'
-  # match 'donor/edit'    => 'registrations#edit', :user => { :user_type => 'donor' },    via: :get, as: 'donor_edit'
-  # match 'business/edit' => 'registrations#edit', :user => { :user_type => 'business' }, via: :get, as: 'business_edit
-  
   end
  
   match "/groupgrant/connect",         :to => "groupgrants#connect",           via: :post
@@ -53,11 +53,6 @@ Blankcomposer::Application.routes.draw do
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
   match "/requests/response",           :to => "groupgrants#request_response",  via: :post
-  match "/charityLogin",                :to => "authentications#charityLogin",  via: :get
-  match "/businessLogin",               :to => "authentications#businessLogin", via: :get
-  match "/donorLogin",                  :to => "authentications#donorLogin",    via: :get
+  
 
-  # match "requests/response",           :to => "groupgrants#request_response",  via: :post
-  # match "requests/response",           :to => "groupgrants#request_response",  via: :post
-  match "/logout",           :to => "authentications#logout",  via: :get
 end
