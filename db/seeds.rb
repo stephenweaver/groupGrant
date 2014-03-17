@@ -52,7 +52,7 @@ charityNames.count.times do |c|
 						   password: password, 
 						   rolable_id: charity.id, 
 						   rolable_type: "Charity", 
-						   phone: ""
+						   phone: "",
 						   is_available:1)
 end
 
@@ -77,7 +77,7 @@ businessNames.count.times do |b|
 							    interests: "")
 	user      = User.create(email: businessEmail[b], password: password, 
 							rolable_id: business.id,  rolable_type: "Business",
-							phone: ""
+							phone: "",
 							is_available:1)					         
 end
 
@@ -98,7 +98,7 @@ donorEmail.count.times do |d|
 						 last_name: last, middle_initial:"")
 	user  = User.create(email: donorEmail[d], password: password, 
 					    rolable_id: donor.id, rolable_type: "Donor", 
-					    phone: "1-850-478-8496"
+					    phone: "1-850-478-8496",
 					    is_available:1)
 end
 
