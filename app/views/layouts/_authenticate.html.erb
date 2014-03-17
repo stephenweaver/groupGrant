@@ -33,7 +33,7 @@
             <% end %>
             <li class="divider"></li>
             <!-- <li><%#= link_to "Logout", destroy_user_session_path, method: :delete %></li> -->
-            <li><%= link_to "Logout", controller: authentications_path, action: "logout" %></li>
+            <li><%= link_to "Logout", controller: :authentications, action: :logout %></li>
             <!-- <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
@@ -48,9 +48,9 @@
          <li><%= link_to "Email", new_user_session_path %></li>
          <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
          <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
-         <li><%= link_to "As Charity", controller: authentications_path, action: "charityLogin" %></li>
-         <li><%= link_to "As Business", controller: authentications_path, action: "businessLogin" %></li>
-         <li><%= link_to "As Donor", controller: authentications_path, action: "donorLogin" %></li>
+         <li><%= link_to "As Charity", controller: :authentications, action: :charityLogin %></li>
+         <li><%= link_to "As Business", controller: :authentications, action: :businessLogin %></li>
+         <li><%= link_to "As Donor", controller: :authentications, action: :donorLogin %></li>
          <!-- <li><a href="#">Action</a></li>
          <li><a href="#">Another action</a></li>
          <li><a href="#">Something else here</a></li>

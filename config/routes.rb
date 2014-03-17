@@ -32,9 +32,6 @@ Blankcomposer::Application.routes.draw do
   match '/donor/sign_up'    => 'registrations#new', :user => { :user_type => 'donor' },    via: :get, as: 'donor_sign_up'
   match '/business/sign_up' => 'registrations#new', :user => { :user_type => 'business' }, via: :get, as: 'business_sign_up'
 
-  match "/charityLogin"     => "authentications#charityLogin",  via: :get
-  match "/businessLogin"    => "authentications#businessLogin", via: :get
-  match "/donorLogin"       => "authentications#donorLogin",    via: :get
  
 
   get '/login',     :to => "devise/sessions#new"
@@ -55,4 +52,8 @@ Blankcomposer::Application.routes.draw do
   match "/requests/response",           :to => "groupgrants#request_response",  via: :post
   
  match "/logout"           => "authentications#logout",        via: :get
+ match "/charityLogin"     => "authentications#charityLogin",  via: :get
+  match "/businessLogin"    => "authentications#businessLogin", via: :get
+  match "/donorLogin"       => "authentications#donorLogin",    via: :get
+ 
 end
