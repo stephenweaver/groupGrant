@@ -21,7 +21,7 @@
 imhere = function() {
    $.ajax({
       type: "POST",
-      url: "/users/active",
+      url: "users/active",
       dataType: "json",
       async: false,
       authenticity_token: window._token
