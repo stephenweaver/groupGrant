@@ -163,10 +163,6 @@ class AuthenticationsController < ApplicationController
     redirect_to authentications_url, :notice => "Successfully destroyed authentication."
   end
 
-  def new
-   render text: "hi"
- end
-
   def home
  
   end
