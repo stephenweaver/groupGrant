@@ -1,6 +1,9 @@
+// Navbar Overrides:
 $navbar-default-bg:#0c161c;
+$navbar-height:70px;
 
 @import "bootstrap";
+@import "bootstrap-datepicker";
 
 .modal-footer {
 	border: none;

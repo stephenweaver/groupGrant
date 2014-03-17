@@ -11,20 +11,111 @@
  *= require bootstrap_and_overrides
  *= require_self
  *= require_tree .
- *= require bootstrap-datepicker
  */
 
+// Website Colors:-------------------------------------
+.background-light-gray { background-color:#eeeeee; }
 
+.background-med-gray { background-color:#95a5a6; }
 
-body { padding-top: 70px; }
+.background-dark-gray { background-color:#7f8c8d; }
+
+.background-green { background-color:#43b549; }
+
+.background-blue { background-color:#243d8f; }
+
+.text-light-gray { text-color:#eeeeee; }
+
+.text-med-gray { text-color:#95a5a6; }
+
+.text-dark-gray { text-color:#7f8c8d; }
+
+.text-green { text-color:#43b549; }
+
+.text-blue { text-color:#243d8f; }
+// End of Website Colors -------------------------------
+
+// Fonts:-----------------------------------------------
+
+// ROBOTO
+@font-face
+{
+  font-family: Roboto;
+  font-weight: 100;
+  src: asset-url("fonts/roboto/Roboto-Thin.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 100;
+  src: asset-url("fonts/roboto/Roboto-ThinItalic.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-weight: 200;
+  src: asset-url("fonts/roboto/Roboto-Light.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 200;
+  src: asset-url("fonts/roboto/Roboto-LightItalic.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-weight: normal;
+  src: asset-url("fonts/roboto/Roboto-Regular.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-weight: normal;
+  font-style: italic;
+  src: asset-url("fonts/roboto/Roboto-Italic.ttf");
+}
+@font-face
+{
+  font-family: Roboto;
+  font-weight: bold;
+  src: asset-url("fonts/roboto/Roboto-Bold.ttf");
+}
+
+// YOUNG
+@font-face
+{
+  font-family: Young;
+  font-weight: normal;
+  src: asset-url("fonts/young/young.ttf");
+}
+
+//Linux Libertine
+@font-face
+{
+  font-family: LinLibertine;
+  font-weight: normal;
+  src: asset-url("fonts/linux_libertine/LinLibertine_R.ttf");
+}
+@font-face
+{
+  font-family: LinLibertine;
+  font-weight: 100;
+  src: asset-url("fonts/linux_libertine/LinLibertine_RZ.ttf");
+}
+
+// End of Fonts-----------------------------------------
+
+body { 
+  padding-top: 70px;
+}
+
 main { margin-top:10px;}
 .content {
  background-color: #FFFFFF;
  padding: 20px;
-}
-
-nav {
-   height: 77px;
 }
 
 .left-bar {
