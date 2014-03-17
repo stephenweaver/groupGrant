@@ -4,10 +4,12 @@
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>
+
             <% else %>
                <%= current_user.rolable.name %>
             <% end %>
          </strong>
+         <span style="display:none" id="user_type"><%=  current_user.rolable_type %> </span>
       </p>
       <span class="navbar-text">
          <%= link_to(messages_path) do %>

@@ -45,13 +45,10 @@ send_message = function(){
 };
 
 startTimer = function() {
-  console.log("0");
   if(($("#last_id")).length != 0) {
-    console.log("1");
      window.setInterval(update_client, 10000);
   } else 
   {
-    console.log("2");
     window.setInterval(check_unread, 10000);
   }
 
@@ -70,7 +67,6 @@ update_client = function(){
       dataType: "json",
       async: false,
       success: function (data) {
-         console.log("test");
         if(data.length > 0)
         {
             $(".friend").children('.badge').remove();
@@ -107,21 +103,21 @@ update_client = function(){
 };
 
 check_unread = function() {
-  $.ajax({
-    type: "POST",
-    url: "/messages/new_message_check",
-    dataType: "json",
-    async: false,
-    success: function (data) {
-      if(data['unread'] === 'true') {
-        console.log('addgreen');
-        $('#envelope-icon').addClass('green');
-      } else {
-        console.log('removeGreen');
-        $('#envelope-icon').removeClass('green');
+  if($('.dropdown-toggle').text() !== "Login") {
+    $.ajax({
+      type: "POST",
+      url: "/messages/new_message_check",
+      dataType: "json",
+      async: false,
+      success: function (data) {
+        if(data['unread'] === 'true') {
+          $('#envelope-icon').addClass('green');
+        } else {
+          $('#envelope-icon').removeClass('green');
+        }
       }
-    }
-  });
+    });
+  }
 }
 
 send_message_reset = function() {
@@ -131,28 +127,6 @@ send_message_reset = function() {
    });
    update_client();
 }
-
-// auto_complete_users = function() {
-// var user = $( "#current_user" ).val();
-// console.log(user);
-//   $.ajax({
-//          type: "POST",
-//          url: "/message/searchUsers",
-//          data: {"user":user},
-//          dataType: "json",
-//          async: false,
-//          success: function (data) { 
-//           console.log(data);
-//           $( "#search" ).autocomplete({
-//             source: data
-//            });
-//          }
-//   });
-// }
-
-
-
-
 
 auto_complete_users = function() {
     $( "#show-messages-button" ).click(function() {
@@ -170,8 +144,6 @@ chosen = function() {
       for (var selector in config) {
         $(selector).chosen(config[selector]);
       }
-
-      console.log("asdfsd");
     }, 500); 
    };
 
@@ -190,16 +162,12 @@ firstContact = function(){
         dataType: "json",
 
         success: function(data, status) {
-          console.log("1");
             $.each(target.split("|"),function(i,val){
                 if(val == "close"){
-                    console.log("1");
                     $form.closest(".modal").modal("hide");
                 }else if(val == "event"){
-                    console.log("2");
                     $form.trigger("ajax-submit");
                 }else{
-                    console.log("3");
                     $(val).html(data);
                 }
             });

@@ -29,4 +29,11 @@ Blankcomposer::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE 
+
+  
+end
+
+Devise.setup do |config|
+  config.omniauth :twitter, '9zijyfjZKttwj63HY0cZw', 'A9a1Cu20tHyMiWgtP4lFczRgWfKfxafh91cKtu4tU'
+  config.omniauth :facebook, '1473382302876752', '66de5c33690b06edca94ba5d1bc51fe5'
 end

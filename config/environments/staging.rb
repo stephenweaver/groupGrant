@@ -77,4 +77,10 @@ Blankcomposer::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+end
+
+Devise.setup do |config|
+  config.omniauth :twitter, '9zijyfjZKttwj63HY0cZw', 'A9a1Cu20tHyMiWgtP4lFczRgWfKfxafh91cKtu4tU'
+  config.omniauth :facebook, '300135003468694', '85527bc15836fb724e79cf6a2aa99c63'
 end

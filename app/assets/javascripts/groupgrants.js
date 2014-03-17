@@ -97,7 +97,6 @@ chosen = function() {
         $(selector).chosen(config[selector]);
       }
 
-      //console.log("this worked");
     }, 500); 
    };
 
