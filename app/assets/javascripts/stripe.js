@@ -1,9 +1,10 @@
 setup_stripe = function() {
   if (typeof Stripe !== 'undefined')
   {
-       console.log("wasup");
-   Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
-   console.log(Stripe);
+    console.log("wasup");
+    Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
+
+    console.log(Stripe);
    // $('#payment-form').on('shown.bs.modal', function (e) {
    //    console.log("modal launched");
       modal();
@@ -28,7 +29,6 @@ var stripeResponseHandler = function(status, response) {
     $form.append($('<input type="text" name="stripeToken" />').val(token));
     // and submit
    $form.get(0).submit();
-   console.log($form.get(0));
   }
 };
 

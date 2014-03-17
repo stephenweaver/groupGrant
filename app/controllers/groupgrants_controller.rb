@@ -222,6 +222,8 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     @groupgrant = Groupgrant.find(params[:groupgrant])
     cvc = params[:cvc]
 
+    Stripe.api_key = "sk_test_lI4B1u5NPxXesSLYuOnL2u72"
+
     begin
       # Create the charge on Stripe's servers - this will charge the user's card
       charge = Stripe::Charge.create(
