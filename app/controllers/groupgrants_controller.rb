@@ -228,6 +228,12 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
         :currency    => 'usd'
       )
 
+    if @groupgrant.goal_status.nil?
+      @groupgrant.goal_status = 0
+    end
+    
+    @groupgrant.goal_status += params[:amount].to_i
+    @groupgrant.save!
       flash[:notice] = "Thank you for your $" + params[:amount] + " donation!"
     rescue => e
       if amount <= 0
@@ -240,6 +246,9 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       
 
     end
+    
+
+
     render :show
   end
 

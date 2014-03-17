@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right">
    <% if user_signed_in? %>
-      <p class="navbar-text">Logged in as 
+      <p class="navbar-text" style="padding-top:">Logged in as 
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>
@@ -8,8 +8,18 @@
                <%= current_user.rolable.name %>
             <% end %>
          </strong>
-         <%= link_to image_tag('mail.png', alt: "Messages"), messages_path %>
       </p>
+      <span class="navbar-text">
+         <%= link_to(messages_path) do %>
+            <span id="envelope-icon" 
+               <% if Message.where(user_received_id: current_user.id, read: false).count > 0 %> 
+                  class="glyphicon glyphicon-envelope grey green" 
+               <% else %> 
+                  class="glyphicon glyphicon-envelope grey "
+               <% end %>
+                style="font-size: x-large;"></span>
+         <% end %>
+      </span>
       
       <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>

@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  
+
+
   protected
 
   def configure_permitted_parameters
@@ -16,7 +17,6 @@ class ApplicationController < ActionController::Base
   def current_user
     super
   end
-
   
   alias_method :devise_current_user, :current_user
   

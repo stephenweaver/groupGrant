@@ -49,6 +49,7 @@ Blankcomposer::Application.routes.draw do
   match "/messages/getMessages",       :to => "messages#getMessages",          via: :post
   match "/messages/checkAjax",         :to => "messages#check_for_messages",   via: :post
   match "/messages/searchUsers",       :to => "messages#searchUsers",          via: :post
+  match "/messages/new_message_check", :to => "messages#new_message_check",    via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
   match "requests/response",           :to => "groupgrants#request_response",  via: :post

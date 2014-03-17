@@ -50,6 +50,12 @@ class MessagesController < ApplicationController
         # Set sender or reciver
         if(message.user_sent_id != current_user.id)
           classname = "active "
+
+          if message.read != true
+            message.read = true
+            message.save!
+          end
+
         else 
           classname = "text-right"
         end
@@ -125,9 +131,25 @@ class MessagesController < ApplicationController
     if(!current_user.nil? && !params['message_id'].nil?)
       messages = Message.where( "(user_received_id = :current_user_id OR user_sent_id = :current_user_id) AND created_at > :last_time",
         {current_user_id: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+      messages.where(user_received_id: current_user.id, read: false).each do |message|
+        message.read = true
+        message.save!
+      end
+
       render :json => messages.to_json(:include => { :user => { :include => :rolable }})
     else
       render json: ''
+    end
+  end
+
+  #----------------------------------------------------------------------------------------------------
+  # simply returns true of false if there are any unread messages for the user
+  #----------------------------------------------------------------------------------------------------
+  def new_message_check
+    if Message.where(user_received_id: current_user.id, read: false).count > 0
+      render text: '{"unread":"true"}'
+    else
+      render text: '{"unread":"false"}'
     end
   end
 

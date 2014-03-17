@@ -1,5 +1,5 @@
 <%= link_to(charity) do %>
-   <div class="media" style="margin-bottom:10px;">
+   <div class="media user_about_block" style="margin-bottom:10px;">
         <% if charity.user.profile.url.include? "missing" %>
           <%= image_tag charity.charity_pic.url(:medium), class: 'pull-left media-object charity_partial_pic' %>
         <% else %>
@@ -8,7 +8,7 @@
       <div class="media-body">
          <h4 class="media-heading"><%= highlight(charity.name, params['search']) %><small><em> 
                                    <%= charity.mission_statement %></em></small></h4>
-         <div><%= highlight(charity.description, params['search']) %></div>
+         <div class="description"><%= highlight(charity.description, params['search']) %></div>
       </div>
     </div>
 <% end %>

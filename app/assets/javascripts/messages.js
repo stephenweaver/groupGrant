@@ -45,8 +45,14 @@ send_message = function(){
 };
 
 startTimer = function() {
+  console.log("0");
   if(($("#last_id")).length != 0) {
+    console.log("1");
      window.setInterval(update_client, 10000);
+  } else 
+  {
+    console.log("2");
+    window.setInterval(check_unread, 10000);
   }
 
   if($(".friend:first").length > 0)
@@ -98,10 +104,25 @@ update_client = function(){
         }
       }
    });
+};
 
-
+check_unread = function() {
+  $.ajax({
+    type: "POST",
+    url: "/messages/new_message_check",
+    dataType: "json",
+    async: false,
+    success: function (data) {
+      if(data['unread'] === 'true') {
+        console.log('addgreen');
+        $('#envelope-icon').addClass('green');
+      } else {
+        console.log('removeGreen');
+        $('#envelope-icon').removeClass('green');
+      }
+    }
+  });
 }
-
 
 send_message_reset = function() {
    $('#send_message').submit(function(e) {
@@ -194,7 +215,9 @@ firstContact = function(){
 };
 
 scrollDown = function() {
+  if($('#message_table').length > 0) {
     $('#message_table').animate({"scrollTop": $('#message_table')[0].scrollHeight}, "slow");
+  }
 }
 
 

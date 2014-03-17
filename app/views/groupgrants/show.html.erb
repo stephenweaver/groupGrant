@@ -60,7 +60,7 @@
         <!-- Charity and Business information -->
         <div style="clear:both; margin-top:10px;">
           <%= image_tag @groupgrant.charity.charity_pic.url(:small), style:"width:50px;" %>
-          <%= link_to @groupgrant.charity.name, charity_path %>
+          <%= link_to @groupgrant.charity.name, @groupgrant.charity %>
         </div>
       </div>
 
