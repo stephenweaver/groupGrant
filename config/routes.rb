@@ -35,7 +35,7 @@ Blankcomposer::Application.routes.draw do
   match "/charityLogin"     => "authentications#charityLogin",  via: :get
   match "/businessLogin"    => "authentications#businessLogin", via: :get
   match "/donorLogin"       => "authentications#donorLogin",    via: :get
-  match "/logout"           => "authentications#logout",        via: :get
+ 
 
   get '/login',     :to => "devise/sessions#new"
   get '/signup',    :to => "devise/registrations#new"
@@ -54,5 +54,5 @@ Blankcomposer::Application.routes.draw do
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
   match "/requests/response",           :to => "groupgrants#request_response",  via: :post
   
-
+ match "/logout"           => "authentications#logout",        via: :get
 end
