@@ -3,6 +3,55 @@ class AuthenticationsController < ApplicationController
     @authentications = Authentication.where(user_id: current_user.id)
   end
 
+    def charityLogin
+    charity = User.where(rolable_type: "Charity", is_available: 1).first
+    if charity != nil
+      charity.is_available = 0
+      sign_in_and_redirect charity
+      
+      flash[:notice] = "You are logged in as a charity."
+    else
+      redirect_to root_path
+      flash[:notice] = "No charities are available. Please register below"
+
+    end
+  end
+
+  def businessLogin
+    business = User.where(rolable_type: "Business", is_available: 1).first
+    if business != nil
+      business.is_available = 0
+      sign_in_and_redirect business
+      flash[:notice] = "You are logged in as a business."
+    else
+      redirect_to root_path
+      flash[:notice] = "No businesses are available. Please register below"
+    end
+  end
+
+  def donorLogin
+    donor = User.where(rolable_type: "Donor", is_available: 1).first
+    if donor != nil
+      donor.is_available = 0
+      sign_in_and_redirect donor      
+      flash[:notice] = "You are logged in as a donor."
+    else
+      redirect_to root_path
+      flash[:notice] = "No donors are available. Please register below"
+    end
+  end
+
+  def logout
+    if user_signed_in?
+      current_user.is_available = 1
+      current_user.save!
+      sign_out_and_redirect current_user
+      flash[:notice] = "Logout Successful."
+    else
+      flash[:notice] = "An impossible error occured. Please notify the webmasters."
+    end
+  end
+
   def twitter
     
     omni = request.env["omniauth.auth"]
@@ -10,6 +59,9 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
 
     if authentication
+      user = User.find(authentication.user_id)
+      user.is_available = 0
+      user.save!
       flash[:notice] = "Logged in Successfully"
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
@@ -17,7 +69,9 @@ class AuthenticationsController < ApplicationController
       token_secret = omni['credentials'].secret
       
       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'], :token => token, :token_secret => token_secret)
-      flash[:notice] = "Authentication successful."
+      current_user.is_available = 0
+      current_user.save!
+      flash[:notice] = "Authentication successful."      
       sign_in_and_redirect current_user
     else
       
@@ -36,6 +90,8 @@ class AuthenticationsController < ApplicationController
 
 
       if user.save
+        user.is_available = 0
+        user.save!
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)             
       else
@@ -50,6 +106,9 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     if authentication
       flash[:notice] = "Logged in Successfully"
+      user = User.find(authentication.user_id)
+      user.is_available = 0
+      user.save!
       sign_in_and_redirect User.find(authentication.user_id)
     elsif current_user
       token = omni['credentials'].token
@@ -58,6 +117,8 @@ class AuthenticationsController < ApplicationController
       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'], :token => token, :token_secret => token_secret)
       
       flash[:notice] = "Authentication successful."
+      current_user.is_available = 0
+      current_user.save!
       sign_in_and_redirect current_user
     else
       user = User.new
@@ -72,11 +133,13 @@ class AuthenticationsController < ApplicationController
       user.rolable.last_name = omni['extra']['raw_info'].last_name
 
       if user.save
+        user.is_available = 0
+        user.save!
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)             
       else
         if(user.errors.messages[:email])
-          flash[:warning] = "#{user.email} has already been registerd. Please log in with you password and then enable facebook authentication."  
+          flash[:warning] = "#{user.email} has already been registered. Please log in with you password and then enable facebook authentication."  
         end
         session[:omniauth] = omni.except('extra')
         redirect_to new_user_registration_path
@@ -99,6 +162,10 @@ class AuthenticationsController < ApplicationController
     @authentication.destroy
     redirect_to authentications_url, :notice => "Successfully destroyed authentication."
   end
+
+  def new
+   render text: "hi"
+ end
 
   def home
  

@@ -53,4 +53,11 @@ Blankcomposer::Application.routes.draw do
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
   match "requests/response",           :to => "groupgrants#request_response",  via: :post
+  match "charityLogin",                :to => "authentications#charityLogin",  via: :get
+  match "businessLogin",               :to => "authentications#businessLogin", via: :get
+  match "donorLogin",                  :to => "authentications#donorLogin",    via: :get
+
+  # match "requests/response",           :to => "groupgrants#request_response",  via: :post
+  # match "requests/response",           :to => "groupgrants#request_response",  via: :post
+  match "logout",           :to => "authentications#logout",  via: :get
 end
