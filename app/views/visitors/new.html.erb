@@ -43,18 +43,23 @@
       </div>
     </section>
     <section class="donor user">
-    <div class="">
-      <h1 class="title">
-        Donor
-      </h1>
-      <p>
-        Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
-      </p>
-    </div>
-    <%= link_to(donor_sign_up_path) do %>
-        <button type="button" class="btn btn-primary btn-lg">Register as a Donor</button>
-    <% end %>
-  </section>
+      <div class="section-inner">
+        <div class="wrapper">
+          <%= image_tag('donor.png', class: 'img-responsive business_img')%>
+          <div class="copy">
+            <h1 class="title">
+              Donor
+            </h1>
+            <p>
+              Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
+            </p>
+          </div>
+        </div>
+      </div>
+      <%= link_to(donor_sign_up_path) do %>
+          <button type="button" class="btn btn-primary btn-lg">Register as a Donor</button>
+      <% end %>
+    </section>
   </div>
   <div class="explore">
     <div class="wrapper-explore">
