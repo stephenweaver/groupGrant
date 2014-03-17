@@ -286,30 +286,6 @@
   <!-- I made this so things would be centered -->
 </div>
 
-<div id="sponsors">
-  <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
-  <% r = Request.where(groupgrant_id: @groupgrant.id)
-
-    #check if this is the user that sent it
-    if (r[0] != nil)
-      r = Request.find(r)
-      m = Message.where(request_id: r.id)
-      m = Message.find(m)
-
-      if (m.user_sent_id == current_user.id) %>
-      <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-       Request Pending. Cancel? 
-     </div>
-     <% end %>
-     <% else %>
-     <div id="request" class="btn btn-primary">
-      Connect with Charity 
-    </div>
-    <% end %>
-    <% end %>
-  </div>
-
-
 <!-- If the owner of the groupgrant is logged in, 
   show a list of businesses it could connect with - KW -->
   <br />
