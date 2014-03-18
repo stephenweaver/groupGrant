@@ -158,28 +158,30 @@ class MessagesController < ApplicationController
   #----------------------------------------------------------------------------------------------------
   def searchUsers
     if current_user.rolable.class.name == "Charity"
-      list_a = User.where(rolable_type: 'Business').order(:rolable_id).pluck(:id, :rolable_id)
-      search_list = Business.order(:id).pluck(:id, :name)
+      return User.where(rolable_type: 'Business')
+      # list_a = User.where(rolable_type: 'Business').order(:rolable_id).pluck(:id, :rolable_id)
+      # search_list = Business.order(:id).pluck(:id, :name)
 
-      search_list.each_with_index do |x, index|
-        x[0] = list_a[index][0]
-      end
+      # search_list.each_with_index do |x, index|
+      #   x[0] = list_a[index][0]
+      # end
       # sea
       # search_list = Business.where(active: true).pluck(:name)
       # search_list.each do |b|
       #   list << b.name
       # current_user
     elsif current_user.rolable.class.name == "Business"
-      list_a = User.where(rolable_type: 'Charity').order(:rolable_id).pluck(:id, :rolable_id)
-      search_list = Charity.order(:id).pluck(:id, :name)
-      search_list.each_with_index do |x, index|
-        x[0] = list_a[index][0]
-      end
-      # search_list.each do |c|
-      #   list << c.name
+      return User.where(rolable_type: 'Charity')
+      # list_a = User.where(rolable_type: 'Charity').order(:rolable_id).pluck(:id, :rolable_id)
+      # search_list = Charity.order(:id).pluck(:id, :name)
+      # search_list.each_with_index do |x, index|
+      #   x[0] = list_a[index][0]
       # end
+      # # search_list.each do |c|
+      # #   list << c.name
+      # # end
     end
-    return User.where(rolable_type: 'Charity')
+    
   end
 
   #----------------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
   end
 
     def charityLogin
-    charity = User.where(rolable_type: "Charity", is_available: 1).first
+    charity = User.where(rolable_type: "Charity", is_available: [1, nil]).first
     if charity != nil
       charity.is_available = 0
       sign_in_and_redirect charity
@@ -18,7 +18,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def businessLogin
-    business = User.where(rolable_type: "Business", is_available: 1).first
+    business = User.where(rolable_type: "Business", is_available: [1, nil]).first
     if business != nil
       business.is_available = 0
       sign_in_and_redirect business
@@ -30,7 +30,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def donorLogin
-    donor = User.where(rolable_type: "Donor", is_available: 1).first
+    donor = User.where(rolable_type: "Donor", is_available: [1, nil]).first
     if donor != nil
       donor.is_available = 0
       sign_in_and_redirect donor      
