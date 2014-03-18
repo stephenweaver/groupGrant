@@ -1,6 +1,23 @@
-// Navbar Overrides:
+// Navbar Overrides:-------------------
+// Colors
+$brand-primary:#243d8f;
+$gray:#7f8c8d;
+$gray-light:#95a5a6;
+$gray-lighter:#95a5a6;
+
+// Components
+// Navbar
 $navbar-default-bg:#0c161c;
-$navbar-height:70px;
+$navbar-default-link-color:$gray-lighter;
+$navbar-default-link-hover-color:#ffffff;
+
+// Buttons
+//$btn-font-weight:bold;
+
+// Inputs
+$input-border-focus:#f0ad4e;
+
+// End of Navbar Overrides-------------
 
 @import "bootstrap";
 @import "bootstrap-datepicker";
@@ -15,7 +32,6 @@ $navbar-height:70px;
 	}
 }
 
-
 @media (min-width: 1500px) {
 	.container {
 		width: 1500px;
@@ -24,12 +40,6 @@ $navbar-height:70px;
 
 @component-active-bg {
 	color: #00dd00;
-}
-
-// Left colored bar
-.green-background {
-	background-color: #dff0d8;
-	padding: 20px;
 }
 
 .tall {

@@ -35,4 +35,4 @@ start_imhere = function() {
 }
 
 $(document).ready(start_imhere);
-$(document).on('page:load', start_imhere);   
+$(document).on('page:load', start_imhere);

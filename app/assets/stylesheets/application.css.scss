@@ -14,29 +14,20 @@
  */
 
 // Website Colors:-------------------------------------
-.background-light-gray { background-color:#eeeeee; }
+.background-light-gray  { background-color:#eeeeee; }
+.background-med-gray    { background-color:#95a5a6; }
+.background-dark-gray   { background-color:#7f8c8d; }
+.background-green       { background-color:#43b549; }
+.background-blue        { background-color:#243d8f; }
 
-.background-med-gray { background-color:#95a5a6; }
-
-.background-dark-gray { background-color:#7f8c8d; }
-
-.background-green { background-color:#43b549; }
-
-.background-blue { background-color:#243d8f; }
-
-.text-light-gray { text-color:#eeeeee; }
-
-.text-med-gray { text-color:#95a5a6; }
-
-.text-dark-gray { text-color:#7f8c8d; }
-
-.text-green { text-color:#43b549; }
-
-.text-blue { text-color:#243d8f; }
+.text-light-gray  { text-color:#eeeeee; }
+.text-med-gray    { text-color:#95a5a6; }
+.text-dark-gray   { text-color:#7f8c8d; }
+.text-green       { text-color:#43b549; }
+.text-blue        { text-color:#243d8f; }
 // End of Website Colors -------------------------------
 
 // Fonts:-----------------------------------------------
-
 // ROBOTO
 @font-face
 {
@@ -92,7 +83,7 @@
   src: asset-url("fonts/young/young.ttf");
 }
 
-//Linux Libertine
+//LINUX LIBERTINE
 @font-face
 {
   font-family: LinLibertine;
@@ -105,11 +96,12 @@
   font-weight: 100;
   src: asset-url("fonts/linux_libertine/LinLibertine_RZ.ttf");
 }
-
 // End of Fonts-----------------------------------------
 
+
+
 body { 
-  padding-top: 70px;
+  padding-top: 80px;
 }
 
 main { margin-top:10px;}
@@ -119,11 +111,11 @@ main { margin-top:10px;}
 }
 
 .left-bar {
-   background: #dff0d8;
    height: auto;
    padding-top: 0px;
    margin-left: 0px;
    padding-left: 50px;
+   padding: 20px;
 }
 
 ul.nav.navbar-nav {
@@ -131,7 +123,7 @@ ul.nav.navbar-nav {
    margin-left: 15px;
 }
 
-ul.nav.navbar-nav a {
+ul.nav.navbar-nav {
    font-size: 18px;
 }
 
@@ -144,7 +136,6 @@ ul.nav.navbar-nav a {
 .navbar-header {
    margin-left: 20px;
 }
-
 
 .content {
     background-color: #FFFFFF;
@@ -190,11 +181,6 @@ ul.nav.navbar-nav a {
 
 .maxheight300 {
    max-height: 45%;
-}
-
-a:hover {
-    color: black !important;
-    background-color: #eee;
 }
 
 .business_index_single {
@@ -252,14 +238,6 @@ a:hover {
 
 .copy {
   min-height: 250px;
-}
-
-.image {
-height: 700px;
-background-image: asset-url('hero.jpg');
-background-size: 100%;
-background-repeat: no-repeat;
-background-position: 100%;
 }
 
 .explore {
