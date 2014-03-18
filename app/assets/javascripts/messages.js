@@ -45,6 +45,7 @@ send_message = function(){
 };
 
 startTimer = function() {
+  console.log("startTimer");
   if(($("#last_id")).length != 0) {
      window.setInterval(update_client, 10000);
   } else 

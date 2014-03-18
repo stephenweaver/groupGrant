@@ -63,4 +63,5 @@ group :production do
   gem 'pg',                       '~> 0.17.1'
   gem 'rails_12factor',           '~> 0.0.2'
   gem 'therubyracer',             '~> 0.12.1',   platforms: :ruby
+  gem 'better_errors',            '~> 1.1.0'
 end
