@@ -826,7 +826,7 @@ renderKnob = function() {
         })
         .trigger('configure',
                 {
-                    "inputColor":"#66CC66",
+                    "inputColor":"#43b549;",
                     "bgColor":"#FFFFFF",
                     "displayInput":"true",
                     "width":"90",
