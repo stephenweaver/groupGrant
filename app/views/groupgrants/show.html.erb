@@ -48,6 +48,7 @@
         <div class="gg_progress">
 
           <input type="text" value=<%= if @groupgrant.goal_status.nil? then 0 elsif @groupgrant.goal_status < @groupgrant.goal_amount  then @groupgrant.progress.to_i else 100 end %> class="dial" readOnly="true" style="width: 0px";>
+        </div>
 
         <div class="gg_goal">
           <h3 class="no-vert-marg"><%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %><br>Goal</h3>
