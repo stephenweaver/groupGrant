@@ -13,6 +13,13 @@
    width: 100%;
 }
 
+.image_container_index
+{
+   min-height: 155px;
+   max-height: 155px;
+   overflow: hidden;
+}
+
 .ellipsis_gg_title {
 // To avoid overflow on the thumbnails
    white-space: nowrap;
@@ -21,9 +28,10 @@
    font-size: 1.5em;
 }
 
-.progress_bar {
+
+.gg_progress_raised {
+   text-align:center;
    float: right;
-   margin-right: 20px;
 }
 
 
@@ -60,6 +68,11 @@
    overflow: hidden;
 }
 
+.description {
+    overflow: hidden;
+    height:40px 
+}
+
 .gg_time {
    padding-left:10px;
    text-align:left;
@@ -72,11 +85,20 @@
    float:left;
 }
 
+.gg_raised_index {
+   float:left;
+}
+.gg_goal_index {
+   float: left;
+
+}
 .gg_progress {
    text-align:center;
    width:25%;
    float:left;
 }
+
+
 
 .gg_goal {
    text-align:center;

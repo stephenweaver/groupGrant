@@ -31,7 +31,7 @@ w<!-- Facebook SDK -->
       
       <br>
       <div class="row gg_time">
-        <h4 style="margin-top:0px; margin-bottom:0px;"><%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left</h4>
+        <h4 class="no-vert-marg"><%= distance_of_time_in_words(Time.now, @groupgrant.goal_date)  %> left</h4>
       </div>
        
       <br>
@@ -39,18 +39,18 @@ w<!-- Facebook SDK -->
         <!-- gG Progress Bar -->
         <div class="gg_raised">
           <% if @groupgrant.goal_status.nil? %>
-            <h3 style="margin-top:0px; margin-bottom:0px;"><%= number_to_currency(0, :precision => 0) %><br>Raised</h3>
+            <h3 class="no-vert-marg"><%= number_to_currency(0, :precision => 0) %><br>Raised</h3>
           <% else %>
-            <h3><%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %><br>Raised</h3>
+            <h3 class="no-vert-marg"><%= number_to_currency(@groupgrant.goal_status, :precision => 0, :delimiter => ',') %><br>Raised</h3>
           <% end %>
         </div>
 
         <div class="gg_progress">
-          <input type="text" value=<%=@groupgrant.progress%> class="dial" readOnly="true">
+          <input type="text" value=<%= if @groupgrant.goal_status.nil? then 0 elsif @groupgrant.goal_status < @groupgrant.goal_amount  then @groupgrant.progress.to_i else 100 end %> class="dial" readOnly="true" style="width: 0px";>
         </div>
 
         <div class="gg_goal">
-          <h3 style="margin-top:0px; margin-bottom:0px;"><%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %><br>Goal</h3>
+          <h3 class="no-vert-marg"><%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %><br>Goal</h3>
         </div>
       </div> 
 

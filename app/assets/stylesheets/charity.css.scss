@@ -40,3 +40,16 @@
    margin-right:auto;
    width: 80%;
 }
+
+.user_about_block {
+   width: 50%;
+   min-width: 400px;
+   float:left;
+   padding-left: 10px;
+   height: 80px;
+}
+
+.description {
+   text-overflow:ellipsis;
+   max-height: 100px;
+}
