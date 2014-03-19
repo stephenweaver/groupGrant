@@ -35,9 +35,9 @@
 
 <div class = "col-sm-9 gg-right-column">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
-        <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float:left; margin-left:10px; margin-top:10px;"%>      
+        <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float:right; margin-left:10px; margin-bottom:10px;"%>      
       <% end %>
     </div>
   </div>
