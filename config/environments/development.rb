@@ -31,6 +31,7 @@ Blankcomposer::Application.configure do
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE 
 
   config.facebook_id = 1473382302876752;
+  config.dumb_url = "";
 
   
 end
