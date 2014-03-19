@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316060002) do
+ActiveRecord::Schema.define(version: 20140319164016) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -850,11 +850,12 @@ ActiveRecord::Schema.define(version: 20140316060002) do
     t.integer  "profile_file_size"
     t.datetime "profile_updated_at"
     t.string   "phone"
-    t.string   "spree_api_key",             limit: 48
+    t.string   "spree_api_key",                        limit: 48
     t.integer  "ship_address_id"
     t.integer  "bill_address_id"
     t.datetime "last_ping_time"
     t.integer  "is_available"
+    t.integer  "allocated_amount"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

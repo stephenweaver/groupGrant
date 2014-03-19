@@ -5,14 +5,14 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    child_class = @user_type.camelize.constantize
-    user_params_user = user_params
+    child_class         = @user_type.camelize.constantize
+    user_params_user    = user_params
     user_params_rolable = user_params[:rolable_attributes]
     user_params_user.delete(:rolable_attributes)
 
-    @role_resource = child_class.new(user_params_rolable)
+    @role_resource      = child_class.new(user_params_rolable)
     @role_resource.user = build_resource(sign_up_params)
-    resource.rolable = @role_resource
+    resource.rolable    = @role_resource
     # Deleting the user_type from the params hash, won't work without this.
     
     # create a new child instance depending on the given user user_type  

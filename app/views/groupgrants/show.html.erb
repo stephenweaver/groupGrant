@@ -1,4 +1,4 @@
-w<!-- Facebook SDK -->
+<!-- Facebook SDK -->
 <div id="fb-root"></div>
 <!-- Storing groupgrant ID - KW -->
 <div id="groupgrantID" data-gid=<%=@groupgrant.id %> ></div>
@@ -46,13 +46,23 @@ w<!-- Facebook SDK -->
         </div>
 
         <div class="gg_progress">
-          <input type="text" value=<%=@groupgrant.progress%> class="dial" readOnly="true">
+          <input type="text" value=<%= @groupgrant.progress %> class="dial" readOnly="true">
         </div>
 
         <div class="gg_goal">
           <h3 style="margin-top:0px; margin-bottom:0px;"><%= number_to_currency(@groupgrant.goal_amount, :precision => 0, :delimiter => ',') %><br>Goal</h3>
         </div>
       </div> 
+
+      <% if user_signed_in? %>
+        <div class="text-center">
+          <% if current_user.allocated_amount > 0 %>
+            <h3>You have <%= number_to_currency(current_user.allocated_amount, :precision => 0, :delimiter => ',') %> left to donate.</h3>
+          <% else %>
+            <h4>Sorry, you don't have any money left to donate.</h4>
+          <% end %>
+        </div>
+      <% end %>
 
       <br>
       <div>
@@ -269,7 +279,7 @@ show a list of businesses it could connect with - KW -->
       </button>
     </div>
   <% end %>
-<% end %>    
+<% end %>
     
 <div class="col-md-1"><!-- I made this so things would be centered --></div>
 

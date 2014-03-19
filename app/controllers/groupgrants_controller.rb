@@ -226,6 +226,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     # Get the credit card details submitted by the form
     token  = params[:stripeToken]
     amount = params[:amount].to_i * 100
+
     @groupgrant = Groupgrant.find(params[:groupgrant])
     cvc = params[:cvc]
 
@@ -234,7 +235,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     begin
       # Create the charge on Stripe's servers - this will charge the user's card
       charge = Stripe::Charge.create(
-        :card    => token,
+        :card        => token,
         :amount      => amount,
         :description => 'Rails Stripe customer',
         :currency    => 'usd'
@@ -245,8 +246,18 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     end
     
     @groupgrant.goal_status += params[:amount].to_i
-    @groupgrant.save!
-      flash[:notice] = "Thank you for your $" + params[:amount] + " donation!"
+
+    if (current_user.allocated_amount >= params[:amount].to_i)
+      @groupgrant.save!
+        flash[:error] = "Thank you for your $" + params[:amount] + " donation!"
+
+      # withdraw amount donated from user's allocated amount 
+      current_user.allocated_amount -= params[:amount].to_i
+      current_user.save
+    else
+      flash[:notice] = "Sorry, you have insufficient funds to make such a payment :("
+    end
+
     rescue => e
       if amount <= 0
         flash[:error] = amount.to_s + " dollars is an Invalid amount value. Please try again with a positive amount."
@@ -255,12 +266,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       else
         flash[:error] = e.message
       end
-      
-
     end
-    
-
-
     render :show
   end
 
