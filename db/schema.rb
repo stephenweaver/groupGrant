@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319164016) do
+ActiveRecord::Schema.define(version: 20140316060002) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.string   "category_id"
     t.integer  "phone_number"
     t.string   "interests"
-    t.string   "slogan"
-  end
-
-  create_table "charges", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "card_number"
-    t.string   "cid"
-    t.string   "expiration"
   end
 
   create_table "charities", force: true do |t|
@@ -107,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.string   "name"
     t.text     "description"
     t.date     "goal_date"
-    t.decimal  "goal_amount"
+    t.decimal  "goal_amount",                 precision: 10, scale: 2
     t.integer  "owner_id"
     t.integer  "partner_id"
     t.datetime "completed_date"
@@ -121,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.integer  "groupgrant_pic_file_size"
     t.datetime "groupgrant_pic_updated_at"
     t.integer  "category_id"
-    t.decimal  "goal_status"
+    t.decimal  "goal_status",                 precision: 10, scale: 2
     t.string   "video_url_html"
   end
 
@@ -134,6 +125,14 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "request_id"
+  end
+
+  create_table "payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_number"
+    t.string   "cid"
+    t.string   "expiration"
   end
 
   create_table "requests", force: true do |t|
@@ -827,12 +826,12 @@ ActiveRecord::Schema.define(version: 20140319164016) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                                default: "", null: false
-    t.string   "encrypted_password",                   default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -841,8 +840,6 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
-    t.string   "fb_token_expires_at_token"
-    t.string   "fb_token_expires_at"
     t.integer  "rolable_id"
     t.string   "rolable_type"
     t.string   "profile_file_name"
@@ -850,12 +847,11 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.integer  "profile_file_size"
     t.datetime "profile_updated_at"
     t.string   "phone"
-    t.string   "spree_api_key",                        limit: 48
+    t.string   "spree_api_key",          limit: 48
     t.integer  "ship_address_id"
     t.integer  "bill_address_id"
     t.datetime "last_ping_time"
     t.integer  "is_available"
-    t.integer  "allocated_amount"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
