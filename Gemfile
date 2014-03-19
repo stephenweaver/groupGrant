@@ -16,7 +16,7 @@ ruby '1.9.3'
 gem 'rails', '4.0.0'
 
 gem 'auto_html',                  '~> 1.6.1'
-gem 'binding_of_caller',          '~> 0.7.2'
+# gem 'binding_of_caller',          '~> 0.7.2'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.1'
 gem 'bootstrap-sass',             '~> 3.0.2.0'
 gem 'coffee-rails',               '~> 4.0.0'
@@ -44,12 +44,16 @@ gem 'twitter',                    '~> 5.7.1'
 gem 'uglifier',                   '>= 1.3.0'
 # gem 'mysql2',                     '0.3.11'
 
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'meta_request'
+
 group :development do
-  gem 'better_errors',            '~> 1.1.0'
+  # gem 'better_errors',            '~> 1.1.0'
   gem 'guard-bundler',            '~> 2.0.0'
   gem 'guard-rails',              '~> 0.5.0'
   gem 'hub',                      '~> 1.12.0',   :require=>nil
-  gem 'meta_request',             '~> 0.2.8'
+  # gem 'meta_request',             '~> 0.2.8'
   gem 'quiet_assets',             '~> 1.0.2'
   gem 'rails_layout',             '~> 1.0.10'
   gem 'rb-fchange',               '~> 0.0.6',    :require=>false
@@ -63,5 +67,4 @@ group :production do
   gem 'pg',                       '~> 0.17.1'
   gem 'rails_12factor',           '~> 0.0.2'
   gem 'therubyracer',             '~> 0.12.1',   platforms: :ruby
-  gem 'better_errors',            '~> 1.1.0'
 end
