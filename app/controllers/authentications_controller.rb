@@ -3,8 +3,10 @@ class AuthenticationsController < ApplicationController
     @authentications = Authentication.where(user_id: current_user.id)
   end
 
-    def charityLogin
+  def charityLogin
     charity = User.where(rolable_type: "Charity", is_available: [1, nil]).first
+    charity.allocated_amount = 5000
+
     if charity != nil
       charity.is_available = 0
       sign_in_and_redirect charity
@@ -13,12 +15,13 @@ class AuthenticationsController < ApplicationController
     else
       redirect_to root_path
       flash[:notice] = "No charities are available. Please register below"
-
     end
   end
 
   def businessLogin
     business = User.where(rolable_type: "Business", is_available: [1, nil]).first
+    business.allocated_amount = 5000
+
     if business != nil
       business.is_available = 0
       sign_in_and_redirect business
@@ -31,6 +34,8 @@ class AuthenticationsController < ApplicationController
 
   def donorLogin
     donor = User.where(rolable_type: "Donor", is_available: [1, nil]).first
+    donor.allocated_amount = 5000
+
     if donor != nil
       donor.is_available = 0
       sign_in_and_redirect donor      
