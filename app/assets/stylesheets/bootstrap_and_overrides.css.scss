@@ -28,7 +28,25 @@ $input-border-focus:#f0ad4e;
 
 @media (min-width: 992px) {
 	.modal-lg {
-		width: 900px;
+		width: 990px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 1198px;
+	}
+}
+
+@media (min-width: 1300px) {
+	.container {
+		width: 1300px;
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+		width: 1400px;
 	}
 }
 
@@ -47,7 +65,7 @@ $input-border-focus:#f0ad4e;
 }
 
 .col-sm-3 {
-	padding-left: 50px;
+	padding-left: 25px;
 }
 
 div.col-md-9.listing_header {

@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right">
    <% if user_signed_in? %>
-      <p class="navbar-text" style="padding-top:">Logged in as 
+      <p class="navbar-text" style="padding-top:">
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>

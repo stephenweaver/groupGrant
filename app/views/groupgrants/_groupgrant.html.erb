@@ -1,5 +1,5 @@
 <%= link_to(groupgrant) do %>
-  <div class="col-md-3">
+  <div class="col-sm-6 col-md-4 col-lg-3">
     <div class="thumbnail gg_thumbnail background-light-gray">
      
       <div class="image_container_index"><%= image_tag groupgrant.groupgrant_pic.url(:medium), class: "gg_image", style:":block;" %></div>
@@ -11,13 +11,12 @@
         <div class="gg_progress_raised">
           <input type="text" value=<%= if groupgrant.goal_status.nil? then 0 elsif groupgrant.goal_status < groupgrant.goal_amount  then groupgrant.progress.to_i else 100 end %> class="dial" readOnly="true" style="width: 0px";>
         </div>
-        <div class="gg_raised_index">
-          Raised: <%= number_to_currency(groupgrant.goal_status, :precision => 0, :delimiter => ',') || '$0' %>
-        </div>
         <div class="gg_goal_index">
           Goal: <%= number_to_currency(groupgrant.goal_amount, :precision => 0, :delimiter => ',') %>
         </div>
-
+        <div class="gg_raised_index">
+          Raised: <%= number_to_currency(groupgrant.goal_status, :precision => 0, :delimiter => ',') || '$0' %>
+        </div>
       </div>
     </div>
   </div>
