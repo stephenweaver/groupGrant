@@ -73,7 +73,7 @@
         <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form  action="/groupgrants/submit_payment" method="POST" id="payment-form" remote="true">
+              <form  action="<%= Rails.configuration.dumb_url %>/groupgrants/submit_payment" method="POST" id="payment-form" remote="true">
 
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
