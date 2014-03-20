@@ -18,21 +18,3 @@
 //= require bootstrap-datepicker-rails
 //= require_tree .
 
-imhere = function() {
-   $.ajax({
-      type: "POST",
-      url: "<%= Rails.configuration.dumb_url %>/users/active",
-      dataType: "json",
-      async: false,
-      authenticity_token: window._token
-   });
-};
-
-start_imhere = function() {
-      
-     imhere();
-     window.setInterval(imhere, 30000);
-}
-
-$(document).ready(start_imhere);
-$(document).on('page:load', start_imhere);   

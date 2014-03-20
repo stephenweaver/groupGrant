@@ -1,25 +1,42 @@
-<h2>Sign in</h2>
+<div style="width: 700px; margin-left: auto; margin-right:auto;">
+  
+<h2>Pick a user type</h2>
+
+<div class="row" style="padding-top:50px">
+  <div class="col-md-4">
+      <%= link_to(auto_charity_login_path) do %>
+        <%= image_tag('charity.png', class: 'img-responsive charity_img width_150')%>
+      <% end %>
+  </div>
+
+  <div class="col-md-4" style="text-align: center">
+    <%= link_to(auto_business_login_path) do %>
+      <%= image_tag('business.png', class: 'img-responsive business_img width_150')%>
+    <% end %>
+  </div>
+
+  <div class="col-md-4" style="text-align: center">
+    <%= link_to(auto_donor_login_path) do %>
+      <%= image_tag('donor.png', class: 'img-responsive business_img width_150')%>
+    <% end %>
+  </div>
+
+</div>
+<div class = "row" style="margin-top:60px">
+<h2>or sign with an email and password</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <br><%= f.input :email, :required => true, :autofocus => true %>
-    <br>
-    <br><%= f.input :password, :required => true %>
-    
-  </div>
+<div class="form-inputs">
+  <br><%= f.input :email, :required => true, :autofocus => true%>
+  <br>
+  <br><%= f.input :password, :required => true %>
+<span style="position:relative; top:-15px"><%= f.button :submit, "Sign in" %></span>
+</div>
 
-  <br><br>
-  <div class="row">
-  	 <div class="col-md-2"></div>
-  	 <div class="col-md-2" class="form-inputs">
-        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-     </div>
-
-     <div class="col-md-2" class="form-actions">
-        <%= f.button :submit, "Sign in" %>
-     </div>
-  </div>
 <% end %>
 
-<br>
-<%= render "devise/shared/links" %>
+</div>
+<div class = "row">
+  <!-- < %= render "devise/shared/links" %> -->
+</div>
+</div>

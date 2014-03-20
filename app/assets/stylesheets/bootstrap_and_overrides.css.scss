@@ -76,3 +76,15 @@ div.col-md-9.listing_header {
    padding-right: 0;
    padding-left: 0;
 }
+
+width_150 {
+	width: 150px;
+}
+.navbar-text a {
+	color: $gray-lighter
+}
+
+.navbar-text a:hover {
+	color: white;
+	text-decoration:none
+}

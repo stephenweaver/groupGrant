@@ -224,6 +224,8 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   #----------------------------------------------------------------------------------------------------
   def payment_form_post
     # Get the credit card details submitted by the form
+    flash[:notice] = nil
+    flash[:error] = nil
     token  = params[:stripeToken]
     amount = params[:amount].to_i * 100
 
@@ -237,7 +239,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       charge = Stripe::Charge.create(
         :card        => token,
         :amount      => amount,
-        :description => 'Rails Stripe customer',
+        :description => "User id: " + current_user.id.to_s,
         :currency    => 'usd'
       )
 
@@ -249,13 +251,13 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
 
     if (current_user.allocated_amount >= params[:amount].to_i)
       @groupgrant.save!
-        flash[:error] = "Thank you for your $" + params[:amount] + " donation!"
+        flash[:notice] = "NO ERRORS! Thank you for your $" + params[:amount] + " donation! :D"
 
       # withdraw amount donated from user's allocated amount 
       current_user.allocated_amount -= params[:amount].to_i
       current_user.save
     else
-      flash[:notice] = "Sorry, you have insufficient funds to make such a payment :("
+      flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
     end
 
     rescue => e

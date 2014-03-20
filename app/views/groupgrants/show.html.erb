@@ -67,7 +67,14 @@
       <br>
       <div>
         <!-- Button trigger modal -->
-        <a button class="btn btn-primary btn-lg btn-block btn-warning" data-toggle="modal" data-target=".payment-form-modal-md">DONATE</button></a> 
+        <% if current_user %>
+        <a button class="btn btn-primary btn-lg btn-block btn-warning" data-toggle="modal" data-target=".payment-form-modal-md">DONATE</button></a>
+        <% else %>
+
+        <%= link_to(new_user_session_path) do %>
+          <button type="button" class="btn btn-primary btn-lg btn-block btn-warning">Login to Donate</button>
+       <% end %>
+        <% end %> 
 
         <div class="modal fade payment-form-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog">

@@ -52,8 +52,8 @@ Blankcomposer::Application.routes.draw do
   match "/requests/response",           :to => "groupgrants#request_response",  via: :post
   
  match "/logout"           => "authentications#logout",        via: :get
- match "/charityLogin"     => "authentications#charityLogin",  via: :get
-  match "/businessLogin"    => "authentications#businessLogin", via: :get
-  match "/donorLogin"       => "authentications#donorLogin",    via: :get
+ match "/charityLogin"     => "authentications#charityLogin",  via: :get, as: 'auto_charity_login'
+  match "/businessLogin"    => "authentications#businessLogin", via: :get, as: 'auto_business_login'
+  match "/donorLogin"       => "authentications#donorLogin",    via: :get, as: 'auto_donor_login'
  
 end

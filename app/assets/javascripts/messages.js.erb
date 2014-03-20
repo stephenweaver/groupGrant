@@ -45,18 +45,10 @@ send_message = function(){
 };
 
 startTimer = function() {
-  console.log("startTimer");
   if(($("#last_id")).length != 0) {
      window.setInterval(update_client, 10000);
-  } else 
-  {
+  }
     window.setInterval(check_unread, 10000);
-  }
-
-  if($(".friend:first").length > 0)
-  {
-    $(".friend:first").click();
-  }
 };
 
 
@@ -113,6 +105,16 @@ check_unread = function() {
       success: function (data) {
         if(data['unread'] === 'true') {
           $('#envelope-icon').addClass('green');
+          data['ids'].forEach(function(entry) {
+            $(".friend").each(function(index){
+              if( ($(".friend").children('.badge').length < 1) && (entry == $(this).data('user') ||  entry.user_received_id == $(this).data('user')))
+              {
+                $(this).append('<span class="badge pull-right">new</span>');
+              }
+            });
+        });
+
+
         } else {
           $('#envelope-icon').removeClass('green');
         }
@@ -137,6 +139,11 @@ auto_complete_users = function() {
 
 
 chosen = function() { 
+    if($(".friend:first").length > 0)
+  {
+    $(".friend:first").click();
+  };
+
     setTimeout(function (){
         var config = {
         '.select_new_contact' : {}
@@ -203,6 +210,22 @@ request_response = function() {
   });
 }
 
+imhere = function() {
+   $.ajax({
+      type: "POST",
+      url: "<%= Rails.configuration.dumb_url %>/users/active",
+      dataType: "json",
+      async: false,
+      authenticity_token: window._token
+   });
+};
+
+start_imhere = function() {
+     imhere();
+     window.setInterval(imhere, 30000);
+}
+
+
 
 $(window).load(function() {
    select_user();
@@ -213,13 +236,14 @@ $(window).load(function() {
    firstContact();
    chosen();
    request_response();
+   start_imhere();
 });
 $(document).on('page:load', select_user);
 $(document).on('page:load', send_message);
-$(document).on('page:load', startTimer);
 $(document).on('page:load', send_message_reset);
 $(document).on('page:load', auto_complete_users);
 $(document).on('page:load', firstContact);
 $(document).on('page:load', chosen);
 $(document).on('page:load', request_response);
+
 

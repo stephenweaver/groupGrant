@@ -4,9 +4,8 @@
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>
-
             <% else %>
-               <%= current_user.rolable.name %>
+               <%= link_to current_user.rolable.name, current_user.rolable %>
             <% end %>
          </strong>
          <span style="display:none" id="user_type"><%=  current_user.rolable_type %> </span>
@@ -15,9 +14,9 @@
          <%= link_to(messages_path) do %>
             <span id="envelope-icon" 
                <% if Message.where(user_received_id: current_user.id, read: false).count > 0 %> 
-                  class="glyphicon glyphicon-envelope grey green" 
+                  class="glyphicon glyphicon-envelope green" 
                <% else %> 
-                  class="glyphicon glyphicon-envelope grey "
+                  class="glyphicon glyphicon-envelope"
                <% end %>
                 style="font-size: x-large;"></span>
          <% end %>
@@ -48,9 +47,9 @@
          <li><%= link_to "Email", new_user_session_path %></li>
          <li><%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %></li>
          <li><%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %></li>
-         <li><%= link_to "As Charity", controller: :authentications, action: :charityLogin %></li>
-         <li><%= link_to "As Business", controller: :authentications, action: :businessLogin %></li>
-         <li><%= link_to "As Donor", controller: :authentications, action: :donorLogin %></li>
+         <li><%= link_to "As Charity", auto_charity_login_path  %></li>
+         <li><%= link_to "As Business", auto_business_login_path %></li>
+         <li><%= link_to "As Donor", auto_donor_login_path %></li>
          <!-- <li><a href="#">Action</a></li>
          <li><a href="#">Another action</a></li>
          <li><a href="#">Something else here</a></li>

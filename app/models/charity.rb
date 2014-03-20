@@ -9,6 +9,7 @@ class Charity < ActiveRecord::Base
    validates :name, :category_id, presence: {is: true, message: "Required"}
    validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}
    validates :eid, length: {minimum:8, maximum: 9, message: "Invalid length"}
+   validates_uniqueness_of :name, message: "This charity name is alread taken"
    #validate my_ein
 
    # def my_ein

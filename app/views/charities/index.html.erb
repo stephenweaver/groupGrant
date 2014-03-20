@@ -1,7 +1,7 @@
 <% content_for :title do %>Charities<% end %>
 
 <div class = "row">
-   <%= form_tag "/charities", :method => 'get', :class => "col-md-3" do %>
+   <%= form_tag "<%= Rails.configuration.dumb_url %>/charities", :method => 'get', :class => "col-md-3" do %>
       <div class="input-group">
          <%= text_field_tag :search, params[:search], type: "text", class: "form-control" %>
          <span class="input-group-btn">
