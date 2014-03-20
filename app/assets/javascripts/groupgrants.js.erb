@@ -26,7 +26,7 @@ sendRequest = function()
 		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
-		    url: "/groupgrant/connect",
+		    url: "<%= Rails.configuration.dumb_url %>/groupgrant/connect",
 		 
 		    // the data to send (will be converted to a query string)
 		    data: {
@@ -63,7 +63,7 @@ cancelRequest = function()
 		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
-		    url: "/groupgrant/cancelRequest",
+		    url: "<%= Rails.configuration.dumb_url %>/groupgrant/cancelRequest",
 		 
 		    // the data to send (will be converted to a query string)
 		    data: {
@@ -114,7 +114,7 @@ invite = function()
 		{	
 			$.ajax({
 			    // the URL for the request
-			    url: "/groupgrant/invite_business",
+			    url: "<%= Rails.configuration.dumb_url %>/groupgrant/invite_business",
 			 
 			    // the data to send (will be converted to a query string)
 			    data: {

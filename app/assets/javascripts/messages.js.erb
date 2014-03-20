@@ -5,7 +5,7 @@ select_user = function() {
      var classname = "";
      $.ajax({
          type: "POST",
-         url: "../messages/getMessages",
+         url: "<%= Rails.configuration.dumb_url %>/messages/getMessages",
          data: { id: user_id },
          dataType: "html",
          async: false,
@@ -63,7 +63,7 @@ startTimer = function() {
 update_client = function(){
    $.ajax({
       type: "POST",
-      url: "messages/checkAjax",
+      url: "<%= Rails.configuration.dumb_url %>/messages/checkAjax",
       data: { message_id : $("#last_id").val()},
       dataType: "json",
       async: false,
@@ -107,7 +107,7 @@ check_unread = function() {
   if($('.dropdown-toggle').text() !== "Login") {
     $.ajax({
       type: "POST",
-      url: "messages/new_message_check",
+      url: "<%= Rails.configuration.dumb_url %>/messages/new_message_check",
       dataType: "json",
       async: false,
       success: function (data) {

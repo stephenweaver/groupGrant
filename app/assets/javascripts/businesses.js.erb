@@ -24,7 +24,7 @@ invite = function()
     { 
       $.ajax({
           // the URL for the request
-          url: "/groupgrant/invite_business",
+          url: "<%= Rails.configuration.dumb_url %>/groupgrant/invite_business",
        
           // the data to send (will be converted to a query string)
           data: {
