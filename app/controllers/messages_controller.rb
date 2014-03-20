@@ -108,7 +108,7 @@ class MessagesController < ApplicationController
 
           response += '<td>' + text_message 
           if buttons != ''
-            response +='<form action="/requests/response" method="post" data-remote="true" class="form inline-form message_request_form">' + 
+            response +='<form action="<%= Rails.configuration.dumb_url %>/requests/response" method="post" data-remote="true" class="form inline-form message_request_form">' + 
                         '<div><input type="hidden" name="id" value=' + message.request_id.to_s + '>' + 
                         buttons +
                         '</form>'
