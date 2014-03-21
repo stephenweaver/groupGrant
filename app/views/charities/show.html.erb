@@ -14,9 +14,9 @@
   <div class="col-md-4">
   <!-- Charity picture -->
     <% if @charity.user.profile.url.include? "missing" %>
-       <%= image_tag @charity.charity_pic.url(:medium), class: 'col-md-4' %>
+       <%= image_tag @charity.charity_pic.url(:small), class: 'col-md-12 col-xs-6' %>
     <% else %>
-       <%= image_tag @charity.user.profile.url(:medium), class: 'col-md-4' %>
+       <%= image_tag @charity.user.profile.url(:small), class: 'col-md-12 col-xs-6' %>
     <% end %>
   </div>
   <div class="col-md-6">
@@ -49,12 +49,45 @@
 
   <div class="col-md-4">
     <!-- Contact details -->
-    <h4><%= "Contact Information:" %></h4>
-    <% if !@charity.user.phone.blank? %>
-      <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
-    <% end %>
-    <%= "(Address)" %>
-    <br><%= "(Address continued)" %>
+    <div class="panel panel-default" style="margin:30px;">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Contact Information:" %></h3>
+      </div>
+      <div class="panel-body">
+        <% if !@charity.user.phone.blank? %>
+          <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
+        <% end %>
+        <%= "(Address)" %>
+        <br><%= "(Address continued)" %>
+        <br>
+        <!-- Connection request for Business to Charity -->
+          <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
+          <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                 <div class="input-group">
+                  <form>
+                   <input type="text" class="form-control" id="chat_message">
+                   <span class="input-group-btn">
+                     <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+                   </span>
+                 </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          <% end %>
+      </div>
+    </div>
 
     <div class = "row">
       <!-- Social media icons -->
@@ -76,34 +109,6 @@
     </table> 
   </div>
 </div>
-<div class = "col-md-1">
-  <!-- Connection request for Business to Charity -->
-  <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
-  <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Message</h4>
-        </div>
-        <div class="modal-body">
-         <div class="input-group">
-          <form>
-           <input type="text" class="form-control" id="chat_message">
-           <span class="input-group-btn">
-             <button class="btn btn-primary" type="submit" id="send_message">Send</button>
-           </span>
-         </form>
-       </div>
-     </div>
-     <div class="modal-footer">
-     </div>
-   </div><!-- /.modal-content -->
- </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<% end %>
-</div><!-- col-md-1 -->
 </div><!-- row -->
 </div><!-- col-md-4 -->
 
@@ -111,8 +116,8 @@
   <% if @charity.groupgrants.count > 0 %>
   <h3 style="margin:0px 0 0px 0;"><em>Support our cause</em></h3>
   <br />
-  <div class="charity_groupgrants">
-    <%= render :partial => '/groupgrants/groupgrant', collection: @charity.groupgrants %>
+  <div class="groupgrants">
+    <%= render :partial => 'groupgrant', collection: @charity.groupgrants, as: :groupgrant %>
   </div>
   <% end %>
 </div>
