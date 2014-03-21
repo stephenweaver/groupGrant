@@ -101,15 +101,18 @@
 
 
 body { 
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
-main { margin-top:10px;}
+main { margin-top:0px;}
 .content {
  background-color: #FFFFFF;
  padding: 20px;
 }
 
+.container {
+  padding-top: 10px;
+}
 .left-bar {
    height: auto;
    padding-top: 0px;
@@ -258,4 +261,18 @@ background-color: #c0392b;
 .no-vert-marg {
   margin-top:0px;
   margin-bottom:0px;
+}
+
+.user_image {
+  background-color:none;
+}
+
+.user_image_hover {
+  background-color:#7f8c8d;
+}
+
+.center_image {
+  width: 80%;
+  margin: 0 auto;  
+  max-height: 400px;
 }

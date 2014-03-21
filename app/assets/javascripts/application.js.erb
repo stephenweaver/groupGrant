@@ -18,3 +18,12 @@
 //= require bootstrap-datepicker-rails
 //= require_tree .
 
+setup_hover = function() {
+	$('.user_image').hover(function(){$(this).toggleClass('user_image_hover');});
+}
+
+$(window).load(function() {
+	setup_hover();
+
+});
+$(document).on('page:load', setup_hover);

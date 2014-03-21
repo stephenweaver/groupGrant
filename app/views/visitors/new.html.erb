@@ -1,39 +1,42 @@
 
 <% content_for :homepage do %>
 
-</script>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="assets/charity_slide.jpg" alt="Charities"   />
-        <img src="assets/business_slide.jpg" alt="Businesses" />
-        <img src="assets/donor_slide.jpg" alt="Donors" />
-        <div class="carousel-caption">
-        </div>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active" style="height:100%;width:100%;">
+        <%= image_tag('home_carousel/banner1.jpg', class: "center_image") %>
       </div>
-    </div>
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
+      <div class="item" style="height:100%;width:100%;">
+        <%= image_tag('home_carousel/banner2.jpg', class: "center_image") %>
+      </div>
+      <div class="item" style="height:100%;width:100%;">
+        <%= image_tag('home_carousel/banner3.jpg', class: "center_image") %>
+      </div>
   </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
 
 
   <div class="user-container">
     <section class="charity user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= image_tag('charity.png', class: 'img-responsive charity_img')%>
+          <%= image_tag('charity.png', class: 'img-responsive charity_img user_image')%>
 
           <div class="copy">
             <h1 class="title">
@@ -56,7 +59,7 @@
     <section class="business user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= image_tag('business.png', class: 'img-responsive business_img')%>
+          <%= image_tag('business.png', class: 'img-responsive business_img user_image')%>
           <div class="copy">
             <h1 class="title">
               Business
@@ -76,7 +79,7 @@
     <section class="donor user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= image_tag('donor.png', class: 'img-responsive business_img')%>
+          <%= image_tag('donor.png', class: 'img-responsive business_img user_image')%>
           <div class="copy">
             <h1 class="title">
               Donor
