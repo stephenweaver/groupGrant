@@ -1,12 +1,17 @@
 <% content_for :title do %> As Business<% end %>
 <br>
 <br>
-<h2>About your business</h2>
+<div class="formgroup2">
+	<h2>About your business</h2>
 
-<%= f.input :category_id, :as => :select, :collection => BusinessCategory.all, :label_method => :name, :value_method => :id %>
-<%= f.input :name %>
-<%= f.input :location %>
-<%= f.input :description, as: :text %>
-<%= f.input :interests, as: :text %>
-<%= f.input :goods, as: :text %>
-<%= f.input :services, as: :text%>
+	<%= f.input :category_id, :as => :select, :collection => BusinessCategory.all, :label_method => :name, :value_method => :id %>
+	<%= f.input :name %>
+	<%= f.input :location %>
+	<%= f.input :description, as: :text %>
+	<%= f.input :interests, as: :text %>
+	<%= f.input :goods, as: :text %>
+	<%= f.input :services, as: :text%>
+	<br>
+	<div class="btn btn-primary" id="previous_button">Previous</div>
+	<%= f.button :submit, :class => 'btn-primary col-md-offset-6'  %>
+</div>
