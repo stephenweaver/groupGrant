@@ -1,6 +1,5 @@
 <% content_for :title do %> As Charity<% end %>
-<br>
-<br>
+<br />
 <div id="formgroup2">
 	<h3>About your charity</h3>
 	<%= f.input :category_id, :as => :select, :collection => CharityCategory.all, :label_method => :name, :value_method => :id %>
