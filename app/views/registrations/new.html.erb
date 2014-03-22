@@ -56,12 +56,11 @@
   <% end %>
 
   <%= hidden_field :user, :user_type, :value => user_type %>
-  <br>
-  <%= f.button :submit, :class => 'btn-primary col-md-offset-2'  %>
+  
 <% end %>
 <br><br><br>
 <%- if controller_name != 'sessions' %>
   <%= link_to "Already have an account? Click to sign in", new_session_path(resource_name) %><br />
 <% end -%>
 
-
+<%= javascript_include_tag "registration.js" %>

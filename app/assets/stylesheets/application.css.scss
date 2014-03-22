@@ -10,7 +10,7 @@
  *
  *= require bootstrap_and_overrides
  *= require_self
- *= require_tree .
+ *= require_directory .
  */
 
 // Website Colors:-------------------------------------
@@ -101,15 +101,18 @@
 
 
 body { 
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
-main { margin-top:10px;}
+main { margin-top:0px;}
 .content {
  background-color: #FFFFFF;
  padding: 20px;
 }
 
+.container {
+  padding-top: 10px;
+}
 .left-bar {
    height: auto;
    padding-top: 0px;
@@ -119,7 +122,6 @@ main { margin-top:10px;}
 }
 
 ul.nav.navbar-nav {
-   padding-top: 10px;
    margin-left: 15px;
 }
 
@@ -222,13 +224,15 @@ ul.nav.navbar-nav {
 
 .user-container {
   display: flex;
+  width:80%;
+  margin: 0 auto;
 }
 
 .user {
   float: left;
   height: 100%;
   width: 50%;
-  padding: 7%;
+  margin:2% 5%;
 }
 
 .section-inner {
@@ -259,3 +263,40 @@ background-color: #c0392b;
   margin-top:0px;
   margin-bottom:0px;
 }
+
+.user_image {
+  background-color:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding:15px;
+}
+
+.user_image_hover {
+  background-color:#7f8c8d;
+}
+
+.center_image {
+  width: 80%;
+  margin: 0 auto;  
+  max-height: 400px;
+}
+
+.register {
+  margin:0 auto; 
+  width:80%;
+}
+
+// Carousel ---------------------------------------------
+.item {
+  height:100%;
+  width:100%;
+}
+
+// End of Carousel --------------------------------------
+
+// Forms ------------------------------------------------
+#formgroup1, #formgroup2 {
+  position: relative;
+}
+// End Forms --------------------------------------------

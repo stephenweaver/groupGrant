@@ -216,51 +216,58 @@
           <%= link_to @groupgrant.charity.name, @groupgrant.charity %>
         </div>
       </div>
-    </div><!-- Well close-->
 
-    <div class = "social-media-icons automargin">
-      <!-- Social Media -->
-      <div class="row">
-        <em style="font-size: 1.5em; float:left; padding-left: 15px;">Share the cause</em>
-        
-        <!-- Show Tweet Button -->
-        <div class="col-md-2" id="tweets" style="margin-top:5px"></div>              
+      <div class="row automargin partnerships" id="sponsors">
+        <div style="padding-top:10px; float:right;">
+          <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
+            <% r = Request.where(groupgrant_id: @groupgrant.id)
+         
+            #check if this is the user that sent it
+            if (r[0] != nil)
+              r = Request.find(r)
+              m = Message.where(request_id: r.id)
+              m = Message.find(m)
 
+              if (m.user_sent_id == current_user.id) %>
+                <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+                   Request Pending. Cancel? 
+                </div>
+              <% end %>
+            <% else %>
+              <div id="request" class="btn btn-primary">Connect with Charity</div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Share the cause with others -->
+      <div class = "social-media-icons automargin partnerships">
+        <!-- Social Media -->
+        <div class="row">
+          <div class="col-md-8">
+            <em style="font-size: 1.7em; float:left;">Share the cause</em>
+          </div>
+          
+          <!-- Show Tweet Button -->
+          <div class="col-md-2" id="tweets" style="margin-top:5px"></div>              
         <!-- Show Facebook button -->
         <div class="col-md-2" id="sharePage" style="padding-left: 7px; margin-top:5px"></div>            
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-size="large" data-lang="en" data-count="vertical">Tweet</a>          
 
-        <!-- Show Facebook button -->
-        <div class="fb-share-button" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-lang="en" data-count="vertical">Tweet</a>          
+
+          <!-- Show Facebook button -->
+          <div class="fb-share-button" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
+        </div>
       </div>
-    </div>
+    </div><!-- Well close-->   
   </div><!-- gG info close -->
 
   <div class="col-md-1">
     <!-- I made this so things would be centered -->
   </div>
 </div><!-- row close -->
-
-<div id="sponsors">
-  <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
-    <% r = Request.where(groupgrant_id: @groupgrant.id)
- 
-    #check if this is the user that sent it
-    if (r[0] != nil)
-      r = Request.find(r)
-      m = Message.where(request_id: r.id)
-      m = Message.find(m)
-
-      if (m.user_sent_id == current_user.id) %>
-        <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-           Request Pending. Cancel? 
-        </div>
-      <% end %>
-    <% else %>
-      <div id="request" class="btn btn-primary">Connect with Charity</div>
-    <% end %>
-  <% end %>
-</div>
 
 <!-- If the owner of the groupgrant is logged in, 
 show a list of businesses it could connect with - KW -->
