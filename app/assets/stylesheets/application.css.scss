@@ -10,7 +10,7 @@
  *
  *= require bootstrap_and_overrides
  *= require_self
- *= require_tree .
+ *= require_directory .
  */
 
 // Website Colors:-------------------------------------
@@ -122,7 +122,6 @@ main { margin-top:0px;}
 }
 
 ul.nav.navbar-nav {
-   padding-top: 10px;
    margin-left: 15px;
 }
 
@@ -225,13 +224,15 @@ ul.nav.navbar-nav {
 
 .user-container {
   display: flex;
+  width:80%;
+  margin: 0 auto;
 }
 
 .user {
   float: left;
   height: 100%;
   width: 50%;
-  padding: 7%;
+  margin:2% 5%;
 }
 
 .section-inner {
@@ -265,6 +266,10 @@ background-color: #c0392b;
 
 .user_image {
   background-color:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding:15px;
 }
 
 .user_image_hover {
@@ -276,3 +281,22 @@ background-color: #c0392b;
   margin: 0 auto;  
   max-height: 400px;
 }
+
+.register {
+  margin:0 auto; 
+  width:80%;
+}
+
+// Carousel ---------------------------------------------
+.item {
+  height:100%;
+  width:100%;
+}
+
+// End of Carousel --------------------------------------
+
+// Forms ------------------------------------------------
+#formgroup1, #formgroup2 {
+  position: relative;
+}
+// End Forms --------------------------------------------

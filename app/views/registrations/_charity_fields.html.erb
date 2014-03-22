@@ -1,11 +1,15 @@
 <% content_for :title do %> As Charity<% end %>
-<br>
-<br>
-<h3>About your charity</h3>
-<%= f.input :category_id, :as => :select, :collection => CharityCategory.all, :label_method => :name, :value_method => :id %>
-<%= f.input :name %>
-<%= f.input :eid, label: "9 digit employer ID " %>
-<%= f.input :description, as: :text %>
-<%= f.input :video_url %>
-<%= f.input :mission_statement, as: :text %>
-<%= f.input :target_area, as: :text %>
+<br />
+<div id="formgroup2">
+	<h3>About your charity</h3>
+	<%= f.input :category_id, :as => :select, :collection => CharityCategory.all, :label_method => :name, :value_method => :id %>
+	<%= f.input :name %>
+	<%= f.input :eid, label: "9 digit employer ID " %>
+	<%= f.input :description, as: :text %>
+	<%= f.input :video_url %>
+	<%= f.input :mission_statement, as: :text %>
+	<%= f.input :target_area, as: :text %>
+	<br>
+	<div class="btn btn-primary col-md-1 col-md-offset-2" id="previous_button">Previous</div>
+	<%= f.button :submit, :class => 'btn-primary col-md-offset-3'  %>
+</div>

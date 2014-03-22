@@ -1,126 +1,153 @@
-<!-- Needed for Facebook SDK -->
+<!-- Load Facebook SDK-->
 <div id="fb-root"></div>
-<!-- Hidden business ID - kw -->
-<input type="hidden" id="bid" value= <%= @business.user.id %> >
+
+<!-- beginning of row 1 -->
 <div class="row">
+  <!-- Row that includes business picture, name, mission statement, and description -->
+
+  <div class="col-md-1">
+    <!-- I made this so things would be centered -->
+  </div>
+
+  <div class="col-md-4">
+  <!-- business picture -->
     <% if @business.user.profile.url.include? "missing" %>
-       <%= image_tag @business.business_pic.url(:small), class: 'col-md-4' %>
+       <%= image_tag @business.business_pic.url(:small), class: 'col-md-12 col-xs-6' %>
     <% else %>
-       <%= image_tag @business.user.profile.url(:small), class: 'col-md-4' %>
+       <%= image_tag @business.user.profile.url(:small), class: 'col-md-12 col-xs-6' %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <div class="text-center business_title">
+      <!-- business name -->
+      <h1><strong><%= @business.name %><strong></h1>
+    </div>
+
+    <p class="lead">
+      <!-- business description -->
+      <%= @business.description %>
+    </p>
+  </div>
+
+  <div class="col-md-1">
+    <!-- I made this so things would be centered -->
+  </div>
+
+</div> 
+<!-- end of row 1 -->
+
+<!-- beginning of row 2 -->
+<div class="row">
+  <!-- Row that includes contact details, category, groupgrants, etc. -->
+  <div class="col-md-1">
+    <!-- I made this so things would be centered -->
+  </div>
+
+  <div class="col-md-4">
+    <!-- Contact details -->
+    <div class="panel panel-default" style="margin:30px;">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= "Contact Information:" %></h3>
+      </div>
+      <div class="panel-body">
+        <% if !@business.user.phone.blank? %>
+          <%= number_to_phone(@business.user.phone, area_code: true) %><br>
+        <% end %>
+        <%= "(Address)" %>
+        <br><%= "(Address continued)" %>
+        <br>
+        <!-- Connection request for Business to business -->
+          <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
+          <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                 <div class="input-group">
+                  <form>
+                   <input type="text" class="form-control" id="chat_message">
+                   <span class="input-group-btn">
+                     <button class="btn btn-primary" type="submit" id="send_message">Send</button>
+                   </span>
+                 </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          <% end %>
+      </div>
+    </div>
+
+    <!-- Show a list of available groupGrants for the charity - KW -->
+    <% if @available == true %>
+    <div style="margin-left:auto;margin-right:auto;width:80%;">
+    <!-- CONTACT NEW FRIEND -->
+      <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete">
+        <option></option>
+        <% @search_groupgrants.each do |groupgrant| %>
+          <% if !Request.where(is_accepted:nil, groupgrant_id: groupgrant.id).first %>
+            <option value= <%= groupgrant.id %>>
+               &nbsp&nbsp <%= groupgrant.name %>
+            </option>
+          <% end %>
+        <% end %>
+      </select>
+
+      <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="b_invite">
+        Send Request
+      </button>
+    </div>
     <% end %>
 
-   <div class="col-md-7">
-      <div class="title"><%= @business.name %></div>
-          <p>The slogan swill go here</p>
-      <br><h4><%= "Contact Information:" %></h4>
-          <%= @business.user.phone %>
-      <br><%= "(Address)" %>
-      <br><%= "(Address continued)" %>
-   </div>
+    <div class = "row">
+      <!-- Social media icons -->
+      <div class = "col-md-11">
+        <div class = "col-md-3 social-media-icons automargin">
+         <table>
+          <tr>
+           <td>                                                     
+            <!-- Show Tweet Button -->
+            <div id="tweets" ></div>
+          </td>
+        </tr>
+        <tr>
+         <td>
+          <!-- Show Facebook button -->
+          <div id="sharePage"></div>                
+        </td>
+      </tr>
+    </table> 
+  </div>
+</div>
+</div><!-- row -->
+</div><!-- col-md-4 -->
 
-   <% if current_user &&  current_user.rolable_type == "Business" && current_user.rolable_id == @business.id %>
-      <div class = "col-md-1">
-         <h6><%= link_to 'Edit Page', edit_user_registration_path, class: "btn btn-primary btn-md", style:"float:right"%></h6>
-      </div>
-   <% end %>
-
- <!-- Show a list of available groupGrants for the charity - KW -->
- <% if @available == true %>
-   <div style="float: right">
-  <!-- CONTACT NEW FRIEND -->
-    <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete">
-      <option></option>
-      <% @search_groupgrants.each do |groupgrant| %>
-        <% if !Request.where(is_accepted:nil, groupgrant_id: groupgrant.id).first %>
-          <option value= <%= groupgrant.id %>>
-             &nbsp&nbsp <%= groupgrant.name %>
-          </option>
-        <% end %>
-      <% end %>
-    </select>
-
-    <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="b_invite">
-      Send Request
-    </button>
+<div class="col-md-6">
+  <% if @business.groupgrants.count > 0 %>
+  <h3 style="margin:0px 0 0px 0;"><em>Participating groupGrants</em></h3>
+  <br />
+  <div class="groupgrants">
+    <%= render :partial => 'groupgrant', collection: @business.groupgrants, as: :groupgrant %>
+  </div>
   <% end %>
 </div>
+
+<div class="col-md-1">
+  <!-- I made this so things would be centered -->
 </div>
 
-<div class = "row">
-   <div class = "col-md-11">
-      <div class = "social-media-icons">
-         <table>
-            <tr>
-               <td>                  
-                  <!-- Show Tweet Button -->
-                  <div id="tweets" ></div>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <!-- Show Facebook button -->
-                  <div id="sharePage"></div>
-               </td>
-            </tr>
-         </table>
-         <br />
-   <div class = "col-md-1">
-
-
-      <!-- Connection request for Business to Charity -->
-      <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
-          <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
-            <div class="modal fade" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Message</h4>
-                  </div>
-                  <div class="modal-body">
-                     <div class="input-group">
-                        <form>
-                           <input type="text" class="form-control" id="chat_message">
-                              <span class="input-group-btn">
-                                 <button class="btn btn-primary" type="submit" id="send_message">Send</button>
-                              </span>
-                        </form>
-                     </div>
-                  </div>
-                  <div class="modal-footer">
-                  </div>
-                </div><!-- /.modal-content -->
-              </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-      <% end %>
-   </div>
 </div>
+<!-- end of row 2 -->
 
-<br /><br />
-
-<div >
-   <div >
-      <h3>Description</h3>
-      <%= @business.description %>
-   </div>
-
-  
-      <h3>Interests</h3>
-      <%= @business.interests %>
-   
-</div>
-
-<br><br>
-<div class = "row">
-   <% if @business.groupgrants.count < 0 %>
-      <h3>Participating groupGrants</h3><br>
-      <%= render :partial => '/groupgrants/groupgrant', collection: @business.groupgrants %>
-   <% end %>
-</div>
 
 <%= stylesheet_link_tag "chosen.min.css" %>
 <%= stylesheet_link_tag "chosen-bootstrap.css" %>
-
 <%= javascript_include_tag("chosen.jquery.min.js") %>
-
 <%= javascript_include_tag("facebook_twitter_api.js") %>
