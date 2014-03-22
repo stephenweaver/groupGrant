@@ -1,3 +1,4 @@
+<div id="formgroup1">
 <div class="form-group">
    <%= f.label :profile, :class => 'col-sm-2 control-label', style: "margin-top: 15x;" %>
       <%=  image_tag(f.object.profile.url(:thumb), class: 'col-sm-2 col-md-1') %>
@@ -19,5 +20,7 @@
 <% end %>
 
 <%= f.input :phone %>
+<div class="btn btn-primary col-md-1 col-md-offset-6" id="next_button">Next</div>
+</div>
 
 <!--%=# link_to_add_fields "Add Address", f, :addresses %-->
