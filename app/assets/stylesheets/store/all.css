@@ -1,1 +1,29 @@
+
 //= require store/spree_frontend
+//= require application
+
+nav #main-nav-bar li#link-to-cart a, #billing legend, #shipping legend, #shipping_method legend, #payment legend, #order_details legend, #order_summary legend, #shipping_method .shipping-methods .shipping-method label .rate-cost {
+   color:#243d8f;
+}
+
+::selection, input[type="submit"], input[type="button"], input[type="reset"], button, a.button , .progress-steps li.current-first, .progress-steps li.current, #shipping_method .stock-location {
+   background-color: #243d8f;
+   background: #243d8f;
+}
+
+ul#products li .price, span.price, #checkout-summary table tr[data-hook="item_total"] td:last-child strong, #checkout-summary table #summary-order-total, #order_details td.price span, #order_details td.total span, #order_summary td.price span, #order_summary td.total span, table#cart-detail tbody#line_items tr td[data-hook="cart_item_price"], table#cart-detail tbody#line_items tr td[data-hook="cart_item_total"], div[data-hook="inside_cart_form"] #subtotal span.order-total {
+   color: #43b549;
+}
+
+.flash.notice, .notice.errorExplanation {
+   background-color: #43b549;
+}
+.container {
+   position: relative;
+   width: 960px;
+}
+
+.row {
+   margin: 0px;
+}
+

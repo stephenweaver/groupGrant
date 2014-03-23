@@ -4,4 +4,5 @@ class Message < ActiveRecord::Base
 	has_one :request,  foreign_key: :request_id
 	validates :body, presence: {is: true, message: "Required"}
     validates :user_received_id, :user_sent_id, presence: true
+   profanity_filter :body, :method => 'dictionary'
 end

@@ -47,6 +47,7 @@ gem 'uglifier',                   '>= 1.3.0'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'meta_request'
+gem  'profanity_filter'
 
 group :development do
   # gem 'better_errors',            '~> 1.1.0'

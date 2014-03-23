@@ -24,7 +24,7 @@ Blankcomposer::Application.routes.draw do
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
   match '/users/auth/:provider/callback' => 'authentications#create', via: :get
-
+  
   match '/users/profile' => 'visitors#profile', via: :get
 
  devise_scope :user do
