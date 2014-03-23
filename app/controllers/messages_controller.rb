@@ -204,6 +204,7 @@ class MessagesController < ApplicationController
   # GET /messages/1/edit
   #----------------------------------------------------------------------------------------------------
   def edit
+     @message = Message.find(params[:id])
   end
 
   #----------------------------------------------------------------------------------------------------
@@ -231,6 +232,7 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1.json
   #----------------------------------------------------------------------------------------------------
   def update
+    @message = Message.find(params[:id])
     respond_to do |format|
       if @message.update(message_params)
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
@@ -247,12 +249,15 @@ class MessagesController < ApplicationController
   # DELETE /messages/1.json
   #----------------------------------------------------------------------------------------------------
   def destroy
+    @message = Message.find(params[:id])
     @message.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
-    end
+    redirect_to(:back) 
+
+  end
+
+
+  def show_all
+    @all_messages = Message.all.order('created_at desc')
   end
 
   private

@@ -7,6 +7,8 @@ Blankcomposer::Application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/store'  
 
+match "/messages/show_all", :to => "messages#show_all",    via: :get
+
   resources :payments
   resources :groupgrant_categories
   resources :charity_categories
@@ -56,4 +58,6 @@ Blankcomposer::Application.routes.draw do
   match "/businessLogin"    => "authentications#businessLogin", via: :get, as: 'auto_business_login'
   match "/donorLogin"       => "authentications#donorLogin",    via: :get, as: 'auto_donor_login'
  
+
+
 end

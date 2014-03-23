@@ -1,0 +1,17 @@
+<table class="table table-condensed">
+<% @all_messages.each do |message| %>
+<tr>
+   <td><%= message.body %></td>
+   <td style="width: 50px;">
+      <%= link_to edit_message_path(message) do %>
+         <div class="btn btn-xs btn-danger">Edit</div>
+      <% end %>
+   </td>
+   <td>
+      <%= link_to message, method: :delete do %>
+         <div class="btn btn-xs btn-danger">Remove</div>
+      <% end %>
+   </td>
+</tr>
+<% end %>
+</table>
