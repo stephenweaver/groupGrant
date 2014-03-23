@@ -293,10 +293,26 @@ background-color: #c0392b;
   width:100%;
 }
 
+.carousel-caption {
+  height: 100%;
+  width: 20%;
+  text-align: left;
+  font-size: 14pt;
+}
+
+.black {
+  color: black;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, .6);
+}
+
+h3 {
+  font-size: 30pt;
+}
 // End of Carousel --------------------------------------
 
 // Forms ------------------------------------------------
 #formgroup1, #formgroup2 {
   position: relative;
 }
+
 // End Forms --------------------------------------------
