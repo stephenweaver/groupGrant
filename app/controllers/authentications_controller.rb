@@ -5,10 +5,11 @@ class AuthenticationsController < ApplicationController
 
   def charityLogin
     charity = User.where(rolable_type: "Charity", is_available: [1, nil]).first
-    charity.allocated_amount = 5000
+    
 
     if charity != nil
       charity.is_available = 0
+      charity.allocated_amount = 5000
       sign_in_and_redirect charity
       
       flash[:notice] = "You are logged in as a charity."
@@ -19,11 +20,11 @@ class AuthenticationsController < ApplicationController
   end
 
   def businessLogin
-    business = User.where(rolable_type: "Business", is_available: [1, nil]).first
-    business.allocated_amount = 5000
+    business = User.where(rolable_type: "Business", is_available: [1, nil]).first    
 
     if business != nil
       business.is_available = 0
+      business.allocated_amount = 5000
       sign_in_and_redirect business
       flash[:notice] = "You are logged in as a business."
     else
@@ -34,10 +35,11 @@ class AuthenticationsController < ApplicationController
 
   def donorLogin
     donor = User.where(rolable_type: "Donor", is_available: [1, nil]).first
-    donor.allocated_amount = 5000
+    
 
     if donor != nil
       donor.is_available = 0
+      donor.allocated_amount = 5000
       sign_in_and_redirect donor      
       flash[:notice] = "You are logged in as a donor."
     else
