@@ -9,13 +9,13 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   def index
     flash[:notice] = nil
     @categories = GroupgrantCategory.all
-    @category_count = Hash.new
+    @groupgrant_count = Hash.new
 
     @categories.each do |c|
-      @category_count[c.id] = Groupgrant.where(category_id: c.id).count
+      @groupgrant_count[c.id] = Groupgrant.where(category_id: c.id).count
     end
 
-    @category_count['all'] = GroupgrantCategory.count
+    @groupgrant_count['all'] = Groupgrant.count
       
     if(params['category'].nil?)
       @groupgrants = Groupgrant.all
@@ -249,24 +249,22 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     
     @groupgrant.goal_status += params[:amount].to_i
 
-    if (current_user.allocated_amount >= params[:amount].to_i)
+    if amount <= 0
+      flash[:error] = params[:amount] + " dollars is an invalid amount. Please enter a positive amount."
+      # elsif cvc < 300 || cvc > 999
+      #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."
+      raise
+    elsif (current_user.allocated_amount < params[:amount].to_i)
+      flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
+      raise
+    else
       @groupgrant.save!
-        flash[:notice] = "NO ERRORS! Thank you for your $" + params[:amount] + " donation! :D"
+      flash[:notice] = "Transaction completed. Thank you for your $" + params[:amount] + " donation! :D"
 
       # withdraw amount donated from user's allocated amount 
       current_user.allocated_amount -= params[:amount].to_i
       current_user.save
-    else
-      flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
-        raise
-    end
-
-    if amount <= 0
-        flash[:error] = amount.to_s + " dollars is an Invalid amount value. Please try again with a positive amount."
-      # elsif cvc < 300 || cvc > 999
-      #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."
-      raise
-    end
+    end    
 
     rescue => e
       
