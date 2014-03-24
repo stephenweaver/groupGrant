@@ -20,7 +20,11 @@
 <% end %>
 
 <%= f.input :phone %>
-<div class="btn btn-md btn-primary col-md-1 col-md-offset-6" id="next_button">Next</div>
+
+<% if resource.rolable_type.to_s.humanize != "Donor" %>
+   <div class="btn btn-md btn-primary col-md-1 col-md-offset-6" id="next_button">Next</div>
+<% end %>
+
 </div>
 
 <!--%=# link_to_add_fields "Add Address", f, :addresses %-->
