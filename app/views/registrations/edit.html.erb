@@ -1,4 +1,4 @@
-<h2>Edit <%= resource.rolable_type.to_s.humanize %></h2>
+<h3>Edit <%= resource.rolable_type.to_s.humanize %></h3>
 
 
 <%= simple_form_for(resource, :as => resource.class.name.downcase, :url => registration_path(resource_name), :html => {class: "form-horizontal", role: "form", :method => :put, :multipart => true }) do |f| %>
@@ -11,9 +11,12 @@
    <% end %>
  <% end %>
 <br>
-  <%= f.button :submit, :class => 'btn-primary col-md-offset-2'  %>
+
+<%= f.button :submit, :class => 'btn-primary col-md-offset-2'  %>
 <% end %>
-<br><br>
+<br>
+<br>
+
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => 
