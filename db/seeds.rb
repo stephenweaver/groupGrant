@@ -11,7 +11,7 @@ def rand_goal_amount
 end
 
 def rand_percentage 
-   rand(50) / 100
+   rand(50) / 100.0
 end
 
 charity_categories = ["Animals", "Arts and Culture", "Education", "Environment", "Health", "Human Services", "International", "Public Benefit", "Religion", "Other"]
@@ -449,7 +449,9 @@ defaults = {
    meta_keywords: "this is meta",
    meta_description: "this is meta descripiton",
    shipping_category: shipping_cat,
-   available_on: 3.days.ago }
+   available_on: 3.days.ago,
+   sku: 50
+    }
 
 products = [
    {
