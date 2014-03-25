@@ -1098,7 +1098,7 @@ products.each do |product_attrs|
    product = Spree::Product.create!(product_attrs.merge(defaults))
    product.taxons << Spree::Taxon.offset(rand(Spree::Taxon.count)).first
    if(!image.nil? && image != '.jpg')
-      product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
+      #product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
    end
    product.save
 end
@@ -1183,10 +1183,10 @@ groupgrants.each do |groupgrant_attrs|
    image = groupgrant_attrs[:image].to_s + '.jpg'
    groupgrant_attrs.delete(:image)
    if(!image.nil? && image != '.jpg')
-      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      groupgrant_attrs.merge!(add_pic)
-      Rails.logger.info("sdfghjhgfdsdfghjhgfd")
-      Rails.logger.info(add_pic)
+      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      #groupgrant_attrs.merge!(add_pic)
+      #Rails.logger.info("sdfghjhgfdsdfghjhgfd")
+      #Rails.logger.info(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 
