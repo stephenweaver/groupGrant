@@ -6,16 +6,28 @@
       <% groupgrantOwner = Charity.find(groupgrant.owner_id) %>
       <div class="caption">
         
-        <div class="ellipsis_gg_title"><%= groupgrant.name %></div>
-        <div class="gg_owner"><%= groupgrantOwner.name %></div>
+        <div class="ellipsis_gg_title">
+          <%= groupgrant.name %>
+        </div>
+
+        <div class="gg_owner">
+          <%= groupgrantOwner.name %>
+        </div>
+
         <div class="gg_progress_raised">
+          <br>
           <input type="text" value=<%= if groupgrant.goal_status.nil? then 0 elsif groupgrant.goal_status < groupgrant.goal_amount  then groupgrant.progress.to_i else 100 end %> class="dial" readOnly="true" style="width: 0px";>
         </div>
+
         <div class="gg_goal_index">
-          Goal: <%= number_to_currency(groupgrant.goal_amount, :precision => 0, :delimiter => ',') %>
+          Goal:
+          <br>
+          <%= number_to_currency(groupgrant.goal_amount, :precision => 0, :delimiter => ',') %>
         </div>
+
         <div class="gg_raised_index">
-          Raised: <%= number_to_currency(groupgrant.goal_status, :precision => 0, :delimiter => ',') || '$0' %>
+          Raised: 
+          <br><%= number_to_currency(groupgrant.goal_status, :precision => 0, :delimiter => ',') || '$0' %>
         </div>
       </div>
     </div>
