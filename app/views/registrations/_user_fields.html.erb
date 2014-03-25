@@ -6,9 +6,9 @@
       <%= f.file_field :profile, :class => 'form-control' %>
    </div>
 </div>
-<%= f.input :email %>
-<%= f.input :password, :autocomplete => "off" %>
-<%= f.input :password_confirmation %>
+<%= f.input :email, placeholder: 'groupgrant@domain.com' %>
+<%= f.input :password, :autocomplete => "off", placeholder: '**********' %>
+<%= f.input :password_confirmation, placeholder: '**********' %>
 
 <% if :rest == 'put' && current_user.encrypted_password.present? %>
    <div class="form-group">
@@ -19,7 +19,7 @@
    </div>
 <% end %>
 
-<%= f.input :phone %>
+<%= f.input :phone, placeholder: '850-231-0415' %>
 
 <% if resource.rolable_type.to_s.humanize != "Donor" %>
    <div class="btn btn-md btn-primary col-md-1 col-md-offset-6" id="next_button">Next</div>

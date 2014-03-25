@@ -163,7 +163,7 @@ class RegistrationsController < Devise::RegistrationsController
         when "business"
           params[:user] = params[:user].permit(user_attrs, rolable_attributes: business_attrs)
         when "donor"
-          params[:user] = params[:user].permit(user_attrs, rolable_attributes: charity_attrs)
+          params[:user] = params[:user].permit(user_attrs, rolable_attributes: donor_attrs)
       end
     end  
 end
