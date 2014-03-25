@@ -274,7 +274,7 @@ show a list of businesses it could connect with - KW -->
 <br />
 <% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
 <!-- Proceed if there are no request sent for this groupgrant -->
-  <% if @requests.first == nil %>      
+  <% if @requests.nil? || @requests.first == nil %>      
     <div style="float: left" id="business">   
       <!-- CONTACT NEW FRIEND -->
       <h3> Send a request to a business </h3>

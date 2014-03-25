@@ -242,31 +242,28 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       #   :description => "User id: " + current_user.id.to_s,
       #   :currency    => 'usd'
       # )
-
-    if @groupgrant.goal_status.nil?
-      @groupgrant.goal_status = 0
-    end
-    
-    @groupgrant.goal_status += params[:amount].to_i
-
-    if (current_user.allocated_amount >= params[:amount].to_i)
-      @groupgrant.save!
-        flash[:notice] = "NO ERRORS! Thank you for your $" + params[:amount] + " donation! :D"
-
-      # withdraw amount donated from user's allocated amount 
-      current_user.allocated_amount -= params[:amount].to_i
-      current_user.save
-    else
-      flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
+      if amount <= 0
+         flash[:error] = params[:amount] + " dollars is an Invalid amount value. Please try again with a positive amount."
+         raise
+      end
+      
+      if (!current_user.allocated_amount >= params[:amount].to_i)
+        flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
         raise
-    end
+      else
+        @groupgrant.save!
+          flash[:notice] = "NO ERRORS! Thank you for your $" + params[:amount] + " donation! :D"
 
-    if amount <= 0
-        flash[:error] = amount.to_s + " dollars is an Invalid amount value. Please try again with a positive amount."
-      # elsif cvc < 300 || cvc > 999
-      #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."
-      raise
-    end
+        # withdraw amount donated from user's allocated amount 
+        current_user.allocated_amount -= params[:amount].to_i
+        current_user.save
+      end
+
+      if @groupgrant.goal_status.nil?
+        @groupgrant.goal_status = 0
+      end
+      
+      @groupgrant.goal_status += params[:amount].to_i
 
     rescue => e
       
