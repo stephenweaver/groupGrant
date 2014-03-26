@@ -26,12 +26,14 @@
   </div>
 
 
+
+
   <!-- Friend table -->
   <div id="friends">
-    <table class="table table-hover">
+    <table class="list-group" style="max-height:600px; min-height:300px; overflow-y: scroll">
       <thead>
         <tr>
-          <th><h2>Connections</h2></th>
+          <th>Connections</th>
         </tr>
       </thead>
 
@@ -43,7 +45,9 @@
               <div class="active_friend">
                 <% if(!friend.last_ping_time.nil? && 
                       friend.last_ping_time >= (Time.current - 1.minutes)) %> 
-                <span class="glyphicon glyphicon-asterisk" style="color:green">  </span>
+                  <span class="glyphicon glyphicon-user" style="color:green">  </span>
+                <% else %>
+                  <span class="glyphicon glyphicon-user" style="color:grey">  </span>
                 <% end %>
                 &nbsp
               </div>
@@ -87,7 +91,7 @@
 
 <!-- THE MESSESAGES LIST -->
 <div class="col-sm-8 col-lg-7">
-  <div  id="message_table" style="max-height: 600px; overflow-y: scroll">
+  <div  id="message_table" style="max-height: 600px; min-height:300px; overflow-y: scroll">
     <!-- Messages table -->
     <table class="table" id="chats">
       <tbody >

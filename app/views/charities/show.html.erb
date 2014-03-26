@@ -18,7 +18,7 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <div class="text-center charity_title">
+    <div class="text-center">
       <!-- Charity name and mission statement -->
       <h1><strong><%= @charity.name %><strong><br/><small><em><%= @charity.mission_statement%></em></small></h1>
     </div>
@@ -26,8 +26,10 @@
     <p class="lead">
       <!-- Charity description -->
       <%= @charity.description %>
-    <br>
-      Target Area: <%= @charity.target_area %>
+      <% if !@charity.target_area.blank? %>
+        <br>
+          Target Area: <%= @charity.target_area %>
+      <% end %>
     </p>
   </div>
 
@@ -49,18 +51,18 @@
     <!-- Contact details -->
     <div class="panel panel-default" style="margin:30px;">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= "Contact Information:" %></h3>
+        <h3 class="panel-title"><%= "Contact:" %></h3>
       </div>
       <div class="panel-body">
         <% if !@charity.user.phone.blank? %>
-          <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
+          Phone: <%= number_to_phone(@charity.user.phone, area_code: true) %><br>
+        <%else %>
+          Phone: not listed<br>
         <% end %>
-        <%= "(Address)" %>
-        <br><%= "(Address continued)" %>
-        <br>
+          Address: not listed <br><%= @charity.user.address %><br>
         <!-- Connection request for Business to Charity -->
           <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
-          <button class="btn btn-primary" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+          <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
           <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
