@@ -12,7 +12,6 @@ hover_charity = function() {
    $('.description').hide();   
    
    $( ".user_about_block" ).hover(function() {
-      console.log($( this ).children());
       $( this ).children().children('.description').stop().slideToggle("easing");
    });
 }

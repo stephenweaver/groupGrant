@@ -136,6 +136,14 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.integer  "request_id"
   end
 
+  create_table "payments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_number"
+    t.string   "cid"
+    t.string   "expiration"
+  end
+
   create_table "requests", force: true do |t|
     t.boolean  "is_accepted"
     t.date     "date_responded"

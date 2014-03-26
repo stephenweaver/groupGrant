@@ -79,7 +79,7 @@ Blankcomposer::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.facebook_id = 300135003468694;
-  config.dumb_url = "/staging/groupgrant/";
+  config.dumb_url = "/staging/groupgrant";
 end
 
 Devise.setup do |config|

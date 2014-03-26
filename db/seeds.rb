@@ -27,7 +27,7 @@ groupgrant_categories = ["Products", "Children","Construction", "Food", "Educati
 groupgrant_categories.each do |category| GroupgrantCategory.create(name: category) end
 groupgrant_categories = GroupgrantCategory.all
 
-
+Spree::Config[:track_inventory_levels] = false
 ###################################################################################
 #                 Populate the database with charities                #
 ###################################################################################
@@ -435,22 +435,50 @@ Spree::Gateway::StripeGateway.create!(
 spree_product_categories = ["Animals", "Arts and Culture", "Education", "Environment", "Health", "Human Services", "International", "Public Benefit", "Religion", "Other"]
 spree_product_categories.each do |category| Spree::Taxonomy.create(name: category) end   
 
+
+
+stock_location = Spree::StockLocation.create!(
+   name: 'Default Stock'
+)
+
 shipping_cat = Spree::ShippingCategory.create!(
    name: 'Default Shipping'
 )
 
 tax_cat = Spree::TaxCategory.create!(
    name: 'Default Tax',
-   description: "Just default"
+   description: "Just default",
+   is_default: true
+)
+Spree::TaxRate.create(
+   name: "default",
+   amount: 0.05
 )
 
+Spree::Country.create!(
+   name: 'United States',
+   iso_name: 'US',
+   states_required: false
+)
+
+zone = Spree::Zone.create(
+   name: "All",
+   description: "default",
+   default_tax: true
+)
+
+# Spree::ShippingMethod.create!(
+#    name: "United States Postal Service"
+# )
+
+
+
 defaults = {
-   tax_category: tax_cat,
+   # tax_category: Spree::TaxCategory.first,
    meta_keywords: "this is meta",
    meta_description: "this is meta descripiton",
-   shipping_category: shipping_cat,
+   shipping_category: Spree::ShippingCategory.first,
    available_on: 3.days.ago,
-   sku: 50
     }
 
 products = [
