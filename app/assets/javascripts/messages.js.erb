@@ -1,4 +1,5 @@
 select_user = function() { 
+
    $( ".friend" ).click(function() {
      var user_id = $(this).data("user");
      var temp =  this;
@@ -139,6 +140,10 @@ auto_complete_users = function() {
 
 
 chosen = function() { 
+    $( ".friend" ).parent().click(function(e) {
+      $(e.target).children(".friend").click();
+    });
+
     if($(".friend:first").length > 0)
   {
     $(".friend:first").click();

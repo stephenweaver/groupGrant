@@ -9,7 +9,7 @@
   </div>
 
   <div class = "col-md-5">
-    <div class="row text-center gg_title">
+    <div class="row text-center">
       <!-- gG Title -->
       <h1><strong><%= @groupgrant.name %><strong><br/><small><em> started by <%= @groupgrant.charity.name%></em></small></h1>
     </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <!-- gG Description -->
       <p class="lead">
-        <%= @groupgrant.description %> 
+        <%= @groupgrant.description %>
       </p>    
     </div>
   </div><!-- left column close -->
@@ -56,6 +56,10 @@
 
       <% if user_signed_in? %>
         <div class="text-center">
+          <% if current_user.allocated_amount.nil?
+              current_user.allocated_amount = 5000
+              current_user.save end %>
+
           <% if current_user.allocated_amount > 0 %>
             <h3>You have <%= number_to_currency(current_user.allocated_amount, :precision => 0, :delimiter => ',') %> left to donate.</h3>
           <% else %>
@@ -123,7 +127,7 @@
                       <label>
                         <span>Card Number</span>
                         <br>
-                        <input type="text" size="20"  class="form-control" data-stripe="number"/>
+                        <input type="text" size="20"  class="form-control" data-stripe="number"  name="number"/>
                       </label>
                     </div> 
 
@@ -131,7 +135,7 @@
                       <label>Expiration Date</label>
                       <div class="row">
                         <div class="col-xs-4">
-                          <select class="form-control" data-stripe="exp-month" style="width: 88px" placeholder="MM">
+                          <select class="form-control" data-stripe="exp-month" name="exp-month" style="width: 88px" placeholder="MM">
                             <option><b>Month</b></option>
                             <option value="1">01 - Jan</option>
                             <option value="2">02 - Feb</option>
@@ -149,7 +153,7 @@
                         </div>
 
                         <div class="col-xs-4 no_padding">
-                          <select class="form-control" data-stripe="exp-year" style="width: 88px" placeholder="YYYY">
+                          <select class="form-control" data-stripe="exp-year" name="exp-year" style="width: 88px" placeholder="YYYY">
                             <option>Year</option>
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
@@ -166,7 +170,7 @@
                         </div>
 
                         <div class="col-xs-4">
-                          <input type="text" class="form-control" size="3" data-stripe="cvc" placeholder="CCV" style="width: 55px"/>
+                          <input type="text" class="form-control" size="3" data-stripe="cvc" name="cvc" placeholder="CCV" style="width: 55px"/>
                         </div>
                       </div>
                     </div> 
@@ -241,20 +245,16 @@
       </div>
 
       <!-- Share the cause with others -->
-      <div class = "social-media-icons automargin partnerships">
+      <div class = "social-media-icons automargin">
         <!-- Social Media -->
         <div class="row">
-          <div class="col-md-8">
-            <em style="font-size: 1.7em; float:left;">Share the cause</em>
-          </div>   
-
           <!-- Show Twitter button -->
           <div class="col-md-2" id="sharePage" style="padding-left: 7px; margin-top:5px"></div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-lang="en" data-count="vertical">Tweet</a>
-          <script src="https://platform.twitter.com/widgets.js"></script> 
+          <a href="https://twitter.com/share" class="twitter-share-button pull-right" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-lang="en" data-count="vertical">Tweet</a>
+          
 
           <!-- Show Facebook button -->
-          <div class="fb-share-button" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
+          <div class="fb-share-button pull-right" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
         </div>
       </div>
     </div><!-- Well close-->   
@@ -293,6 +293,4 @@ show a list of businesses it could connect with - KW -->
     
 <div class="col-md-1"><!-- I made this so things would be centered --></div>
 
-<%= javascript_include_tag("https://js.stripe.com/v2/") %>
-<%= javascript_include_tag("stripe.js") %>
-<%= javascript_include_tag("jquery.knob.js") %>
+

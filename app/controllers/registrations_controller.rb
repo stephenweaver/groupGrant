@@ -122,10 +122,10 @@ class RegistrationsController < Devise::RegistrationsController
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) do |u|
-        u.permit(:email, :password, :password_confirmation, :phone, :profile, :rolable_attributes=>[])
+        u.permit(:address, :email, :password, :password_confirmation, :phone, :profile, :rolable_attributes=>[])
       end
       devise_parameter_sanitizer.for(:account_update) do |u|
-        u.permit(:email, :password, :password_confirmation, :phone, :profile)
+        u.permit(:address, :email, :password, :password_confirmation, :phone, :profile)
       end
     end
 
@@ -152,7 +152,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def user_params
-      user_attrs      = [:email, :password, :password_confirmation, :phone, :profile, :donor]
+      user_attrs      = [:email, :password, :password_confirmation, :phone, :profile, :donor, :address]
       charity_attrs   = [:name, :eid, :description, :video_url, :video_url_html, :mission_statement, :cover_photo, :target_area, :category_id, :rolable]
       business_attrs  = [:name, :goods, :description, :services, :slogan, :rolable, :category_id, :location, :interests]
       donor_attrs     = [:title, :first_name, :last_name, :middle_initial, :rolable]

@@ -18,20 +18,15 @@ class MessagesController < ApplicationController
     end
 
     all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).order(:id)
-    user_list = []
-    all_messages.each do |x|
-      if(x.user_received_id == current_user.id)
-        user_list << x.user_sent_id  unless user_list.include?(x.user_sent_id)
-      else
-        user_list << x.user_received_id unless user_list.include?(x.user_received_id)
-      end
+
+    @friends = User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes)
+    if(@friends.count < 10) 
+      @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time <= ? or last_ping_time is null", Time.current - 1.minutes).limit(10 - @friends.count)
     end
+    @friends.flatten!
 
     @search_users = searchUsers()
-    @friends = User.find(user_list)
     @last_message = all_messages.last()
-
-    # @messages = Message.where(to: current_user.id)
   end
 
   #----------------------------------------------------------------------------------------------------

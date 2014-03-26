@@ -27,7 +27,7 @@ groupgrant_categories = ["Products", "Children","Construction", "Food", "Educati
 groupgrant_categories.each do |category| GroupgrantCategory.create(name: category) end
 groupgrant_categories = GroupgrantCategory.all
 
-
+Spree::Config[:track_inventory_levels] = false
 ###################################################################################
 #                 Populate the database with charities                #
 ###################################################################################
@@ -435,22 +435,50 @@ Spree::Gateway::StripeGateway.create!(
 spree_product_categories = ["Animals", "Arts and Culture", "Education", "Environment", "Health", "Human Services", "International", "Public Benefit", "Religion", "Other"]
 spree_product_categories.each do |category| Spree::Taxonomy.create(name: category) end   
 
+
+
+stock_location = Spree::StockLocation.create!(
+   name: 'Default Stock'
+)
+
 shipping_cat = Spree::ShippingCategory.create!(
    name: 'Default Shipping'
 )
 
 tax_cat = Spree::TaxCategory.create!(
    name: 'Default Tax',
-   description: "Just default"
+   description: "Just default",
+   is_default: true
+)
+Spree::TaxRate.create(
+   name: "default",
+   amount: 0.05
 )
 
+Spree::Country.create!(
+   name: 'United States',
+   iso_name: 'US',
+   states_required: false
+)
+
+zone = Spree::Zone.create(
+   name: "All",
+   description: "default",
+   default_tax: true
+)
+
+# Spree::ShippingMethod.create!(
+#    name: "United States Postal Service"
+# )
+
+
+
 defaults = {
-   tax_category: tax_cat,
+   # tax_category: Spree::TaxCategory.first,
    meta_keywords: "this is meta",
    meta_description: "this is meta descripiton",
-   shipping_category: shipping_cat,
+   shipping_category: Spree::ShippingCategory.first,
    available_on: 3.days.ago,
-   sku: 50
     }
 
 products = [
@@ -459,30 +487,8 @@ products = [
       price: 50,
       description: "description goes here",
    },
-   {
-      name: "FireX Hardwired Interconnected 120-Volt Smoke Alarm with Battery Backup", 
-      image: "smokealarm1",
-      price: "14.97",
-      description: "FireX i4618 alarm is a 120V hardwire smoke alarm and battery back-up feature. Utilizes ionization technology that may detect fast flaming fires sooner than photoelectric. Install this alarm in your home to provide you and your family an early warning in the event of a fire. Battery back-up feature provides protection even during power outages and the smart hush feature will silence false alarms.
-      Front loading battery feature for easy battery change, no need to remove the alarm from the ceiling
-      Test/reset button allows you to check on the sensor's functionality and cease false alarms
-      9 Volt battery backup provides protection during power outages
-      Pre-stripped wiring harness with easy off cap provides easy access to wiring components
-      Interconnectable feature with up to 24 devices of which 18 can be initiating
-      Unit is equipped with piezoelectric horn that is rated at 85 decibels at 10 ft.
-      Specifications: 
-      Alarm Sensor Type    Ionization  Alarm Type  Smoke 
-      Alarm/Detector Features    Battery Back-Up,Hush Feature,Interconnected  Assembled Depth (in.)   3 in 
-      Assembled Height (in.)  6.25 in  Assembled Width (in.)   6.63 in 
-      Battery Back-Up   Yes   Battery Power Type   Alkaline 
-      Battery Size   Duplex   Certifications and Listings   1-UL Listed 
-      Commercial / Residential   Commercial / Residential   Connector/Contact Type  2-Wire 
-      Digital Display   No    Electrical Product Type    Smoke Detector 
-      Included    Battery (-ies)    Returnable  90-Day 
-      Voltage (volts)   120"
-   },
    {name: "FireX Hardwired Interconnected 120-Volt Smoke Alarm with Battery Backup", 
-   image: "smokealarm1",
+   image: "Smokealarm1",
    price: "14.97",
    description: "FireX i4618 alarm is a 120V hardwire smoke alarm and battery back-up feature. Utilizes ionization technology that may detect fast flaming fires sooner than photoelectric. Install this alarm in your home to provide you and your family an early warning in the event of a fire. Battery back-up feature provides protection even during power outages and the smart hush feature will silence false alarms.
    Front loading battery feature for easy battery change, no need to remove the alarm from the ceiling
@@ -503,7 +509,7 @@ products = [
    Voltage (volts)   120"},
 
    {name: "Werner 2-Story Not Rated Fire Escape Ladder with 375 lb. Load Capacity", 
-   image: "escapeladder1",
+   image: "Escapeladder1",
    price: "99.00",
    description: "The Werner 2-Story Fire Escape Ladder features 12 non-slip steps and mounts easily to an existing wall. The self-deploying ladder rungs extend into a full ladder when dropped out of your window. Can be painted to match your wall.
    Aluminum rungs with nylon webbing rails
@@ -523,7 +529,7 @@ products = [
    Step rise (in.)   14.25    Weather Resistant    No"},
 
    {name: "Lithonia Lighting 4-Light White Fluorescent Troffer (28-Pallet)", 
-   image: "light1",
+   image: "Light1",
    price: "1498",
    description: " The Lithonia Lighting 4-Light Prewired and Lamped Multi-Volt Fluorescent Troffer comes prewired with lamps installed for easy installation. It features a clear, prismatic acrylic lens and a white steel frame. This low-profile Troffer provides general illumination in grid ceiling applications.
    Pallet buy consists of 28 troffers
@@ -545,7 +551,7 @@ products = [
    Wattage (watts)   32"},
 
    {name: "Lithonia Lighting 2-Light Thermoplastic LED Emergency Exit Sign/Fixture Unit Combo with Incandescent Heads", 
-   image: "exitsign1",
+   image: "Exitsign1",
    price: "89.76",
    description: "The Lithonia Lighting Quantum 2-Light Thermoplastic LED Emergency Exit Sign/Fixture Unit Combo is good for an area requiring both an exit sign and emergency lighting. It features an attractive, streamlined design that is great for above-the-door applications and other tight fits. Unique track-and-swivel arrangement permits full range of direction of lamp head adjustment.
    Streamlined design is good for a tight fit, such as above a door
@@ -571,7 +577,7 @@ products = [
    Wattage (watts)   4 W"},
 
    {name: "Lithonia Lighting 2-Light Utility Light", 
-   image: "light2",
+   image: "Light2",
    price: "24.87",
    description: " The Lithonia Lighting 2-Light Utility Light uses a clear, prismatic acrylic lens with white steel end plates to provide widespread illumination. This light features a continuous-interlocking design for easy installation, lamp access and cleaning.
    Uses a clear, prismatic acrylic lens with white steel end plates
@@ -591,7 +597,7 @@ products = [
    Returnable  90-Day   Style    Traditional"},
 
    {name: "Lithonia Lighting Lead-Calcium Plastic 6-Volt Emergency/Exit Lighting Replacement Battery", 
-   image: "battery1",
+   image: "Battery1",
    price: "21.86",
    description: " The Lithonia Lighting Lead-Calcium 6-Volt Replacement Battery for Emergency/Exit Lighting. This battery is rechargeable for your convenience. This replacement battery features lead-calcium storage for lasting use.
    Lead-calcium battery
@@ -615,7 +621,7 @@ products = [
    Wattage (watts)   0"},
 
    {name: "Cooper Bussmann FRN Series 20 Amp Brass Time Delay Fuse Cartridges (2-Pack)", 
-   image: "fuse1",
+   image: "Fuse1",
    price: "12.64",
    description: "The Cooper Bussmann FRN Series 20 Amp Brass Time Delay Fuse Cartridges (2-Pack) have fiberglass tubes and are current limiting, Class RK5, dual-element time-delay fuses with a 10-second minimum at 500% design. Typical applications include power panel boards, motor control centers, combination starters and machinery disconnects. These fuse cartridges are UL- and CSA listed for safety.
    Used in power panel boards, motor control centers, combination starters and machinery disconnects
@@ -633,7 +639,7 @@ products = [
    Voltage (volts)   250"},
 
    {name: "GE 200 Amp 240-Volt Non-Fused Emergency Power Transfer Switch", 
-   image: "powerswitch1",
+   image: "Powerswitch1",
    price: "324.00",
    description: "Run your backup generator with the GE 200 Amp 240-Volt Non-Fused Emergency Power Transfer Switch. This emergency power transfer switch offers a NEMA type-3R metal enclosure for outdoor use. For use with 6 - 250 AWG/kcmil copper or aluminum lug wire, this transfer switch is rated for safety with a UL listing and an ANSI certification.
    Ideal for running your back-up generator
@@ -655,7 +661,7 @@ products = [
    Voltage (volts)   240"},
 
    {name: "Zinsco Thick 30 Amp 1-1/2 in. Double-Pole Type Z UBI Replacement Circuit Breaker", 
-   image: "breaker1",
+   image: "Breaker1",
    price: "59.97",
    description: " 
    The Zinsco Thick 30 Amp 1-1/2 in. Double-Pole Type Z UBI Replacement Circuit Breaker is suitable for use in typical applications up to 13,200 watts, such as hot water heaters, clothes dryers, air conditioners and electric motors. The HACR-rated breaker is compatible with Zinsco thick series load centers.
@@ -677,7 +683,7 @@ products = [
    Returnable  90-Day   Voltage (volts)   240"},
 
    {name: "Cerrowire 250 ft. 12/2 UF-B Wire", 
-   image: "wire1",
+   image: "Wire1",
    price: "90.30",
    description: "This 250 ft. Underground Feeder Cable is designed to be directly buried into the ground as a non-metallic sheathed cable. Jacketed in insulated PVC, this cable is resistant to sunlight for durability. This cable is UL listed.
    250 ft. length
@@ -703,7 +709,7 @@ products = [
    Wire/Cable Length (ft.)    250"},
 
    {name: "Cerrowire 500 ft. 10/2 UF-B Wire - Grey", 
-   image: "wire2",
+   image: "Wire2",
    price: "298.20",
    description: " 
    500 ft. 10/2 UF-B Wire can be used outdoors, underground and in wet areas. The jacketed wire is sun and UV resistant. Copper conductors. UL listed.
@@ -730,7 +736,7 @@ products = [
    Wire/Cable Length (ft.)    50"},
 
    {name: "Cerrowire 100 ft. 14 Gauge 5-Conductor Portable Power Soow Cord - Black", 
-   image: "wire3",
+   image: "Wire3",
    price: "136.00",
    description: " 14-5 gauge type SOOW flexible cord is designed for extra hard usage on industrial equipment, heavy tools, battery chargers, portable lights, welding leads, marine dockside power, power extensions, and mining applications. SOOW flexible cords are also UL and CSA listed for continuous submersion in water. Jacket is heat, moisture, and oil resistant.
    Jacket is sunlight resistant
@@ -753,7 +759,7 @@ products = [
    Wire/Cable Length (ft.)    100"},
 
    {name: "L.I.F Industries 36 in. x 80 in. Flush Gray Exit Right-Hand Fire Proof Door Unit with Welded Frame", 
-   image: "door1",
+   image: "Door1",
    price: "718.80",
    description: "
    Heavy duty steel flush unit with exit device and commercial grade lever entrance trim installed and welded frame. Complete with a commercial grade lever entrance lockset and spring hinges in a satin chrome finish. Equipped with a 90 min. fire and smoke label. Manufactured with the highest quality mill primed galvanized steel that is satin smooth to the touch and ready to receive premium latex or oil based paint once cleaned. Frame made for a wall thickness of 4-7/8 in. And used primarily in new masonry or drywall construction when the wall is being built. Frame comes complete with combination anchors for either masonry or drywall applications. Installation instructions as well as finishing guidelines and warranty information can be downloaded for your convenience.
@@ -786,7 +792,7 @@ products = [
    Returnable  90-Day   Rough Opening Height    82.125 in"},
 
    {name: "Aleco ImpacDor FS-500 3/4 in. x 60 in. x 96 in. Charcoal Gray Wood Core Impact Door", 
-   image: "door2",
+   image: "Door2",
    price: "1483.00",
    description: "
    Aleco ImpacDor FS-500 is a versatile 3/4 in. (19 mm) door with wood core and ABS facings for demanding food service, retail and light industrial applications seeking to provide a visual barrier or a damper to air currents in busy doorways. Colorful 1/8 in. (3 mm) ABS facings are bonded to a 1/2 in. (13 mm) solid core to resist palletized loads, yet remain light enough to swing freely in high volume foot traffic. This versatile, attractive door is supported by the easily installed stainless steel EZ hinge system for two-way 125 degree swing. The hinges unique offset pivot ensures smooth, effortless operation to facilitate traffic flow. Features rigid solid core with reinforced metal spine, 11-1/2 in. x 15-1/2 in. dual pane windows and stainless steel 8-3/4 in. jamb guards.
@@ -809,7 +815,7 @@ products = [
    Product Weight (lb.)    165   Returnable  90-Da"},
 
    {name: "Port-A-Cool 9600 CFM 3-Speed Portable Evaporative Cooler for 2500 sq. ft.", 
-   image: "cooler1",
+   image: "Cooler1",
    price: "2399.00",
    description: "
    Port-A-Cool portable evaporative cooling units utilize a unique, patented housing design and KL Pads high efficiency rigid cooling media to produce effective and efficient cooling even in high relative humidity conditions. The Port-A-Cool 36 in. 3-speed model cools up to 2,500 square feet making it perfect for hospitality tents, warehouses, factories, work shops, large work areas, outdoor recreational areas anywhere air conditioning is ineffective or cost prohibitive. Port-A-Cool portable evaporative cooling units perform at a fraction of the cost of standard air-conditioning while lowering the surrounding air temperature by as much as 15 to 25 degrees Fahrenheit, resulting in an average utility cost of 7.5-cents to 28.2-cents per hour, depending on unit size. Port-A-Cool units are environmentally friendly and provide long-term dependability plus near maintenance-free operation. This evaporative cooler performs best in dry, arid climates.
@@ -840,7 +846,7 @@ products = [
    Returnable  90-Day   Voltage (volts)   115"},
 
    {name: "MasterCool 5000 CFM 2-Speed Side-Draft Roof 12 in. Media Evaporative Cooler for 1650 sq. ft. (with Motor)", 
-   image: "cooler2",
+   image: "Cooler2",
    price: "1499.00",
    description: "
    This MasterCool down-discharge evaporative cooler is American-made and provides an economical, environmentally-friendly means of cooling up to 1650 sq. ft. Engineered for maximum airflow and superior durability, the MasterCool line of coolers not only saves energy dollars, but provides years of worry-free cooling comfort for you and your family. This unit is complete and ready to install. ATTENTION: This evaporative cooler performs best in dry, arid climate.
@@ -873,7 +879,7 @@ products = [
    Voltage (volts)   115"},
 
    {name: "HDX 30 in. Pedestal Fan", 
-   image: "fan1",
+   image: "Fan1",
    price: "149.00",
    description: "
    The HDX 30 in. pedestal fan's motor powers 3 aluminum fan blades to provide economical cooling and air circulation for all environments including warehouses, factories, offices, garages and more. These portable fans have a 360 degree pivot-action head that allows vertical airflow adjustments and a tool free hand screw knob for height adjustments.
@@ -903,7 +909,7 @@ products = [
    Thermostat  No    Timer    No"},
 
    {name: "Dyna-Glo 50K - 200K LP Convection Heater", 
-   image: "heater1",
+   image: "Heater1",
    price: "139.00",
    description: "
    The Dyna-Glo 200,000 BTU Portable Convection Tower Propane Heater features 3 heat settings and a 360-degree heat radius that offers plenty of warmth for areas of up to 4,700 sq. ft. The convenient, one-hand piezo ignition helps provide a fast startup, while the non-slip base and automatic shutoff help ensure safety.
@@ -936,7 +942,7 @@ products = [
 
 
    {name: "Kirkland Signature Roast Beef in Beef Broth 12oz 24-pack", 
-   image: "can1",
+   image: "Can1",
    price: "79.99",
    description: " 
    Kirkland Signature Roast Beef in Beef Broth is a convenient way to prepare your favorite recipes such as Mexican dishes, stir-fry, soups, and casseroles. Made with premium grass fed beef to ensure that the finished product is very lean and tender.  At 97% lean, this blend of premium top and bottom round beef is a fully cooked and shelf stable product for up to 2 years.  This beef has the flavor, quality, and value expected in all Kirkland Signature items.
@@ -953,7 +959,7 @@ products = [
    $3.34 per ca"},
 
    {name: "Harvest Creek Roast Beef with Gravy 12oz 24-pack", 
-   image: "can2",
+   image: "Can2",
    price: "64.99",
    description: "
    Harvest Creek Roast Beef with Gravy is a quick and easy way to make any meal great.  Made with premium beef and a savory brown gravy this product is a quick and easy meal solution for any dinner table, simply heat and serve. As a fully cooked shelf stable product, this beef with gravy offers a convenient meal on its own or simply add vegetables for a tasty beef stew. Other recipe ideas include hot roast beef sandwiches or served with mash potatoes, rice, or pasta noodles.   
@@ -969,7 +975,7 @@ products = [
    $2.71 per ca"},
 
    {name: "Sustainable Fields San Marzano Red Tomatoes, 14 oz- 6 Pack", 
-   image: "can3",
+   image: "Can3",
    price: "29.99",
    description: "
    In the foothills of Mount Vesuvius is a land rich in organic substances and minerals that when combined with the nearby Mediterranean Sea, provide some of the best soil in the entire country of Italy. This soil is where San Marzano tomatoes thrive, giving chefs the best sauce tomatoes in the world.  Compared to the more common Roma (plum) tomatoes, the San Marzano have thicker flesh, fewer seeds and a stronger, less sweet and acidic taste - bittersweet, like great chocolate.  This bright red tomato, whose name denotes both its origin and variety, is harvested only by hand due to its delicate nature.  The San Marzano is picked, peeled and packed from August through September, sometimes later.  So prized are they, that in 1996, San Marzano tomatoes were granted Protected Designation of Origin status by the European Union and only cans that display the DOP designation are guaranteed to be genuine San Marzano tomatoes.
@@ -979,7 +985,7 @@ products = [
    DOP Product of Ital"},
 
    {name: "30,144 Total Servings 4-Person 1-Year Food Storage", 
-   image: "food1",
+   image: "Food1",
    price: "3999.99",
    description: "
    Now is the time to take advantage of this incredible value! Our most extensive THRIVE emergency food supply yet, the Emergency Cube provides over 30,000 total servings of long-lasting freeze dried and dehydrated THRIVE foods enough to sustain up to 4 people for 1 year in any circumstance!
@@ -1048,7 +1054,7 @@ products = [
    4 Simply Peach Drink (3 year shelf life) (Country of Origin:  USA"},
 
    {name: "Food, Fire, Filter 72 hour Emergency Supply Pallet 80 units.", 
-   image: "food2",
+   image: "Food2",
    price: "4799.99",
    description: " 
    The Food Fire Filter 72-Hour Pallet provides 80 total buckets, each containing the food, fire starters and water filtration needed to help 2 people survive for 72-hours. Each kit contains 76 servings of delicious meals that will not only fill, they will satisfy. Thats 12 servings per day (1526 calories) per person for 3 days, making the combined total of this pallet equal to 6,080 servings (or 732,480 total calories).
@@ -1098,7 +1104,7 @@ products.each do |product_attrs|
    product = Spree::Product.create!(product_attrs.merge(defaults))
    product.taxons << Spree::Taxon.offset(rand(Spree::Taxon.count)).first
    if(!image.nil? && image != '.jpg')
-      #product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
+      # product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
    end
    product.save
 end
@@ -1183,10 +1189,8 @@ groupgrants.each do |groupgrant_attrs|
    image = groupgrant_attrs[:image].to_s + '.jpg'
    groupgrant_attrs.delete(:image)
    if(!image.nil? && image != '.jpg')
-      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      #groupgrant_attrs.merge!(add_pic)
-      #Rails.logger.info("sdfghjhgfdsdfghjhgfd")
-      #Rails.logger.info(add_pic)
+      # add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      # groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 

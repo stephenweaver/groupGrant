@@ -1,7 +1,6 @@
 //
 renderKnob = function() 
 { 
-	console.log("sdfgdsdfg");
 	if($(".dial").length > 0)
 	{
 	  $(".dial").knob({
