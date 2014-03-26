@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :spree_roles
 
   validates :email, presence: {is: true, message: "Please enter an e-mail address"},
-     format: {with: /\w*@\w*.\w*$/, :multiline => true}
+     format: {with: /\w*@\w*.\w*.*$/, :multiline => true, message: "Please enter a valid e-mail"}
   accepts_nested_attributes_for :rolable
 
   has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, 

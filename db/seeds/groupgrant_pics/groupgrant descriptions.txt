@@ -1,0 +1,73 @@
+Animals1:
+Homeless From Birth:
+Every year, thousands of household pets are abandoned at birth because their owners don't want them or can't afford them. These neglected pets need a place to call home, especially at such a vulnerable time of their lives. They need inoculations and the right food for proper growth. Help us give these pets a home by providing the funds needed for inoculations."},
+
+{
+   image: "Animals2",
+   name: "Wild Animals Need Help",
+   description: "There are many wild animals living in urban areas nowadays. It is hard for these animals to survive in areas where people have built roads, traps and other hazards for wild animals. These animals become injured and have no way to recover because food supply and shelter is limited. Please help fund our groupGrant to raise funds for medical care for wild animals."},
+
+{
+   image: "Animals3",
+   name: "Keep Them Around",
+   Help the Pensacola Pound keep strays alive by providing funds for just one animal! The cost for feeding one stray is about $5.00 a day. Your donation can help keep just one stray around long enough to find another home."},
+
+{
+   image: "Beanie",
+   name: "Warm a Head",
+   description: "Children in Ukraine are in need of warm clothes for the winter this year. We hand knit beanies for children in poorer areas that have no way of being warm enough for a hard winter ahead. Help us raise money for the materials needed to make and ship these beanies. ($2 per beanie)"},
+
+{
+   image: "Clothes1",
+   name: "Hand-Me-Down To Needy",
+   description: "We have gathered as many articles of clothing as possible to help clothe the backs of many people who have lost their clothes in the recent disaster in Sri Lanka. We still need to purchase a shipping container and pay for the shipping costs overseas. Please help!"},
+
+{
+   image: "Disaster1",
+   name: "Rebuild a Town",
+   description: "The town of Asahi in Japan was hit hard by the recent earthquake and tsunami. Help us raise funds needed to rebuild this town from the ground up so people can recover as quickly as possible."},
+
+{
+   image: "Disaster2",
+   name: "Homeless",
+   description: "The Barns family is now homeless as a result of the recent tornado that came and destroyed their home. Help us rebuild a house for this family of nine by contributing to this groupGrant!"},
+
+{
+   image: "Farm",
+   name: "Growing For Life",
+   description: "Help us teach the people of Mozambique learn sustainable farming. If we can teach them to farm, they can learn to support themselves and grow as a community. Donate to this groupGrant to help give supplies and farming producto these peopelrt."},
+
+{
+   image: "Food1",
+   name: "To the Starving",
+   description: "Help us feed those who can't feed themselves by donating to this groupGrant. Your proceeds will go towards purchasing basic food staples that will feed as many mouths as possible."},
+
+{
+   image: "Food3",
+   name: "Dallas Thanksgiving Project",
+   description: "There are many homeless veterans in the Dallas area. We want to show them that people still care about them. Help us by donating towards food for this upcoming event!"},
+
+{
+   image: "Hearing",
+   name: "Just Like Jared",
+   description: "Help other kids like Jared be able to hear again. Donate to help pay for the much needed medical equipment for making it possible for many kids to combat hearing disabilities."},
+
+{
+   image: "India",
+   name: "Teaching English",
+   description: "Help Jon get to India to teach kids in the Mumbai area to speak English."},
+
+{
+   image: "Kids",
+   name: "Soccer-Cadets",
+   description: "These kids aren't playing just for fun. They play to help bring the same opportunity to kids their age in Africa. Donate now to help these kids spread opportunities around the world."},
+
+{
+   image: "Medical1",
+   name: "Vaccinate Suda",
+   description: "Kids in Sudan need vaccinations for tetnis, measles and other diseases. Help us provide the medical equipment to make a project life this possible."},
+
+{
+   image: "Medical2",
+   name: "Guide-Dogs",
+   description: "Marissa has just gotten the chance to have a guide dog. Help others just like her to have the same opportunity to gain their freedom again!
