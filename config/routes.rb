@@ -53,7 +53,7 @@ match "/messages/show_all", :to => "messages#show_all",    via: :get
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
   match "/requests/response",           :to => "groupgrants#request_response",  via: :post
   
- match "/logout"           => "authentications#logout",        via: :get
+ match "/logout"           => "authentications#logout",        via: :get, as: 'logout_manual'
  match "/charityLogin"     => "authentications#charityLogin",  via: :get, as: 'auto_charity_login'
   match "/businessLogin"    => "authentications#businessLogin", via: :get, as: 'auto_business_login'
   match "/donorLogin"       => "authentications#donorLogin",    via: :get, as: 'auto_donor_login'

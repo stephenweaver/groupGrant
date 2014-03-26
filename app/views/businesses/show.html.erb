@@ -18,7 +18,7 @@
     <% end %>
   </div>
   <div class="col-md-6">
-    <div class="text-center business_title">
+    <div class="text-center">
       <!-- business name -->
       <h1><strong><%= @business.name %><strong></h1>
     </div>
@@ -47,15 +47,15 @@
     <!-- Contact details -->
     <div class="panel panel-default" style="margin:30px;">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= "Contact Information:" %></h3>
+        <h3 class="panel-title"><%= "Contact:" %></h3>
       </div>
       <div class="panel-body">
         <% if !@business.user.phone.blank? %>
-          <%= number_to_phone(@business.user.phone, area_code: true) %><br>
+          Phone: <%= number_to_phone(@business.user.phone, area_code: true) %><br>
+        <%else %>
+          Phone: not listed<br>
         <% end %>
-        <%= "(Address)" %>
-        <br><%= "(Address continued)" %>
-        <br>
+          Address: not listed <br><%= @business.user.address %><br>
         <!-- Connection request for Business to business -->
           <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
           <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319164016) do
+ActiveRecord::Schema.define(version: 20140326062614) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -864,6 +864,7 @@ ActiveRecord::Schema.define(version: 20140319164016) do
     t.datetime "last_ping_time"
     t.integer  "is_available"
     t.integer  "allocated_amount"
+    t.text     "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

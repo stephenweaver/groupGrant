@@ -224,8 +224,8 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   #----------------------------------------------------------------------------------------------------
   def payment_form_post
     # Get the credit card details submitted by the form
-    flash[:notice] = nil
-    flash[:error] = nil
+    flash.now[:notice] = nil
+    flash.now[:error] = nil
     token  = params[:stripeToken]
     amount = params[:amount].to_i * 100
 
@@ -247,23 +247,30 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       @groupgrant.goal_status = 0
     end
     
-    @groupgrant.goal_status += params[:amount].to_i
+    
 
     if amount <= 0
-      flash[:error] = params[:amount] + " dollars is an invalid amount. Please enter a positive amount."
+      flash.now[:error] = params[:amount] + " dollars is an invalid amount. Please enter a positive amount."
       # elsif cvc < 300 || cvc > 999
       #   flash[:error] = cvc + " is not a valid CVC code. Must be 3 numerical characters."
       raise
     elsif (current_user.allocated_amount < params[:amount].to_i)
-      flash[:error] = "Sorry, you have insufficient funds to make such a payment :("
+      flash.now[:error] = "Sorry, you have insufficient funds to make such a payment :("
       raise
     else
+      if params[:amount].to_i > 0
+        @groupgrant.goal_status += params[:amount].to_i
+      end
       @groupgrant.save!
-      flash[:notice] = "Transaction completed. Thank you for your $" + params[:amount] + " donation! :D"
+      flash.now[:notice] = "Transaction completed. Thank you for your $" + params[:amount] + " donation!"
+
+      
 
       # withdraw amount donated from user's allocated amount 
-      current_user.allocated_amount -= params[:amount].to_i
-      current_user.save
+      if params[:amount].to_i > 0
+        current_user.allocated_amount -= params[:amount].to_i
+        current_user.save
+      end
     end    
 
     rescue => e

@@ -27,8 +27,6 @@ class MessagesController < ApplicationController
 
     @search_users = searchUsers()
     @last_message = all_messages.last()
-
-    # @messages = Message.where(to: current_user.id)
   end
 
   #----------------------------------------------------------------------------------------------------

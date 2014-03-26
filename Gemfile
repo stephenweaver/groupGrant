@@ -44,17 +44,17 @@ gem 'twitter',                    '~> 5.7.1'
 gem 'uglifier',                   '>= 1.3.0'
 # gem 'mysql2',                     '0.3.11'
 
-gem 'better_errors'
+# gem 'better_errors'
 gem 'binding_of_caller'
-gem 'meta_request'
+# gem 'meta_request'
 gem  'profanity_filter'
 
 group :development do
-  # gem 'better_errors',            '~> 1.1.0'
+  gem 'better_errors',            '~> 1.1.0'
   gem 'guard-bundler',            '~> 2.0.0'
   gem 'guard-rails',              '~> 0.5.0'
   gem 'hub',                      '~> 1.12.0',   :require=>nil
-  # gem 'meta_request',             '~> 0.2.8'
+  gem 'meta_request',             '~> 0.2.8'
   gem 'quiet_assets',             '~> 1.0.2'
   gem 'rails_layout',             '~> 1.0.10'
   gem 'rb-fchange',               '~> 0.0.6',    :require=>false

@@ -10,12 +10,12 @@ setup_stripe = function() {
 var stripeResponseHandler = function(status, response) {
   var $form = $('#payment-form');
 
-  if (response.error) {
+  if (response.error && response.error.message.indexOf("An unexpected error has occurred") === -1 ) {
     // Show the errors on the form
     $form.find('.payment-errors').text(response.error.message);
     $form.find('button').prop('disabled', false);
     return false;
-  } else if ( typeof parseInt($('#amount_field').val())!== 'undefined' || parseInt($('#amount_field').val()) <= 0 || parseInt($('#amount_field').val()) > 5000) {
+  } else if (isNaN($('#amount_field').val()) || parseInt($('#amount_field').val()) <= 0 || parseInt($('#amount_field').val()) > 5000) {
     $form.find('.payment-errors').text("Please enter a positive amount less than 5000");
     $form.find('button').prop('disabled', false);
     return false;

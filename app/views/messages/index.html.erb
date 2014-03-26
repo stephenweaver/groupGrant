@@ -43,7 +43,10 @@
               <div class="active_friend">
                 <% if(!friend.last_ping_time.nil? && 
                       friend.last_ping_time >= (Time.current - 1.minutes)) %> 
-                <span class="glyphicon glyphicon-asterisk" style="color:green">  </span>
+                <span class="glyphicon glyphicon-user" style="color:green">  </span>
+
+                <% else %>
+                <span class="glyphicon glyphicon-user" style="color:grey">
                 <% end %>
                 &nbsp
               </div>
@@ -114,7 +117,3 @@
 
 </div>
 </div>
-<%= stylesheet_link_tag "chosen.min.css" %>
-<%= stylesheet_link_tag "chosen-bootstrap.css" %>
-
-<%= javascript_include_tag("chosen.jquery.min.js") %>

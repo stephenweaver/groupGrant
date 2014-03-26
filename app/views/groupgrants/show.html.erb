@@ -9,7 +9,7 @@
   </div>
 
   <div class = "col-md-5">
-    <div class="row text-center gg_title">
+    <div class="row text-center">
       <!-- gG Title -->
       <h1><strong><%= @groupgrant.name %><strong><br/><small><em> started by <%= @groupgrant.charity.name%></em></small></h1>
     </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <!-- gG Description -->
       <p class="lead">
-        <%= @groupgrant.description %> 
+        <%= @groupgrant.description %>
       </p>    
     </div>
   </div><!-- left column close -->
@@ -245,19 +245,16 @@
       </div>
 
       <!-- Share the cause with others -->
-      <div class = "social-media-icons automargin partnerships">
+      <div class = "social-media-icons automargin">
         <!-- Social Media -->
         <div class="row">
-          <div class="col-md-8">
-            <em style="font-size: 1.7em; float:left;">Share the cause</em>
-          </div>   
-
           <!-- Show Twitter button -->
           <div class="col-md-2" id="sharePage" style="padding-left: 7px; margin-top:5px"></div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-lang="en" data-count="vertical">Tweet</a>          
+          <a href="https://twitter.com/share" class="twitter-share-button pull-right" data-url="http://www.groupgrant.com" data-counturl="http://www.groupgrant.com" data-lang="en" data-count="vertical">Tweet</a>
+          <script src="https://platform.twitter.com/widgets.js"></script> 
 
           <!-- Show Facebook button -->
-          <div class="fb-share-button" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
+          <div class="fb-share-button pull-right" data-href="http://www.groupgrant.com" data-type="box_count"></div>          
         </div>
       </div>
     </div><!-- Well close-->   
@@ -299,4 +296,3 @@ show a list of businesses it could connect with - KW -->
 <%= javascript_include_tag("https://js.stripe.com/v2/") %>
 <%= javascript_include_tag("stripe.js") %>
 <%= javascript_include_tag("jquery.knob.js") %>
-<%= javascript_include_tag("facebook_twitter_api.js") %>
