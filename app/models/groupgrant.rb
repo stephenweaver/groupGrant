@@ -5,9 +5,21 @@ class Groupgrant < ActiveRecord::Base
    has_attached_file :groupgrant_pic, :styles => { :medium => "300x300>", 
       :small => "200x200>", :thumb => "100x100>"}, :default_url => "medium/missing.png"
    validates :name, :category_id, :goal_amount, :goal_date, presence: 
-      {is: true, message: "This field is required"}
-   validates :name, length: {in: 2..100, too_short: "A name can't be one character"}
-   validates :goal_amount, numericality: {is: true, message: "Must be numbers"}
+      {is: true, message: "Required"}
+   validates :name, length: {in: 2..30, too_short: "A name can't be one character",
+    too_long: "%{count} characters is the maximum allowed"},
+              uniqueness: {is: true, message: "%{value}  has already been taken"}
+   validates :goal_amount, numericality: {is: true, message: "Please enter only numbers"}
+   validates :goal_amount, numericality: {greater_than: 99, 
+    less_than_or_equal_to: 100000, message: "The amount must be between $100 and $100,000"}
+  validate :date
+
+
+  def date
+    if goal_date.present? && goal_date < Date.today
+      errors.add(:goal_date, "Please choose a future date")
+    end
+  end
 
 
    def self.search(search)

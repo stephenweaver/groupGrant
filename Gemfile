@@ -42,7 +42,7 @@ gem 'thin',                       '~> 1.6.2'
 gem 'turbolinks',                 '~> 2.2.1'
 gem 'twitter',                    '~> 5.7.1'
 gem 'uglifier',                   '>= 1.3.0'
-# gem 'mysql2',                     '0.3.11'
+gem 'mysql2',                     '0.3.11'
 
 # gem 'better_errors'
 gem 'binding_of_caller'
