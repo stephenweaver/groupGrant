@@ -80,6 +80,8 @@ Blankcomposer::Application.configure do
 
   config.facebook_id = 300135003468694;
   config.dumb_url = "/staging/groupgrant";
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end
 
 Devise.setup do |config|
