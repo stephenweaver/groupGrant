@@ -1,15 +1,15 @@
 //
-renderKnob = function() 
-{ 
-	if($(".dial").length > 0)
-	{
-	  $(".dial").knob({
-	    'draw' : function () { 
-	      $(this.i).val(this.cv + '%');
-	    }
-	  });
-	}
-};
+// renderKnob = function() 
+// { 
+// 	if($(".dial").length > 0)
+// 	{
+// 	  $(".dial").knob({
+// 	    'draw' : function () { 
+// 	      $(this.i).val(this.cv + '%');
+// 	    }
+// 	  });
+// 	}
+// };
 
 set_amount_field = function()
 {	
@@ -139,7 +139,7 @@ invite = function()
 	});
 }
 $(window).load(function() {
-   renderKnob();
+   // renderKnob();
    sendRequest();
    cancelRequest();
    set_amount_field();
@@ -147,7 +147,7 @@ $(window).load(function() {
    invite();
 });
 
-$(document).on('page:load', renderKnob);
+// $(document).on('page:load', renderKnob);
 $(document).on('page:load', sendRequest);
 $(document).on('page:load', cancelRequest);
 $(document).on('page:load', set_amount_field);
