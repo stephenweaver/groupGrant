@@ -22,6 +22,11 @@ class Groupgrant < ActiveRecord::Base
 
    def progress
       if self.goal_status.nil? || self.goal_amount.nil?
+        Rails.logger.info("progress def")
+        Rails.logger.info("goal_studs")
+        Rails.logger.info(self.goal_status)
+        Rails.logger.info("goalamount")
+        Rails.logger.info(self.goal_amount)
         return 0
       else
         self.goal_status / self.goal_amount * 100
