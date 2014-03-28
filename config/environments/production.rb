@@ -78,11 +78,13 @@ Blankcomposer::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.facebook_id = 603004516422329;
-  config.dumb_url = "/expo2014/groupgrant";
+  config.facebook_id = 300135003468694;
+  config.dumb_url = "/staging/groupgrant";
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end
 
 Devise.setup do |config|
   config.omniauth :twitter, '9zijyfjZKttwj63HY0cZw', 'A9a1Cu20tHyMiWgtP4lFczRgWfKfxafh91cKtu4tU'
-  config.omniauth :facebook, '603004516422329', 'fa657ae4b987430cbd17591cf44236e1'
+  config.omniauth :facebook, '300135003468694', '85527bc15836fb724e79cf6a2aa99c63'
 end
