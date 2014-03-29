@@ -33,11 +33,28 @@ class Groupgrant < ActiveRecord::Base
    end
 
    def progress
+    begin
       if self.goal_status.nil? || self.goal_amount.nil?
+        Rails.logger.info("progress def")
+        Rails.logger.info("goal_studs")
+        Rails.logger.info(self.goal_status)
+        Rails.logger.info("goalamount")
+        Rails.logger.info(self.goal_amount)
         return 0
       else
+         Rails.logger.info("progress def")
+        Rails.logger.info("goal_studs")
+        Rails.logger.info(self.goal_status)
+        Rails.logger.info("goalamount")
+        Rails.logger.info(self.goal_amount)
+         Rails.logger.info("computeed")
+         Rails.logger.info( self.goal_status / self.goal_amount * 100)
         self.goal_status / self.goal_amount * 100
       end
+rescue => error
+  Rails.logger.info("computeed error")
+  Rails.logger.info(error.message)
+end
    end
 
    def days_left
