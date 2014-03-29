@@ -27,6 +27,3 @@ $(window).load(function() {
 
 });
 $(document).on('page:load', init_form);
-
-// Work In Progress ---------------------------------------------------------
-// $("#formgroup1").animate({right:'999px'}, 1000).fadeOut("slow").dequeue();

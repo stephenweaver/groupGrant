@@ -1,6 +1,10 @@
 
 <% content_for :homepage do %>
 
+<div id="groupgrant_hype_container">
+  <p class="skip">Click to Skip</p>
+</div>
+
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -11,25 +15,25 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    <div class="item active">
+    <div class="item active" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/CharitySlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
-          <h3>Charities</h3>
-          <p>Spread awareness of your Charity! Share your needs with others by starting a groupGrant. Find local or global businesses who can provide you with whatever you need.</p>
+          <h3>Charity</h3>
+          <p>Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and encourage others to donate towards your need. Connect with businesses who can further your cause. We make it easy for charities to connect with businesses and individuals.</p>
         </div>
       </div>
-      <div class="item">
+      <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/BusinessSlide.jpg', class: "center_image") %>
-        <div class="carousel-caption black">
-          <h3>Businesses</h3>
-          <p>Improve the quality of life for others by giving to a charity. Offer products at discounted prices to charities! There are many charities who need the help of businesses to make the world a happier place.</p>
+        <div class="carousel-caption">
+          <h3>Business</h3>
+          <p>Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
         </div>
       </div>
-      <div class="item">
+      <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/DonorSlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
-          <h3>Donors</h3>
-          <p>Make a difference by donating to a groupgrant! Explore the many groupgrants and take part in a charity's cause. Help a charity by donating or by simply spreading the word.</p>
+          <h3>Donor</h3>
+          <p>Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter!</p>
         </div>
       </div>
   </div>
@@ -43,8 +47,8 @@
   </a>
 </div>
 
-<div class="row register">
-  <h1><strong>Register</strong><small><em> What type of user are you?</em></small></h1>
+<div class="row" style="margin:0px;">
+  <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Register</strong><small><em> What type of user are you?</em></small></h1>
 </div>
 
   <div class="user-container">
@@ -54,7 +58,9 @@
           <%= link_to image_tag('charity.png', class: 'img-responsive charity_img user_image'), charity_sign_up_path %>
           <div class="copy">
             <p>
-              Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and encourage others to donate towards your need. Connect with businesses who can further your cause. We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
+              Are you in need of some supplies or funds for a project? Do you need help from businesses and donors?
+              Would you like to have a fundraiser that reaches the entire masses? Then sign up with groupGrant today! 
+              We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
             </p>
           </div>
           <% if current_user.nil? %>
@@ -71,7 +77,7 @@
           <%= link_to image_tag('business.png', class: 'img-responsive business_img user_image'), business_sign_up_path %>
           <div class="copy">
             <p>
-              Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society. Sign&nbsp;up&nbsp;today!
+              Are you a business looking to give back? Do you have products you would like to donate, but don't know which charity to donate them to? Here at groupGRANT you can explore many charities in your areas of interest. Connect with charities that have needs and sponsor a groupgrant! We make it easy for businesses to donate to charities. Sign&nbsp;up&nbsp;today!
             </p>
            </div>
              <% if current_user.nil? %>
@@ -88,7 +94,7 @@
           <%= link_to image_tag('donor.png', class: 'img-responsive business_img user_image'), donor_sign_up_path %>
           <div class="copy">
             <p>
-              Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter. Sign&nbsp;up&nbsp;today!
+              Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
             </p>
           </div>
         </div>
@@ -169,3 +175,9 @@
 
 
 <% end %>
+<%= javascript_include_tag("holder.min.js") %>
+<%= javascript_include_tag("homepage.js") %>
+<%= javascript_include_tag("groupgrant_hype_generated_script.js") %>
+<%= javascript_include_tag("HYPE.js") %>
+<%= javascript_include_tag("hideHype.js") %>
+
