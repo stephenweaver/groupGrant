@@ -1,8 +1,4 @@
 
-
-
-
-
 init_form = function() {
      $(document).ready(function(){
      $("#formgroup2").hide();

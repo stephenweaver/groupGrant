@@ -29,10 +29,10 @@
 #       long: ! '%B %d, %Y'
 
 en:
-  date:
+  date: 
     datepicker:
       default: "mm/dd/yyyy"
       long: "MM dd, yyyy"
     formats:
-      default: "dd/mm/yyyy"
-      long: ! '%B %d, %Y'
+      default: '%m/%d/%Y'
+      long: ! '%M %d, %Y'

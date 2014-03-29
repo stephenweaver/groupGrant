@@ -56,16 +56,19 @@ class RegistrationsController < Devise::RegistrationsController
   def destroy
     #raise
     #user = resource.user.id
-    g = Groupgrant.where(:partner_id => current_user.id)
-    g = Groupgrant.find(g)
-    if g != nil
-      g.partner_id = 0
-      g.save
-    end
+    if current_user == "Business"
+      g = Groupgrant.where(partner_id: current_user.id)
 
-    User.destroy(resource.user.id)
+      #g = Groupgrant.find(g)
+      if g != nil 
+        g = Groupgrant.find(g)
+        g.partner_id = 0
+        g.save
+      end
+    end
+    User.destroy(current_user)
     respond_to do |format|
-      flash[:notice] = "Goodbye! :-("
+      flash[:notice] = "Thank you for using groupGrant"
       format.html { redirect_to root_url }
       format.json { head :no_content }
     end
@@ -81,7 +84,7 @@ class RegistrationsController < Devise::RegistrationsController
       user_params.delete("password_confirmation")
     end
 
-    user_params_user= user_params
+    user_params_user    = user_params
     user_params_rolable = user_params[:rolable_attributes]
     user_params_user.delete(:rolable_attributes)
     if current_user.update_without_password(user_params_user) && current_user.rolable.update_attributes(user_params_rolable)
