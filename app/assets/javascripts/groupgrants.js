@@ -21,7 +21,7 @@ set_amount_field = function()
 // Send a request to a groupgrant
 sendRequest = function() 
 {
-	$("#request").click(function() {
+	$("#request").unbind('click').bind('click', function () {
 		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
@@ -39,8 +39,9 @@ sendRequest = function()
 		    success: function( data) {
 		    	if (data == "true")
 		    	{
-			    	$("#request").remove();
+			    	//$("#request").remove();
 			    	$("#sponsors").append("<h3>A request has been sent.</h3>");
+			    	location.reload(true);
 			    }
 			    else
 			    	alert(data)
@@ -75,7 +76,7 @@ cancelRequest = function()
 		    // the response is passed to the function
 		    success: function( data) {
 		    	$("#cancel").remove();
-		    	$("#sponsors").append("<h3>Your request has been cancelled.</h3>");		    	
+		    	$("#sponsors").append("<h3>Your request has been cancelled.</h3>");    	
 		    },
 
 		    error: function(data) {

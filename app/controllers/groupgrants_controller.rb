@@ -58,7 +58,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
   def cancelRequest
     groupgrant = Groupgrant.find(params[:id])
     r = Request.where(groupgrant_id: groupgrant.id)
-    r = Request.find(r)
+    r = Request.find(r.first)
     m = Message.where(request_id: r.id)
     m = Message.find(m)
 
