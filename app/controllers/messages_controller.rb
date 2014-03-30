@@ -18,13 +18,28 @@ class MessagesController < ApplicationController
     end
 
     all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).order(:id)
+    
+    @friends = []
 
-    @friends = User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes)
+
+    # get existing conversations
+    all_messages.each do |x|
+      if(x.user_received_id == current_user.id)
+        @friends << User.find(x.user_sent_id)  unless @friends.include?(User.find(x.user_sent_id))
+      else
+        @friends << User.find(x.user_received_id) unless @friends.include?(User.find(x.user_sent_id))
+      end
+    end
+
+    # get people online
+    @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes) 
+
+    # get people up to 10 total people
     if(@friends.count < 10) 
       @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time <= ? or last_ping_time is null", Time.current - 1.minutes).limit(10 - @friends.count)
     end
     @friends.flatten!
-
+    @friends.uniq!
     @search_users = searchUsers()
     @last_message = all_messages.last()
   end
@@ -124,8 +139,15 @@ class MessagesController < ApplicationController
   #----------------------------------------------------------------------------------------------------
   def check_for_messages
     if(!current_user.nil? && !params['message_id'].nil?)
+
+      if(Message.exists?(params['message_id']))
+        message_time = Message.find(params['message_id']).created_at
+      else
+        message_time = 2.months.ago
+      end
+
       messages = Message.where( "(user_received_id = :current_user_id OR user_sent_id = :current_user_id) AND created_at > :last_time",
-        {current_user_id: current_user.id, last_time: Message.find(params['message_id']).created_at} )
+        {current_user_id: current_user.id, last_time: message_time} )
       messages.where(user_received_id: current_user.id, read: false).each do |message|
         message.read = true
         message.save!

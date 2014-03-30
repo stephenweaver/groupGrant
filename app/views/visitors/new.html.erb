@@ -1,13 +1,13 @@
 
 <% content_for :homepage do %>
-
-<div class="hideHype">
-  <div id="groupgrant_hype_container" style="position:relative;overflow:hidden;width:1268px;height:400px;margin:130px auto;">
-      
+<% if current_user.nil? %>
+  <div class="hideHype">
+    <div id="groupgrant_hype_container" style="position:relative;overflow:hidden;width:1268px;height:400px;margin:130px auto;">
+        
+    </div>
+    <p class="skip">Click to Skip</p>
   </div>
-  <p class="skip">Click to Skip</p>
-</div>
-
+<% end %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -27,7 +27,7 @@
       </div>
       <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/BusinessSlide.jpg', class: "center_image") %>
-        <div class="carousel-caption">
+        <div class="carousel-caption" style="color: black;">
           <h3>Business</h3>
           <p>Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
         </div>
