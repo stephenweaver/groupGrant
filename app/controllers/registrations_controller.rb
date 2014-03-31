@@ -51,6 +51,7 @@ class RegistrationsController < Devise::RegistrationsController
     user.count 
     random_number = genRandomNumber(0,user.count-1)
     sign_in_and_redirect User.find(user[random_number].id)
+    
   end
 
   def destroy
