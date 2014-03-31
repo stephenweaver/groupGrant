@@ -48,7 +48,7 @@ class Groupgrant < ActiveRecord::Base
         Rails.logger.info("goalamount")
         Rails.logger.info(self.goal_amount)
          Rails.logger.info("computeed")
-         Rails.logger.info( self.goal_status / self.goal_amount * 100)
+         Rails.logger.info( self.goal_status.to_f / self.goal_amount.to_f * 100.0)
         self.goal_status / self.goal_amount * 100
       end
 rescue => error
