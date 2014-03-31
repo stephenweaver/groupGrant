@@ -3,7 +3,7 @@ def rand_eid
 end
 
 def rand_phone
-   rand(9999999999).to_s.center(10, rand(9).to_s)
+   rand(9999999999).to_s.center(10, rand(9).to_s).to_i
 end
 
 def rand_goal_amount 
@@ -162,6 +162,7 @@ charity_emails = []
    charity_emails << "BostonPhilharmonic@groupgrant.com"
 
 password = "groupgrant"
+phone = "850-648-4028"
 
 charities.each_with_index do |charity, index|
    new_charity = Charity.create!(charity)
