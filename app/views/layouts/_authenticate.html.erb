@@ -4,8 +4,10 @@
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>
-            <% else %>
+            <% elsif current_user.rolable_type == "Charity" %>
                <%= link_to current_user.rolable.name, main_app.charity_path(id: current_user.rolable.id) %>
+            <% else %>
+               <%= link_to current_user.rolable.name, main_app.business_path(id: current_user.rolable.id) %>
             <% end %>
          </strong>
          <span style="display:none" id="user_type"><%=  current_user.rolable_type %> </span>
