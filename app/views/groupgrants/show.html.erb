@@ -227,8 +227,8 @@
             <% r = Request.where(groupgrant_id: @groupgrant.id)
          
             #check if this is the user that sent it
-            if (r[0] != nil)
-              r = Request.find(r)
+            if (r.first != nil)
+              r = Request.find(r.first)
               m = Message.where(request_id: r.id)
               m = Message.find(m)
 
