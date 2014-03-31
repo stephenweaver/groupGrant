@@ -221,28 +221,28 @@
         </div>
       </div>
 
-      <div class="row automargin partnerships" id="sponsors">
-        <div style="padding-top:10px; float:right;">
-          <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
-            <% r = Request.where(groupgrant_id: @groupgrant.id)
-         
-            #check if this is the user that sent it
-            if (r[0] != nil)
-              r = Request.find(r)
-              m = Message.where(request_id: r.id)
-              m = Message.find(m)
+      <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
+        <div class="row automargin partnerships" id="sponsors">
+          <div style="padding-top:10px; float:right;">            
+              <% r = Request.where(groupgrant_id: @groupgrant.id)
+           
+              #check if this is the user that sent it
+              if (r[0] != nil)
+                r = Request.find(r)
+                m = Message.where(request_id: r.id)
+                m = Message.find(m)
 
-              if (m.user_sent_id == current_user.id) %>
-                <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-                   Request Pending. Cancel? 
-                </div>
-              <% end %>
-            <% else %>
-              <div id="request" class="btn btn-primary">Connect with Charity</div>
-            <% end %>
-          <% end %>
+                if (m.user_sent_id == current_user.id) %>
+                  <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+                     Request Pending. Cancel? 
+                  </div>
+                <% end %>
+              <% else %>
+                <div id="request" class="btn btn-primary">Connect with Charity</div>
+              <% end %>            
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <!-- Share the cause with others -->
       <div class = "row social-media-icons automargin partnerships" style="padding-top:10px;">
