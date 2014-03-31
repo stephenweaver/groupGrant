@@ -11,14 +11,16 @@
          <span style="display:none" id="user_type"><%=  current_user.rolable_type %> </span>
       </div>
       <span class="navbar-text">
-         <%= link_to(main_app.messages_path) do %>
-            <span id="envelope-icon" 
-               <% if Message.where(user_received_id: current_user.id, read: false).count > 0 %> 
-                  class="glyphicon glyphicon-envelope green" 
-               <% else %> 
-                  class="glyphicon glyphicon-envelope"
-               <% end %>
-                style="font-size: x-large;"></span>
+         <% if current_user.rolable_type != "Donor" %>
+            <%= link_to(main_app.messages_path) do %>
+               <span id="envelope-icon" 
+                  <% if Message.where(user_received_id: current_user.id, read: false).count > 0 %> 
+                     class="glyphicon glyphicon-envelope green" 
+                  <% else %> 
+                     class="glyphicon glyphicon-envelope"
+                  <% end %>
+                   style="font-size: x-large;"></span>
+            <% end %>
          <% end %>
       </span>
       

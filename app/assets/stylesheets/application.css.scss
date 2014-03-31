@@ -29,74 +29,53 @@
 
 // Fonts:-----------------------------------------------
 // ROBOTO
-@font-face
-{
-  font-family: Roboto;
-  font-weight: 100;
-  src: asset-url("fonts/roboto/Roboto-Thin.ttf");
-}
-@font-face
-{
-  font-family: Roboto;
-  font-style: italic;
-  font-weight: 100;
-  src: asset-url("fonts/roboto/Roboto-ThinItalic.ttf");
-}
-@font-face
-{
-  font-family: Roboto;
-  font-weight: 200;
-  src: asset-url("fonts/roboto/Roboto-Light.ttf");
-}
-@font-face
-{
-  font-family: Roboto;
-  font-style: italic;
-  font-weight: 200;
-  src: asset-url("fonts/roboto/Roboto-LightItalic.ttf");
-}
-@font-face
-{
-  font-family: Roboto;
+@font-face {
+  font-family: 'Roboto-Thin';
+  src: font-url('roboto/Roboto-Thin.ttf');
   font-weight: normal;
-  src: asset-url("fonts/roboto/Roboto-Regular.ttf");
+  font-style: normal;
 }
 @font-face
 {
-  font-family: Roboto;
+  font-family: 'Roboto-ThinItalic';
+  font-style: italic;
+  font-weight: 100;
+  src: font-url("roboto/Roboto-ThinItalic.ttf");
+}
+@font-face
+{
+  font-family: 'Roboto-Light';
+  font-weight: 200;
+  src: font-url("roboto/Roboto-Light.ttf");
+}
+@font-face
+{
+  font-family: 'Roboto-LightItalic';
+  font-style: italic;
+  font-weight: 200;
+  src: font-url("roboto/Roboto-LightItalic.ttf");
+}
+@font-face
+{
+  font-family: 'Roboto';
+  font-weight: normal;
+  src: font-url("roboto/Roboto-Regular.ttf");
+}
+@font-face
+{
+  font-family: 'Roboto-Italic';
   font-weight: normal;
   font-style: italic;
-  src: asset-url("fonts/roboto/Roboto-Italic.ttf");
+  src: font-url("roboto/Roboto-Italic.ttf");
 }
 @font-face
 {
-  font-family: Roboto;
+  font-family: 'Roboto-Bold';
   font-weight: bold;
-  src: asset-url("fonts/roboto/Roboto-Bold.ttf");
+  src: font-url("roboto/Roboto-Bold.ttf");
 }
 
-// YOUNG
-@font-face
-{
-  font-family: Young;
-  font-weight: normal;
-  src: asset-url("fonts/young/young.ttf");
-}
 
-//LINUX LIBERTINE
-@font-face
-{
-  font-family: LinLibertine;
-  font-weight: normal;
-  src: asset-url("fonts/linux_libertine/LinLibertine_R.ttf");
-}
-@font-face
-{
-  font-family: LinLibertine;
-  font-weight: 100;
-  src: asset-url("fonts/linux_libertine/LinLibertine_RZ.ttf");
-}
-// End of Fonts-----------------------------------------
 
 
 
@@ -105,6 +84,7 @@ body {
 }
 
 main { margin-top:0px;}
+
 .content {
  background-color: #FFFFFF;
  padding: 20px;
@@ -113,6 +93,7 @@ main { margin-top:0px;}
 .container {
   padding-top: 10px;
 }
+
 .left-bar {
    height: auto;
    padding-top: 0px;
@@ -123,10 +104,8 @@ main { margin-top:0px;}
 
 ul.nav.navbar-nav {
    margin-left: 15px;
-}
-
-ul.nav.navbar-nav {
    font-size: 18px;
+   font-family: 'young';
 }
 
 .navbar-brand img {
@@ -222,6 +201,13 @@ ul.nav.navbar-nav {
   
 }
 
+.skip {
+  text-align: center;
+  font-size: x-large;
+  position: relative;
+  top: -60px;
+}
+
 .user-container {
   display: flex;
   width:80%;
@@ -242,6 +228,8 @@ ul.nav.navbar-nav {
 
 .copy {
   min-height: 250px;
+  font-family: 'young';
+  font-size: 12pt;
 }
 
 .explore {
@@ -272,7 +260,7 @@ background-color: #c0392b;
   padding:15px;
 }
 
-.user_image_hover {
+.user_image:hover {
   background-color:#7f8c8d;
 }
 
@@ -297,6 +285,7 @@ background-color: #c0392b;
   width: 20%;
   text-align: left;
   font-size: 14pt;
+  font-family: 'Roboto-Light';
 }
 
 .black {

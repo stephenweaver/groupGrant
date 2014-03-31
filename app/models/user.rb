@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: {is: true, message: "Please enter an e-mail address"},
      format: {with:/^[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}$/, :multiline => true, message: "Please enter a valid e-mail"}
+  validates :phone, format: {with: /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/, multiline: true,
+                             message: "Please enter a valid phone number"}     
   accepts_nested_attributes_for :rolable
 
   has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, 

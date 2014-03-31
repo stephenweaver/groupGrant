@@ -17,8 +17,15 @@
         <div class="gg_progress_raised">
           <br>
           <input type="text" value=<%= if groupgrant.goal_status.nil? then 0 elsif groupgrant.goal_status < groupgrant.goal_amount  then groupgrant.progress.to_i else 100 end %> class="dial" readOnly="true" style="width: 0px";>
+          
         </div>
-
+          <% Rails.logger.info("view") %>
+          <% Rails.logger.info("goal_status") %>
+          <% Rails.logger.info(groupgrant.goal_status) %>
+          <% Rails.logger.info("goal_amount") %>
+          <% Rails.logger.info(groupgrant.goal_amount) %>
+          <% Rails.logger.info("progress") %>
+          <% Rails.logger.info(groupgrant.progress) %>
         <div class="gg_goal_index">
           Goal:
           <br>

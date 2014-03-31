@@ -4,7 +4,7 @@ class Charity < ActiveRecord::Base
    has_many :groupgrants, :foreign_key => :owner_id, dependent: :destroy
    has_attached_file :charity_pic, :styles => { :medium => "300x300>", 
       :small => "200x200>", :thumb => "100x100>"}, :default_url => "medium/charity_default.png"
-   validates :eid, presence: {is: true, message: "Please enter your EID"}, 
+   validates :eid, presence: {is: true, message: "Please enter a valid EID"}, 
    numericality: {only_integer: true, message: "Please enter numbers only"}
    validates :name, :category_id, presence: {is: true, message: "Required"}
    validates :name, format: {with: /[a-z]/i, message: "Only letters allowed"}

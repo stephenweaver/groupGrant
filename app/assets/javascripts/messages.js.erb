@@ -192,6 +192,7 @@ firstContact = function(){
     });
 
     event.preventDefault();
+    window.location.reload();
   });
 };
 
@@ -220,7 +221,7 @@ imhere = function() {
       type: "POST",
       url: "<%= Rails.configuration.dumb_url %>/users/active",
       dataType: "json",
-      async: false,
+      async: true,
       authenticity_token: window._token
    });
 };
