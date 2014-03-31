@@ -1,5 +1,5 @@
 class VisitorsController < ApplicationController
-
+require 'sprockets/railtie'
   def new
 
   end
