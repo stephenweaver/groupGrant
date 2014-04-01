@@ -10,7 +10,7 @@ Spree.config do |config|
   # Uncomment to override the default site name.
    config.site_name = "groupGrant Market"
    config.allow_ssl_in_staging = false
-   onfig.allow_ssl_in_production = false
+   config.allow_ssl_in_production = false
 end
 
 Spree.user_class = "User"
