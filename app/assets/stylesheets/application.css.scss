@@ -102,6 +102,10 @@ main { margin-top:0px;}
    padding: 20px;
 }
 
+.navbar-collapse {
+  background-color: #000000;
+}
+
 ul.nav.navbar-nav {
    margin-left: 15px;
    font-size: 18px;
@@ -201,7 +205,16 @@ ul.nav.navbar-nav {
 }
 
 @media screen and (min-width: 37.5em) {
-  
+  .navbar-toggle {
+    margin-top: 20px;
+  }
+
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .skip {
