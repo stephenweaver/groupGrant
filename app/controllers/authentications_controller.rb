@@ -10,12 +10,11 @@ class AuthenticationsController < ApplicationController
     if charity != nil
       charity.is_available = 0
       charity.allocated_amount = 5000
-      sign_in_and_redirect charity
-      
       flash[:notice] = "You are logged in as a charity."
+      sign_in_and_redirect charity
     else
-      redirect_to root_path
       flash[:notice] = "No charities are available. Please register below"
+      redirect_to root_path
     end
   end
 
@@ -25,26 +24,25 @@ class AuthenticationsController < ApplicationController
     if business != nil
       business.is_available = 0
       business.allocated_amount = 5000
-      sign_in_and_redirect business
       flash[:notice] = "You are logged in as a business."
+      sign_in_and_redirect business
     else
-      redirect_to root_path
       flash[:notice] = "No businesses are available. Please register below"
+      redirect_to root_path
     end
   end
 
   def donorLogin
     donor = User.where(rolable_type: "Donor", is_available: [1, nil]).first
     
-
     if donor != nil
       donor.is_available = 0
       donor.allocated_amount = 5000
-      sign_in_and_redirect donor      
       flash[:notice] = "You are logged in as a donor."
+      sign_in_and_redirect donor      
     else
-      redirect_to root_path
       flash[:notice] = "No donors are available. Please register below"
+      redirect_to root_path
     end
   end
 

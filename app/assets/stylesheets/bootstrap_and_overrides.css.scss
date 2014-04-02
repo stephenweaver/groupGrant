@@ -87,3 +87,20 @@ width_150 {
 	color: white;
 	text-decoration:none
 }
+
+.dropdown-menu li a {
+	color: #ffffff;
+}
+
+.dropdown-menu {
+	background-color: #0c161c;
+	width: 200px;
+	border: 1px solid #0c161c;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+background-color: #0c161c;
+color: #555555;
+}
