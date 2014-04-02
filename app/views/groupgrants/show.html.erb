@@ -127,7 +127,7 @@
                       <label>
                         <span>Card Number</span>
                         <br>
-                        <input type="text" size="20"  class="form-control" data-stripe="number"  name="number"/>
+                        <input type="text" size="20"  class="form-control" data-stripe="number"  name="number" value="4242424242424242"/>
                       </label>
                     </div> 
 
@@ -135,26 +135,26 @@
                       <label>Expiration Date</label>
                       <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">
-                          <select class="form-control" data-stripe="exp-month" name="exp-month" style="width: 88px" placeholder="MM">
-                            <option><b>Month</b></option>
-                            <option value="1">01 - Jan</option>
-                            <option value="2">02 - Feb</option>
-                            <option value="3">03 - Mar</option>
-                            <option value="4">04 - Apr</option>
-                            <option value="5">05 - May</option>
-                            <option value="6">06 - Jun</option>
-                            <option value="7">07 - Jul</option>
-                            <option value="8">08 - Aug</option>
-                            <option value="9">09 - Sep</option>
-                            <option value="10">10 - Oct</option>
-                            <option value="11">11 - Nov</option>
-                            <option value="12">12 - Dec</option>
+                          <select class="form-control" data-stripe="exp-month" name="exp-month" style="width: 88px" value="4">
+                            <option><b>04</b></option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                           </select>                           
                         </div>
 
                         <div class="col-xs-4 col-sm-4 col-md-4 no_padding">
-                          <select class="form-control" data-stripe="exp-year" name="exp-year" style="width: 88px" placeholder="YYYY">
-                            <option>Year</option>
+                          <select class="form-control" data-stripe="exp-year" name="exp-year" style="width: 88px" value="2017">
+                            <option>2017</option>
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
@@ -169,27 +169,27 @@
                           </select>                            
                         </div>
 
-                        <div class="col-xs-4 col-sm-4 col-md-4">
-                          <input type="text" class="form-control" size="3" data-stripe="cvc" name="cvc" placeholder="CCV" style="width: 55px"/>
+                        <div class="col-xs-4 col-sm-4 col-md-4" style="padding-left:0px;">
+                          <input type="text" class="form-control" size="3" data-stripe="cvc" name="cvc" placeholder="CCV" style="width:57px; padding-left:15px;" value="969"/>
                         </div>
                       </div>
                     </div> 
                   </div>
 
                   <div class="row">
-                    <table class="activity-desc">
-                      <tbody><tr>                          
-                        <td>
-                          <div style="clear:both;">                            
-                            <%= image_tag @groupgrant.groupgrant_pic.url(:small), class:"img-responsive col-md-2" %>              
+                    
+                          <div class="col-xs-4 col-sm-4 col-md-4" style="clear:both;">                            
+                            <%= image_tag @groupgrant.groupgrant_pic.url(:small) %>                               
+                          </div> 
 
+                          <div class="col-xs-1 col-sm-1 col-md-1"></div>
+
+                          <div class="col-xs-6 col-sm-6 col-md-6">
                             <p>Donating To:<br>
                               <b><%= @groupgrant.name %></b>
-                            </p>       
-                          </div>                           
-                        </td>
-                      </tr></tbody>
-                    </table> 
+                            </p> 
+                          </div>                        
+                        
                   </div>
                 </div><!-- /.modal-body -->             
 
