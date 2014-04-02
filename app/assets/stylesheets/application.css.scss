@@ -109,12 +109,11 @@ main { margin-top:0px;}
 ul.nav.navbar-nav {
    margin-left: 15px;
    font-size: 18px;
-   font-family: 'young';
 }
 
 .navbar-brand img {
    margin-top: 5px;
-   width: 250px;
+   width: auto;
    height: 40px;
 }
 
@@ -244,7 +243,6 @@ ul.nav.navbar-nav {
 
 .copy {
   min-height: 250px;
-  font-family: 'young';
   font-size: 12pt;
 }
 
@@ -298,7 +296,7 @@ background-color: #c0392b;
 
 .carousel-caption {
   height: 100%;
-  width: 20%;
+  width: 300px;
   text-align: left;
   font-size: 14pt;
   font-family: 'Roboto-Light';

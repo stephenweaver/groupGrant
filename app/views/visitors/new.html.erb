@@ -22,21 +22,21 @@
         <%= image_tag('home_carousel/CharitySlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
           <h3>Charity</h3>
-          <p>Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and encourage others to donate towards your need. Connect with businesses who can further your cause. We make it easy for charities to connect with businesses and individuals.</p>
+          <p class="visible-md visible-lg">Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and  Connect with a business who can further your cause. We make it easy for charities to connect with businesses and individuals.</p>
         </div>
       </div>
       <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/BusinessSlide.jpg', class: "center_image") %>
         <div class="carousel-caption" style="color: black;">
           <h3>Business</h3>
-          <p>Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
+          <p class="visible-md visible-lg">Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
         </div>
       </div>
       <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/DonorSlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
           <h3>Donor</h3>
-          <p>Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter!</p>
+          <p class="visible-md visible-lg">Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter!</p>
         </div>
       </div>
   </div>
@@ -66,11 +66,11 @@
               We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
             </p>
           </div>
-          <!-- <% if current_user.nil? %>
+          <% if current_user.nil? %>
             <%= link_to(charity_sign_up_path, style:"text-decoration: none") do %>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Charity</button>
             <% end %>
-          <% end %> --> 
+          <% end %> 
         </div>
       </div>
     </section>
@@ -83,11 +83,11 @@
               Are you a business looking to give back? Do you have products you would like to donate, but don't know which charity to donate them to? Here at groupGRANT you can explore many charities in your areas of interest. Connect with charities that have needs and sponsor a groupgrant! We make it easy for businesses to donate to charities. Sign&nbsp;up&nbsp;today!
             </p>
            </div>
-             <!-- <% if current_user.nil? %>
+             <% if current_user.nil? %>
                 <%= link_to(business_sign_up_path, style:"text-decoration: none") do %>
                     <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Business</button>
                 <% end %>
-              <% end %> -->
+              <% end %>
           </div>
       </div>
     </section>
@@ -102,11 +102,11 @@
           </div>
         </div>
       </div>
-      <!-- <% if current_user.nil? %>
+      <% if current_user.nil? %>
         <%= link_to(donor_sign_up_path) do %>
             <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Donor</button>
         <% end %>
-      <% end %> -->
+      <% end %>
     </section>
   </div>
   <div class="explore">
@@ -118,4 +118,3 @@
   </div>
 
 <% end %>
-
