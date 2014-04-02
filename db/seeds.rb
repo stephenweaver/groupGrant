@@ -1182,7 +1182,8 @@ def group_defaults
       is_complete: false,
       goal_amount: rand_goal_amount,
       charity: Charity.offset(rand(Charity.count)).first,
-      groupgrant_category:  GroupgrantCategory.offset(rand(GroupgrantCategory.count)).first
+      groupgrant_category:  GroupgrantCategory.offset(rand(GroupgrantCategory.count)).first,
+	  partner_id: 0
    }
 end
 
