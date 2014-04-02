@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 20140326062614) do
     t.string   "interests"
   end
 
+  create_table "charges", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "card_number"
+    t.string   "cid"
+    t.string   "expiration"
+  end
+
   create_table "charities", force: true do |t|
     t.string   "name"
     t.integer  "eid",               limit: 255
