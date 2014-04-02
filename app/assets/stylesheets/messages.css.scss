@@ -63,5 +63,8 @@ form {
 }
 
 #message_table{
+   max-height: 600px;
    min-height:300px;
+   overflow-y: auto;
+   height: 519px;
 }

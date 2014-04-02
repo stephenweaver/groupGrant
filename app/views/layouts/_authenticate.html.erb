@@ -1,16 +1,18 @@
 <ul class="nav navbar-nav navbar-right">
    <% if user_signed_in? %>
-      <div class="navbar-text">
+      <div class="navbar-text hidden-xs">
          <strong>
             <% if current_user.rolable_type == "Donor" %>
                <%= current_user.rolable.first_name %>
-            <% else %>
+            <% elsif current_user.rolable_type == "Charity" %>
                <%= link_to current_user.rolable.name, main_app.charity_path(id: current_user.rolable.id) %>
+            <% else %>
+               <%= link_to current_user.rolable.name, main_app.business_path(id: current_user.rolable.id) %>
             <% end %>
          </strong>
          <span style="display:none" id="user_type"><%=  current_user.rolable_type %> </span>
       </div>
-      <span class="navbar-text">
+      <span class="navbar-text hidden-xs">
          <% if current_user.rolable_type != "Donor" %>
             <%= link_to(main_app.messages_path) do %>
                <span id="envelope-icon" 
@@ -41,6 +43,13 @@
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li> -->
          </ul>    
+      </li>
+      <li class="navbar-text visible-xs">
+         <% if current_user.rolable_type != "Donor" %>
+            <%= link_to(main_app.messages_path) do %>
+               Messages
+            <% end %>
+         <% end %>
       </li>
    <% else %>
    <li class="dropdown">
