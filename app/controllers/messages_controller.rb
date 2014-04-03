@@ -163,12 +163,16 @@ class MessagesController < ApplicationController
   # simply returns true of false if there are any unread messages for the user
   #----------------------------------------------------------------------------------------------------
   def new_message_check
-    ids = Message.where(user_received_id: current_user.id, read: false).pluck(:user_sent_id).uniq
-    if ids.count > 0
+    if(!current_user.nil?)
       ids = Message.where(user_received_id: current_user.id, read: false).pluck(:user_sent_id).uniq
-      render text: '{"unread":"true", "ids":[' + ids.join(',') + ']}'
-    else
-      render text: '{"unread":"false"}'
+      if ids.count > 0
+        ids = Message.where(user_received_id: current_user.id, read: false).pluck(:user_sent_id).uniq
+        render text: '{"unread":"true", "ids":[' + ids.join(',') + ']}'
+      else
+        render text: '{"unread":"false"}'
+      end
+    else 
+        render text: '{"unread":"false"}'
     end
   end
 
