@@ -104,3 +104,15 @@ width_150 {
 background-color: #0c161c;
 color: #555555;
 }
+
+@media screen and (min-width: 350px) {
+	.navbar-toggle {
+		margin-top: 20px;
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		min-width: 870px;
+	}
+}

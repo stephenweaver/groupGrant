@@ -81,6 +81,7 @@
 
 body { 
   padding-top: 70px;
+  min-width: 400px;
 }
 
 main { margin-top:0px;}
@@ -100,6 +101,10 @@ main { margin-top:0px;}
    margin-left: 0px;
    padding-left: 50px;
    padding: 20px;
+}
+
+nav {
+  min-width: 400px;
 }
 
 .navbar-collapse {
