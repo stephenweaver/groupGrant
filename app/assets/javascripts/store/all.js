@@ -11,15 +11,3 @@
 //= require bootstrap
 
 //= require_tree .
-
-remove_stuff = function() {
-	$(".columns").removeClass("alpha").removeClass('omega').removeClass('secondary');
-}
-
-
-
-$(window).load(function() {
-   remove_stuff();
-
-});
-$(document).on('page:load', remove_stuff);
