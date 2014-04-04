@@ -204,8 +204,21 @@ ul.nav.navbar-nav {
   
 }
 
-@media screen and (min-width: 56.25em) {
+@media screen and (min-width: 5em) {
+  .user-container {
+    display: block;
+    width:80%;
+    margin: 0 auto;
+  }
 
+  .user {
+    height: 100%;
+    padding: 40px 0;
+  }
+
+  .copy {
+    min-height: 160px;
+  }
 }
 
 @media screen and (min-width: 37.5em) {
@@ -219,6 +232,25 @@ ul.nav.navbar-nav {
     padding-left: 15px;
     padding-right: 15px;
   }
+
+  .user-container {
+    display: flex;
+    width:80%;
+    margin: 0 auto;
+  }
+
+  .user {
+    float: left;
+    height: 100%;
+    width: 50%;
+    margin:2% 5%;
+  }
+
+  .copy {
+    min-height: 250px;
+    font-size: 12pt;
+  }
+
 }
 
 .skip {
@@ -228,27 +260,9 @@ ul.nav.navbar-nav {
   top: -60px;
 }
 
-.user-container {
-  display: flex;
-  width:80%;
-  margin: 0 auto;
-}
-
-.user {
-  float: left;
-  height: 100%;
-  width: 50%;
-  margin:2% 5%;
-}
-
 .section-inner {
   max-width: 1400px;
   width: 100%;
-}
-
-.copy {
-  min-height: 250px;
-  font-size: 12pt;
 }
 
 .explore {
@@ -323,3 +337,4 @@ background-color: #c0392b;
 }
 
 // End Forms --------------------------------------------
+
