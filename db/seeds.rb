@@ -3,7 +3,8 @@ def rand_eid
 end
 
 def rand_phone
-   rand(9999999999).to_s.center(10, rand(9).to_s
+
+   rand(9999999999).to_s.center(10, rand(9).to_s)
 end
 
 def rand_goal_amount 
@@ -427,13 +428,6 @@ User.create!(email: "sjwsgm@gmail.com", password: "password", rolable_id: new_do
 user = User.find_by(email: "sjwsgm@gmail.com")
 user.spree_roles << Spree::Role.find_or_create_by(name: "admin")
 
-class User < ActiveRecord::Base
-  preference :hot_salsa, :boolean
-  preference :dark_chocolate, :boolean, :default => true
-  preference :color, :string
-  preference :favorite_number, :integer
-  preference :language, :string, :default => "English"
-end
 
 Spree::Gateway::StripeGateway.create!(
    name: "Stripe",
