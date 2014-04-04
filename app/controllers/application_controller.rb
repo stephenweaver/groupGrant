@@ -24,6 +24,8 @@ def store_location
     session[:previous_url] = request.fullpath
     Rails.logger.info("store_location")
     Rails.logger.info(request.fullpath)
+    Rails.logger.info("<%= Rails.configuration.dumb_url %>/users/login")
+    Rails.logger.info(request.fullpath == "<%= Rails.configuration.dumb_url %>/users/login")
   end
 end
 
