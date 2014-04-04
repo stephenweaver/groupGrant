@@ -12,9 +12,9 @@
   <div class="col-md-4">
   <!-- business picture -->
     <% if @business.user.profile.url.include? "missing" %>
-       <%= image_tag @business.business_pic.url(:small), class: 'col-md-12 col-xs-6' %>
+       <%= image_tag @business.business_pic.url(:medium), class: 'col-md-12 col-xs-6' %>
     <% else %>
-       <%= image_tag @business.user.profile.url(:small), class: 'col-md-12 col-xs-6' %>
+       <%= image_tag @business.user.profile.url(:medium), class: 'col-md-12 col-xs-6' %>
     <% end %>
   </div>
   <div class="col-md-6">
@@ -131,11 +131,13 @@
 
 <div class="col-md-6">
   <% if @business.groupgrants.count > 0 %>
-  <h3 style="margin:0px 0 0px 0;"><em>Participating groupGrants</em></h3>
-  <br />
-  <div class="groupgrants">
-    <%= render :partial => 'groupgrant', collection: @business.groupgrants, as: :groupgrant %>
-  </div>
+    <br />
+    <h3 style="margin:0px 0 0px 0;"><em>Participating groupGrants</em></h3>
+    <br />
+    
+    <div class="groupgrants">
+      <%= render :partial => 'groupgrant', collection: @business.groupgrants, as: :groupgrant %>
+    </div>
   <% end %>
 </div>
 

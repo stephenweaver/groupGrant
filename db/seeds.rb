@@ -183,88 +183,88 @@ charities = Charity.all
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1", name: "petco", description: "caring for pets everywhere", location:"", goods: "", services:"", interests:"", 
-     category_id:  BusinessCategory.find_by_name("Animals").id}
+   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely–mind and body.",
+     location:"", goods: "", services:"", interests:"", category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
-   businesses << { image: "pic2", name: "Petsmart", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Animals").id}
+   businesses << { image: "pic2", name: "Petsmart", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petsmart@groupgrant.com"
 
-   businesses << { image: "pic3", name: "32 Degrees Yogurt Bar", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id:BusinessCategory.find_by_name("Food Services").id}
+   businesses << { image: "pic3", name: "32 Degrees Yogurt Bar", description: "",
+     location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Food Services").id}
    business_emails << "32Degrees@groupgrant.com"
 
-   businesses << { image: "pic4", name: "A Flower Shop", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id:BusinessCategory.find_by_name("Environment").id}
+   businesses << { image: "pic4", name: "A Flower Shop", description: "",
+     location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Environment").id}
    business_emails << "AFlower@groupgrant.com"
 
-   businesses << { image: "pic5", name: "Ambassador Cleaners", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Public Benefit").id}
+   businesses << { image: "pic5", name: "Ambassador Cleaners", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Public Benefit").id}
    business_emails << "Ambassador@groupgrant.com"
 
-   businesses << { image: "pic6", name: 'Baptist Hospital', description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Health").id}
+   businesses << { image: "pic6", name: 'Baptist Hospital', description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "Baptist@groupgrant.com"
 
-   businesses << { image: "pic7", name: "Southern Capital Services (Investment)", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Other").id}
+   businesses << { image: "pic7", name: "Southern Capital Services (Investment)", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Southern@groupgrant.com"
 
-   businesses << { image: "pic8", name: "State Farm Insurance", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Health").id}
+   businesses << { image: "pic8", name: "State Farm Insurance", description: "", 
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "State@groupgrant.com"
 
-   businesses << { image: "pic9", name: "Vitamin Shoppe", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Health").id}
+   businesses << { image: "pic9", name: "Vitamin Shoppe", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "Vitamin@groupgrant.com"
 
-   businesses << { image: "pic10", name: "Wal-Mart", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Food Services").id}
+   businesses << { image: "pic10", name: "Wal-Mart", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "Wal@groupgrant.com"
 
-   businesses << { image: "pic11", name: "Wells Fargo Bank", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Finance").id}
+   businesses << { image: "pic11", name: "Wells Fargo Bank", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Finance").id}
    business_emails << "Wells@groupgrant.com"
 
-   businesses << { image: "pic12", name: "Wade Air Conditioning", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id:BusinessCategory.find_by_name("Other").id}
+   businesses << { image: "pic12", name: "Wade Air Conditioning", description: "",
+     location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "Wade@groupgrant.com"
 
-   businesses << { image: "pic13", name: "Affiliated Insurance", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Human Services").id}
+   businesses << { image: "pic13", name: "Affiliated Insurance", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Human Services").id}
    business_emails << "Affiliated@groupgrant.com"
 
-   businesses << { image: "pic14", name: "Robinson Life Insurance", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Human Services").id}
+   businesses << { image: "pic14", name: "Robinson Life Insurance", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Human Services").id}
    business_emails << "Robinson@groupgrant.com"
 
-   businesses << { image: "pic15", name: "Oh Snap Cupcakes", description: "", location:"", goods: "", services:"Cupcakes", interests:"", 
-     category_id: BusinessCategory.find_by_name("Food Services").id}
+   businesses << { image: "pic15", name: "Oh Snap Cupcakes", description: "",
+     location:"", goods: "", services:"Cupcakes", interests:"", category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "OhSnap@groupgrant.com"
 
-   businesses << { image: "pic16", name: "Opti-Club", description: "", location:"", goods: "", services:"glasses", interests:"", 
-     category_id: BusinessCategory.find_by_name("Other").id}
+   businesses << { image: "pic16", name: "Opti-Club", description: "", 
+     location:"", goods: "", services:"glasses", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Opti@groupgrant.com"
 
-   businesses << { image: "pic17", name: "Pensacola Christian College",  description: "", location:"", goods: "", services:"", interests:"", 
-     category_id:BusinessCategory.find_by_name("Education").id}
+   businesses << { image: "pic17", name: "Pensacola Christian College",  description: "",
+     location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Education").id}
    business_emails << "PensacolaChristian@groupgrant.com"
 
-   businesses << { image: "pic18", name: "Pensacola International Airport", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id:BusinessCategory.find_by_name("Other").id}
+   businesses << { image: "pic18", name: "Pensacola International Airport", description: "",
+     location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "PensacolaInternational@groupgrant.com"
 
-   businesses << { image: "pic19", name: "Pensacola Ice Flyers", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Entertainment").id}
+   businesses << { image: "pic19", name: "Pensacola Ice Flyers", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "PensacolaIce@groupgrant.com"
 
-   businesses << { image: "pic20", name: "Walt Disney World", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Entertainment").id}
+   businesses << { image: "pic20", name: "Walt Disney World", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "Walt@groupgrant.com"
 
-   businesses << { image: "pic21", name: "Chuck E. Cheese", description: "", location:"", goods: "", services:"", interests:"", 
-     category_id: BusinessCategory.find_by_name("Entertainment").id}
+   businesses << { image: "pic21", name: "Chuck E. Cheese", description: "",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "ChuckE@groupgrant.com"
 
 businesses.each_with_index do |business, index| 
