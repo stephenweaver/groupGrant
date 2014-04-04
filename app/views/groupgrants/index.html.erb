@@ -1,4 +1,5 @@
 <% content_for :title do %>Show groupGrants<% end %>
+<div class="row">
 <div class = 'col-sm-3 gg-left-column tall'>
   <div class = "row">
     <%= form_tag "#{Rails.configuration.dumb_url}/groupgrants", :method => 'get' do %>   
@@ -12,7 +13,6 @@
   </div>
 
   <div class = "row">
-    <br>
     <ul class="nav nav-pills nav-stacked">
       <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
         <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
@@ -34,7 +34,7 @@
 <div class = "col-sm-9 gg-right-column">
   <div class="row">
     <div class="col-md-12">
-      <br /><br />
+      <br />
       <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
         <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float:right; margin-left:10px; margin-bottom:10px;"%> 
         <% else %>
@@ -45,4 +45,5 @@
   <div class="row">
       <%= render partial: "groupgrant", collection: @groupgrants %> 
   </div>
+</div>
 </div>
