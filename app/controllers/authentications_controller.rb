@@ -107,7 +107,9 @@ class AuthenticationsController < ApplicationController
   end
 
   def facebook
+    raise request.env["omniauth.auth"]
     omni = request.env["omniauth.auth"]
+    
     authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
     if authentication
       flash[:notice] = "Logged in Successfully"
@@ -152,8 +154,11 @@ class AuthenticationsController < ApplicationController
     end
   end
 
+  def failure
+    redirect_to session[:previous_url] || root_path
+  end
+
    def create
-    raise request.env["omniauth.auth"].to_yaml
     @authentication = Authentication.new(params[:authentication])
     if @authentication.save
       redirect_to authentications_url, :notice => "Successfully created authentication."

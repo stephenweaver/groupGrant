@@ -11,3 +11,15 @@
 //= require bootstrap
 
 //= require_tree .
+
+remove_stuff = function() {
+	$('#order_payments_attributes__payment_method_id_1').parent().parent().hide();
+}
+
+
+
+$(window).load(function() {
+   remove_stuff();
+
+});
+$(document).on('page:load', remove_stuff);

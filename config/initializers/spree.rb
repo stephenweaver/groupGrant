@@ -11,6 +11,7 @@ Spree.config do |config|
    config.site_name = "groupGrant Market"
    config.allow_ssl_in_staging = false
    config.allow_ssl_in_production = false
+   config.products_per_page = 15
 end
 
 Spree.user_class = "User"
