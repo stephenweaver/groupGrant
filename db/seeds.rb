@@ -169,8 +169,8 @@ charities.each_with_index do |charity, index|
    new_charity = Charity.create!(charity)
    user_attrs = {email: charity_emails[index], password: password, rolable_id: new_charity.id, rolable_type: "Charity", phone: rand_phone, is_available:1}
    if(!image.nil? && image != '.jpg')
-      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
-      user_attrs.merge!(add_pic)
+      #add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
+      #user_attrs.merge!(add_pic)
    end
    User.create!(user_attrs)
 end
@@ -183,7 +183,7 @@ charities = Charity.all
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
+   businesses << { image: "pic1", name: "Petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
      location:"", goods: "", services:"", interests:"", category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
@@ -274,8 +274,8 @@ businesses.each_with_index do |business, index|
    user_attrs = {email: business_emails[index], password: password, rolable_id: new_business.id, rolable_type: "Business", phone: rand_phone, is_available:1}
    
    if(!image.nil? && image != '.jpg')
-      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
-      user_attrs.merge!(add_pic)
+      #add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
+      #user_attrs.merge!(add_pic)
    end
 
    User.create!(user_attrs)
@@ -1110,9 +1110,9 @@ products.each do |product_attrs|
    product_attrs.delete(:image)
    product = Spree::Product.create!(product_attrs.merge(defaults))
    product.taxons << Spree::Taxon.offset(rand(Spree::Taxon.count)).first
-   if(!image.nil? && image != '.jpg')
-      product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
-   end
+   #if(!image.nil? && image != '.jpg')
+      #product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
+   #end
    product.save
 end
 
@@ -1198,8 +1198,8 @@ groupgrants.each do |groupgrant_attrs|
    groupgrant_attrs.delete(:image)
 
    if(!image.nil? && image != '.jpg')
-      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      groupgrant_attrs.merge!(add_pic)
+      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      #groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 
