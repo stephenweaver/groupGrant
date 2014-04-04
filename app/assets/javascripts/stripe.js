@@ -5,7 +5,6 @@ setup_stripe = function() {
     
     if (typeof Stripe !== 'undefined')
     {
-      console.log("asdf");
       Stripe.setPublishableKey('pk_test_IIvnJ7YTt0yZk0uKrRN5f4Ss');
       modal();
     
@@ -14,7 +13,6 @@ setup_stripe = function() {
 }
 
 var stripeResponseHandler = function(status, response) {
-    console.log("test");
     var $form = $('#payment-form');
 
     if (response.error && response.error.message.indexOf("An unexpected error has occurred") === -1 ) {
@@ -40,7 +38,6 @@ var stripeResponseHandler = function(status, response) {
 };
 
 modal = function(){
-   console.log("test2");
     $('#payment-form').submit(function(event) {
       var $form = $('#payment-form');
       // Disable the submit button to prevent repeated clicks

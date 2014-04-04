@@ -222,9 +222,19 @@
         </div>
       </div>
 
+<% if @groupgrant.partner_id != 0 && !@groupgrant.partner_id.nil? && !(business = Business.find(@groupgrant.partner_id)).nil? %>
+      <div class="partnerships">
+          <!-- Charity and Business information -->
+        <div style="clear:both; margin-top:10px;">
+          <%= image_tag business.business_pic.url(:small), style:"width:50px;" %>
+          <%= link_to business.name, business %>
+        </div>
+      </div>
+<% end %>
+
       <% if user_signed_in? && current_user.rolable_type == "Business" && @groupgrant.partner_id == 0 %>
         <div class="row automargin partnerships" id="sponsors">
-          <div style="padding-top:10px; float:right;">            
+          <div style="padding-top:10px;">            
               <% r = Request.where(groupgrant_id: @groupgrant.id)
            
               #check if this is the user that sent it
@@ -239,10 +249,32 @@
                   </div>
                 <% end %>
               <% else %>
-                <div id="request" class="btn btn-primary">Connect with Charity</div>
+                <div id="request" class="btn btn-primary btn-block">Partner with groupGrant</div>
               <% end %>            
           </div>
         </div>
+      <% end %>
+      <% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
+<!-- Proceed if there are no request sent for this groupgrant -->
+      <% if @requests.nil? || @requests.first == nil %>      
+        <div style="display:block" id="business">   
+          <!-- CONTACT NEW FRIEND -->
+          <h3> Send a partner request</h3>
+          <select class="select_new_contact form-control " data-placeholder="Choose a business" id="autocomplete_g">
+            <option></option>
+            <!-- Display the business if it doesn't already have a request -->
+            <% @search_businesses.each do |business| %>
+              <option value= <%= business.id %>>
+                <%= business.rolable.name %>
+              </option>
+            <% end %>
+          </select>
+
+          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite">
+            Send Request
+          </button>
+        </div>
+      <% end %>
       <% end %>
 
       <!-- Share the cause with others -->
@@ -265,28 +297,7 @@
 <!-- If the owner of the groupgrant is logged in, 
 show a list of businesses it could connect with - KW -->
 <br />
-<% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
-<!-- Proceed if there are no request sent for this groupgrant -->
-  <% if @requests.nil? || @requests.first == nil %>      
-    <div style="float: left" id="business">   
-      <!-- CONTACT NEW FRIEND -->
-      <h3> Send a request to a business </h3>
-      <select class="select_new_contact form-control " data-placeholder="Choose one" id="autocomplete_g">
-        <option></option>
-        <!-- Display the business if it doesn't already have a request -->
-        <% @search_businesses.each do |business| %>
-          <option value= <%= business.id %>>
-            <%= business.rolable.name %>
-          </option>
-        <% end %>
-      </select>
 
-      <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite">
-        Send Request
-      </button>
-    </div>
-  <% end %>
-<% end %>
     
 <div class="col-md-1"><!-- I made this so things would be centered --></div>
 

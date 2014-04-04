@@ -82,7 +82,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
       message = Message.new(body: "someone wants to be your friend", 
                             user_sent_id:     current_user.id, 
                             user_received_id: @groupgrant.charity.user.id, 
-                            request_id:       request.id)
+                            request_id:       request.id, read: false)
 
       if (message.save)
         result = "true"
@@ -105,11 +105,11 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     elsif(!params[:accept].nil?)
       request.is_accepted = true
       request.date_responded = Time.current
-      partner    = Message.find_by_request_id(request.id)
+      message    = Message.find_by_request_id(request.id)
       if current_user.rolable_type == "Business"
-        partner2   = User.find(partner.user_received_id)
+        partner2   = User.find(message.user_received_id)
       else
-        partner2   = User.find(partner.user_sent_id)
+        partner2   = User.find(message.user_sent_id)
       end
       groupgrant = Groupgrant.find(request.groupgrant_id)
       groupgrant.partner_id  = partner2.rolable_id
