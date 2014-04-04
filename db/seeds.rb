@@ -3,7 +3,7 @@ def rand_eid
 end
 
 def rand_phone
-   rand(9999999999).to_s.center(10, rand(9).to_s).to_i
+   rand(9999999999).to_s.center(10, rand(9).to_s).to_s
 end
 
 def rand_goal_amount 
@@ -162,11 +162,17 @@ charity_emails = []
    charity_emails << "BostonPhilharmonic@groupgrant.com"
 
 password = "groupgrant"
-phone = "850-648-4028"
 
 charities.each_with_index do |charity, index|
+   image = charity[:image].to_s + '.jpg'
+   charity.delete(:image)
    new_charity = Charity.create!(charity)
-   User.create!(email: charity_emails[index], password: password, rolable_id: new_charity.id, rolable_type: "Charity", phone: rand_phone, is_available:1)
+   user_attrs = {email: charity_emails[index], password: password, rolable_id: new_charity.id, rolable_type: "Charity", phone: rand_phone, is_available:1}
+   if(!image.nil? && image != '.jpg')
+      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
+      user_attrs.merge!(add_pic)
+   end
+   User.create!(user_attrs)
 end
 
 charities = Charity.all
@@ -177,94 +183,104 @@ charities = Charity.all
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1" name: "petco", description: "caring for pets everywhere", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic1", name: "petco", description: "caring for pets everywhere", location:"", goods: "", services:"", interests:"", 
      category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
-   businesses << { image: "pic2" name: "Petsmart", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic2", name: "Petsmart", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petsmart@groupgrant.com"
 
-   businesses << { image: "pic3" name: "32 Degrees Yogurt Bar", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic3", name: "32 Degrees Yogurt Bar", description: "", location:"", goods: "", services:"", interests:"", 
      category_id:BusinessCategory.find_by_name("Food Services").id}
    business_emails << "32Degrees@groupgrant.com"
 
-   businesses << { image: "pic4" name: "A Flower Shop", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic4", name: "A Flower Shop", description: "", location:"", goods: "", services:"", interests:"", 
      category_id:BusinessCategory.find_by_name("Environment").id}
    business_emails << "AFlower@groupgrant.com"
 
-   businesses << { image: "pic5" name: "Ambassador Cleaners", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic5", name: "Ambassador Cleaners", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Public Benefit").id}
    business_emails << "Ambassador@groupgrant.com"
 
-   businesses << { image: "pic6" name: 'Baptist Hospital', description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic6", name: 'Baptist Hospital', description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "Baptist@groupgrant.com"
 
-   businesses << { image: "pic7" name: "Southern Capital Services (Investment)", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic7", name: "Southern Capital Services (Investment)", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Southern@groupgrant.com"
 
-   businesses << { image: "pic8" name: "State Farm Insurance", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic8", name: "State Farm Insurance", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "State@groupgrant.com"
 
-   businesses << { image: "pic9" name: "Vitamin Shoppe", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic9", name: "Vitamin Shoppe", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "Vitamin@groupgrant.com"
 
-   businesses << { image: "pic10" name: "Wal-Mart", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic10", name: "Wal-Mart", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "Wal@groupgrant.com"
 
-   businesses << { image: "pic11" name: "Wells Fargo Bank", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic11", name: "Wells Fargo Bank", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Finance").id}
    business_emails << "Wells@groupgrant.com"
 
-   businesses << { image: "pic12" name: "Wade Air Conditioning", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic12", name: "Wade Air Conditioning", description: "", location:"", goods: "", services:"", interests:"", 
      category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "Wade@groupgrant.com"
 
-   businesses << { image: "pic13" name: "Affiliated Insurance", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic13", name: "Affiliated Insurance", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Human Services").id}
    business_emails << "Affiliated@groupgrant.com"
 
-   businesses << { image: "pic14" name: "Robinson Life Insurance", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic14", name: "Robinson Life Insurance", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Human Services").id}
    business_emails << "Robinson@groupgrant.com"
 
-   businesses << { image: "pic15" name: "Oh Snap Cupcakes", description: "", location:"", goods: "", services:"Cupcakes", interests:"", 
+   businesses << { image: "pic15", name: "Oh Snap Cupcakes", description: "", location:"", goods: "", services:"Cupcakes", interests:"", 
      category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "OhSnap@groupgrant.com"
 
-   businesses << { image: "pic16" name: "Opti-Club", description: "", location:"", goods: "", services:"glasses", interests:"", 
+   businesses << { image: "pic16", name: "Opti-Club", description: "", location:"", goods: "", services:"glasses", interests:"", 
      category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Opti@groupgrant.com"
 
-   businesses << { image: "pic17" name: "Pensacola Christian College",  description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic17", name: "Pensacola Christian College",  description: "", location:"", goods: "", services:"", interests:"", 
      category_id:BusinessCategory.find_by_name("Education").id}
    business_emails << "PensacolaChristian@groupgrant.com"
 
-   businesses << { image: "pic18" name: "Pensacola International Airport", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic18", name: "Pensacola International Airport", description: "", location:"", goods: "", services:"", interests:"", 
      category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "PensacolaInternational@groupgrant.com"
 
-   businesses << { image: "pic19" name: "Pensacola Ice Flyers", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic19", name: "Pensacola Ice Flyers", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "PensacolaIce@groupgrant.com"
 
-   businesses << { image: "pic20" name: "Walt Disney World", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic20", name: "Walt Disney World", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "Walt@groupgrant.com"
 
-   businesses << { image: "pic21" name: "Chuck E. Cheese", description: "", location:"", goods: "", services:"", interests:"", 
+   businesses << { image: "pic21", name: "Chuck E. Cheese", description: "", location:"", goods: "", services:"", interests:"", 
      category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "ChuckE@groupgrant.com"
 
 businesses.each_with_index do |business, index| 
+   image = business[:image].to_s + '.jpg'
+   business.delete(:image)
    new_business = Business.create!(business)
-   User.create!(email: business_emails[index], password: password, rolable_id: new_business.id, rolable_type: "Business", phone: rand_phone, is_available:1)
+   user_attrs = {email: business_emails[index], password: password, rolable_id: new_business.id, rolable_type: "Business", phone: rand_phone, is_available:1}
+   
+   if(!image.nil? && image != '.jpg')
+      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
+      user_attrs.merge!(add_pic)
+   end
+
+   User.create!(user_attrs)
 end
+
 
 businesses = Business.all
 
@@ -411,13 +427,6 @@ User.create!(email: "sjwsgm@gmail.com", password: "password", rolable_id: new_do
 user = User.find_by(email: "sjwsgm@gmail.com")
 user.spree_roles << Spree::Role.find_or_create_by(name: "admin")
 
-class User < ActiveRecord::Base
-  preference :hot_salsa, :boolean
-  preference :dark_chocolate, :boolean, :default => true
-  preference :color, :string
-  preference :favorite_number, :integer
-  preference :language, :string, :default => "English"
-end
 
 Spree::Gateway::StripeGateway.create!(
    name: "Stripe",

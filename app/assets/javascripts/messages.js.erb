@@ -104,8 +104,17 @@ check_unread = function() {
       dataType: "json",
       async: false,
       success: function (data) {
+        if(typeof timerId === 'undefined'){
+          timerId = null;
+        };
+
         if(data['unread'] === 'true') {
-          $('#envelope-icon').addClass('green');
+            clearInterval(timerId);
+            timerId = setInterval(function () {
+              $('#envelope-icon').toggleClass('green');
+              console.log("hello run")
+            }, 1000);
+            
           data['ids'].forEach(function(entry) {
             $(".friend").each(function(index){
               if( ($(".friend").children('.badge').length < 1) && (entry == $(this).data('user') ||  entry.user_received_id == $(this).data('user')))
@@ -118,6 +127,9 @@ check_unread = function() {
 
         } else {
           $('#envelope-icon').removeClass('green');
+          if(timerId != null){
+            clearInterval(timerId);
+          }
         }
       }
     });

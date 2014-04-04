@@ -33,7 +33,7 @@ $input-border-focus:#f0ad4e;
 
 @media (min-width: 1200px) {
 	.container {
-		width: 1198px;
+		width: 1298px;
 	}
 }
 
@@ -103,4 +103,16 @@ width_150 {
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
 background-color: #0c161c;
 color: #555555;
+}
+
+@media screen and (min-width: 350px) {
+	.navbar-toggle {
+		margin-top: 20px;
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		min-width: 870px;
+	}
 }

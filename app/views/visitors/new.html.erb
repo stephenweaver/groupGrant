@@ -22,21 +22,21 @@
         <%= image_tag('home_carousel/CharitySlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
           <h3>Charity</h3>
-          <p>Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and encourage others to donate towards your need. Connect with businesses who can further your cause. We make it easy for charities to connect with businesses and individuals.</p>
+          <p class="visible-md visible-lg">Create a page for your charity and help spread awareness. Have a need? Start a groupGrant and  Connect with a business who can further your cause. We make it easy for charities to connect with businesses and individuals.</p>
         </div>
       </div>
       <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/BusinessSlide.jpg', class: "center_image") %>
         <div class="carousel-caption" style="color: black;">
           <h3>Business</h3>
-          <p>Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
+          <p class="visible-md visible-lg">Are you a business looking to give back? Explore and connect with charities in your areas of interest. Find a charity that needs your help and sponsor a groupGrant! We make it easy for businesses to give back to society.</p>
         </div>
       </div>
       <div class="item" style="height:100%;width:100%;">
         <%= image_tag('home_carousel/DonorSlide.jpg', class: "center_image") %>
         <div class="carousel-caption">
           <h3>Donor</h3>
-          <p>Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter!</p>
+          <p class="visible-md visible-lg">Would you like to make a difference in your giving? Find charities that interest you, and see how you can give towards their cause. Donate towards a groupGrant and share your burden with others on Facebook and Twitter!</p>
         </div>
       </div>
   </div>
@@ -58,7 +58,7 @@
     <section class="charity user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= link_to image_tag('charity.png', class: 'img-responsive charity_img user_image'), charity_sign_up_path %>
+          <%= link_to image_tag('charity.png', class: 'img-responsive charity_img user_image'),  main_app.auto_charity_login_path %>
           <div class="copy">
             <p>
               Are you in need of some supplies or funds for a project? Do you need help from businesses and donors?
@@ -66,35 +66,35 @@
               We make it easy for charities to connect with businesses and individuals. Join&nbsp;in&nbsp;today!
             </p>
           </div>
-          <!-- <% if current_user.nil? %>
+          <% if current_user.nil? %>
             <%= link_to(charity_sign_up_path, style:"text-decoration: none") do %>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Charity</button>
             <% end %>
-          <% end %> --> 
+          <% end %> 
         </div>
       </div>
     </section>
     <section class="business user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= link_to image_tag('business.png', class: 'img-responsive business_img user_image'), business_sign_up_path %>
+          <%= link_to image_tag('business.png', class: 'img-responsive business_img user_image'),  main_app.auto_business_login_path %>
           <div class="copy">
             <p>
               Are you a business looking to give back? Do you have products you would like to donate, but don't know which charity to donate them to? Here at groupGRANT you can explore many charities in your areas of interest. Connect with charities that have needs and sponsor a groupgrant! We make it easy for businesses to donate to charities. Sign&nbsp;up&nbsp;today!
             </p>
            </div>
-             <!-- <% if current_user.nil? %>
+             <% if current_user.nil? %>
                 <%= link_to(business_sign_up_path, style:"text-decoration: none") do %>
                     <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Business</button>
                 <% end %>
-              <% end %> -->
+              <% end %>
           </div>
       </div>
     </section>
     <section class="donor user">
       <div class="section-inner">
         <div class="wrapper">
-          <%= link_to image_tag('donor.png', class: 'img-responsive business_img user_image'), donor_sign_up_path %>
+          <%= link_to image_tag('donor.png', class: 'img-responsive business_img user_image'),  main_app.auto_donor_login_path %>
           <div class="copy">
             <p>
               Do you have a heart for the suffering and needy? Would you like to know how you can make a difference in your giving? Use groupGRANT to find charities that touch your heart, and see how you can give towards their cause. Donate towards a groupgrant and share your burden with others on Facebook and Twitter! We make it easy for you to donate to charities. Sign&nbsp;up&nbsp;today!
@@ -102,11 +102,11 @@
           </div>
         </div>
       </div>
-      <!-- <% if current_user.nil? %>
+      <% if current_user.nil? %>
         <%= link_to(donor_sign_up_path) do %>
             <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Donor</button>
         <% end %>
-      <% end %> -->
+      <% end %>
     </section>
   </div>
   <div class="explore">
@@ -118,4 +118,3 @@
   </div>
 
 <% end %>
-
