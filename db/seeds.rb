@@ -3,7 +3,7 @@ def rand_eid
 end
 
 def rand_phone
-   rand(9999999999).to_s.center(10, rand(9).to_s)
+   rand(9999999999).to_s.center(10, rand(9).to_s).to_s
 end
 
 def rand_goal_amount 
