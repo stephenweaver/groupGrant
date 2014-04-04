@@ -3,19 +3,19 @@
 <h2>Pick a user type</h2>
 
 <div class="row" style="padding-top:50px">
-  <div class="col-md-4 user_image">
+  <div class="col-sm-4 user_image">
       <%= link_to(auto_charity_login_path) do %>
         <%= image_tag('charity.png', class: 'img-responsive charity_img width_150')%>
       <% end %>
   </div>
 
-  <div class="col-md-4 user_image" style="text-align: center">
+  <div class="col-sm-4 user_image" style="text-align: center">
     <%= link_to(auto_business_login_path) do %>
       <%= image_tag('business.png', class: 'img-responsive business_img width_150')%>
     <% end %>
   </div>
 
-  <div class="col-md-4 user_image" style="text-align: center">
+  <div class="col-sm-4 user_image" style="text-align: center">
     <%= link_to(auto_donor_login_path) do %>
       <%= image_tag('donor.png', class: 'img-responsive business_img width_150')%>
     <% end %>
