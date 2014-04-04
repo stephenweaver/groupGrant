@@ -183,7 +183,7 @@ charities = Charity.all
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely–mind and body.",
+   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
      location:"", goods: "", services:"", interests:"", category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
