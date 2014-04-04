@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
     @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes) 
 
     # get people up to 10 total people
-    if(@friends.count < 10) 
+    if(@friends.count < 9) 
       @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time <= ? or last_ping_time is null", Time.current - 1.minutes).limit(10 - @friends.count)
     end
     @friends.flatten!
