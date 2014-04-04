@@ -22,10 +22,6 @@ def store_location
       request.fullpath != Rails.configuration.dumb_url + "/logout" &&
       !request.xhr?) # don't store ajax calls
     session[:previous_url] = request.fullpath
-    Rails.logger.info("store_location")
-    Rails.logger.info(request.fullpath)
-    Rails.logger.info("<%= Rails.configuration.dumb_url %>/users/login")
-    Rails.logger.info(request.fullpath == "<%= Rails.configuration.dumb_url %>/users/login")
   end
 end
 
