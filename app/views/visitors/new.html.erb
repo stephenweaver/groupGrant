@@ -58,7 +58,7 @@
 </div>
 
 <div class="row" style="margin:0px;">
-  <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Register</strong><small><em> What type of user are you?</em></small></h1>
+  <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Click to Log in </strong><small><em> What type of user are you?</em></small></h1>
 </div>
 
   <div class="user-container">
@@ -75,7 +75,7 @@
           </div>
           <% if current_user.nil? %>
             <%= link_to(charity_sign_up_path, style:"text-decoration: none") do %>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Charity</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Register a new Charity</button>
             <% end %>
           <% end %> 
         </div>
@@ -92,7 +92,7 @@
            </div>
              <% if current_user.nil? %>
                 <%= link_to(business_sign_up_path, style:"text-decoration: none") do %>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Business</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Register a new Business</button>
                 <% end %>
               <% end %>
           </div>
@@ -111,7 +111,7 @@
       </div>
       <% if current_user.nil? %>
         <%= link_to(donor_sign_up_path) do %>
-            <button type="button" class="btn btn-primary btn-lg btn-block">Register as a Donor</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Register a new Donor</button>
         <% end %>
       <% end %>
     </section>
