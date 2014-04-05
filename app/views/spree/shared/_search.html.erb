@@ -1,5 +1,6 @@
 <% @taxons = @taxon && @taxon.parent ? @taxon.parent.children : Spree::Taxon.roots %>
 <%= form_tag spree.products_path, :method => :get, class: "form-inline", role: "form" do %>
+<%= link_to image_tag('mplogo.png', size: "150x60", alt: "Marketplace", style:"float:left"), Rails.configuration.dumb_url + '/store'%>
    <div class="form-group">
       <%= select_tag :taxon,
            options_for_select([[Spree.t(:all_departments), '']] +
