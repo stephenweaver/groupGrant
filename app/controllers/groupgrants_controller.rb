@@ -100,7 +100,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
 
   def request_response
     request = Request.find(params[:id])
-    if(!params[:reject].nil?)
+    if(!params[:reject].nil? || Groupgrant.find(request.groupgrant_id).nil? || Groupgrant.find(request.groupgrant_id).partner_id != 0)
       request.is_accepted = false
       request.date_responded = Time.current
     elsif(!params[:accept].nil?)
