@@ -29,7 +29,7 @@ groupgrant_categories = GroupgrantCategory.all
 
 Spree::Config[:track_inventory_levels] = false
 ###################################################################################
-#                 Populate the database with charities                #
+#                 Populate the database with charities                            #
 ###################################################################################
 charities = []
 charity_emails = []
@@ -161,6 +161,11 @@ charity_emails = []
    mission_statement:"Passionate music making without boundaries", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Other").id}
    charity_emails << "BostonPhilharmonic@groupgrant.com"
 
+   # Charity info taken from http://www.bpsmilford.org
+   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Welcome to Bearing Precious Seed, a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
+   mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
+   charity_emails << "BearingPreciousSeed@groupgrant.com"
+   
 password = "groupgrant"
 
 charities.each_with_index do |charity, index|
@@ -169,8 +174,8 @@ charities.each_with_index do |charity, index|
    new_charity = Charity.create!(charity)
    user_attrs = {email: charity_emails[index], password: password, rolable_id: new_charity.id, rolable_type: "Charity", phone: rand_phone, is_available:1}
    if(!image.nil? && image != '.jpg')
-      #add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
-      #user_attrs.merge!(add_pic)
+      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
+      user_attrs.merge!(add_pic)
    end
    User.create!(user_attrs)
 end
@@ -178,7 +183,7 @@ end
 charities = Charity.all
 
 ###################################################################################
-#                 Populate the database with businesses                #
+#                 Populate the database with businesses                           #
 ###################################################################################
 
 businesses = []
@@ -274,8 +279,8 @@ businesses.each_with_index do |business, index|
    user_attrs = {email: business_emails[index], password: password, rolable_id: new_business.id, rolable_type: "Business", phone: rand_phone, is_available:1}
    
    if(!image.nil? && image != '.jpg')
-      #add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
-      #user_attrs.merge!(add_pic)
+      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
+      user_attrs.merge!(add_pic)
    end
 
    User.create!(user_attrs)
@@ -1110,9 +1115,9 @@ products.each do |product_attrs|
    product_attrs.delete(:image)
    product = Spree::Product.create!(product_attrs.merge(defaults))
    product.taxons << Spree::Taxon.offset(rand(Spree::Taxon.count)).first
-   #if(!image.nil? && image != '.jpg')
-      #product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
-   #end
+   if(!image.nil? && image != '.jpg')
+      product.images.create(:attachment => File.open(File.join(Rails.root, "db", "seeds", "marketplace_pics", image)))
+   end
    product.save
 end
 
@@ -1198,8 +1203,8 @@ groupgrants.each do |groupgrant_attrs|
    groupgrant_attrs.delete(:image)
 
    if(!image.nil? && image != '.jpg')
-      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      #groupgrant_attrs.merge!(add_pic)
+      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 
