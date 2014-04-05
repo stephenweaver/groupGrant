@@ -38,7 +38,7 @@
       <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
         <%= link_to 'Start a new groupGrant', new_groupgrant_path, class: "btn btn-primary btn-md", style: "float:right; margin-left:10px; margin-bottom:10px;"%> 
         <% else %>
-        <div class="pull-right green">Log in as a charity to create groupGrants</div>
+        <div class="pull-right green"><%= link_to('Log in as a charity to create groupGrants',  main_app.auto_charity_login_path, class:"green") %></div>
       <% end %>
     </div>
   </div>
