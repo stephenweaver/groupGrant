@@ -29,7 +29,7 @@ groupgrant_categories = GroupgrantCategory.all
 
 Spree::Config[:track_inventory_levels] = false
 ###################################################################################
-#                 Populate the database with charities                #
+#                 Populate the database with charities                            #
 ###################################################################################
 charities = []
 charity_emails = []
@@ -161,6 +161,11 @@ charity_emails = []
    mission_statement:"Passionate music making without boundaries", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Other").id}
    charity_emails << "BostonPhilharmonic@groupgrant.com"
 
+   # Charity info taken from http://www.bpsmilford.org
+   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
+   mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
+   charity_emails << "BearingPreciousSeed@groupgrant.com"
+   
 password = "groupgrant"
 
 charities.each_with_index do |charity, index|
@@ -178,12 +183,12 @@ end
 charities = Charity.all
 
 ###################################################################################
-#                 Populate the database with businesses                #
+#                        Populate the database with businesses                    #
 ###################################################################################
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
+   businesses << { image: "pic1", name: "Petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
      location:"", goods: "", services:"", interests:"", category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
@@ -1197,12 +1202,48 @@ groupgrants.each do |groupgrant_attrs|
    image = groupgrant_attrs[:image].to_s + '.jpg'
    groupgrant_attrs.delete(:image)
 
-   if(!image.nil? && image != '.jpg')
-      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      groupgrant_attrs.merge!(add_pic)
-   end
+   # commeted
+   # if(!image.nil? && image != '.jpg')
+   #    add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+   #    groupgrant_attrs.merge!(add_pic)
+   # end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 
    groupgrant.goal_status = groupgrant.goal_amount * rand_percentage
    groupgrant.save
 end
+ 
+# Adding Mission Run groupGrant
+def missions_run_default
+   {
+      goal_date: 1.month.from_now,
+      is_enabled: true,
+      is_complete: false,
+      goal_amount: rand_goal_amount,
+      charity: Charity.find_by_name("Bearing Precious Seed"),
+      groupgrant_category:  GroupgrantCategory.find_by_name("Missions"),
+      partner_id: 0
+   }
+end
+
+midnight_run =[
+               image: "missionrun",
+               name:"Mission Midnight Run", 
+               description:"PCC Student Body presents the Missions midnight run, in order support the work of Bearing Precious Seed! This year, BPS is trying to raise support to help spread Bibles to Nepal, Romania, Sierra Leone, and Thailand.  
+                           Please pray that they are able to raise enough support and join us on April 25 for the midnight run! You don't want to miss this!"]
+
+
+midnight_run.each do |groupgrant_attrs|
+   image = groupgrant_attrs[:image].to_s + '.jpg'
+   groupgrant_attrs.delete(:image)
+
+   
+   if(!image.nil? && image != '.jpg')
+      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      groupgrant_attrs.merge!(add_pic)
+   end
+   groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
+
+   groupgrant.goal_status = groupgrant.goal_amount * rand_percentage
+   groupgrant.save
+end                           
