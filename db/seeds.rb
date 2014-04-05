@@ -34,7 +34,7 @@ Spree::Config[:track_inventory_levels] = false
 charities = []
 charity_emails = []
    # Charity info taken from http://www.bpsmilford.org
-   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
+   charities << {image: "pic1", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
    mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
    charity_emails << "BearingPreciousSeed@groupgrant.com"
 
@@ -1213,8 +1213,8 @@ midnight_run.each do |groupgrant_attrs|
 
    
    if(!image.nil? && image != '.jpg')
-      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      groupgrant_attrs.merge!(add_pic)
+      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      #groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
 
