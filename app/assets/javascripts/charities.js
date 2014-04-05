@@ -13,7 +13,7 @@ hover_charity = function() {
    
    $( ".user_about_block" ).hover(
 	  function() {
-      $( this ).children().children('.description').stop().slideToggle("easing");
+      $( this ).children().children('.description').stop().slideDown("easing");
 	 }, function() {
       $( this ).children().children('.description').stop().slideUp("easing");
 	  }

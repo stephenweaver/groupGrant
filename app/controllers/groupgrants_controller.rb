@@ -1,5 +1,6 @@
 class GroupgrantsController < ApplicationController
 before_filter :set_groupgrant, :only => [:show, :edit, :delete, :update]
+before_filter :search_businesses, :only => [:payment_form_post]
 protect_from_forgery with: :null_session, :only => [:payment_form]
 
 #----------------------------------------------------------------------------------------------------
@@ -285,6 +286,17 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     #----------------------------------------------------------------------------------------------------
     def set_groupgrant
       @groupgrant = Groupgrant.find(params[:id])
+    end
+
+    #  I made this because searching a business wasn't possible after submitting a payment
+    def search_businesses
+      @groupgrant = Groupgrant.find(params[:groupgrant])
+      if user_signed_in? && current_user.id == @groupgrant.owner_id && @groupgrant.partner_id == 0
+      @search_businesses = User.where(rolable_type: "Business")
+
+      # Check for sent requests
+      @requests = Request.where(is_accepted: nil, groupgrant_id: @groupgrant.id)
+      end
     end
 
     #----------------------------------------------------------------------------------------------------
