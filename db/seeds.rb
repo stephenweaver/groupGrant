@@ -33,6 +33,11 @@ Spree::Config[:track_inventory_levels] = false
 ###################################################################################
 charities = []
 charity_emails = []
+   # Charity info taken from http://www.bpsmilford.org
+   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
+   mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
+   charity_emails << "BearingPreciousSeed@groupgrant.com"
+
    charities << {image: "pic1", name: "4 Paws for Ability", eid: rand_eid, description: "Our goal is to enrich the lives of people with disabilities by the training and placement of service dogs to provide individuals with companionship and promote independent living;", #"Our goal is to enrich the lives of people with disabilities by the training and placement of service dogs to provide individuals with companionship and promote independent living.",
    mission_statement: "Providing canine miracles for people with disabilities worldwide", target_area: "USA", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Animals").id}
    charity_emails << "4Paws@groupgrant.com"
@@ -160,11 +165,6 @@ charity_emails = []
    charities << {image: "pic32", name: "Boston Philharmonic Orchestra", eid: rand_eid, description: "Our message rings loud and clear- music making is a privilege and a joy, and above all, a collaborative adventure.",
    mission_statement:"Passionate music making without boundaries", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Other").id}
    charity_emails << "BostonPhilharmonic@groupgrant.com"
-
-   # Charity info taken from http://www.bpsmilford.org
-   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
-   mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
-   charity_emails << "BearingPreciousSeed@groupgrant.com"
    
 password = "groupgrant"
 
@@ -222,53 +222,54 @@ business_emails = []
 
    businesses << { image: "pic9", name: "Vitamin Shoppe", description: "",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
+
    business_emails << "Vitamin@groupgrant.com"
 
-   businesses << { image: "pic10", name: "Wal-Mart", description: "",
+   businesses << { image: "pic10", name: "Wal-Mart", description: "Walmart helps people around the world save money and live better anytime and anywhere in retail stores, online and through their mobile devices. Each week, more than 245 million customers and members visit our 11,000 stores under 69 banners in 27 countries and e-commerce websites in 10 countries. With fiscal year 2013 sales of approximately $466 billion, Walmart employs 2.2 million associates worldwide.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "Wal@groupgrant.com"
 
-   businesses << { image: "pic11", name: "Wells Fargo Bank", description: "",
+   businesses << { image: "pic11", name: "Wells Fargo Bank", description: "We believe in our vision and values just as strongly today as we did the first time we put them on paper more than 20 years ago. Staying true to them will guide us toward continued growth and success for decades to come. As you read more about our vision and values, you will learn about who we are, where we're headed and how every Wells Fargo team member can help us get there.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Finance").id}
    business_emails << "Wells@groupgrant.com"
 
-   businesses << { image: "pic12", name: "Wade Air Conditioning", description: "",
+   businesses << { image: "pic12", name: "Wade Air Conditioning", description: "We're all about air cool air, warm air, clean air. As a world leader in air conditioning systems, services and solutions, we control the comfort of the air for people in homes and many of the world's largest and most famous commercial, industrial and institutional buildings. And we're applying Trane's expertise in environmental technology and energy conservation to make a difference in energy efficiency around the globe.",
      location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "Wade@groupgrant.com"
 
-   businesses << { image: "pic13", name: "Affiliated Insurance", description: "",
+   businesses << { image: "pic13", name: "Affiliated Insurance", description: "Affiliated Insurance Services, LLC. is an independent insurance agency providing individuals and businesses with a full range of insurance programs by providing individually tailored plans using only products offered by nationally known and financially sound companies, designing a program that will reduce your losses and control your insurance costs, and handling your claims with prompt and efficient service.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Human Services").id}
    business_emails << "Affiliated@groupgrant.com"
 
-   businesses << { image: "pic14", name: "Robinson Life Insurance", description: "",
+   businesses << { image: "pic14", name: "Geico Life Insurance", description: "If you think about it for a minute, you insure everything that's significant in your life; why not insure yourself? You are priceless after all (or at least pretty close to priceless). Life insurance helps provide you peace of mind and can provide your family with financial stability and security when it matters most.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Human Services").id}
-   business_emails << "Robinson@groupgrant.com"
+   business_emails << "Geico@groupgrant.com"
 
-   businesses << { image: "pic15", name: "Oh Snap Cupcakes", description: "",
+   businesses << { image: "pic15", name: "Oh Snap Cupcakes", description: "At Oh Snap! Cupcakes we bake from scratch every day to provide you with the highest quality cupcakes here on the Gulf Coast. We also cater to all of your special event needs including Weddings, Baby Showers, Birthdays, Parties, and any other milestones!",
      location:"", goods: "", services:"Cupcakes", interests:"", category_id: BusinessCategory.find_by_name("Food Services").id}
    business_emails << "OhSnap@groupgrant.com"
 
-   businesses << { image: "pic16", name: "Opti-Club", description: "", 
+   businesses << { image: "pic16", name: "Opti-Club", description: "If you are looking for quality eyeglasses, contact lenses, designer frames, or prescription sunglasses then you should check out Opti-Club. We also carry kid's glasses, designer eyeglass frames, and specialty lenses. Eye exams are also available.", 
      location:"", goods: "", services:"glasses", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Opti@groupgrant.com"
 
-   businesses << { image: "pic17", name: "Pensacola Christian College",  description: "",
+   businesses << { image: "pic17", name: "Pensacola Christian College",  description: "At Pensacola Christian College, not only will you receive an exceptional and distinctively Christian liberal arts education, but you'll also form lasting friendships and make unforgettable memories. As you prayerfully consider God's will for your life, we encourage you to choose PCC to train for your future.",
      location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Education").id}
    business_emails << "PensacolaChristian@groupgrant.com"
 
-   businesses << { image: "pic18", name: "Pensacola International Airport", description: "",
+   businesses << { image: "pic18", name: "Pensacola International Airport", description: "Every aspect of Pensacola International Airport has been designed with you in mind. Our airport is beautifully designed and laid out for your convenience with easy access to gates, baggage claims, check-in, and parking. Southern hospitality begins here with comfortable seating areas, gift shops and lounges while you wait for your flight. Whether you are here for a visit, looking for a place to launch your business enterprise, or connecting to another flight, welcome.",
      location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Other").id}
    business_emails << "PensacolaInternational@groupgrant.com"
 
-   businesses << { image: "pic19", name: "Pensacola Ice Flyers", description: "",
+   businesses << { image: "pic19", name: "Pensacola Ice Flyers", description: "The Pensacola Ice Flyers are a professional ice hockey team of the Southern Professional Hockey League. The team played their first season in 2009-2010.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "PensacolaIce@groupgrant.com"
 
-   businesses << { image: "pic20", name: "Walt Disney World", description: "",
+   businesses << { image: "pic20", name: "Six Flags", description: "Six Flags Entertainment Corp. is the world's largest amusement park corporation based on number of properties, and the fifth-most popular in terms of attendance.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
-   business_emails << "Walt@groupgrant.com"
+   business_emails << "Sixflags@groupgrant.com"
 
-   businesses << { image: "pic21", name: "Chuck E. Cheese", description: "",
+   businesses << { image: "pic21", name: "Chuck E. Cheese", description: "We believe that today, more than ever, kids need a safe, wholesome environment in which they can laugh, play and simply be kids. We take pride in providing an experience that kids and parents will love coming back to.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "ChuckE@groupgrant.com"
 
@@ -279,8 +280,8 @@ businesses.each_with_index do |business, index|
    user_attrs = {email: business_emails[index], password: password, rolable_id: new_business.id, rolable_type: "Business", phone: rand_phone, is_available:1}
    
    if(!image.nil? && image != '.jpg')
-      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
-      user_attrs.merge!(add_pic)
+     add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "business_pics", image))}
+     user_attrs.merge!(add_pic)
    end
 
    User.create!(user_attrs)
@@ -1186,6 +1187,44 @@ groupgrants = [
    }
 ]
 
+# Adding Mission Run groupGrant
+def missions_run_default
+   {
+      goal_date: 1.month.from_now,
+      is_enabled: true,
+      is_complete: false,
+      goal_amount: rand_goal_amount,
+      charity: Charity.find_by_name("Bearing Precious Seed"),
+      groupgrant_category:  GroupgrantCategory.find_by_name("Missions"),
+      partner_id: 0
+   }
+end
+
+midnight_run =[
+   image: "missionrun",
+   name:"Mission Midnight Run", 
+   description:"PCC Student Body presents the Missions midnight run, in order support the work of Bearing Precious Seed! This year, BPS is trying to raise support to help spread Bibles to Nepal, Romania, Sierra Leone, and Thailand. Please pray that they are able to raise enough support and join us on April 25 for the midnight run! You don't want to miss this!"
+]
+
+
+midnight_run.each do |groupgrant_attrs|
+   image = groupgrant_attrs[:image].to_s + '.jpg'
+   groupgrant_attrs.delete(:image)
+
+   
+   if(!image.nil? && image != '.jpg')
+      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      groupgrant_attrs.merge!(add_pic)
+   end
+   groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
+
+   groupgrant.goal_status = groupgrant.goal_amount * rand_percentage
+   groupgrant.save
+end
+
+
+
+
 def group_defaults 
    {
       goal_date: 1.month.from_now,
@@ -1203,47 +1242,14 @@ groupgrants.each do |groupgrant_attrs|
    groupgrant_attrs.delete(:image)
 
    # commeted
-   # if(!image.nil? && image != '.jpg')
-   #    add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-   #    groupgrant_attrs.merge!(add_pic)
-   # end
+   if(!image.nil? && image != '.jpg')
+     add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+     groupgrant_attrs.merge!(add_pic)
+   end
+   
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(group_defaults))
 
    groupgrant.goal_status = groupgrant.goal_amount * rand_percentage
    groupgrant.save
 end
  
-# Adding Mission Run groupGrant
-def missions_run_default
-   {
-      goal_date: 1.month.from_now,
-      is_enabled: true,
-      is_complete: false,
-      goal_amount: rand_goal_amount,
-      charity: Charity.find_by_name("Bearing Precious Seed"),
-      groupgrant_category:  GroupgrantCategory.find_by_name("Missions"),
-      partner_id: 0
-   }
-end
-
-midnight_run =[
-               image: "missionrun",
-               name:"Mission Midnight Run", 
-               description:"PCC Student Body presents the Missions midnight run, in order support the work of Bearing Precious Seed! This year, BPS is trying to raise support to help spread Bibles to Nepal, Romania, Sierra Leone, and Thailand.  
-                           Please pray that they are able to raise enough support and join us on April 25 for the midnight run! You don't want to miss this!"]
-
-
-midnight_run.each do |groupgrant_attrs|
-   image = groupgrant_attrs[:image].to_s + '.jpg'
-   groupgrant_attrs.delete(:image)
-
-   
-   if(!image.nil? && image != '.jpg')
-      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      groupgrant_attrs.merge!(add_pic)
-   end
-   groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
-
-   groupgrant.goal_status = groupgrant.goal_amount * rand_percentage
-   groupgrant.save
-end                           
