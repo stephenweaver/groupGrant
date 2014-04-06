@@ -6,7 +6,7 @@ class Groupgrant < ActiveRecord::Base
       :small => "200x200>", :thumb => "100x100>"}, :default_url => "medium/missing.png"
    validates :name, :category_id, :goal_amount, :goal_date, presence: 
       {is: true, message: "Required"}
-   validates :name, length: {in: 3..30, too_short: "Try using a meaningful name",
+   validates :name, length: {in: 3..30, too_short: "The minimum characters allowed is 3",
     too_long: "%{count} characters is the maximum allowed"},
               uniqueness: {is: true, message: "%{value}  has already been taken"}
    validates :goal_amount, numericality: {is: true, message: "Please enter only numbers"}

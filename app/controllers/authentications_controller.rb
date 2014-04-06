@@ -4,8 +4,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def charityLogin
-    charity = User.where(rolable_type: "Charity", is_available: [1, nil]).first
-    
+    charity = User.where(rolable_type: "Charity", is_available: [1, nil]).shuffle[0]
 
     if charity != nil
       charity.is_available = 0
@@ -19,7 +18,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def businessLogin
-    business = User.where(rolable_type: "Business", is_available: [1, nil]).first    
+    business = User.where(rolable_type: "Business", is_available: [1, nil]).shuffle[0]  
 
     if business != nil
       business.is_available = 0
@@ -33,7 +32,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def donorLogin
-    donor = User.where(rolable_type: "Donor", is_available: [1, nil]).first
+    donor = User.where(rolable_type: "Donor", is_available: [1, nil]).shuffle[0]  
     
     if donor != nil
       donor.is_available = 0
@@ -49,6 +48,9 @@ class AuthenticationsController < ApplicationController
   def logout
     if user_signed_in?
       current_user.is_available = 1
+      if(current_user.phone.length != 10)
+        current_user.phone = "1850655123"
+      end
       current_user.save!
       sign_out_and_redirect current_user
       flash[:notice] = "Logout Successful."
