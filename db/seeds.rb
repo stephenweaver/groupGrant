@@ -1213,8 +1213,8 @@ midnight_run.each do |groupgrant_attrs|
 
    
    if(!image.nil? && image != '.jpg')
-      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      #groupgrant_attrs.merge!(add_pic)
+      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
 

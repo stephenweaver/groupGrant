@@ -1,6 +1,10 @@
 hide = function() {
 	$('.hideHype').click(function() {
-		$(this).slideToggle();
+      var temp = $(this)
+      temp.clearQueue();
+      temp.stop();
+		temp.slideToggle();
+      temp.hide();
 	});
 }
 
