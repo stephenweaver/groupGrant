@@ -3,8 +3,7 @@ hide = function() {
       var temp = $(this)
       temp.clearQueue();
       temp.stop();
-		temp.slideToggle();
-      temp.hide();
+		temp.slideToggle()
 	});
 }
 
