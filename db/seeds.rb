@@ -183,35 +183,35 @@ charities = Charity.all
 
 businesses = []
 business_emails = []
-   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely–mind and body.",
+   businesses << { image: "pic1", name: "petco", description: "Something extraordinary happens when pets and people connect. A unique bond is formed that results in something powerful, not only between pets and people, but in a way that makes the world a better place. Our promise is to nurture that relationship completely-mind and body.",
      location:"", goods: "", services:"", interests:"", category_id:  BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petco@groupgrant.com"
 
-   businesses << { image: "pic2", name: "Petsmart", description: "",
+   businesses << { image: "pic2", name: "Petsmart", description: "As the largest specialty pet retailer of services and solutions for the lifetime needs of pets, we employ approximately 52,000 associates and operate 1,289 stores and more than 196 in-store PetSmart PetsHotels dog and cat boarding facilities in the United States, Canada and Puerto Rico. We provide a broad range of competitively priced pet products and in-store services including pet adoption, boarding, grooming and training. Our stores are stocked with more than 10,000 products and we are also a leading online provider of pet supplies and pet care information.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Animals").id}
    business_emails << "Petsmart@groupgrant.com"
 
-   businesses << { image: "pic3", name: "32 Degrees Yogurt Bar", description: "",
+   businesses << { image: "pic3", name: "32 Degrees Yogurt Bar", description: "32 DEGREES A YOGURT BAR is a self serve frozen yogurt bar that is fun for friends, family and anyone looking to satisfy a sweet tooth! At 32 DEGREES A YOGURT BAR, we offer 16 individual flavors of yogurt to include fat free, kosher, no sugar added and low sugar selections, all on a rotating basis. Our flavors change often with choices such as Tahitian vanilla, Cookies and Cream, Birthday Cake, California Tart, Sea Salted Caramel Pretzel and Watermelon sorbet. 32 DEGREES A YOGURT BAR specializes in serving the freshest toppings including daily hand cut fruits, seasonal favorites, and over 40 candy, nut and sauce options.",
      location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Food Services").id}
    business_emails << "32Degrees@groupgrant.com"
 
-   businesses << { image: "pic4", name: "A Flower Shop", description: "",
+   businesses << { image: "pic4", name: "A Flower Shop", description: "Visit A Flower Shop for the best flower arrangements and gifts in Pensacola, FL! Our professional florists can help you find the perfect flowers for any individual or occasion and can even create a custom bouquet to fit your unique needs. A Flower Shop delivers flower arrangements throughout Pensacola and offers same-day delivery for your last-minute gift needs at no extra cost! A Flower Shop can also deliver quality flowers nationwide through our trusted florist network.",
      location:"", goods: "", services:"", interests:"", category_id:BusinessCategory.find_by_name("Environment").id}
    business_emails << "AFlower@groupgrant.com"
 
-   businesses << { image: "pic5", name: "Ambassador Cleaners", description: "",
+   businesses << { image: "pic5", name: "Ambassador Cleaners", description: "Ambassador Dry Cleaning & Laundry is a full service cleaner. We provide professional Dry Cleaning and Laundering of a wide range of products, and all work is done in our own plant. With over 50 years of experience, and our own facility of over 10,000 sq. ft of Dry Cleaning, Laundry, and pressing equipment; we can assure you the quality and reliability that you expect.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Public Benefit").id}
    business_emails << "Ambassador@groupgrant.com"
 
-   businesses << { image: "pic6", name: 'Baptist Hospital', description: "",
+   businesses << { image: "pic6", name: 'Baptist Hospital', description: "At Baptist Health Care we take care of the whole person. Our experienced, compassionate team of healthcare providers is recognized across the country as tops in patient satisfaction. We give the highest level of quality care using the latest technology with the utmost respect for our patients.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "Baptist@groupgrant.com"
 
-   businesses << { image: "pic7", name: "Southern Capital Services (Investment)", description: "",
+   businesses << { image: "pic7", name: "Southern Capital Services (Investment)", description: "Southern Capital Services, Inc. was founded in 1982 by Terry Nager, Certified Financial Planner (CFP).  Throughout the 1980s Terry designed comprehensive financial plans for his clients and investment advice with a fee offset for clients who purchased securities through him. Today Southern Capital stands as a long-standing Investment Advisory firm in the Mobile area, with clients around the country. The firm looks forward to many more years of growth and prosperity through helping clients meet their investment objectives.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
    business_emails << "Southern@groupgrant.com"
 
-   businesses << { image: "pic8", name: "State Farm Insurance", description: "", 
+   businesses << { image: "pic8", name: "State Farm Insurance", description: "State Farm, well known for being a \"good neighbor\" by \"being there\" for our customers, was founded in 1922 by retired farmer and insurance salesman George Jacob \"G.J.\" Mecherle. We now insure more cars and homes than any other insurer in the U.S., and we are one of the leading insurers in Canada. A mutual company owned by its policyholders, State Farm is currently ranked number 34 on the Fortune 500 list of largest companies.", 
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "State@groupgrant.com"
 
