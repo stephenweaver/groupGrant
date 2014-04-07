@@ -11,8 +11,7 @@
 
   <div class="col-md-4">
     <!-- Charity picture -->
-<<<<<<< HEAD
-      <% if @charity.user.profile.url.include? "missing" %>
+    <% if @charity.user.profile.url.include? "missing" %>
         <%= image_tag @charity.charity_pic.url(:medium), class: 'col-md-12 col-xs-6' %>
       <% else %>
         <%= image_tag @charity.user.profile.url(:medium), class: 'col-md-12 col-xs-6' %>
@@ -90,14 +89,8 @@
       </div><!-- row -->
     </div><!-- contact details -->
   </div><!-- col-md-4 -->
-=======
-    <% if @charity.user.profile.url.include? "missing" %>
-      <%= image_tag @charity.charity_pic.url(:medium), class: 'col-md-12 col-xs-6' %>
-    <% else %>
-      <%= image_tag @charity.user.profile.url(:medium), class: 'col-md-12 col-xs-6' %>
-    <% end %>
-  </div>
->>>>>>> d38a620ef6177e39ebcc9a32c594d621949ac5f6
+
+
 
   <div class="col-md-6">
     <div class="text-center">
