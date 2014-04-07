@@ -277,7 +277,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     rescue => e
       
     end
-    render :show
+    redirect_to @groupgrant
   end
 
   private

@@ -4,6 +4,12 @@ class AuthenticationsController < ApplicationController
   end
 
   def charityLogin
+    if user_signed_in?
+      current_user.is_available = 1
+      current_user.save
+      sign_out current_user
+    end
+
     charity = User.where(rolable_type: "Charity", is_available: [1, nil]).shuffle[0]
 
     if charity != nil
@@ -12,12 +18,18 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "You are logged in as a charity."
       sign_in_and_redirect charity
     else
-      flash[:notice] = "No charities are available. Please register below"
+      flash[:warning] = "No charities are available. Please register below"
       redirect_to root_path
     end
   end
 
   def businessLogin
+    if user_signed_in?
+      current_user.is_available = 1
+      current_user.save
+      sign_out current_user
+    end
+
     business = User.where(rolable_type: "Business", is_available: [1, nil]).shuffle[0]  
 
     if business != nil
@@ -26,12 +38,17 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "You are logged in as a business."
       sign_in_and_redirect business
     else
-      flash[:notice] = "No businesses are available. Please register below"
+      flash[:warning] = "No businesses are available. Please register below"
       redirect_to root_path
     end
   end
 
   def donorLogin
+    if user_signed_in?
+      current_user.is_available = 1
+      current_user.save
+      sign_out current_user
+    end
     donor = User.where(rolable_type: "Donor", is_available: [1, nil]).shuffle[0]  
     
     if donor != nil
@@ -40,7 +57,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "You are logged in as a donor."
       sign_in_and_redirect donor      
     else
-      flash[:notice] = "No donors are available. Please register below"
+      flash[:warning] = "No donors are available. Please register below"
       redirect_to root_path
     end
   end
@@ -49,14 +66,27 @@ class AuthenticationsController < ApplicationController
     if user_signed_in?
       current_user.is_available = 1
       if(current_user.phone.length != 10)
-        current_user.phone = "1850655123"
+        current_user.phone = "8506551234"
       end
       current_user.save!
       sign_out_and_redirect current_user
       flash[:notice] = "Logout Successful."
     else
-      flash[:notice] = "An impossible error occured. Please notify the webmasters."
+      redirect_to root_path
     end
+  end
+
+  def logout2
+    if user_signed_in?
+      current_user.is_available = 1
+      if(current_user.phone.length != 10)
+        current_user.phone = "8506551234"
+      end
+       current_user.save!
+       sign_out current_user
+    end
+     
+    redirect_to "http://cslinux/expo2014/"
   end
 
   def twitter
