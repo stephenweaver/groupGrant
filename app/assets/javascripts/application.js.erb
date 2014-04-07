@@ -21,6 +21,13 @@
 
 setup_hover = function() {
 	$('.user_image').hover(function(){$(this).toggleClass('user_image_hover');});
+	
+	$('.expo_logo_div').hover(
+	function() {
+	    $('.expo_return_text_div').animate({ "width": "186px" }, "slow" );
+	}, function() {
+	    $('.expo_return_text_div').animate({ "width": "0px" }, "slow" );
+	});
 }
 
 $(window).load(function() {
@@ -28,3 +35,6 @@ $(window).load(function() {
 
 });
 $(document).on('page:load', setup_hover);
+
+
+

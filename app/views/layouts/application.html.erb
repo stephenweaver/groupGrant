@@ -24,7 +24,15 @@
       
       <div class="container">
         <div class="content">
-          <%= yield %>        
+          <%= yield %> 
+          <%= link_to "http://cslinux/expo2014/" do %>
+          <div class="expo_logo_div">
+            <%= image_tag "expo.jpg", class: "expo_logo" %>
+            <div class="expo_return_text_div">
+              <div class="expo_return_text">Return to EXPO<br>home page</div>
+            </div>
+          </div> 
+          <% end %>      
           <footer>
             <div style="text-align:right; padding-top:10px; border-top: 2px solid grey">Designed and Developed by SEI 2014</div>
           </footer>
