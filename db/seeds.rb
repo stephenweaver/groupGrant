@@ -34,7 +34,7 @@ Spree::Config[:track_inventory_levels] = false
 charities = []
 charity_emails = []
    # Charity info taken from http://www.bpsmilford.org
-   charities << {image: "pic1", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
+   charities << {image: "pic33", name: "Bearing Precious Seed", eid: rand_eid, description: "Bearing Precious Seed is a Scripture publishing ministry of First Baptist Church in Milford, Ohio. Since 1973, BPS has printed over 132 million Scriptures and Scripture portions and distributed them to churches and missionaries all around the world.",
    mission_statement:"Partnering with missionaries in reaching people for Christ.", target_area:"", video_url: "", video_url_html: "", cover_photo: nil, category_id: charity_categories.find_by_name("Religion").id}
    charity_emails << "BearingPreciousSeed@groupgrant.com"
 
@@ -220,7 +220,7 @@ business_emails = []
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
    business_emails << "State@groupgrant.com"
 
-   businesses << { image: "pic9", name: "Vitamin Shoppe", description: "",
+   businesses << { image: "pic9", name: "Vitamin Shoppe", description: "The Vitamin Shoppe's retail stores and online sites carry a line of nutritional supplements[6] with supplementary lines, such as Vitamin Shoppe's M.D. Select (a line put together by Dr. Ronald Hoffman) and the Bodytech brand of sports supplements. In addition to their own brands, the company carries third-party lines, including professional and specialized lines.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Health").id}
 
    business_emails << "Vitamin@groupgrant.com"
@@ -1155,7 +1155,7 @@ groupgrants = [
    },{
       image: "farm",
       name: "Growing For Life",
-      description: "Help us teach the people of Mozambique learn sustainable farming. If we can teach them to farm, they can learn to support themselves and grow as a community. Donate to this groupGrant to help give supplies and farming producto these peopelrt."
+      description: "Help us teach the people of Mozambique to learn sustainable farming. If we can teach them to farm, they can learn to support themselves and grow as a community. Donate to this groupGrant to help give supplies and farming products to these people."
    },{
       image: "food1",
       name: "To the Starving",
@@ -1178,7 +1178,7 @@ groupgrants = [
       description: "These kids aren't playing just for fun. They play to help bring the same opportunity to kids their age in Africa. Donate now to help these kids spread opportunities around the world."
    },{
       image: "medical1",
-      name: "Vaccinate Suda",
+      name: "Vaccinate Sudad",
       description: "Kids in Sudan need vaccinations for tetnis, measles and other diseases. Help us provide the medical equipment to make a project life this possible."
    },{
       image: "medical2",
@@ -1201,9 +1201,9 @@ def missions_run_default
 end
 
 midnight_run =[
-   image: "missionrun",
+   image: "missionsrun",
    name:"Mission Midnight Run", 
-   description:"PCC Student Body presents the Missions midnight run, in order support the work of Bearing Precious Seed! This year, BPS is trying to raise support to help spread Bibles to Nepal, Romania, Sierra Leone, and Thailand. Please pray that they are able to raise enough support and join us on April 25 for the midnight run! You don't want to miss this!"
+   description:"The PCC Student Body presents the Missions midnight run, in order to support the work of Bearing Precious Seed! This year, BPS is trying to raise support to help spread Bibles to Nepal, Romania, Sierra Leone, and Thailand. Please pray that they are able to raise enough support and join us on April 25 for the midnight run! You don't want to miss this!"
 ]
 
 
@@ -1213,8 +1213,8 @@ midnight_run.each do |groupgrant_attrs|
 
    
    if(!image.nil? && image != '.jpg')
-      #add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
-      #groupgrant_attrs.merge!(add_pic)
+      add_pic = {groupgrant_pic: File.open(File.join(Rails.root, "db", "seeds", "groupgrant_pics", image))}
+      groupgrant_attrs.merge!(add_pic)
    end
    groupgrant = Groupgrant.create!(groupgrant_attrs.merge(missions_run_default))
 

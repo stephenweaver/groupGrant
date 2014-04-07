@@ -1,29 +1,33 @@
 <h1>Listing requests</h1>
 
-<table>
+<table border=1 cellpadding="5">
   <thead>
     <tr>
-      <th>Is accepted</th>
-      <th>Is rejected</th>
-      <th>Date</th>
-      <th>Date responded</th>
+      <th>From:</th>
+      <th>To:</th>
+      <th>groupGrant Name</th>
+      <th>Accept</th>
+      <th>Reject</th>
+    <!--   <th></th>
       <th></th>
-      <th></th>
-      <th></th>
+      <th></th> -->
     </tr>
   </thead>
 
   <tbody>
-    <% @requests.each do |request| %>
-      <tr>
-        <td><%= request.is_accepted %></td>
-        <td><%= request.is_rejected %></td>
-        <td><%= request.date %></td>
-        <td><%= request.date_responded %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @requests.each do |pending| %>
+      <% if Request.find(pending.request_id).date_responded == nil %>
+        <tr id=<%= pending.id %>>
+          <td><%= User.find(pending.user_sent_id).rolable.name %></td>
+          <td><%= User.find(pending.user_received_id).rolable.name %></td>
+          <td><%= Groupgrant.find(Request.find(pending.request_id).groupgrant_id).name %></td>
+          <td><div class="btn btn-success" onclick=accept(<%= pending.id %>)>Accept</div></td>
+          <td><div class="btn btn-danger" onclick=reject(<%= pending.id %>)>Reject</div></td>
+          <!-- <td><%= link_to 'Show', Message.find_by_request_id(pending.id) %></td>
+          <td><%= link_to 'Edit', edit_request_path(pending) %></td>
+          <td><%= link_to 'Destroy', pending, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -64,7 +64,7 @@ Every year, thousands of household pets are abandoned at birth because their own
 
 {
    image: "Medical1",
-   name: "Vaccinate Suda",
+   name: "Vaccinate Sudad",
    description: "Kids in Sudan need vaccinations for tetnis, measles and other diseases. Help us provide the medical equipment to make a project life this possible."},
 
 {

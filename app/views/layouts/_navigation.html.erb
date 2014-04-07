@@ -2,7 +2,10 @@
   <li><%= link_to 'groupGrants', main_app.groupgrants_path %></li>
   <li><%= link_to 'Charities', main_app.charities_path %></li>
   <li><%= link_to 'Businesses', main_app.businesses_path %></li>
-  <li><%= link_to 'Marketplace', Rails.configuration.dumb_url + '/store' %></li>
+
+  <% if user_signed_in? && current_user.rolable_type != "Donor" %>
+    <li><%= link_to 'Marketplace', Rails.configuration.dumb_url + '/store' %></li>
+  <% end %>
 </ul>
 
 <ul class="nav navbar-nav visible-sm visible-md hidden-xs hidden-lg">
@@ -12,7 +15,9 @@
     <li><%= link_to 'groupGrants', main_app.groupgrants_path %></li>
     <li><%= link_to 'Charities', main_app.charities_path %></li>
     <li><%= link_to 'Businesses', main_app.businesses_path %></li>
-    <li><%= link_to 'Marketplace', Rails.configuration.dumb_url + '/store' %></li>
+    <% if user_signed_in? && current_user.rolable_type != "Donor" %>
+      <li><%= link_to 'Marketplace', Rails.configuration.dumb_url + '/store' %></li>
+    <% end %>
   </ul>
 </li>
 </ul>

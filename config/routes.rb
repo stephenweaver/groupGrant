@@ -21,6 +21,7 @@ match "/messages/show_all", :to => "messages#show_all",    via: :get
   resources :authentications
   resources :charges
   resources :messages
+  resources :requests
 
   root :to => 'visitors#new'
 
@@ -51,10 +52,12 @@ match "/messages/show_all", :to => "messages#show_all",    via: :get
   match "/messages/new_message_check", :to => "messages#new_message_check",    via: :post
   match "/groupgrants/submit_payment", :to => "groupgrants#payment_form_post", via: :post
   match "/users/active",               :to =>  "visitors#update_last_ping",    via: :post
-  match "/requests/response",           :to => "groupgrants#request_response",  via: :post
+  match "/requests/response",          :to => "groupgrants#request_response",  via: :post
+  match "/requests/accept",            :to => "requests#accept",               via: :post
+  match "/requests/reject",            :to => "requests#reject",               via: :post
   
- match "/logout"           => "authentications#logout",        via: :get, as: 'logout_manual'
- match "/charityLogin"     => "authentications#charityLogin",  via: :get, as: 'auto_charity_login'
+  match "/logout"           => "authentications#logout",        via: :get, as: 'logout_manual'
+  match "/charityLogin"     => "authentications#charityLogin",  via: :get, as: 'auto_charity_login'
   match "/businessLogin"    => "authentications#businessLogin", via: :get, as: 'auto_business_login'
   match "/donorLogin"       => "authentications#donorLogin",    via: :get, as: 'auto_donor_login'
  

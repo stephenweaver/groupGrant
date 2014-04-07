@@ -243,9 +243,9 @@
                 m = Message.where(request_id: r.id)
                 m = Message.find(m)
 
-                if (m.user_sent_id == current_user.id) %>
+                if (m.user_sent_id == current_user.id && r.date_responded == nil) %>
                   <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
-                     Request Pending. Cancel? 
+                     Request Is Pending. Cancel? 
                   </div>
                 <% end %>
               <% else %>
