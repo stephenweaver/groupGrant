@@ -28,6 +28,11 @@ setup_hover = function() {
 	}, function() {
 	    $('.expo_return_text_div').animate({ "width": "0px" }, "slow" );
 	});
+
+	$('.register').click(function(event) {
+		event.preventDefault();
+		$('html,body').animate({scrollTop: $('.explore').offset().top});
+	});
 }
 
 $(window).load(function() {
