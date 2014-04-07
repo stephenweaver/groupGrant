@@ -61,14 +61,9 @@
         Address: not listed <br><%= @business.user.address %><br>
 
         <!-- Connection request for Business to business -->
-<<<<<<< HEAD
           <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
           <!-- <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button> -->
-=======
-        <% if user_signed_in? && current_user.rolable.class.name == "Charity" %>
-          <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
-          
->>>>>>> d38a620ef6177e39ebcc9a32c594d621949ac5f6
+
           <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
