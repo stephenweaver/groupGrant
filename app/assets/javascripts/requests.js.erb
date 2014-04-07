@@ -1,0 +1,28 @@
+accept = function(id){
+     $.ajax({
+         type: "POST",
+         url: "<%= Rails.configuration.dumb_url %>/requests/accept",
+         data: {
+                mid: id
+            },
+         async: false,
+         success: function (data) {            
+            $("#" + id).remove();
+         }
+      });
+};
+
+reject = function(id)
+{
+    $.ajax({
+         type: "POST",
+         url: "<%= Rails.configuration.dumb_url %>/requests/reject",
+         data: {
+                mid: id
+            },
+         async: false,
+         success: function (data) {
+            $("#" + id).remove();
+         }
+      });
+}

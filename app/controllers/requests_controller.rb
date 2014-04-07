@@ -4,7 +4,9 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    # @requests = Request.all
+    # raise
+    @requests = Message.all_requests
   end
 
   # GET /requests/1
@@ -51,9 +53,37 @@ class RequestsController < ApplicationController
     end
   end
 
-  def sendRequest
-    
+  def accept
+    @message = Message.find(params[:mid])
+    @pending = Request.find(@message.request_id)
+    @groupgrant = Groupgrant.find(@pending.groupgrant_id)
+    @from = User.find(@message.user_sent_id)
+    @to   = User.find(@message.user_received_id)
+
+    @pending.is_accepted = true
+    @pending.date_responded = Time.current
+    if @from.rolable_type == "Charity"
+      @groupgrant.partner_id = @from.rolable_id
+    else
+      @groupgrant.partner_id = @to.rolable_id
+    end
+
+    @groupgrant.save!
+    @pending.save!
+
+    render text: "true"
   end
+
+  def reject
+    @message = Message.find(params[:mid])
+    @pending = Request.find(@message.request_id)
+    @pending.is_accepted = false
+    @pending.date_responded = Time.current
+    @pending.save!
+    render text: "false"
+  end
+
+
 
   # DELETE /requests/1
   # DELETE /requests/1.json
@@ -75,4 +105,6 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:is_accepted, :is_rejected, :date, :date_responded)
     end
+
+
 end
