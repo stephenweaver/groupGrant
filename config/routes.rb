@@ -57,6 +57,7 @@ match "/messages/show_all", :to => "messages#show_all",    via: :get
   match "/requests/reject",            :to => "requests#reject",               via: :post
   
   match "/logout"           => "authentications#logout",        via: :get, as: 'logout_manual'
+  match "/logout2"           => "authentications#logout2",        via: :get, as: 'logout_return_expo'
   match "/charityLogin"     => "authentications#charityLogin",  via: :get, as: 'auto_charity_login'
   match "/businessLogin"    => "authentications#businessLogin", via: :get, as: 'auto_business_login'
   match "/donorLogin"       => "authentications#donorLogin",    via: :get, as: 'auto_donor_login'

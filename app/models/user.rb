@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :rolable
 
   has_attached_file :profile, :styles => { :medium => "300x300>", :small => "200x200>", :thumb => "100x100>" }, 
-    :default_url => "/assets/medium/missing.jpg"
+    :default_url =>  ActionController::Base.helpers.asset_path("medium/missing.jpg")
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -66,7 +66,7 @@
 
         <!-- Connection request for Business to Charity -->
         <% if user_signed_in? && current_user.rolable.class.name == "Business" %>
-          <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button>
+          <!-- <button class="btn btn-primary btn-block" tabindex="1" data-toggle="modal" data-target="#myModal">Send Message</button> -->
          
           <div class="modal fade" id="myModal">
             <div class="modal-dialog">
@@ -134,5 +134,3 @@
   <div class="col-md-1"><!-- I made this so things would be centered --></div>
 </div>
 <!-- end of row 2 -->
-
-<%= javascript_include_tag("facebook_twitter_api.js") %>

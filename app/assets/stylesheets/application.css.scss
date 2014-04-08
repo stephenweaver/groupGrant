@@ -334,3 +334,37 @@ background-color: #c0392b;
 
 // End Forms --------------------------------------------
 
+
+
+.expo_logo {
+  width: 125px;
+  float:left;
+  position:relative;
+  height: 125px;
+}
+
+.expo_logo_div {
+  position:fixed;
+  bottom: 0px;
+  left: 0px;
+  height: 127px;
+}
+
+.expo_return_text_div {
+  overflow:hidden;
+  width: 0px;
+}
+
+.expo_return_text {
+  position:relative;
+  float:left;
+  padding-top:35px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: #333; 
+  height:125px;
+  color:white;
+  font-size: 14pt;
+  text-align:center;
+  width:186px;
+}
