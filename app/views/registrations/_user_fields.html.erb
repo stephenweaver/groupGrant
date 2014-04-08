@@ -7,8 +7,8 @@
    </div>
 </div>
 <%= f.input :email, placeholder: 'Example: groupgrant@domain.com' %>
-<%= f.input :password, :autocomplete => "off", required: true %>
-<%= f.input :password_confirmation, required: true %>
+<%= f.input :password, placeholder: 'At least 8 characters', :autocomplete => "off", required: true %>
+<%= f.input :password_confirmation, placeholder: 'Confirm password', required: true %>
 
 <% if :rest == 'put' && current_user.encrypted_password.present? %>
    <div class="form-group">
@@ -19,7 +19,7 @@
    </div>
 <% end %>
 
-<%= f.input :phone, placeholder: 'Example: 8502310415' %>
+<%= f.input :phone, placeholder: 'Example: 8502310415', required: true %>
 
 <% if resource.rolable_type.to_s.humanize != "Donor" %>
    <div class="btn btn-md btn-primary col-md-1 col-md-offset-6" id="next_button" >Next</div>

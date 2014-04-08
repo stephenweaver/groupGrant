@@ -4,7 +4,7 @@
 	<h3>About your charity</h3>
 	<%= f.input :category_id, :as => :select, :collection => CharityCategory.all, :label_method => :name, :value_method => :id %>
 	<%= f.input :name %>
-	<%= f.input :eid, label: "9 Digit Employer ID ", placeholder: "Example: 912322323" %>
+	<%= f.input :eid, label: "9 Digit Employer ID ", placeholder: "Example: 503275469" %>
 	<%= f.input :description, as: :text %>
 	<%= f.input :video_url %>
 	<%= f.input :mission_statement, as: :text %>
