@@ -18,7 +18,7 @@ charity_categories = ["Animals", "Arts and Culture", "Education", "Environment",
 charity_categories.each do |category| CharityCategory.create(name: category) end   
 charity_categories = CharityCategory.all
 
-business_categories = ["Animals", "Education", "Food Services", "Environment", "Health", "Human Services", "Public Benefit", "Finance", "Other", "Entertainment" ]   
+business_categories = ["Animals", "Education", "Food Services", "Environment", "Health", "Human Services", "Public Benefit", "Finance", "Other", "Entertainment", "Electronics", "Department" ]   
 business_categories.each do |category| BusinessCategory.create(name: category) end
 business_categories = BusinessCategory.all
 
@@ -272,6 +272,46 @@ business_emails = []
    businesses << { image: "pic21", name: "Chuck E. Cheese", description: "We believe that today, more than ever, kids need a safe, wholesome environment in which they can laugh, play and simply be kids. We take pride in providing an experience that kids and parents will love coming back to.",
      location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Entertainment").id}
    business_emails << "ChuckE@groupgrant.com"
+
+   businesses << { image: "pic22", name: "Apple", description: "Apple Inc. is an American multinational corporation headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software and personal computers. Its best-known hardware products are the Mac line of computers, the iPod media player, the iPhone smartphone, and the iPad tablet computer. Its consumer software includes the OS X and iOS operating systems, the iTunes media browser, the Safari web browser, and the iLife and iWork creativity and productivity suites.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Electronics").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic23", name: "Chevron", description: "At Chevron, we are relentlessly focused on producing safe, reliable energy now and for the future. How are we doing it? By applying the energy we have most in abundance: Human Energy.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Human Services").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic23", name: "AT&T", description: "For more than a century, AT&T has consistently provided innovative, reliable, high-quality products and services and excellent customer care. Today, our mission is to connect people with their world, everywhere they live and work, and do it better than anyone else. We're fulfilling this vision by creating new solutions for consumers and businesses and by driving innovation in the communications and entertainment industry.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Electronics").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic24", name: "Coca-Cola", description: "The Coca-Cola Company is an American multinational beverage corporation and manufacturer, retailer and marketer of nonalcoholic beverage concentrates and syrups, which is headquartered in Atlanta, Georgia.[2] The company is best known for its flagship product Coca-Cola, invented in 1886 by pharmacist John Stith Pemberton in Columbus, Georgia.[3] The Coca-Cola formula and brand was bought in 1889 by Asa Griggs Candler (December 30, 1851 - March 12, 1929), who incorporated The Coca-Cola Company in 1892. The company operates a franchised distribution system dating from 1889 where The Coca-Cola Company only produces syrup concentrate which is then sold to various bottlers throughout the world who hold an exclusive territory.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic25", name: "Toys R Us", description: "Toys \"R\" Us, Inc. is a dedicated toy and juvenile-products retailer founded in 1948 and headquartered in Wayne, New Jersey. The company operates more than 872 Toys \"R\" Us and Babies \"R\" Us stores in the United States, more than 715 international stores and over 180 licensed stores in 35 countries and jurisdictions.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Other").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic26", name: "Radio Shack", description: "RadioShack is a leading national retailer of innovative technology products and services, as well as products related to personal and home technology and power supply needs. RadioShack offers consumers products and services from leading national brands, exclusive private brands and major wireless carriers, all within a comfortable and convenient shopping environment.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Department").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic27", name: "American Eagle", description: "AE brings you high-quality, on-trend clothing, accessories and personal care products at  affordable prices. with AE.com delivering around the world and over 900 stores set up across the US and Canada, we target men and women ages 15 to 25 years old but welcome individuals of all ages everywhere.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Department").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic28", name: "Dick's Sporting Goods", description: "DICK'S Sporting Goods was founded in 1948 when an 18 year-old Dick Stack was working at an Army surplus store in Binghamton, New York. An avid fisherman, Dick was approached by the store owner to come up with a list of products needed to get into the fishing tackle business. After Dick presented his suggestions, the owner told him he was a dumb kid and had no idea what he was doing. Dick was upset and promptly quit. He went to his grandmother's house where he spent a lot of time as a kid and told her what had happened. Dicks's grandmother asked how much it would cost to build the store himself. Dick said it would cost $300. His grandmother then went to the cookie jar where she kept her life savings and gave him $300 and told him \"do it yourself.\" Dick used that money and his relentless work-ethic to open a bait-and-tackle shop in Binghamton. By 1958, he expanded his product line to include much of what you'll find at DICK'S Sporting Goods today.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Department").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic29", name: "Best Buy", description: "Best Buy is the world's largest multi-channel consumer electronics retailer with stores in the United States, Canada, China, and Mexico. BestBuy.com is among the top ten retail websites in the United States and we have the number one customer loyalty program of its kind. There are more than 1 billion visitors to our website and 600 million visits to our U.S. stores each year.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Electronics").id}
+   business_emails << "@groupgrant.com"
+
+   businesses << { image: "pic30", name: "McDonalds", description: "At McDonald's, we strive to be more than just a restaurant we're a first job for many, a community partner, a model for other restaurants around the world, and a company seeking new ways to fulfill our brand promise of Quality, Service, Cleanliness, and Value.",
+     location:"", goods: "", services:"", interests:"", category_id: BusinessCategory.find_by_name("Food Services").id}
+   business_emails << "@groupgrant.com"
 
 businesses.each_with_index do |business, index| 
    image = business[:image].to_s + '.jpg'
