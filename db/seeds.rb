@@ -202,6 +202,7 @@ charities.each_with_index do |charity, index|
    charity.delete(:image)
    new_charity = Charity.create!(charity)
    user_attrs = {email: charity_emails[index], password: password, rolable_id: new_charity.id, rolable_type: "Charity", phone: rand_phone, is_available:1}
+   Rails.logger.info(!image.nil? && image != '.jpg')
    if(!image.nil? && image != '.jpg')
      add_pic = {profile: File.open(File.join(Rails.root, "db", "seeds", "charity_pics", image))}
      user_attrs.merge!(add_pic)
