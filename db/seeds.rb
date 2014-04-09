@@ -197,6 +197,7 @@ charity_emails = []
 password = "groupgrant"
 
 charities.each_with_index do |charity, index|
+   Rails.logger.info(charity[:image].to_s)
    image = charity[:image].to_s + '.jpg'
    charity.delete(:image)
    new_charity = Charity.create!(charity)
