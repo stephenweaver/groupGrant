@@ -24,8 +24,10 @@ setup_hover = function() {
 	
 	$('.expo_logo_div').hover(
 	function() {
+		$('.expo_return_text_div').clearQueue()
 	    $('.expo_return_text_div').animate({ "width": "186px" }, "slow" );
 	}, function() {
+		$('.expo_return_text_div').clearQueue()
 	    $('.expo_return_text_div').animate({ "width": "0px" }, "slow" );
 	});
 
