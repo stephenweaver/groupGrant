@@ -12,7 +12,7 @@
     <% end %>
   </div>
 
-  <div class = "row">
+  <div class = "row" style="padding-top:15px;">
     <ul class="nav nav-pills nav-stacked">
       <li <% if 0 == @category_id.to_i %> class="active"  <% end %>>
         <%= link_to(url_for(:controller => "groupgrants", :action => "index")) do %>
