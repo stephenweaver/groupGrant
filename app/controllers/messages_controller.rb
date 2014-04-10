@@ -20,7 +20,9 @@ class MessagesController < ApplicationController
     all_messages = (Message.where("user_received_id = " + current_user.id.to_s + " OR user_sent_id = " + current_user.id.to_s)).order(:id)
     
     @friends = []
-
+    
+    # get people online
+    @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes) 
 
     # get existing conversations
     all_messages.each do |x|
@@ -30,9 +32,6 @@ class MessagesController < ApplicationController
         @friends << User.find(x.user_received_id) unless @friends.include?(User.find(x.user_sent_id))
       end
     end
-
-    # get people online
-    @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes) 
 
     # get people up to 10 total people
     if(@friends.count < 9) 

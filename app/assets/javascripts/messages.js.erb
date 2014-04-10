@@ -46,10 +46,22 @@ send_message = function(){
 };
 
 startTimer = function() {
+  if(typeof all_messsage_timer === 'undefined'){
+      var all_messsage_timer;
+  } else {
+    clearInterval(all_messsage_timer);
+  };
+  
+  if(typeof all_messsage_timer2 === 'undefined'){
+      var all_messsage_timer2;
+  } else {
+    clearInterval(all_messsage_timer2);
+  };
+
   if(($("#last_id")).length != 0) {
-     window.setInterval(update_client, 5000);
+     all_messsage_timer2 = window.setInterval(update_client, 5000);
   }
-    window.setInterval(check_unread, 5000);
+    all_messsage_timer1 = window.setInterval(check_unread, 5000);
 };
 
 
@@ -263,5 +275,6 @@ $(document).on('page:load', auto_complete_users);
 $(document).on('page:load', firstContact);
 $(document).on('page:load', chosen);
 $(document).on('page:load', request_response);
+$(document).on('page:load', startTimer);
 
 
