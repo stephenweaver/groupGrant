@@ -65,8 +65,12 @@
 </div>
 
 <div class="row" style="margin:0px;">
-  <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Click a user type to Log in </strong>
+  <% if current_user.nil? %>
+    <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Click a user type to Log in </strong>
     <small style="color: #444"><em>OR <b><a href="#"><span class="register">register</span></a></b> as a new user below</em></small></h1>
+  <% else %>
+    <h1 style="margin-left:auto; margin-right:auto; width:80%;"><strong>Click below to change your user type </strong>
+  <% end %>
 </div>
 
   <div class="user-container">
