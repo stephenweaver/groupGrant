@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     @friends = []
     
     # get people online
-    @friends << User.where.not(rolable_type: "Donor").where("last_ping_time >= ?", Time.current - 1.minutes) 
+    @friends << User.where.not(rolable_type: "Donor").where("last_ping_time >= ? AND id != ?", Time.current - 1.minutes, current_user.id) 
 
     # get existing conversations
     all_messages.each do |x|
@@ -37,6 +37,7 @@ class MessagesController < ApplicationController
     if(@friends.count < 9) 
       @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time <= ? or last_ping_time is null", Time.current - 1.minutes).limit(10 - @friends.count)
     end
+
     @friends.flatten!
     @friends.uniq!
     @search_users = searchUsers()
@@ -179,31 +180,31 @@ class MessagesController < ApplicationController
   # Return a list of users of the opposite type for the AutoComplete in messaging
   #----------------------------------------------------------------------------------------------------
   def searchUsers
-    if current_user.rolable.class.name == "Charity"
-      return User.where(rolable_type: 'Business')
-      # list_a = User.where(rolable_type: 'Business').order(:rolable_id).pluck(:id, :rolable_id)
-      # search_list = Business.order(:id).pluck(:id, :name)
+    # if current_user.rolable.class.name == "Charity"
+    #   return User.where.not(rolable_type: 'Business')
+    #   # list_a = User.where(rolable_type: 'Business').order(:rolable_id).pluck(:id, :rolable_id)
+    #   # search_list = Business.order(:id).pluck(:id, :name)
 
-      # search_list.each_with_index do |x, index|
-      #   x[0] = list_a[index][0]
-      # end
-      # sea
-      # search_list = Business.where(active: true).pluck(:name)
-      # search_list.each do |b|
-      #   list << b.name
-      # current_user
-    elsif current_user.rolable.class.name == "Business"
-      return User.where(rolable_type: 'Charity')
-      # list_a = User.where(rolable_type: 'Charity').order(:rolable_id).pluck(:id, :rolable_id)
-      # search_list = Charity.order(:id).pluck(:id, :name)
-      # search_list.each_with_index do |x, index|
-      #   x[0] = list_a[index][0]
-      # end
-      # # search_list.each do |c|
-      # #   list << c.name
-      # # end
-    end
-    
+    #   # search_list.each_with_index do |x, index|
+    #   #   x[0] = list_a[index][0]
+    #   # end
+    #   # sea
+    #   # search_list = Business.where(active: true).pluck(:name)
+    #   # search_list.each do |b|
+    #   #   list << b.name
+    #   # current_user
+    # elsif current_user.rolable.class.name == "Business"
+    #   return User.where(rolable_type: 'Charity')
+    #   # list_a = User.where(rolable_type: 'Charity').order(:rolable_id).pluck(:id, :rolable_id)
+    #   # search_list = Charity.order(:id).pluck(:id, :name)
+    #   # search_list.each_with_index do |x, index|
+    #   #   x[0] = list_a[index][0]
+    #   # end
+    #   # # search_list.each do |c|
+    #   # #   list << c.name
+    #   # # end
+    # end
+    return User.where.not(rolable_type: 'Donor')
   end
 
   #----------------------------------------------------------------------------------------------------
