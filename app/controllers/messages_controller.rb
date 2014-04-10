@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     @friends = []
     
     # get people online
-    @friends << User.where.not(rolable_type: ["Donor", current_user.rolable_type]).where("last_ping_time >= ?", Time.current - 1.minutes) 
+    @friends << User.where.not(rolable_type: "Donor").where("last_ping_time >= ?", Time.current - 1.minutes) 
 
     # get existing conversations
     all_messages.each do |x|
