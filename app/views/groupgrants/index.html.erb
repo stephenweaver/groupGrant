@@ -21,11 +21,13 @@
       </li>
 
       <% @categories.each do |c| %>
+        <% if @groupgrant_count[c.id].to_i > 0 %>
         <li <% if c.id == @category_id.to_i %> class="active"  <% end %>>
           <%= link_to(url_for(:controller => "groupgrants", :action => "index", :category => c.id)) do %>
             <%= c.name %> <span class="badge pull-right"><%= @groupgrant_count[c.id].to_s %></span>
           <% end %>
         </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
