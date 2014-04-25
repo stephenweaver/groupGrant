@@ -65,7 +65,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
 
     if (r.destroy)
       m.destroy
-      render text: "request destroyed"
+      render text: "true"
     else
       render text: "something went wrong"
     end
@@ -131,7 +131,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
    
     result = ""
 
-    if (groupgrant.id != nil && Request.find_by_groupgrant_id(groupgrant.id)[0] == nil)
+    if (groupgrant.id != nil && Request.find_by_groupgrant_id(groupgrant.id).nil?)
       request = Request.create(groupgrant_id: groupgrant.id)
       message = Message.new(body: "You are invited to join " + groupgrant.name, 
                             user_sent_id:     current_user.id, 
@@ -171,7 +171,6 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
     @groupgrant = Groupgrant.new(groupgrant_params)
     @groupgrant.owner_id    = current_user.rolable.id
     @groupgrant.partner_id  = 0
-    # @groupgrant.goal_amount = 0
     @groupgrant.goal_status = 0
     
     respond_to do |format|      

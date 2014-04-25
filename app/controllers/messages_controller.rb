@@ -96,7 +96,7 @@ class MessagesController < ApplicationController
           if message.user_sent_id == current_user.id 
             if request.is_accepted.nil?
               text_message = "Your request to work together on " + gg_link + " is awaiting response.<br>"
-              buttons = '<input type="submit" name="cancel" value="Click to cancel" class="btn btn-danger" />'
+              # buttons = '<input type="submit" name="cancel" value="Click to cancel" class="btn btn-danger" />'
             elsif request.is_accepted == true
               text_message = "Your request to work together on " + gg_link + " has been accepted." 
             elsif request.is_accepted == false

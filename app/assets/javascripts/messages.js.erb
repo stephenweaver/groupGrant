@@ -240,6 +240,24 @@ request_response = function() {
   });
 }
 
+//----------------------------------------------------------
+// Cancel a request on the Messages page - KW
+//----------------------------------------------------------
+cancel = function(id)
+{
+  $.ajax({
+       type: "POST",
+       url: "<%= Rails.configuration.dumb_url %>/groupgrant/cancelRequest",
+       data: {
+              id: id
+          },
+       async: false,
+       success: function (data) {
+          $("#cancel").remove();
+       }
+    });
+}
+
 imhere = function() {
    $.ajax({
       type: "POST",
