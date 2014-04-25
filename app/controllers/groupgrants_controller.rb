@@ -92,7 +92,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
         result = "Request unsuccessful"
       end
     else
-      result "No ID was passed for the groupgrant"
+      result = "No ID was passed for the groupgrant"
     end
     render text: result
   end
@@ -131,7 +131,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
    
     result = ""
 
-    if (groupgrant != nil && Request.find_by_groupgrant_id(groupgrant.id) == nil)
+    if (groupgrant.id != nil && Request.find_by_groupgrant_id(groupgrant.id)[0] == nil)
       request = Request.create(groupgrant_id: groupgrant.id)
       message = Message.new(body: "You are invited to join " + groupgrant.name, 
                             user_sent_id:     current_user.id, 
@@ -145,7 +145,7 @@ protect_from_forgery with: :null_session, :only => [:payment_form]
         result = "Request unsuccessful"
       end
     else
-      result "No ID was passed for the groupgrant"
+      result = Request.find_by_groupgrant_id(groupgrant.id)
     end
     render text: result
   end

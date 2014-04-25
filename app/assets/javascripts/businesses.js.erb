@@ -39,8 +39,8 @@ invite = function()
           success: function( data) {
             if (data == "true")
             {
-              alert("Your request has been sent");
-              location.reload(true)
+              $("#request").remove();
+              $("#sponsors").append("<h3>A request has been sent.</h3>");
             }
             else
               alert(data)

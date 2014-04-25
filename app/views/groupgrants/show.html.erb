@@ -243,38 +243,41 @@
                 m = Message.where(request_id: r.id)
                 m = Message.find(m)
 
-                if (m.user_sent_id == current_user.id && r.date_responded == nil) %>
-                  <div class="btn btn-primary" id="cancel" data-groupgrant=<%=@groupgrant.id %> >
+                # Show if a request is pending
+                if (m.user_sent_id == current_user.id && r.date_responded == nil) %>                
+                  <div class="btn btn-primary" id="cancel" onclick="cancelRequest()" data-groupgrant=<%=@groupgrant.id %> >
                      Request Is Pending. Cancel? 
                   </div>
                 <% end %>
               <% else %>
-                <div id="request" class="btn btn-primary btn-block">Partner with groupGrant</div>
+                <div id="request" onclick="sendRequest()"class="btn btn-primary btn-block">Partner with groupGRANT</div>
               <% end %>            
           </div>
         </div>
       <% end %>
-      <% if @groupgrant.partner_id == 0 && user_signed_in? && current_user.id == @groupgrant.owner_id %>
-<!-- Proceed if there are no request sent for this groupgrant -->
-      <% if @requests.nil? || @requests.first == nil %>      
-        <div style="display:block" id="business">   
-          <!-- CONTACT NEW FRIEND -->
-          <h3> Send a partner request</h3>
-          <select class="select_new_contact form-control " data-placeholder="Choose a business" id="autocomplete_g">
-            <option></option>
-            <!-- Display the business if it doesn't already have a request -->
-            <% @search_businesses.each do |business| %>
-              <option value= <%= business.id %>>
-                <%= business.rolable.name %>
-              </option>
-            <% end %>
-          </select>
-
-          <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite">
-            Send Request
-          </button>
-        </div>
-      <% end %>
+      <% if (@groupgrant.partner_id == 0 || @groupgrant.partner_id.nil?) && user_signed_in? && current_user.id == @groupgrant.owner_id %>
+        <!-- Proceed if there are no request sent for this groupgrant -->
+        <div id="request_sent"></div>
+        <% if @requests.nil? || @requests.first == nil %>      
+          <div style="display:block" id="business">   
+            <!-- CONTACT NEW FRIEND -->
+            <h3> Send a partner request</h3>
+            <select class="select_new_contact form-control " data-placeholder="Choose a business" id="autocomplete_g">
+              <option></option>
+              <!-- Display the business if it doesn't already have a request -->
+              <% @search_businesses.each do |business| %>
+                <option value= <%= business.id %>>
+                  <%= business.rolable.name %>
+                </option>
+              <% end %>
+            </select>
+            <div id="connect_to_business">
+              <div class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#contactSelectedUser" style="margin-top:5px; margin-bottom:10px" id="gInvite" onclick="invite()">
+                Partner With Business
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
 
       <!-- Share the cause with others -->

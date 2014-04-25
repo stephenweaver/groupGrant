@@ -230,10 +230,10 @@ scrollDown = function() {
 request_response = function() {
   $(".message_request_form").on("ajax:success", function(e, data, status, xhr) {
       if(data['status'] === true) {
-        $(e.target).html('<div style="color:green">A partnership for blank between blank and blank was accepted.</div>');
+        $(e.target).html('<div style="color:green">The partnership was accepted.</div>');
       }
       else if(data['status'] === false) {
-        $(e.target).html('<div style="color:red">A partnership for blank between blank and blank was NOT accepted.</div>');
+        $(e.target).html('<div style="color:red">The partnership was NOT accepted.</div>');
       }
 
 

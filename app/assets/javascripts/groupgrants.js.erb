@@ -21,7 +21,7 @@ set_amount_field = function()
 // Send a request to a groupgrant
 sendRequest = function() 
 {
-	$("#request").click(function() {
+	// $("#request").click(function() {
 		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
@@ -40,7 +40,7 @@ sendRequest = function()
 		    	if (data == "true")
 		    	{
 			    	$("#request").remove();
-			    	$("#sponsors").append("<h3>A request has been sent.</h3>");
+			    	$("#sponsors").append("<h3>Your request has been sent.</h3>");
 			    }
 			    else
 			    	alert(data)
@@ -50,15 +50,15 @@ sendRequest = function()
         		alert("error " + data.name );
    			}
 		});
-	});
+	//});
 };
 
 
 // Cancel a request
 cancelRequest = function() 
 {
-	$("#cancel").click(function() 
-	{
+	// $("#cancel").click(function() 
+	// {
 		var groupgrantID = $("#groupgrantID").data("gid");
 		$.ajax({
 		    // the URL for the request
@@ -82,7 +82,7 @@ cancelRequest = function()
         		alert("error " + data.name );
    			}
 		});
-	});
+	//});
 };
 
 // Autocomplete for showing all businesses
@@ -105,8 +105,8 @@ chosen = function() {
 //---------------------------------------------------------
 invite = function()
 {
-	$("#gInvite").click(function()
-	{
+	// $("#gInvite").click(function()
+	// {
 		var bid          = $("#autocomplete_g option:selected").val()
 		var groupgrantID = $("#groupgrantID").data("gid");
 		if (bid != "")
@@ -128,28 +128,28 @@ invite = function()
 			    success: function( data) {
 			    	if (data == "true")
 			    	{
-				    	alert("Your request has been sent");
-				    	location.reload(true);
+				    	$("#business").remove();
+			    		$("#request_sent").append("<h3>Your request has been sent.</h3>");
 			    	}
 			    	else
 			    		alert(data)
 			    },
 			});
 		}
-	});
+	//});
 }
 $(window).load(function() {
    renderKnob();
-   sendRequest();
-   cancelRequest();
+   // sendRequest();
+   // cancelRequest();
    set_amount_field();
    chosen();
-   invite();
+   // invite();
 });
 
 $(document).on('page:load', renderKnob);
-$(document).on('page:load', sendRequest);
-$(document).on('page:load', cancelRequest);
+// $(document).on('page:load', sendRequest);
+// $(document).on('page:load', cancelRequest);
 $(document).on('page:load', set_amount_field);
 $(document).on('page:load', chosen);
-$(document).on('page:load', invite);
+// // $(document).on('page:load', invite);
